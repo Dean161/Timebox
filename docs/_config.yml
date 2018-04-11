@@ -2,4 +2,4 @@ name: ISEE 2018
 markdown: kramdown
 baseurl: /<Activity-Monitor>
 permalink: /blog/:year/:month/:day/:title/
-theme: jekyll-theme-dinky
+theme: jekyll-theme-hacker
