@@ -1,5 +1,5 @@
 name: ISEE 2018
 markdown: kramdown
-baseurl: /<CurryWurst>
+baseurl: <CurryWurst>
 permalink: /blog/:year/:month/:day/:title/
 theme: jekyll-theme-hacker
