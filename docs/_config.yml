@@ -1,5 +1,5 @@
 name: ISEE 2018
 markdown: kramdown
-baseurl: /Activity Monitor
+baseurl: /isee2018-CurryWurst
 permalink: /blog/:year/:month/:day/:title/
-theme: jekyll-theme-dinky
+theme: jekyll-theme-hacker
