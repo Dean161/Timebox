@@ -11,6 +11,7 @@
   <li><a href="https://currywurstworkspace.slack.com/messages/CA19F7ML2/">Slack</a></li>
   <li><a href="https://elearning.ovgu.de/course/view.php?id=4181">Moodle</a></li>
   <li><a href="https://www.zenhub.com/guides/project-management-with-zenhub">ZenHub Documentation</a></li>
+  <li><a href="https://dbse-teaching.github.io/isee2017/">PreviousCourseBlog</a></li>
   
 
 
