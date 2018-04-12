@@ -1,0 +1,9 @@
+/todo -> create a new todo
+/todo list -> show outstanding tasks
+/todo help -> see possible commands
+/invite @trello -> add trello to a channel
+/trello -> ??
+/trello add [CardName]-> create new card
+/trello add [@teammate] [cardName] -> create new card and assign team member
+/trello help -> see all possible commands
+/poll "should we use slack" "Yes" "No" -> create poll

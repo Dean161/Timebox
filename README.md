@@ -12,6 +12,24 @@
   <li><a href="https://elearning.ovgu.de/course/view.php?id=4181">Moodle</a></li>
   <li><a href="https://www.zenhub.com/guides/project-management-with-zenhub">ZenHub Documentation</a></li>
   <li><a href="https://dbse-teaching.github.io/isee2017/">PreviousCourseBlog</a></li>
-  
-
-
+</ul>
+<p>
+<ul>
+<li>index for repository:</li>
+<ul>
+<li>docs</li>
+<li>Publishments</li>
+<ul>
+<li>pictures</li>
+<li>BlogArticles</li>
+<li>Presentations</li>
+</ul>
+<li>organizational</li>
+<ul>
+<li>htmlCommands</li>
+<li>slackCommands</li>
+<li>roles</li>
+</ul>
+</ul>
+</ul>
+</p>
