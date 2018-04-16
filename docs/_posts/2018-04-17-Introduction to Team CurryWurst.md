@@ -14,7 +14,7 @@ date: 2018-04-17
 </div>
 <div>
   <h3>Our Team - Curry Wurst</h3>
-  <img src="https://github.com/DBSE-teaching/isee2018-CurryWurst/blob/master/docs/images/cw_final.png" alt="CurryWurst_Logo" width="300" height="241">
+  <img src=url('{{site.baseurl}}/images/cw_final.png') alt="CurryWurst_Logo" width="300" height="241">
 </div>
 <br>
 <table style="width:100%">
