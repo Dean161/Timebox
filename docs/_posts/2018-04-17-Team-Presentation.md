@@ -8,6 +8,6 @@
 </div>
 <div>
   <h3>Our Team - Curry Wurst</h3>
-  <img src="https://github.com/DBSE-teaching/isee2018-CurryWurst/blob/master/docs/images/cw_final.png" alt="CurryWurst_Logo" width="200" height="200">
+  <img src="{{site.baseurl}}/images/cw_final.png" alt="CurryWurst_Logo" width="200" height="200">
 </div>
   
