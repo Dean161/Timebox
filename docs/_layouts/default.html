@@ -25,13 +25,13 @@
 	
 	    		<ul>
 
-	        		<li><a href="{{site.baseurl}}/">Home</a></li>
+				<li><a href="{{site.baseurl}}/"><strong>Home</strong></a></li>
 
 		        	<!--<li><a href="/about">About</a></li>
 
 	        		<li><a href="/cv">CV</a></li>-->
 
-	        		<li><a href="{{site.baseurl}}/blog">Blog</a></li>
+				<li><a href="{{site.baseurl}}/blog"><strong>Blog</strong></a></li>
 
 	    		</ul>
 
@@ -60,7 +60,7 @@
       </section>
       <footer>
         {% if site.github.is_project_page %}
-        <p>This project is maintained by <a href="{{ site.title }}">{{ site.title }}</a></p>
+        <p>This project is maintained by <a href="{{ site.title }}">{{ site.title | default: site.github.repository_name }}</a></p>
 	              <!--<h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>-->
         {% endif %}
         <!--<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>-->
