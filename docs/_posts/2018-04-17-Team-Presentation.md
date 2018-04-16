@@ -1,1 +1,1 @@
-First Blog: Team Presentation
+<h1>Introduction to Team CurryWurst</h1>
