@@ -15,14 +15,21 @@
     <div class="wrapper">
       <header>
         <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
+	      
+	      <p><img src="{{site.baseurl}}/images/cw_final.png" alt="Logo" /></p>
         
-        <!--{% if site.logo %}-->
-        <img src="{{site.baseurl}}/images/cw_final.png" alt="Logo" width="300" height="241" />
-	      <!--<img src="{{site.baseurl}}/images/cw_final.png" alt="CurryWurst_Logo" width="300" height="241">-->
+        {% if site.logo %}
 
-        <!--{% endif %}-->
+          <img src="{{site.logo | relative_url}}" alt="Logo" />
+
+        {% endif %}
 
         <p>{{ site.description | default: site.github.project_tagline }}</p>
+	
+	<ul>
+		<li>home</li>
+		<li>blog</li>
+	      </ul>
 	      
 	      <p><a href="{{site.baseurl}}/"><strong>Home</strong></a></p>
 	      
