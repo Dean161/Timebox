@@ -14,7 +14,8 @@ date: 2018-04-17
 </div>
 <div>
   <h3>Our Team - Curry Wurst</h3>
-  <img src=url('{{site.baseurl}}/images/cw_final.png') alt="CurryWurst_Logo" width="300" height="241">
+  [CurryWurst_Logo]({{site.baseurl}}/images/cw_final.png "CurryWurst_Logo"){:height="30%" width="30%"}
+  <!--<img src=url('{{site.baseurl}}/images/cw_final.png') alt="CurryWurst_Logo" width="300" height="241">-->
 </div>
 <br>
 <table style="width:100%">
