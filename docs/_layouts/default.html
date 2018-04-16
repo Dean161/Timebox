@@ -21,6 +21,19 @@
         {% endif %}
 
         <p>{{ site.description | default: site.github.project_tagline }}</p>
+	      
+	
+	    		<ul>
+
+	        		<li><a href="{{site.baseurl}}/">Home</a></li>
+
+		        	<!--<li><a href="/about">About</a></li>
+
+	        		<li><a href="/cv">CV</a></li>-->
+
+	        		<li><a href="{{site.baseurl}}/blog">Blog</a></li>
+
+	    		</ul>
 
         {% if site.github.is_project_page %}
         <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
@@ -39,21 +52,7 @@
         {% endif %}
       </header>
       
-      <nav>
 
-	    		<ul>
-
-	        		<li><a href="{{site.baseurl}}/">Home</a></li>
-
-		        	<!--<li><a href="/about">About</a></li>
-
-	        		<li><a href="/cv">CV</a></li>-->
-
-	        		<li><a href="{{site.baseurl}}/blog">Blog</a></li>
-
-	    		</ul>
-
-			</nav>
       <section>
 
       {{ content }}
@@ -61,7 +60,8 @@
       </section>
       <footer>
         {% if site.github.is_project_page %}
-        <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
+        <p>This project is maintained by <a href="{{ site.title }}">{{ site.title }}</a></p>
+	              <!--<h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>-->
         {% endif %}
         <!--<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>-->
       </footer>
