@@ -1,3 +1,9 @@
+---
+layout: post
+title: "CurryWurst -- Team Presentation"
+date: 2018-04-06
+---
+
 <body>
 <div>
 <p>Welcome to our team’s blog. In this blog post we will introduce our Team, Project and our motivations to take up the course "Introduction to software engineering for engineers”.</p>
