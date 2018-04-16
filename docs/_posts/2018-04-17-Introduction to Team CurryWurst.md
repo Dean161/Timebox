@@ -7,6 +7,6 @@
 </div>
 <div>
   <h3>Our Team - Curry Wurst</h3>
-  <img src="{{site.baseurl}}/images/cw_final.png" alt="CurryWurst_Logo" width="200" height="200">
+  <img src="{{site.baseurl}}/images/cw_final.png" alt="CurryWurst_Logo" width="300" height="241">
 </div>
   
