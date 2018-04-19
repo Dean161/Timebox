@@ -1,0 +1,26 @@
+Questions for 3rd customer meeting
+- (requirements for) name of the app
+- predefined activities (our decision or do we get them?)
+- memory consumption
+- optimize for which screen size (solution auto-scale/ make suggestions, which are most common sizes)
+- core-day?
+- can we assign an activity to two categories or only one?
+- nested categories/ subcategories?
+- appealing GUI desireable/necessary/ essential?
+- specify kind of push messages
+- which chart? bar AND pie chart? based on which data we want to show?
+- categories or activities in retrospective? text vs. graphical summary?
+- max. length of names of activities/ categories?
+- constraints regarding the names of activities/ categories?
+- language/ keyboards?
+- deletion of categories: what will happen to (subcategories,) assigned activities? Notification?
+- kind of shortcut -> widget on lockscreen? show options?
+- requirements for text summary? 
+- customized colors?
+- length of the PIN?
+- pin numeric or alphabethical?
+- what happens if we forget the pin?
+- fingerprint to unlock?
+- data storage?
+- core-time? indicate it in summary? options: pie chart for core-day/ rest of the day?
+- what do you mean with icons? predefined icons -> library?
