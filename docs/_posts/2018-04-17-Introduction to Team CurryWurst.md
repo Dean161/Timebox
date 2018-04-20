@@ -19,11 +19,11 @@ The project we have selected to work on is 'Activity Monitoring'. Time managemen
 
 <table>
   <tr valign="top" border="1">
-    <td width="500"><img src="{{site.baseurl}}/images/QuangP.jpg" alt="Quang_Photo" width="150" height="150"><br><b>Pham Huu Quang</b><br>I am interested in starting up: creating my own mobile app in a small team. I hope the skills and experience gained from this course will aid me on my vision.</td>
-    <td width="500"><img src="{{site.baseurl}}/images/Dean.jpg" alt="Dean_Photo" width="150" height="150"><br><b>Dean Glen Dsouza</b><br>I am interested in this course as this will help me solidify my skills in programming and developing applications. It also helps me to relate the concepts to my previous work experience and obtain better understanding of the processes.</td>
+    <td width="500"><img src="{{site.baseurl}}/images/QuangP.jpg" alt="Quang_Photo" height="150"><br><b>Pham Huu Quang</b><br>I am interested in starting up: creating my own mobile app in a small team. I hope the skills and experience gained from this course will aid me on my vision.</td>
+    <td width="500"><img src="{{site.baseurl}}/images/Dean.jpg" alt="Dean_Photo" height="150"><br><b>Dean Glen Dsouza</b><br>I am interested in this course as this will help me solidify my skills in programming and developing applications. It also helps me to relate the concepts to my previous work experience and obtain better understanding of the processes.</td>
   </tr>
   <tr valign="top" border="1">
-    <td width="500"><img src="{{site.baseurl}}/images/Jahnavi.jpg" alt="Jahnavi_Photo" width="150" height="150"><br><b>Jahnavi Thimmaiah Cheyyanda</b><br>I always wanted to learn coding, but somehow refrained from doing so, in the past. I believe that the course "Introduction to software engineering for engineers" is a great opportunity not only to learn coding and develop an android app but also to learn the Project management skills required for any software engineer.</td>
+    <td width="500"><img src="{{site.baseurl}}/images/Jahnavi.jpg" alt="Jahnavi_Photo" height="150"><br><b>Jahnavi Thimmaiah Cheyyanda</b><br>I always wanted to learn coding, but somehow refrained from doing so, in the past. I believe that the course "Introduction to software engineering for engineers" is a great opportunity not only to learn coding and develop an android app but also to learn the Project management skills required for any software engineer.</td>
     <td width="500"><img src="{{site.baseurl}}/images/Moritz.jpg" alt="Moritz_Photo" width="150" height="150"><br><b>Moritz Spiller</b><br>I want to learn the principles of software engineering, which are, in my opinion, crucial skills for everybody who wants to work in a software engineering related field. I am eager to learn a profound approach to develop software in a team and I have always wanted to create my own mobile applications.</td>
   </tr>
 </table>
