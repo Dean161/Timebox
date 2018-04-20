@@ -24,3 +24,7 @@ Questions for 3rd customer meeting
 - data storage?
 - core-time? indicate it in summary? options: pie chart for core-day/ rest of the day?
 - what do you mean with icons? predefined icons -> library?
+- User Guide when the app is opened for the first time
+- what means "handful" predefined categories and activities? 5 each?
+- should the user be able to specify a specifc time frame for which he wants to get his summary (also via mail?) or is it predefined, or all activities logged so far
+- push messages -> in which cases?
