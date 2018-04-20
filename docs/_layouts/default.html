@@ -17,7 +17,7 @@
       <header>
         <h1 class="header">{{ site.title | default: site.github.repository_name }}</h1>
         <p class="header">{{ site.description | default: site.github.project_tagline }}</p>
-        <p><img src="{{site.baseurl}}/images/cw_final.png" width="120" height="100" alt="Logo" /></p>
+        <p><img src="{{site.baseurl}}/images/cw_final.png" width="160" alt="Logo" /></p>
 
         <ul>
           <!--{% if site.show_downloads %}
@@ -47,7 +47,7 @@
 
       <footer>
         {% if site.github.is_project_page %}
-          <p class="header">This project is part of <a class="header name" href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
+          <p class="header">This project is part of <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
         {% endif %}
 
         {% if site.github.is_user_page %}
