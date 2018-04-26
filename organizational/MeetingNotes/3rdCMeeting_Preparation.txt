@@ -1,30 +1,34 @@
 Questions for 3rd customer meeting
-- (requirements for) name of the app
-- predefined activities (our decision or do we get them?)
-- memory consumption
-- optimize for which screen size (solution auto-scale/ make suggestions, which are most common sizes)
-- core-day?
-- can we assign an activity to two categories or only one?
-- nested categories/ subcategories?
-- appealing GUI desireable/necessary/ essential?
-- specify kind of push messages
-- which chart? bar AND pie chart? based on which data we want to show?
-- categories or activities in retrospective? text vs. graphical summary?
-- max. length of names of activities/ categories?
-- constraints regarding the names of activities/ categories?
-- language/ keyboards?
-- deletion of categories: what will happen to (subcategories,) assigned activities? Notification?
-- kind of shortcut -> widget on lockscreen? show options?
-- requirements for text summary? 
-- customized colors?
-- length of the PIN?
-- pin numeric or alphabethical?
-- what happens if we forget the pin?
-- fingerprint to unlock?
-- data storage?
-- core-time? indicate it in summary? options: pie chart for core-day/ rest of the day?
-- what do you mean with icons? predefined icons -> library?
-- User Guide when the app is opened for the first time
-- what means "handful" predefined categories and activities? 5 each?
-- should the user be able to specify a specifc time frame for which he wants to get his summary (also via mail?) or is it predefined, or all activities logged so far
-- push messages -> in which cases?
+- (requirements for) name of the app -> be creative - short, indicates what iut is about
+- predefined activities (our decision or do we get them?) -> up to us
+- memory consumption -> no restictions
+- optimize for which screen size (solution auto-scale/ make suggestions, which are most common sizes) -> auto-scale
+- core-day? -> forget about it
+- can we assign an activity to two categories or only one? -> undecided -> not necessary
+- nested categories/ subcategories? -> yes
+- appealing GUI desireable/necessary/ essential? -> necessary
+- specify kind of push messages -> settings -> nice to have -> only for scheduled/ repeated/ indicated activities + notify about state of predefined activities (nice to have) settings to disable it -> cosult customer
+- which chart? bar AND pie chart? based on which data we want to show? -> stacked bar chart (day wise review) (discuss in specfic state
+- categories or activities in retrospective? text vs. graphical summary? -> 
+- max. length of names of activities/ categories? -> max. 40 digits
+- constraints regarding the names of activities/ categories? 
+- language/ keyboards? -> app is in english, keyboards (mobile keyboards is app independet?), (multi language support -> nice to have)
+- deletion of categories: what will happen to (subcategories,) assigned activities? Notification? -> deleting categories is nice-to-have
+- kind of shortcut -> widget on lockscreen? show options? -> nice to have shortcut
+- requirements for text summary? -> come up with a suggestion
+- customized colors? ->  style like excel -> look at default 
+- length of the PIN? -> 4 digit pin
+- pin numeric or alphabethical? -> numeric
+- what happens if we forget the pin? -> security question (4-5 possible questions) -> nice to have
+- fingerprint to unlock? -> nice to have not required
+- data storage? local storage -> in the app or outside is ok
+- core-time? indicate it in summary? options: pie chart for core-day/ rest of the day? -> gone
+- what do you mean with icons? predefined icons -> library? -> icons which indicate the meaning of the buttons
+- User Guide when the app is opened for the first time -> nice to have -> should be very easy
+- what means "handful" predefined categories and activities? 5 each? -> 5
+- should the user be able to specify a specifc time frame for which he wants to get his summary (also via mail?) or is it predefined, or all activities logged so far -> essential
+- push messages -> in which cases? -> see above
+
+arbitrary level of subcategories allowed
+icons also for categories
+notes for activities
