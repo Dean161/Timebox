@@ -1,0 +1,8 @@
+new UserStories
+Moritz:
+	create LogScreen
+	create Scheduling screen
+	create home screen
+	create navigation
+	set up github repository
+	
