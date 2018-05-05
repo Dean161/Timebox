@@ -1,8 +1,8 @@
 new UserStories
 Moritz:
-	create LogScreen
-	create Scheduling screen
-	create home screen
-	create navigation
+	create structure LogScreen
+	create structure Scheduling screen
+	create structure home screen
+	create structure navigation
 	set up github repository
 	
