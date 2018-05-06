@@ -64,9 +64,11 @@ The repeated customer meetings helped to get a common understanding of what the 
 ## Results
 
 #### Descriptions of the functionality of the application in UML Use case diagrams
-![UCD LogActivity](isee2018-CurryWurst/docs/images/LogActivity.JPG "Use Case Diagram - Log Activity")
+<img src="{{site.baseurl}}/images/LogActivity.JPG" alt="UCD LogActivity">
+*Use Case Diagram - Log Activity*
 
-![UCD Review](isee2018-CurryWurst/docs/images/Review.JPG "Use Case Diagram - Review")
+<img src="{{site.baseurl}}/images/Review.JPG" alt="UCD Review">
+*Use Case Diagram - Review Activities*
 
 #### Descriptions of the understanding of the user perspective in (Epic) user stories
 *Insert picture of Zenhub's backlog here*
