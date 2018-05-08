@@ -1,8 +1,18 @@
 new UserStories
-Moritz:
-	create structure LogScreen
-	create structure Scheduling screen
-	create structure home screen
-	create structure navigation
-	set up github repository
+Amount per person per sprint 16 hours:
+1 point = 4 hours (1 hour each)
+including testing, validation, adaption etc.
+
+create applications structure (E)
+	create LogScreen - 8
+	create Scheduling screen - 8
+	create home screen - 8
+		-> create calendar view - 
+		-> create upper part - 
+	create navigation - 1
+	create settings screen - 13
+	create review screen - 13
+	create LogIn Screen - 1
+	integrate database - 8
+	set up github repository -
 	
