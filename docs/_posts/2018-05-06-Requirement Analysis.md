@@ -64,10 +64,10 @@ The repeated customer meetings helped to get a common understanding of what the 
 ## Results
 
 #### Descriptions of the functionality of the application in UML Use case diagrams
-<img src="{{site.baseurl}}/images/LogActivity.JPG" alt="UCD LogActivity" width="1526" height="834">
+<img src="{{site.baseurl}}/images/LogActivity.JPG" alt="UCD LogActivity" width="1526" height="275">
                *Use Case Diagram - Log Activity*
 
-<img src="{{site.baseurl}}/images/Review.JPG" alt="UCD Review" width="1357" height="935">
+<img src="{{site.baseurl}}/images/Review.JPG" alt="UCD Review" width="1357" height="310">
                *Use Case Diagram - Review Activities*
 
 #### Descriptions of the understanding of the user perspective in (Epic) user stories
