@@ -14,10 +14,10 @@ In an attempt to create a clear definition of all the functions of the applicati
 In the run-up to the meeting, we thought about aspects which could be important for the activity tracking app. After that, we extracted some questions to get as much important information as possible from the customer. Furthermore, those questions should point out aspects, which have not been considered by the customer.
 
 In the following you can find a exemplary selection of questions asked during the meeting:
-  * Q1
-  * Q2
-  * Q3
-  * Q4
+  * Should the app work on-/ offline?
+  * With which Android versions should the app be compatible?
+  * Should the app be useable from lock screen?
+  * Should we provide the user to possibility to enable e-mail reports about his activities?
 
 #### Group Observation
 After the customer has presented a rough conception of the app, we asked both prepared and new questions in order to dig for more details. That lead to many material which we could use for conducting a requirement analysis. This has been done during an internal team meeting right after the customer meeting.
