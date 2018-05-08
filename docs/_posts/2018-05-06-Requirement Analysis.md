@@ -22,21 +22,27 @@ The following paragraph is and exemplary selection of questions asked during the
 >  * Are there any specific requirement for the app?
 
 #### Group Observation
-After the customer has presented a rough conception of the app, we asked both prepared and new questions in order to dig for more details. That lead to many material which we could use for conducting a requirement analysis. This has been done during an internal team meeting right after the customer meeting.
+After the customer has presented a rough concept of the app, we asked both prepared and un-prepared questions in order to gain as much detail as possible. That lead to many material for conducting a requirement analysis. This has been done during an internal team meeting right after the customer meeting.
 
 In a first step, we put the user stories into natural language requirements. Secondly, we extracted user stories out of those and added them to our ZenHub Scrum Board. Since some user stories are related to others or belong to a common functional area, we decided to create epics and assign user stories to them where appropriate.
 
-After this process has been finished, we started reading out every single user story and each team member was asked for his or her understanding of it. This approach lead to a more precise phrasing of some user stories, but most importantly to a lot of questions, which should be brought to the table during the second customer meeting.
+After this process has been finished, we started reading out every single user story and each team member was asked for his or her understanding of it. This approach lead to a more precise phrasing of some user stories, and most importantly, to a lot of questions, which should be brought up during the second customer meeting.
+
+Some unclear points that were founded are:
+>  * Requirement for the name of the app.
+>  * Screen size optimization.
+>  * The ability of assigning color to categories and activities.
+>  * Requirement of the security system
 
 [comment]: <> (* Review the meeting in timeline manner)
 [comment]: <> (* Dig more detail)
 [comment]: <> (* Prepare for the next meeting)
 
 #### Second Customer Meeting
-As mentioned in the previous paragraph, we gathered a lot of questions to clarify some uncertainties about the requirements collected so far. Since we could not be sure that the time of the meeting would be sufficient to cover all our questions, we prioritized them. Questions which seemed to be very important in this early stage got top priority, while others, like the name of the app, have been considered as less important.
+As mentioned above, we have gathered a lot of questions to clarify some uncertainties about the requirements collected so far. Since we could not be sure that the time of the meeting would be sufficient to cover all our questions, we prioritized them. Questions which seemed to be very important in this early stage got top priority, while others, like the name of the app, have been considered as less important.
 
-During the meeting the customer recalled the requirement that it should be possible to delete categories and we have also been able to clarify all our questions. This helped to clear up the key functions of the application.
-Our next team meeting was used to specify and complement the existing user stories as well as to create some use case diagram draws. 
+During the meeting, the customer recalled the requirement that it should be possible to delete categories and we have also been able to clarify all our questions. This helped to clear up the key functions of the application.
+[comment]: <> (Our next team meeting was used to specify and complement the existing user stories as well as to validate some usecase diagrams. )
 
 [comment]: <> (* Clear up the key function of the application)
 [comment]: <> (* More questionaries)
