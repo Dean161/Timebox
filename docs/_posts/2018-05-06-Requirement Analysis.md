@@ -48,15 +48,17 @@ During the meeting, the customer recalled the requirement that it should be poss
 [comment]: <> (* More questionaries)
 
 #### Prototyping
+For the third meeting with the customer, we plan to present our use case diagrams and user stories. 
+Therefore, in contrast to the first two customer meetings, our team decided to set up an additional meeting right before the third one. This happened due to open discussions about the usecase diagrams and to prepare the presentation of our user stories for the customer. This helped to enter the meeting with a common sense of what we want to present and achieve there.
+
+---
 * Draft Use case Diagram
 * User story without point calculated
+---
 
 ## Requirement Validation
 
 #### Third Meeting
-The third meeting with the customer should be used to present our use case diagrams and user stories. 
-In contrast to the first two customer meetings, our team decided to set up an additional meeting right before the third one. This happened due to open discussions about the use case diagrams and to prepare the presentation of our user stories for the customer. This helped to enter the meeting with a common sense of what we want to present and achieve there.
-
 The presentation of our user stories lead to two positive outcomes. Mainly the customer confirmed that we covered all currently known requirements with our user stories. Secondly, we have been able to clarify the detailed functionality to be provided by our app and clear up some more wrong assumptions that we have made. One of those was that we should not provide predefined activities to the user. The second one was related to the actual logging of the activity.
 While we assumed the user can just press “start activity” or “stop activity” and the current system time will then be assigned to the chosen activity, the customer wants the manual specification of a start and end time of an activity to be mandatory for the user. That produced the content for our next team meeting. In the first few minutes we further specified our user stories. This has been followed by the creation of a rudimental draw, which shows the various areas to be created for the app. We used this to allocate work to groups consisting of two team members each, respecting our earlier agreement that at least two members should have knowledge about a specific topic. 
 
@@ -66,8 +68,10 @@ While we assumed the user can just press “start activity” or “stop activit
 #### Reflection:
 The repeated customer meetings helped to get a common understanding of what the customer actually wants and what we are able to implement. This is meant to avoid incomplete requirements or wrong assumptions about requirements, which can lead to problems at later stages of our project work.
 
+---
 * The assumption about the length of any activity
 * The misunderstanding about...
+---
 
 ## Results
 
