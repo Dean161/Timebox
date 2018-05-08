@@ -11,13 +11,15 @@ In an attempt to create a clear definition of all the functions of the applicati
 ## Studying User's needs
 
 #### First Customer Meeting
-In the run-up to the meeting, we thought about aspects which could be important for the activity tracking app. After that, we extracted some questions to get as much important information as possible from the customer. Furthermore, those questions should point out aspects, which have not been considered by the customer.
+In the run-up to the meeting, we thought about aspects which could be important for the activity monitoring app. After that, we short-listed some questions to get as much important information as possible from the customer. Furthermore, those questions could point out aspects which might have not been considered by the customer.
 
-In the following you can find a exemplary selection of questions asked during the meeting:
-  * Should the app work on-/ offline?
-  * With which Android versions should the app be compatible?
-  * Should the app be useable from lock screen?
-  * Should we provide the user to possibility to enable e-mail reports about his activities?
+The following paragraph is and exemplary selection of questions asked during the meeting:
+>  * Should the app work on-/ offline?
+>  * With which Android versions should the app be compatible?
+>  * Should the app be useable from lock screen?
+>  * Should we provide the user to possibility to enable e-mail reports about his activities?
+>  * What is the preferable interface for displaying logged activities?
+>  * Are there any specific requirement for the app?
 
 #### Group Observation
 After the customer has presented a rough conception of the app, we asked both prepared and new questions in order to dig for more details. That lead to many material which we could use for conducting a requirement analysis. This has been done during an internal team meeting right after the customer meeting.
