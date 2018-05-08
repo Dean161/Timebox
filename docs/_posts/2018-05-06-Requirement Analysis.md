@@ -70,7 +70,7 @@ The repeated customer meetings helped to get a common understanding of what the 
 
 *Epic User stories in product backlog*
 
-![Backlog Epic]({{site.baseurl}}/images/Zenhub 1.jpg "Backlog Epic view"){:width="100%"}
+![Sprint log]({{site.baseurl}}/images/Zenhub 2.jpg "Backlog Epic view"){:width="100%"}
 
 *User stories with calculated points in current sprint log*
 
