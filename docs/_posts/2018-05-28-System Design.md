@@ -4,10 +4,6 @@ title: "System Design"
 date: 2018-05-28
 ---
 
-<System design>
-
-
-
 ## Behavioral Diagram 
 
 ####Interaction diagram for use case "Logging an activity"
