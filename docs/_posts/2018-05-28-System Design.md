@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "System Design"
+title: "System  Design"
 date: 2018-05-28
 ---
 
