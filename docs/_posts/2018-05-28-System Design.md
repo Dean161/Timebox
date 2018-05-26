@@ -18,17 +18,16 @@ We have used interaction diagrams to represent the behavior of the system and cl
 ## Design Pattern 
 
 ## Development Strategy
-To manage and monitor our work and especially our progress we stay in close contact with each other. Most importantly to mention are our regular meetings. Apart from meeting directly after the customer meeting, we also started to meet at least one more time during the week. 
-Meetings after the appointment with the customer are used to discuss the outcome of that meeting, new or changed information and to plan the next sprint. That includes adding user stories to the dashboard or modify existing ones. That is followed by estimating the user stories included in the next sprint and split work accordingly.
-Additional meetings are set when there is a specific topic to be discussed like, e.g., how our system design should look like. Those meetings are precisely documented and to keep a general view over our progress.
-When everyone has gotten his or her responsibilities for the next week we start working on the respective topic, update the other team members or ask for support via slack and move the user stories on the dashboard according to our progress.
-Our experience over the last weeks is, that this approach works out pretty good for our team. Everybody gets kept in the loop, knows where possible risks are and where additional effort is necessary. 
+To manage and monitor our work and especially our progress we stay in close contact with each other. Most importantly to mention are our regular meetings. Apart from meeting directly after the customer meeting, we also started to meet at least one more time during the week. Meetings after the appointment with the customer are used to discuss the outcome of that meeting, new or changed information and to plan the next sprint. That includes adding user stories to the dashboard or modify existing ones. That is followed by estimating the user stories included in the next sprint and split work accordingly.
+
+Additional meetings are set when there is a specific topic to be discussed like, e.g., how our system design should look like. Those meetings are precisely documented and to keep a general view over our progress.When everyone has gotten his or her responsibilities for the next week we start working on the respective topic, update the other team members or ask for support via slack and move the user stories on the dashboard according to our progress.Our experience over the last weeks is, that this approach works out pretty good for our team. Everybody gets kept in the loop, knows where possible risks are and where additional effort is necessary. 
 That helps us to reach optimal success in our project.
 
 
 ## Summary of changes  
 During our team meetings, we came across few requirements which we were uncertain about. For instance, we were not sure if we need to include a calendar view in the home screen to review the activities. Likewise, what happens when a user adds more than one activity for the same time stamp. We discussed these questions with the customer and decided to go with below requirements.
 > *Home screen will not have a calendar view but it should display last 10 activities. 
+
 > *User can add multiple activities with overlapping time period.  
 
 
