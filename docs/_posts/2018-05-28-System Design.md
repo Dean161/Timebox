@@ -10,14 +10,14 @@ We have used interaction diagrams to represent the behavior of the system and cl
 ## Behavioral Diagram 
 
 #### Interaction diagram for use case "Logging an activity"
-<img src="{{site.baseurl}}/images/Activity.PNG" alt="UCD Activity" width="1526" height="350">
+<img src="{{site.baseurl}}/images/Activity.PNG" alt="UCD Activity" width="1726" height="350">
 
 #### Activity diagram for use case "review activity"
-<img src="{{site.baseurl}}/images/Review.PNG" alt="UCD Review" width="1526" height="350">
+<img src="{{site.baseurl}}/images/Review.PNG" alt="UCD Review" width="1726" height="350">
 
 
 ## Class Diagrams
-<img src="{{site.baseurl}}/images/ClassDiagram.JPG" alt="UCD ClassDiagram" width="1526" height="350">
+<img src="{{site.baseurl}}/images/ClassDiagram.JPG" alt="UCD ClassDiagram" width="1726" height="350">
 
 ## Design Pattern 
 
