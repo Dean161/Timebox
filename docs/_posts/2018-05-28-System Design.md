@@ -57,6 +57,6 @@ During our team meetings, we came across few requirements which we were uncertai
 
 > * User can add multiple activities with overlapping time period.  
 
-## Thank you for visiting our blog!! See you next time with more interesting details on Implementation.  
+#### Thank you for visiting our blog!! See you next time with more interesting details on Implementation.  
 
 
