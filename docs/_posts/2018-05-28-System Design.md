@@ -28,7 +28,7 @@ That helps us to reach optimal success in our project.
 
 ## Summary of changes  
 During our team meetings, we came across few requirements which we were uncertain about. For instance, we were not sure if we need to include a calendar view in the home screen to review the activities. Likewise, what happens when a user adds more than one activity for the same time stamp. We discussed these questions with the customer and decided to go with below requirements.
-1)Home screen will not have a calendar view but it should display last 10 activities. 
-2)User can add multiple activities with overlapping time period.  
+> 1)Home screen will not have a calendar view but it should display last 10 activities. 
+> 2)User can add multiple activities with overlapping time period.  
 
 
