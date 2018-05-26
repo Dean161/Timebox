@@ -19,9 +19,25 @@ We have used interaction diagrams to represent the behavior of the system and cl
 ## Class Diagrams
 <img src="{{site.baseurl}}/images/Classdiagram.jpg" alt="UCD Classdiagram" width="1526" height="350">
 
-#### Class: Login
+#### Login
 <img src="{{site.baseurl}}/images/Classlogin.PNG" alt="UCD Classlogin" width="1526" height="350">
 <img src="{{site.baseurl}}/images/Methodlogin.PNG" alt="UCD Methodlogin" width="1526" height="350">
+
+#### HomeScreen
+
+#### Settings
+
+#### Review
+
+#### NavigationPane
+
+#### Logactivity
+
+#### RoomDatabase
+
+#### Category
+
+#### ActivityClass
 
 
 ## Design Pattern 
