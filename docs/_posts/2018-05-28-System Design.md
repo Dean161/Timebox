@@ -17,6 +17,7 @@ We have used interaction diagrams to represent the behavior of the system and cl
 
 
 ## Class Diagrams
+<img src="{{site.baseurl}}/images/Timebox_ClassDiagram.JPG" alt="UCD Timebox_ClassDiagram" width="1526" height="350">
 
 ## Design Pattern 
 
