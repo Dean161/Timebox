@@ -1,0 +1,12 @@
+Questions to sandro 
+>>Review the activites in the home screen 
+>>Is a calendar view required for reviewing? 
+>>Logging two activities at the same time. 
+
+no calendar -> overview over the day (existing/ scheduled activities)
+how did workflow work, use of zenhub etc. -> from the view of project management
+
+
+Actions:
+>>Shared Preferences 
+
