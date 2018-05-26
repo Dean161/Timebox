@@ -3,7 +3,7 @@ layout: post
 title: "System  Design"
 date: 2018-05-28
 ---
-Hello Everyone! Welcome to our third blog of System Design. After analyzing the requirements and formulating the corresponding user stories, we are now in the design phase. This process involves defining the architecture, modules, interfaces, and data for our system to satisfy specified requirements.
+Hello Everyone! Welcome to our third blog on System Design. After analyzing the requirements and formulating the corresponding user stories, we are now in the design phase. This process involves defining the architecture, modules, interfaces, and data for our system to satisfy specified requirements.
 
 We have used interaction diagrams to represent the behavior of the system and class diagrams for the classes and methods that will be used. We will introduce the design pattern which we will be adapt in our development process. We will also see the development strategy of our team and some changes that occurred in the past two weeks. 
 
@@ -31,6 +31,6 @@ During our team meetings, we came across few requirements which we were uncertai
 
 > * User can add multiple activities with overlapping time period.  
 
-## Thank you for visiting our blog. See you next time with more interesting details on Implementation.  
+## Thank you for visiting our blog!! See you next time with more interesting details on Implementation.  
 
 
