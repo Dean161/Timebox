@@ -23,7 +23,7 @@ We have used interaction diagrams to represent the behavior of the system and cl
 <img src="{{site.baseurl}}/images/Classlogin.PNG" alt="UCD Classlogin" width="1526" height="350">
 
 #### HomeScreen
-<img src="{{site.baseurl}}/images/Classhome.PNG" alt="UCD Classhome" width="1526" height="200">
+<img src="{{site.baseurl}}/images/Classhome.PNG" alt="UCD Classhome" width="1526" height="180">
 
 #### Settings
 <img src="{{site.baseurl}}/images/Classsettings.PNG" alt="UCD Classsettings" width="1526" height="350">
