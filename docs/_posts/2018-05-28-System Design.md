@@ -44,7 +44,7 @@ We have used interaction diagrams to represent the behavior of the system and cl
 <img src="{{site.baseurl}}/images/Classcategory.PNG" alt="UCD Classcategory" width="1526" height="120">
 
 #### ActivityClass
-<img src="{{site.baseurl}}/images/Classactivity.PNG" alt="UCD Classactivity" width="1526" height="150">
+<img src="{{site.baseurl}}/images/Classactivity.PNG" alt="UCD Classactivity" width="1526" height="180">
 
 
 ## Design Pattern 
