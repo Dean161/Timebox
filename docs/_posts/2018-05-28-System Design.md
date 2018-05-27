@@ -29,7 +29,7 @@ We have used interaction diagrams to represent the behavior of the system and cl
 <img src="{{site.baseurl}}/images/Classsettings.PNG" alt="UCD Classsettings" width="1526" height="350">
 
 #### Review
-<img src="{{site.baseurl}}/images/Classreview.PNG" alt="UCD Classreview" width="1526" height="350">
+<img src="{{site.baseurl}}/images/Classreview.PNG" alt="UCD Classreview" width="1526" height="300">
 
 #### NavigationPane
 <img src="{{site.baseurl}}/images/Classnavigation.PNG" alt="UCD Classnavigation" width="1526" height="200">
