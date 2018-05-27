@@ -23,20 +23,28 @@ We have used interaction diagrams to represent the behavior of the system and cl
 <img src="{{site.baseurl}}/images/Classlogin.PNG" alt="UCD Classlogin" width="1526" height="350">
 
 #### HomeScreen
+<img src="{{site.baseurl}}/images/Classhome.PNG" alt="UCD Classhome" width="1526" height="350">
 
 #### Settings
+<img src="{{site.baseurl}}/images/Classsettings.PNG" alt="UCD Classsettings" width="1526" height="350">
 
 #### Review
+<img src="{{site.baseurl}}/images/Classreview.PNG" alt="UCD Classreview" width="1526" height="350">
 
 #### NavigationPane
+<img src="{{site.baseurl}}/images/Classnavigation.PNG" alt="UCD Classnavigation" width="1526" height="350">
 
 #### Logactivity
+<img src="{{site.baseurl}}/images/Classlog.PNG" alt="UCD Classlog" width="1526" height="350">
 
 #### RoomDatabase
+<img src="{{site.baseurl}}/images/Classdatabase.PNG" alt="UCD Classdatabase" width="1526" height="350">
 
 #### Category
+<img src="{{site.baseurl}}/images/Classcategory.PNG" alt="UCD Classcategory" width="1526" height="350">
 
 #### ActivityClass
+<img src="{{site.baseurl}}/images/Classactivity.PNG" alt="UCD Classactivity" width="1526" height="350">
 
 
 ## Design Pattern 
