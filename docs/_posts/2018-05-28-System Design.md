@@ -34,7 +34,7 @@ We have used interaction diagrams to represent the behavior of the system and cl
 #### NavigationPane
 <img src="{{site.baseurl}}/images/Classnavigation.PNG" alt="UCD Classnavigation" width="1526" height="200">
 
-#### Logactivity
+#### LogActivity
 <img src="{{site.baseurl}}/images/Classlog.PNG" alt="UCD Classlog" width="1526" height="150">
 
 #### RoomDatabase
@@ -48,6 +48,12 @@ We have used interaction diagrams to represent the behavior of the system and cl
 
 
 ## Design Pattern 
+One of the principles of object-oriented software is Encapsulation. It ensures that the different objects of our software can be varied and reused independently from each other. That means, relating to our app, that we need to separate the objects Review and LogActivity, where Review is dependet from the latter. Whenever the user logs a new activity, Review needs to be notified that there is something new that needs to be displayed. Hence, we need to maintain consistency between all dependent objects. We do not want to do this by coupling the classes very tightly, since that would reduce their reusability. 
+According to those circumstances we decided to apply the Observer pattern to our app. It defines a one-to-many dependency between objects. That means, when one object changes its state, all objects dependent from it, are notified and updated automatically. <sup>[1]</sup>
+
+### The Observer Design Pattern
+<img src="{{site.baseurl}}/images/Observer.JPG" alt="Observer Pattern" width="1526" height="180">
+
 
 ## Development Strategy
 To manage and monitor our work and especially our progress we stay in close contact with each other. Most importantly to mention are our regular meetings. Apart from meeting directly after the customer meeting, we also started to meet at least one more time during the week. Meetings after the appointment with the customer are used to discuss the outcome of that meeting, new or changed information and to plan the next sprint. That includes adding user stories to the dashboard or modify existing ones. That is followed by estimating the user stories included in the next sprint and split work accordingly.
@@ -66,4 +72,4 @@ During our team meetings, we came across few requirements which we were uncertai
 
 #### Thank you for visiting our blog!! See you next time with more interesting details on Implementation.  
 
-
+[1] -  Gama et al., Design Patterns - Elements of Reusable Object-Oriented Software, 2009, p. 293
