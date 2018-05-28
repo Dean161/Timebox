@@ -48,6 +48,7 @@ We have used interaction diagrams to represent the behavior of the system and cl
 
 
 ## Design Pattern 
+
 <!--
 One of the principles of object-oriented software is Encapsulation. It ensures that the different objects of our software can be varied and reused independently from each other. That means, relating to our app, that we need to separate the objects Review and LogActivity, where Review is dependet from the latter. Whenever the user logs a new activity, Review needs to be notified that there is something new that needs to be displayed. Hence, we need to maintain consistency between all dependent objects. We do not want to do this by coupling the classes very tightly, since that would reduce their reusability. 
 According to those circumstances we decided to apply the Observer pattern to our app. It defines a one-to-many dependency between objects. That means, when one object changes its state, all objects dependent from it, are notified and updated automatically. <sup>[1]</sup>
@@ -87,5 +88,7 @@ During our team meetings, we came across few requirements which we were uncertai
 
 #### Resources
 [1] -  Gama et al., Design Patterns - Elements of Reusable Object-Oriented Software, 2009, p. 293
+
 [2] -  [www.classes.cs.uchicago.edu. Retrieved 2016-03-03.](https://www.classes.cs.uchicago.edu/archive/2010/winter/51023-1/presentations/ricetj_builder.pdf "Builder advantage")
+
 [3] -  [The Builder design pattern - Structure and Collaboration. w3sDesign.com. Retrieved 2017-08-12.](http://w3sdesign.com/?gr=c02&ugr=struct "Builder link")
