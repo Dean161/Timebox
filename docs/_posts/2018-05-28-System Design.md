@@ -87,8 +87,8 @@ During our team meetings, we came across few requirements which we were uncertai
 #### Thank you for visiting our blog!! See you next time with more interesting details on Implementation.  
 
 #### Resources
-[1] -  Gama et al., Design Patterns - Elements of Reusable Object-Oriented Software, 2009, p. 293
+[comment]: <> (Gama et al., Design Patterns - Elements of Reusable Object-Oriented Software, 2009, p. 293)
 
-[2] -  [www.classes.cs.uchicago.edu. Retrieved 2016-03-03.](https://www.classes.cs.uchicago.edu/archive/2010/winter/51023-1/presentations/ricetj_builder.pdf "Builder advantage")
+[1] -  [www.classes.cs.uchicago.edu. Retrieved 2016-03-03.](https://www.classes.cs.uchicago.edu/archive/2010/winter/51023-1/presentations/ricetj_builder.pdf "Builder advantage")
 
-[3] -  [The Builder design pattern - Structure and Collaboration. w3sDesign.com. Retrieved 2017-08-12.](http://w3sdesign.com/?gr=c02&ugr=struct "Builder link")
+[2] -  [The Builder design pattern - Structure and Collaboration. w3sDesign.com. Retrieved 2017-08-12.](http://w3sdesign.com/?gr=c02&ugr=struct "Builder link")
