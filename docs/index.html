@@ -1,14 +1,30 @@
 ---
 layout: default
-title: Software Engineers Blog -- Summer term 2018
+robots: noindex
 ---
-<div class="blurb">
-	<h1>Software Engineers Blog - CurryWurst - Summer Term 2018</h1>
-	<p>Along with the lecture "Introduction to Software Engineering for Engineers" at Otto-von-Guericke University Magdeburg, our team "CurryWurst"
-	will develop an "Activity Monitoring" app for Android operating systems. This blog will be regularly updated to keep you up to date about our progress.
-	Have fun following our work ;)</p>
-	
-	
-	
-</div><!-- /.blurb -->
-		
+
+<div class="main-post-list">
+
+  <ol class="post-list">
+    {% for post in paginator.posts %}
+      <li>
+        <h2 class="post-list__post-title post-title"><a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+        <p class="excerpt">{{ post.excerpt | strip_html }}&hellip;</p>
+        <div class="post-list__meta">
+            <time datetime="{{ post.date | date: "%Y-%m-%d %H:%M" }}" class="post-list__meta--date date">{{ post.date | date: "%-d %b %Y" }}</time>
+            {% if post.tags.size > 0 %}
+            &#8226; <span class="post-meta__tags">on {% for tag in post.tags %}<a href="{{ site.baseurl }}/tags/#{{ tag }}">{{ tag }}</a> {% endfor %}</span>
+            {% endif %}
+        </div>
+        <hr class="post-list__divider">
+      </li>
+    {% endfor %}
+  </ol>
+
+  <hr class="post-list__divider ">
+
+  {% if paginator.previous_page or paginator.next_page %}
+      {% include pagination.html %}
+  {% endif %}
+
+</div>
