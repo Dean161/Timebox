@@ -17,7 +17,7 @@ We have used interaction diagrams to represent the behavior of the system and cl
 
 
 ## Class Diagrams
-<img src="{{site.baseurl}}/images/Classdiagram.jpg" alt="UCD Classdiagram" width="1526" height="400">
+<img src="{{site.baseurl}}/images/Classdiagram.jpg" alt="UCD Classdiagram" width="1526" height="450">
 
 #### Login
 <img src="{{site.baseurl}}/images/Classlogin.PNG" alt="UCD Classlogin" width="1526" height="350">
