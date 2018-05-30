@@ -3,6 +3,23 @@
 
     <!-- Strings related to Settings -->
 
+    <!-- Strings related to Categories -->
+    <string name="pref_header_categories">Categories</string>
+
+    <!-- Strings related to Pin -->
+    <string name="pref_header_pin_settings">PIN</string>
+
+    <string name="pref_title_enable_pin">Enable PIN</string>
+    <string-array name="pref_security_question">
+        <item>What was the maiden name of your mother?</item>
+        <item>What was the name of your first pet?</item>
+        <item>Which phone number do you remember most from your childhood?</item>
+        <item>In what city were you born?</item>
+        <item>What is your favorite movie?</item>
+        <item>What was the make of your first car?</item>
+    </string-array>
+    <string name="pref_title_specify_pin">Specify PIN</string>
+
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
 

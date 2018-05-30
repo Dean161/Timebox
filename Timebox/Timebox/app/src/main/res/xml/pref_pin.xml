@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="EnablePin"
+        android:summary="Turn PIN on/off"
+        android:title="@string/pref_title_enable_pin" />
+    <EditTextPreference
+        android:dependency="EnablePin"
+        android:key="SetPin"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_specify_pin"
+        android:visibility="visible" />
+    <ListPreference
+        android:defaultValue="1"
+        android:dependency="EnablePin"
+        android:entries="@array/pref_security_question"
+        android:entryValues="@array/pref_security_question"
+        android:key="list_preference_1"
+        android:summary="Enables PIN reset"
+        android:title="Select security question" />
+</PreferenceScreen>
