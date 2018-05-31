@@ -20,4 +20,11 @@
         android:key="list_preference_1"
         android:summary="Enables PIN reset"
         android:title="Select security question" />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:dependency="EnablePin"
+        android:key="edit_text_preference_1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Provide answer to chosen security question" />
 </PreferenceScreen>
