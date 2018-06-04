@@ -19,25 +19,22 @@
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <ListView
+        <ListView
             android:id="@+id/last_ten_list"
             android:layout_width="match_parent"
             android:layout_height="433dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="76dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
+        <TextView
             android:id="@+id/last_act_title"
             android:layout_width="287dp"
             android:layout_height="55dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:text="@string/last_ten_activities"
             android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/last_ten_list"
@@ -45,7 +42,7 @@
             app:layout_constraintHorizontal_bias="0.098"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.872" />
+            app:layout_constraintVertical_bias="1.0" />
 
     </android.support.constraint.ConstraintLayout>
 

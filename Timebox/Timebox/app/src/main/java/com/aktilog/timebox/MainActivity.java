@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                         }else if (title.equals(review)){
                             Toast.makeText(getApplicationContext(),"Review",Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(getApplicationContext(),"Settings",Toast.LENGTH_SHORT).show();
+                            Intent launch_SettingsActivity = new Intent(MainActivity.this,SettingsActivity.class);
+                            startActivity(launch_SettingsActivity);
                         }
 
                         return true;

@@ -16,8 +16,11 @@ import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -126,11 +129,20 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      * Set up the {@link android.app.ActionBar}, if the API is available.
      */
     private void setupActionBar() {
+        getLayoutInflater().inflate(R.layout.activty_settings,(ViewGroup)findViewById(android.R.id.content));
+        Toolbar toolbar = findViewById(R.id.toolbar_settings);
+        setSupportActionBar(toolbar);
+
+        int horizontal_margin = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,2,getResources().getDisplayMetrics());
+        int vertical_margin = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,2,getResources().getDisplayMetrics());
+        int top_margin =(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,(int)getResources().getDimension(R.dimen.activity_vertical_margin)+20,getResources().getDisplayMetrics());
+        getListView().setPadding(horizontal_margin,top_margin,horizontal_margin,vertical_margin);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        actionBar.setTitle(R.string.settings);
     }
 
     /**

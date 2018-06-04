@@ -127,4 +127,8 @@
     <string name="sec_ans_hint">Provide answer here</string>
     <string name="validate_ans">Validate</string>
     <string name="reset_ans">Reset</string>
+    <string name="forgot_pin_title">Recover PIN</string>
+    <string name="sec_ques1">What is the name of your first pet?</string>
+    <string name="sec_ques2">What is the maiden name of your mother?</string>
+    <string name="sec_ques3">What is the your favourite sport?</string>
 </resources>

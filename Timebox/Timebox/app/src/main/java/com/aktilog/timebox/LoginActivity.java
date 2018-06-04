@@ -41,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent launch_ForgotPINActivity = new Intent(LoginActivity.this,ForgotPINActivity.class);
                 startActivity(launch_ForgotPINActivity);
-                finish();
             }
         });
     }

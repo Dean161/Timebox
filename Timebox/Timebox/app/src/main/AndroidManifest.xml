@@ -26,7 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LogActivity" />
-        <activity android:name=".ForgotPINActivity"></activity>
+        <activity android:name=".ForgotPINActivity"
+            android:parentActivityName=".LoginActivity"></activity>
     </application>
 
 </manifest>
