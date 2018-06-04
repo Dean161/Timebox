@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button sign_in;
+    Button sign_in,forgot_pin;
     EditText entered_pin;
 
     @Override
@@ -31,6 +31,17 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(),"Incorrect PIN.",Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        forgot_pin = findViewById(R.id.forgot_pin);
+
+        forgot_pin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent launch_ForgotPINActivity = new Intent(LoginActivity.this,ForgotPINActivity.class);
+                startActivity(launch_ForgotPINActivity);
+                finish();
             }
         });
     }

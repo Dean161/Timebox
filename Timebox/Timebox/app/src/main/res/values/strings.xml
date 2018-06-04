@@ -109,4 +109,22 @@
     <string name="message">Stay tuned for more updates</string>
     <string name="welcome_msg">Welcome to Timebox</string>
     <string name="last_ten_activities">Last ten activities</string>
+    <string name="home">Home</string>
+    <string name="log_activity">Log Activity</string>
+    <string name="review">Review Activities</string>
+    <string name="settings">Settings</string>
+    <string name="navi_header">Header</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="forgot_pin">Forgot PIN?</string>
+    <string name="sec_ques_text">Please provide answer to the below question</string>
+    <string name="sec_ans_text">Answer</string>
+    <string name="sec_ans_hint">Provide answer here</string>
+    <string name="validate_ans">Validate</string>
+    <string name="reset_ans">Reset</string>
 </resources>

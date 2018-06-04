@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".LoginActivity">
 
 
@@ -25,12 +26,15 @@
     <EditText
         android:id="@+id/pin_box"
         android:layout_width="wrap_content"
-        android:layout_height="63dp"
+        android:layout_height="37dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="@string/pin_hint"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:inputType="numberPassword"
         android:maxLength="4"
         android:textSize="20sp"
@@ -43,7 +47,7 @@
         android:id="@+id/sign_in"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="116dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="@string/action_sign_in_short"
@@ -67,4 +71,21 @@
         app:layout_constraintTop_toBottomOf="@+id/sign_in"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/team_logo" />
+
+    <Button
+        android:id="@+id/forgot_pin"
+        android:layout_width="177dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@null"
+        android:text="@string/forgot_pin"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in"
+        app:layout_constraintVertical_bias="0.0" />
 </android.support.constraint.ConstraintLayout>
