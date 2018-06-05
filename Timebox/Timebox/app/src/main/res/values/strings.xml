@@ -104,4 +104,9 @@
         completions."
     </string>
     <string name="team_name">CurryWurst</string>
+    <string name="pin_hint">Enter PIN</string>
+    <string name="app_logo_desc">The logo for the app Timebox</string>
+    <string name="message">Stay tuned for more updates</string>
+    <string name="welcome_msg">Welcome to Timebox</string>
+    <string name="last_ten_activities">Last ten activities</string>
 </resources>
