@@ -38,21 +38,24 @@ public class AddModCategories extends AppCompatActivity {
 
                 Boolean switchState = s.isChecked();
 
-                private void populateData() {
-                    Category category = new Category();
-                    category.setCatName(specCat);
-                    category.setHexCode(specHex);
+                Category category = new Category();
+                category.setCatName(specCat);
+                category.setHexCode(specHex);
 
-                    if (switchState = false) {
-                        db.catDao().insertAll(category);
-                    } else {
-                        db.catDao().update(specCat, specHex, oldCat);
-                    }
-
+                if (switchState = false) {
+                    add(category);
+                } else {
+                    update(specCat, specHex, oldCat);
                 }
             }
         });
+    }
 
+    private void add(Category category) {
+        db.catDao().insertAll(category);
+    }
 
+    private void update(String specCat, String specHex, String oldCat) {
+        db.catDao().update(specCat, specHex, oldCat);
     }
 }
