@@ -26,6 +26,11 @@ public interface CatDao {
     @Query("UPDATE categories SET cat_name =:newName AND cat_color_hex =:newColor WHERE cat_name LIKE :oldName")
     void update(String newName, String newColor, String oldName);
 
+    //maybe more required?
+
+    @Query("SELECT cat_name FROM categories")
+    List<String> getCatNames();
+
     @Delete
     void delete(Category category);
 }

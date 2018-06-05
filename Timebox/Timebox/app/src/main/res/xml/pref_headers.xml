@@ -25,5 +25,6 @@
     <header
         android:fragment="com.aktilog.timebox.SettingsActivity$CategoriesPreferenceFragment"
         android:icon="@drawable/ic_baseline_view_headline_24px"
-        android:title="@string/pref_header_categories" />
+        android:title="@string/pref_header_categories">
+    </header>
 </preference-headers>

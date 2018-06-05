@@ -1,9 +1,14 @@
 package com.aktilog.timebox;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.renderscript.Script;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -11,51 +16,98 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
-public class AddModCategories extends AppCompatActivity {
+import java.util.List;
 
-    EditText inputCat = (EditText) findViewById(R.id.inputCat);
-    EditText inputHex = (EditText) findViewById(R.id.inputHex);
+//TODO check if valid values are entered before enabeling save button1
+
+public class AddModCategories extends AppCompatActivity{
+    EditText inputCat = (EditText) findViewById(R.id.editText);
+    EditText inputHex = (EditText) findViewById(R.id.editText2);
     AppDatabase db;
+    Switch s = (Switch) findViewById(R.id.switch2);
+    Spinner mySpinner = (Spinner) findViewById(R.id.spinner2);
+    Boolean switchState = null;
+    Button buttonSave = (Button) findViewById(R.id.button);
+    String specCat = inputCat.getText().toString();
+    String specHex = inputHex.getText().toString();
+    String oldCat = mySpinner.getSelectedItem().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_mod_categories);
 
-        final Switch s = (Switch) findViewById(R.id.switch2);
-        s.setChecked(false);
+        //disable button
+        buttonSave.setEnabled(false);
+        //for spinner
+        loadSpinnerData();
 
-        final Spinner mySpinner = (Spinner) findViewById(R.id.spinner2);
+        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                buttonSave.setEnabled(true);
+            }
 
-        Button buttonSave = (Button) findViewById(R.id.button);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //AUTO_GENERATED method
+                //do nothing
+            }
+        });
 
+        //for button
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String specCat = inputCat.getText().toString();
-                String specHex = inputHex.getText().toString();
-                String oldCat = mySpinner.getSelectedItem().toString();
+                Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Category category = new Category();
+                        category.setCatName(specCat);
+                        category.setHexCode(specHex);
 
-                Boolean switchState = s.isChecked();
+                        switchState = getSwitchState();
 
-                Category category = new Category();
-                category.setCatName(specCat);
-                category.setHexCode(specHex);
-
-                if (switchState = false) {
-                    add(category);
-                } else {
-                    update(specCat, specHex, oldCat);
-                }
+                        if(switchState = false) {
+                            add(category);
+                        } else {
+                            update(specCat, specHex, oldCat);
+                        }
+                    }
+                });
             }
         });
     }
 
-    private void add(Category category) {
+    //gets switch state
+    public boolean getSwitchState() {
+        Boolean switchState = s.isChecked();
+        return switchState;
+    }
+
+    //equal to INSERT INTO
+    public void add(Category category) {
         db.catDao().insertAll(category);
     }
 
-    private void update(String specCat, String specHex, String oldCat) {
+    //equal to UPDATE
+    public void update(String specCat, String specHex, String oldCat) {
         db.catDao().update(specCat, specHex, oldCat);
     }
+
+    //load spinner data
+    private void loadSpinnerData() {
+        //Spinner drop down elements
+        List<String> labels = db.catDao().getCatNames();
+
+        //creating adapter from spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels);
+
+        //drop down layout style
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //attaching data adapter to spinner
+        mySpinner.setAdapter(dataAdapter);
+    }
 }
+

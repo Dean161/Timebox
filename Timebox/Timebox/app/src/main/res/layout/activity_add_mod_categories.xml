@@ -25,41 +25,14 @@
     <TextView
         android:id="@+id/textView7"
         android:layout_width="98dp"
-        android:layout_height="54dp"
+        android:layout_height="37dp"
         android:text="New Category Color HEX Code"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="126dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="225dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="59dp">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/inputCat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="e.g. Sport"
-            android:inputType="text" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="228dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="126dp">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/inputHex"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="e.g. #00f0ff"
-            android:inputType="text" />
-    </android.support.design.widget.TextInputLayout>
-
     <Spinner
         android:id="@+id/spinner2"
+        android:dependency="@+id/switch2"
         android:layout_width="350dp"
         android:layout_height="32dp"
         tools:layout_editor_absoluteX="16dp"
@@ -67,6 +40,7 @@
 
     <TextView
         android:id="@+id/textView8"
+        android:dependency="@+id/switch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Choose Category to be modified"
@@ -80,4 +54,24 @@
         android:text="Save"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="294dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="189dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="e.g. Sport"
+        tools:layout_editor_absoluteX="179dp"
+        tools:layout_editor_absoluteY="59dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="187dp"
+        android:layout_height="38dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="e.g. #0000f"
+        tools:layout_editor_absoluteX="181dp"
+        tools:layout_editor_absoluteY="126dp" />
 </android.support.constraint.ConstraintLayout>

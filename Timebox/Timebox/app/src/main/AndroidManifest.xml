@@ -28,6 +28,13 @@
         <activity android:name=".LogActivity" />
         <activity android:name=".ForgotPINActivity"
             android:parentActivityName=".LoginActivity"></activity>
+
+        <activity android:name=".AddModCategories">
+            <meta-data
+                android:name="android.preference"
+                android:resource="@layout/activity_add_mod_categories"/>
+        </activity>
+
     </application>
 
 </manifest>
