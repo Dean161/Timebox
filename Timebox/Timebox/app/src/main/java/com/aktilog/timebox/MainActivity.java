@@ -72,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         String log = "Log Activity";
                         String review = "Review Activities";
                         if (title.equals(home)){
-                            Intent launch_MainActivity = new Intent(MainActivity.this,MainActivity.class);
-                            startActivity(launch_MainActivity);
+                            //do nothing
                         }else if (title.equals(log)){
                             Intent launch_LogActivity = new Intent(MainActivity.this,LogActivity.class);
                             startActivity(launch_LogActivity);

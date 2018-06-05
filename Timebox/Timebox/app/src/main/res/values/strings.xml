@@ -131,4 +131,17 @@
     <string name="sec_ques1">What is the name of your first pet?</string>
     <string name="sec_ques2">What is the maiden name of your mother?</string>
     <string name="sec_ques3">What is the your favourite sport?</string>
+    <string name="title_category">Category</string>
+    <string name="title_activity">Activity Name</string>
+    <string name="title_start_date_time">Start Date and Time</string>
+    <string name="title_end_date_time">End Date and Time</string>
+    <string name="title_notes">Notes</string>
+    <string name="hint_notes">Enter notes for this activity</string>
+    <string name="schedule_switch">Schedule</string>
+    <string name="log_activity_title">Log Activity</string>
+    <string name="schedule_activity_title">Schedule Activity</string>
+    <string name="hint_activity">Enter activity name</string>
+    <string name="save_button">Save</string>
+    <string name="target_duration_title">Target Duration</string>
+    <string name="hint_target_duration">Enter the target duration in hours</string>
 </resources>
