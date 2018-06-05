@@ -54,7 +54,7 @@
             android:id="@+id/inputHex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="e.g. #0000ff"
+            android:hint="e.g. #00f0ff"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
