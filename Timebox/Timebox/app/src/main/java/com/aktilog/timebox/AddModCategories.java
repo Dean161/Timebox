@@ -21,33 +21,42 @@ import java.util.List;
 //TODO check if valid values are entered before enabeling save button1
 
 public class AddModCategories extends AppCompatActivity{
+    public EditText inputCat;
+    public EditText inputHex;
+    public String specCat;
+    public String specHex;
+    public AppDatabase db;
+    public Switch s;
+    public Spinner mySpinner;
+    public Button buttonSave;
+    public String oldCat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //text fields
-        EditText inputCat = (EditText) findViewById(R.id.editText);
-        EditText inputHex = (EditText) findViewById(R.id.editText2);
-        final String specCat = inputCat.getText().toString();
-        final String specHex = inputHex.getText().toString();
-        //Database
-        AppDatabase db;
-        //switch
-        Switch s = (Switch) findViewById(R.id.switch2);
-        //spinner
-        final Spinner mySpinner = (Spinner) findViewById(R.id.spinner2);
-        //final Boolean switchState = null;
-        //button
-        final Button buttonSave = (Button) findViewById(R.id.button);
-        //chosen value from spinner
-        final String oldCat = mySpinner.getSelectedItem().toString();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_mod_categories);
+        //text fields
+        inputCat = (EditText) findViewById(R.id.editText);
+        inputHex = (EditText) findViewById(R.id.editText2);
+        specCat = inputCat.getText().toString();
+        specHex = inputHex.getText().toString();
+
+        //switch
+        s = (Switch) findViewById(R.id.switch2);
+        //spinner
+        mySpinner = (Spinner) findViewById(R.id.spinner2);
+        //final Boolean switchState = null;
+        //button
+        buttonSave = (Button) findViewById(R.id.button);
+        //chosen value from spinner
+        oldCat = mySpinner.getSelectedItem().toString();
+
+
 
         //disable button
         buttonSave.setEnabled(false);
         //for spinner
-        dbOps_AddModCategories.loadSpinnerData();
+        loadSpinnerData();
 
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -73,12 +82,12 @@ public class AddModCategories extends AppCompatActivity{
                         category.setCatName(specCat);
                         category.setHexCode(specHex);
 
-                        final Boolean switchState = dbOps_AddModCategories.getSwitchState();
+                        final Boolean switchState = getSwitchState();
 
                         if(switchState == false) {
-                            dbOps_AddModCategories.add(category);
+                            add(category);
                         } else {
-                            dbOps_AddModCategories.update(specCat, specHex, oldCat);
+                            update(specCat, specHex, oldCat);
                         }
                     }
                 });
@@ -86,4 +95,35 @@ public class AddModCategories extends AppCompatActivity{
         });
     }
 
+    //gets switch state
+    public boolean getSwitchState() {
+        Boolean switchState = s.isChecked();
+        return switchState;
+    }
+
+    //equal to INSERT INTO
+    public void add(Category category) {
+        db.catDao().insertAll(category);
+    }
+
+    //equal to UPDATE
+    public void update(String specCat, String specHex, String oldCat) {
+        db.catDao().update(specCat, specHex, oldCat);
+    }
+
+    //load spinner data
+    public void loadSpinnerData() {
+        //Spinner drop down elements
+        List<String> labels = db.catDao().getCatNames();
+
+        //creating adapter from spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels);
+
+        //drop down layout style
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //attaching data adapter to spinner
+        mySpinner.setAdapter(dataAdapter);
+    }
 }
+
