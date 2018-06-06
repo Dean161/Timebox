@@ -21,26 +21,33 @@ import java.util.List;
 //TODO check if valid values are entered before enabeling save button1
 
 public class AddModCategories extends AppCompatActivity{
-    EditText inputCat = (EditText) findViewById(R.id.editText);
-    EditText inputHex = (EditText) findViewById(R.id.editText2);
-    AppDatabase db;
-    Switch s = (Switch) findViewById(R.id.switch2);
-    Spinner mySpinner = (Spinner) findViewById(R.id.spinner2);
-    Boolean switchState = null;
-    Button buttonSave = (Button) findViewById(R.id.button);
-    String specCat = inputCat.getText().toString();
-    String specHex = inputHex.getText().toString();
-    String oldCat = mySpinner.getSelectedItem().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //text fields
+        EditText inputCat = (EditText) findViewById(R.id.editText);
+        EditText inputHex = (EditText) findViewById(R.id.editText2);
+        final String specCat = inputCat.getText().toString();
+        final String specHex = inputHex.getText().toString();
+        //Database
+        AppDatabase db;
+        //switch
+        Switch s = (Switch) findViewById(R.id.switch2);
+        //spinner
+        final Spinner mySpinner = (Spinner) findViewById(R.id.spinner2);
+        //final Boolean switchState = null;
+        //button
+        final Button buttonSave = (Button) findViewById(R.id.button);
+        //chosen value from spinner
+        final String oldCat = mySpinner.getSelectedItem().toString();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_mod_categories);
 
         //disable button
         buttonSave.setEnabled(false);
         //for spinner
-        loadSpinnerData();
+        dbOps_AddModCategories.loadSpinnerData();
 
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -66,12 +73,12 @@ public class AddModCategories extends AppCompatActivity{
                         category.setCatName(specCat);
                         category.setHexCode(specHex);
 
-                        switchState = getSwitchState();
+                        final Boolean switchState = dbOps_AddModCategories.getSwitchState();
 
-                        if(switchState = false) {
-                            add(category);
+                        if(switchState == false) {
+                            dbOps_AddModCategories.add(category);
                         } else {
-                            update(specCat, specHex, oldCat);
+                            dbOps_AddModCategories.update(specCat, specHex, oldCat);
                         }
                     }
                 });
@@ -79,35 +86,4 @@ public class AddModCategories extends AppCompatActivity{
         });
     }
 
-    //gets switch state
-    public boolean getSwitchState() {
-        Boolean switchState = s.isChecked();
-        return switchState;
-    }
-
-    //equal to INSERT INTO
-    public void add(Category category) {
-        db.catDao().insertAll(category);
-    }
-
-    //equal to UPDATE
-    public void update(String specCat, String specHex, String oldCat) {
-        db.catDao().update(specCat, specHex, oldCat);
-    }
-
-    //load spinner data
-    private void loadSpinnerData() {
-        //Spinner drop down elements
-        List<String> labels = db.catDao().getCatNames();
-
-        //creating adapter from spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels);
-
-        //drop down layout style
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        //attaching data adapter to spinner
-        mySpinner.setAdapter(dataAdapter);
-    }
 }
-
