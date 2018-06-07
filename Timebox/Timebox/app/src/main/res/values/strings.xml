@@ -156,4 +156,6 @@
     <string name="review_Graph">Graph</string>
     <string name="title_activity_review__tab_">Review_Tab_Activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_add_category">Add Category</string>
+    <string name="title_modify_category">Modify Category</string>
 </resources>
