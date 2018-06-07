@@ -25,9 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AddModCategories"/>
         <activity android:name=".LogActivity" />
         <activity android:name=".ForgotPINActivity"
-            android:parentActivityName=".LoginActivity"></activity>
+            android:parentActivityName=".LoginActivity"/>
+
     </application>
 
 </manifest>
