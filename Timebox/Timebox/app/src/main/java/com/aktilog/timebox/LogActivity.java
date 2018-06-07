@@ -2,6 +2,7 @@ package com.aktilog.timebox;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -85,6 +86,15 @@ public class LogActivity extends AppCompatActivity {
                     target_duration.setVisibility(View.GONE);
                     target_duration_title.setVisibility(View.GONE);
                 }
+            }
+        });
+
+        FloatingActionButton add_cat = findViewById(R.id.add_category);
+        add_cat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent launch_AddModCategoriesActivity = new Intent(LogActivity.this,AddModCategories.class);
+                startActivity(launch_AddModCategoriesActivity);
             }
         });
 
