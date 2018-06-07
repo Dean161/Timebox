@@ -151,11 +151,6 @@
     <string name="hint_notes">Enter notes for this activity</string>
     <string name="schedule_switch">Schedule</string>
     <string name="log_activity_title">Log Activity</string>
-    <string name="schedule_activity_title">Schedule Activity</string>
-    <string name="hint_activity">Enter activity name</string>
-    <string name="save_button">Save</string>
-    <string name="target_duration_title">Target Duration</string>
-    <string name="hint_target_duration">Enter the target duration in hours</string>
     <string name="review_calendar">Calendar</string>
     <string name="review_text">Text</string>
     <string name="review_Graph">Graph</string>
