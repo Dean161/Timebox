@@ -5,6 +5,8 @@
 
     <!-- Strings related to Categories -->
     <string name="pref_header_categories">Categories</string>
+    <string name="targetPackage">com.aktilog.timebox</string>
+    <string name="targetClass">com.my.activities.AddModActivities</string>
 
     <!-- Strings related to Pin -->
     <string name="pref_header_pin_settings">PIN</string>
