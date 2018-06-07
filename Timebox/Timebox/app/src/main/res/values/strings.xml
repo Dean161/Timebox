@@ -144,9 +144,9 @@
     <string name="save_button">Save</string>
     <string name="target_duration_title">Target Duration</string>
     <string name="hint_target_duration">Enter the target duration in hours</string>
-    <string name="review_calendar">Calendar</string>
-    <string name="review_text">Text</string>
-    <string name="review_Graph">Graph</string>
+    <string name="calendar_tab">Calendar</string>
+    <string name="text_tab">Text</string>
+    <string name="graph_tab">Graph</string>
     <string name="title_activity_review__tab_">Review_Tab_Activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
 </resources>
