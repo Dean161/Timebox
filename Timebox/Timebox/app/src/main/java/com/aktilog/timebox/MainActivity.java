@@ -77,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
                             Intent launch_LogActivity = new Intent(MainActivity.this,LogActivity.class);
                             startActivity(launch_LogActivity);
                         }else if (title.equals(review)){
-                            Toast.makeText(getApplicationContext(),"Review",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(),"Review",Toast.LENGTH_SHORT).show();
+                            Intent launch_ReviewActivity = new Intent(MainActivity.this,Review_Tab_Activity.class);
+                            startActivity(launch_ReviewActivity);
                         }else{
                             Intent launch_SettingsActivity = new Intent(MainActivity.this,SettingsActivity.class);
                             startActivity(launch_SettingsActivity);
