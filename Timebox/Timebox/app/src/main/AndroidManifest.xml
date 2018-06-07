@@ -37,7 +37,8 @@
         <activity
             android:name=".Review_Tab_Activity"
             android:label="@string/title_activity_review__tab_"
-            android:theme="@style/AppTheme_New.NoActionBar"></activity>
+            android:theme="@style/AppTheme_New.NoActionBar" />
+        <activity android:name=".acitivity_review_text"></activity>
     </application>
 
 </manifest>
