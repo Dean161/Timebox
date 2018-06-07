@@ -25,11 +25,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddModCategories"/>
         <activity android:name=".LogActivity" />
-        <activity android:name=".ForgotPINActivity"
-            android:parentActivityName=".LoginActivity"/>
-
+        <activity
+            android:name=".ForgotPINActivity"
+            android:parentActivityName=".LoginActivity" />
+        <activity android:name=".AddModCategories">
+            <meta-data
+                android:name="android.preference"
+                android:resource="@layout/activity_add_mod_categories" />
+        </activity>
+        <activity
+            android:name=".Review_Tab_Activity"
+            android:label="@string/title_activity_review__tab_"
+            android:theme="@style/AppTheme_New.NoActionBar"></activity>
     </application>
 
 </manifest>
