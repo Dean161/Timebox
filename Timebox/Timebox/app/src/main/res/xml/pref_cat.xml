@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <Preference android:title="@string/pref_header_categories">
+    <Preference android:title="@string/pref_header_categories"
+        android:layout="@layout/activity_add_mod_categories">
         <intent android:targetPackage="@string/targetPackage"
-            android:targetClass="@string/targetClass"/>
+            android:targetClass="@string/targetClass"
+            android:action="android.intent.action.RUN"/>
     </Preference>
 </PreferenceScreen>

@@ -20,7 +20,13 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -297,10 +303,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_cat);
+            //addPreferencesFromResource(R.xml.pref_cat);
             //Intent myIntent = new Intent(getActivity(), AddModCategories.class);
             //addPreferencesFromIntent(myIntent);
-            setHasOptionsMenu(true);
+            //setHasOptionsMenu(true);
+
+            Intent launch_AddModCategories = new Intent(getContext(),AddModCategories.class);
+            startActivity(launch_AddModCategories);
 
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
             // to their values. When their values change, their summaries are

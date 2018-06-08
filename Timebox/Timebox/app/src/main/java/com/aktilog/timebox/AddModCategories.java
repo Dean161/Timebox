@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -58,6 +59,7 @@ public class AddModCategories extends AppCompatActivity {
                     actionbar.setTitle(R.string.title_modify_category);
                     category_sel_title.setVisibility(View.VISIBLE);
                     category_sel_spinner.setVisibility(View.VISIBLE);
+                    loadSpinnerData();
                 }else{
                     actionbar.setTitle(R.string.title_add_category);
                     category_sel_spinner.setVisibility(View.GONE);
@@ -65,9 +67,6 @@ public class AddModCategories extends AppCompatActivity {
                 }
             }
         });
-
-
-        loadSpinnerData();
 
         category_sel_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -103,6 +102,9 @@ public class AddModCategories extends AppCompatActivity {
 
                         if (actionbar.getTitle().equals(getResources().getString(R.string.title_add_category))){
                             add(category);
+                            Toast.makeText(getApplicationContext(),"Category Saved",Toast.LENGTH_SHORT).show();
+                            inputCat.clearComposingText();
+                            inputHex.clearComposingText();
                         }else{
                             String oldCat = category_sel_spinner.getSelectedItem().toString();
                             update(specCat, specHex, oldCat);

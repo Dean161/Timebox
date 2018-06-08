@@ -12,10 +12,15 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract CatDao catDao();
 
     public static AppDatabase getAppDatabase(Context context) {
-        if (INSTANCE == null) {
-            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "timeboxDatabase")
-                    .build();
+        if (INSTANCE == null){
+            synchronized (AppDatabase.class){
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "timeboxDatabase")
+                            .build();
+                }
+            }
         }
+
         return INSTANCE;
     }
 
