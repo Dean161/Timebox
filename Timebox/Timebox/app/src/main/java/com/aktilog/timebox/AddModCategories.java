@@ -1,5 +1,17 @@
 package com.aktilog.timebox;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.arch.persistence.db.SupportSQLiteOpenHelper;
+import android.arch.persistence.room.DatabaseConfiguration;
+import android.arch.persistence.room.InvalidationTracker;
+import android.arch.persistence.room.Room;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,11 +39,41 @@ public class AddModCategories extends AppCompatActivity {
     TextView category_sel_title;
     ActionBar actionbar;
     Switch add_mod_switch;
+    //Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_mod_categories);
+
+        //db = Room.databaseBuilder(getApplicationContext().getApplicationContext(), AppDatabase.class, "timeboxDatabase").build();
+
+        //db = AppDatabase.getAppDatabase(getApplicationContext());
+
+        //AUTO-GENERATED
+        db = new AppDatabase() {
+            @Override
+            public CatDao catDao() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration config) {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            protected InvalidationTracker createInvalidationTracker() {
+                return null;
+            }
+
+            @Override
+            public void clearAllTables() {
+
+            }
+        };
 
         category_sel_title = findViewById(R.id.category_select_title);
         category_sel_spinner = findViewById(R.id.category_selector);
@@ -90,37 +132,55 @@ public class AddModCategories extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Thread t = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String specCat = inputCat.getText().toString();
-                        String specHex = inputHex.getText().toString();
-
-                        Category category = new Category();
-                        category.setCatName(specCat);
-                        category.setHexCode(specHex);
-
-                        if (actionbar.getTitle().equals(getResources().getString(R.string.title_add_category))){
-                            add(category);
-                            Toast.makeText(getApplicationContext(),"Category Saved",Toast.LENGTH_SHORT).show();
-                            inputCat.clearComposingText();
-                            inputHex.clearComposingText();
-                        }else{
-                            String oldCat = category_sel_spinner.getSelectedItem().toString();
-                            update(specCat, specHex, oldCat);
-                        }
-                    }
-                });
+                String currentDBPath = getDatabasePath("timeboxDatabase").getAbsolutePath();
+                Toast.makeText(getApplicationContext(), currentDBPath, Toast.LENGTH_SHORT).show();
+                new DatabaseAsync().execute();
             }
         });
     }
 
-    private void add(Category category) {
-        db.catDao().insertAll(category);
-    }
+    private class DatabaseAsync extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //perform pre-adding operation here
+        }
 
-    private void update(String specCat, String specHex, String oldCat) {
-        db.catDao().update(specCat, specHex, oldCat);
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String specCat = inputCat.getText().toString();
+            String specHex = inputHex.getText().toString();
+
+            Category category = new Category(specCat, specHex);
+            //category.setCatName(specCat);
+            //category.setHexCode(specHex);
+
+            if (actionbar.getTitle().equals(getResources().getString(R.string.title_add_category))) {
+                db.catDao().insertAll(category);
+                //TODO resolve error msg: Can't toast on a thread that has not called Looper.prepare()
+                //Toast.makeText(getApplicationContext(),"Category saved",Toast.LENGTH_SHORT).show();
+
+                //was: clearComposingText();
+                inputCat.setText("");
+                inputHex.setText("");
+
+            } else {
+                String oldCat = category_sel_spinner.getSelectedItem().toString();
+                db.catDao().update(specCat, specHex, oldCat);
+                //Toast.makeText(getApplicationContext(),"Category updated",Toast.LENGTH_SHORT).show();
+                inputCat.clearComposingText();
+                inputHex.clearComposingText();
+            }
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //perform post-adding operation here
+        }
     }
 
     @Override

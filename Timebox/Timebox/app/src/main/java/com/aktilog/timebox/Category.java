@@ -3,6 +3,7 @@ package com.aktilog.timebox;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 @Entity(tableName = "Categories")
 public class Category {
@@ -14,6 +15,11 @@ public class Category {
 
     @ColumnInfo(name = "cat_color_hex")
     private String hexCode;
+
+    public Category(@NonNull String catName, @NonNull String hexCode) {
+        this.catName = catName;
+        this.hexCode = hexCode;
+    }
 
     public int getCid() {
         return cid;
