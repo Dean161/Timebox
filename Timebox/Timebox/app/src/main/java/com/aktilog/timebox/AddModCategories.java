@@ -1,17 +1,7 @@
 package com.aktilog.timebox;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
-import android.arch.persistence.room.DatabaseConfiguration;
-import android.arch.persistence.room.InvalidationTracker;
 import android.arch.persistence.room.Room;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,41 +29,15 @@ public class AddModCategories extends AppCompatActivity {
     TextView category_sel_title;
     ActionBar actionbar;
     Switch add_mod_switch;
-    //Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_mod_categories);
 
-        //db = Room.databaseBuilder(getApplicationContext().getApplicationContext(), AppDatabase.class, "timeboxDatabase").build();
-
-        //db = AppDatabase.getAppDatabase(getApplicationContext());
-
-        //AUTO-GENERATED
-        db = new AppDatabase() {
-            @Override
-            public CatDao catDao() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration config) {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            protected InvalidationTracker createInvalidationTracker() {
-                return null;
-            }
-
-            @Override
-            public void clearAllTables() {
-
-            }
-        };
+        //build database
+        //db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "timeboxDatabase").build();
+        db = AppDatabase.getAppDatabase(getApplicationContext());
 
         category_sel_title = findViewById(R.id.category_select_title);
         category_sel_spinner = findViewById(R.id.category_selector);
@@ -132,8 +96,6 @@ public class AddModCategories extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String currentDBPath = getDatabasePath("timeboxDatabase").getAbsolutePath();
-                Toast.makeText(getApplicationContext(), currentDBPath, Toast.LENGTH_SHORT).show();
                 new DatabaseAsync().execute();
             }
         });
@@ -151,9 +113,9 @@ public class AddModCategories extends AppCompatActivity {
             String specCat = inputCat.getText().toString();
             String specHex = inputHex.getText().toString();
 
-            Category category = new Category(specCat, specHex);
-            //category.setCatName(specCat);
-            //category.setHexCode(specHex);
+            Category category = new Category();
+            category.setCatName(specCat);
+            category.setHexCode(specHex);
 
             if (actionbar.getTitle().equals(getResources().getString(R.string.title_add_category))) {
                 db.catDao().insertAll(category);
@@ -163,7 +125,6 @@ public class AddModCategories extends AppCompatActivity {
                 //was: clearComposingText();
                 inputCat.setText("");
                 inputHex.setText("");
-
             } else {
                 String oldCat = category_sel_spinner.getSelectedItem().toString();
                 db.catDao().update(specCat, specHex, oldCat);

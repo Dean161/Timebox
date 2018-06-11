@@ -16,10 +16,10 @@ public class Category {
     @ColumnInfo(name = "cat_color_hex")
     private String hexCode;
 
-    public Category(@NonNull String catName, @NonNull String hexCode) {
-        this.catName = catName;
-        this.hexCode = hexCode;
-    }
+    //public Category(@NonNull String catName, @NonNull String hexCode) {
+        //this.catName = catName;
+        //this.hexCode = hexCode;
+    //}
 
     public int getCid() {
         return cid;
