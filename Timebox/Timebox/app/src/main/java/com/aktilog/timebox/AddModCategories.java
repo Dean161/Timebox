@@ -179,12 +179,20 @@ public class AddModCategories extends AppCompatActivity {
         List<String> labels = db.catDao().getCatNames();
 
         //creating adapter from spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels);
+        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels);
 
         //drop down layout style
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        //attaching data adapter to spinner
-        category_sel_spinner.setAdapter(dataAdapter);
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                //attaching data adapter to spinner
+                category_sel_spinner.setAdapter(dataAdapter);
+
+            }
+        });
     }
 }
