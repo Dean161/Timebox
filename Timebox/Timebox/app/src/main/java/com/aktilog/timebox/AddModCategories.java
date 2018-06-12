@@ -65,7 +65,7 @@ public class AddModCategories extends AppCompatActivity {
                     actionbar.setTitle(R.string.title_modify_category);
                     category_sel_title.setVisibility(View.VISIBLE);
                     category_sel_spinner.setVisibility(View.VISIBLE);
-                    loadSpinnerData();
+                    new DatabaseAsyncLoad().execute();
                 }else{
                     actionbar.setTitle(R.string.title_add_category);
                     category_sel_spinner.setVisibility(View.GONE);
@@ -96,12 +96,12 @@ public class AddModCategories extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                new DatabaseAsync().execute();
+                new DatabaseAsyncInsert().execute();
             }
         });
     }
 
-    private class DatabaseAsync extends AsyncTask<Void, Void, Void> {
+    private class DatabaseAsyncInsert extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -134,6 +134,27 @@ public class AddModCategories extends AppCompatActivity {
             }
 
 
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //perform post-adding operation here
+        }
+    }
+
+    private class DatabaseAsyncLoad extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //perform pre-adding operation here
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            loadSpinnerData();
             return null;
         }
 

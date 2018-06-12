@@ -153,18 +153,10 @@
     <string name="hint_notes">Enter notes for this activity</string>
     <string name="schedule_switch">Schedule</string>
     <string name="log_activity_title">Log Activity</string>
-    <string name="calendar_tab">Calendar</string>
-    <string name="text_tab">Text</string>
-    <string name="graph_tab">Graph</string>
-    <string name="review_calendar">Calendar</string>
-    <string name="review_text">Text</string>
-    <string name="review_Graph">Graph</string>
-    <string name="title_activity_review__tab_">Review_Tab_Activity</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="tab_review_calendar">Calendar</string>
+    <string name="tab_review_text">Text</string>
+    <string name="tab_review_graph">Graph</string>
     <string name="title_add_category">Add Category</string>
     <string name="title_modify_category">Modify Category</string>
-    <string name="title_activity_review">ReviewActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
+    <string name="title_activity_review">Review</string>
 </resources>
