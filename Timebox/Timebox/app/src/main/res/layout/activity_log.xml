@@ -28,12 +28,15 @@
                 android:id="@+id/schedule_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginTop="60dp"
-                android:textSize="20sp"
+                android:layout_marginTop="64dp"
                 android:text="@string/schedule_switch"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/add_category"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/title_category"
@@ -55,6 +58,7 @@
                 android:layout_height="36dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:background="@drawable/spinner_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.064"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,21 +66,20 @@
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/add_category"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_width="79dp"
+                android:layout_height="56dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="8dp"
                 android:clickable="true"
-                android:tint="@android:color/background_light"
                 app:backgroundTint="?attr/actionModeSplitBackground"
                 app:layout_constraintBottom_toTopOf="@+id/title_activity"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.25"
                 app:layout_constraintStart_toEndOf="@+id/dropdown_category"
-                app:layout_constraintTop_toBottomOf="@+id/schedule_switch"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.939"
                 app:srcCompat="@drawable/ic_add_black_24dp" />
 
             <TextView

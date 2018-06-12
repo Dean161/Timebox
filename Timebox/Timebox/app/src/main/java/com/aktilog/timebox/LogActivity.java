@@ -56,7 +56,8 @@ public class LogActivity extends AppCompatActivity {
                         }else if (title.equals(log)){
                             //do nothing
                         }else if (title.equals(review)){
-                            Toast.makeText(getApplicationContext(),"Review",Toast.LENGTH_SHORT).show();
+                            Intent launch_ReviewActivity = new Intent(LogActivity.this,ReviewActivity.class);
+                            startActivity(launch_ReviewActivity);
                         }else{
                             Intent launch_SettingsActivity = new Intent(LogActivity.this,SettingsActivity.class);
                             startActivity(launch_SettingsActivity);
