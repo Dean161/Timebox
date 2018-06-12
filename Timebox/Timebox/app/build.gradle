@@ -83,4 +83,6 @@ dependencies {
     androidTestImplementation "android.arch.navigation:navigation-testing:$nav_version"
     // use -ktx for Kotlin
 
+    //Color Picker
+    implementation 'com.github.yukuku:ambilwarna:2.0.1'
 }

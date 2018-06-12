@@ -1,7 +1,7 @@
 package com.aktilog.timebox;
 
-import android.arch.persistence.room.Room;
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,16 +19,20 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import yuku.ambilwarna.AmbilWarnaDialog;
+
 public class AddModCategories extends AppCompatActivity {
 
     AppDatabase db;
     EditText inputCat;
-    EditText inputHex;
+    Button inputColor;
     Button save_category_button;
     Spinner category_sel_spinner;
     TextView category_sel_title;
     ActionBar actionbar;
     Switch add_mod_switch;
+    int defaultColor;
+    String inputHex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,7 @@ public class AddModCategories extends AppCompatActivity {
         actionbar.setTitle(R.string.title_add_category);
 
         inputCat = findViewById(R.id.category_name);
-        inputHex = findViewById(R.id.category_color);
+        inputColor = findViewById(R.id.category_color);
         save_category_button = findViewById(R.id.button_category_save);
 
         add_mod_switch = findViewById(R.id.modify_switch);
@@ -71,6 +75,15 @@ public class AddModCategories extends AppCompatActivity {
                     category_sel_spinner.setVisibility(View.GONE);
                     category_sel_title.setVisibility(View.GONE);
                 }
+            }
+        });
+
+        defaultColor = ContextCompat.getColor(this,R.color.colorBlack);
+
+        inputColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenColorPicker(true);
             }
         });
 
@@ -101,6 +114,23 @@ public class AddModCategories extends AppCompatActivity {
         });
     }
 
+    private void OpenColorPicker (boolean AlphaSupport){
+        AmbilWarnaDialog ambilWarnaDialog = new AmbilWarnaDialog(this, defaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+                //Toast.makeText(AddModCategories.this, "Color Picker Cancelled", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                defaultColor = color;
+                inputHex = String.format("#%06X", (0xFFFFFF & defaultColor));
+                inputColor.setBackgroundColor(defaultColor);
+            }
+        });
+        ambilWarnaDialog.show();
+    }
+
     private class DatabaseAsyncInsert extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
@@ -111,7 +141,7 @@ public class AddModCategories extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             String specCat = inputCat.getText().toString();
-            String specHex = inputHex.getText().toString();
+            String specHex = inputHex;
 
             Category category = new Category();
             category.setCatName(specCat);
@@ -124,13 +154,13 @@ public class AddModCategories extends AppCompatActivity {
 
                 //was: clearComposingText();
                 inputCat.setText("");
-                inputHex.setText("");
+                inputColor.setBackgroundColor(getResources().getColor(R.color.colorBlack));
             } else {
                 String oldCat = category_sel_spinner.getSelectedItem().toString();
                 db.catDao().update(specCat, specHex, oldCat);
                 //Toast.makeText(getApplicationContext(),"Category updated",Toast.LENGTH_SHORT).show();
-                inputCat.clearComposingText();
-                inputHex.clearComposingText();
+                //inputCat.clearComposingText();
+                //inputHex.clearComposingText();
             }
 
 
