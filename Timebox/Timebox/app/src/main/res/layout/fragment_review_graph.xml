@@ -15,29 +15,35 @@
         android:id="@+id/start_time"
         android:layout_width="145dp"
         android:layout_height="37dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/select_time_start"
+        app:layout_constraintEnd_toStartOf="@+id/end_time"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_name" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/end_time"
         android:layout_width="145dp"
         android:layout_height="37dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/select_time_end"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_name" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/start_date"
         android:layout_width="145dp"
         android:layout_height="37dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:text="@string/select_date_start"
+        app:layout_constraintEnd_toStartOf="@+id/end_date"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_time" />
 
@@ -57,13 +63,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="8dp"
         android:text="@string/title_category"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/schedule_switch"
-        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/start_date" />
 
     <Spinner
         android:id="@+id/dropdown_category"
@@ -80,7 +86,17 @@
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/piechart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="382dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dropdown_category"
+        app:layout_constraintVertical_bias="0.012" />
 
     </View>
 
