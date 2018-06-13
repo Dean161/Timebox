@@ -1,11 +1,15 @@
 package com.aktilog.timebox;
 
-import android.arch.persistence.room.Room;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,18 +21,29 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.flask.colorpicker.ColorPickerView;
+import com.flask.colorpicker.OnColorChangedListener;
+import com.flask.colorpicker.OnColorSelectedListener;
+import com.flask.colorpicker.builder.ColorPickerClickListener;
+import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
+
 import java.util.List;
+
+import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class AddModCategories extends AppCompatActivity {
 
     AppDatabase db;
     EditText inputCat;
-    EditText inputHex;
+    Button inputColor;
     Button save_category_button;
     Spinner category_sel_spinner;
     TextView category_sel_title;
     ActionBar actionbar;
     Switch add_mod_switch;
+    int defaultColor;
+    String inputHex;
+    private int currentBackgroundColor = 0xFFFFFFFF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +68,7 @@ public class AddModCategories extends AppCompatActivity {
         actionbar.setTitle(R.string.title_add_category);
 
         inputCat = findViewById(R.id.category_name);
-        inputHex = findViewById(R.id.category_color);
+        inputColor = findViewById(R.id.category_color);
         save_category_button = findViewById(R.id.button_category_save);
 
         add_mod_switch = findViewById(R.id.modify_switch);
@@ -71,6 +86,59 @@ public class AddModCategories extends AppCompatActivity {
                     category_sel_spinner.setVisibility(View.GONE);
                     category_sel_title.setVisibility(View.GONE);
                 }
+            }
+        });
+
+        defaultColor = ContextCompat.getColor(this,R.color.colorBlack);
+
+        inputColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Context context = AddModCategories.this;
+                ColorPickerDialogBuilder
+                        .with(context,R.style.ColorPickerDialogTheme)
+                        .setTitle("Choose Color")
+                        .initialColor(currentBackgroundColor)
+                        .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+                        .density(12)
+                        .setOnColorSelectedListener(new OnColorSelectedListener() {
+                            @Override
+                            public void onColorSelected(int selectedColor) {
+                                //toast("onColorSelected: 0x" + Integer.toHexString(selectedColor));
+                                Toast.makeText(context,String.format("#%06X", (0xFFFFFF & selectedColor)), Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setPositiveButton("ok", new ColorPickerClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+                                inputColor.setBackgroundColor(selectedColor);
+                                if (allColors != null) {
+                                    StringBuilder sb = null;
+
+                                    for (Integer color : allColors) {
+                                        if (color == null)
+                                            continue;
+                                        if (sb == null)
+                                            sb = new StringBuilder("Color List:");
+                                        sb.append("\r\n#" + String.format("#%06X", (0xFFFFFF & color)));
+                                    }
+
+                                    if (sb != null)
+                                        Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_SHORT).show();
+                                }
+                                inputColor.setText(String.format("#%06X", (0xFFFFFF & selectedColor)));
+                                getTextColor(selectedColor);
+                            }
+                        })
+                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .showColorEdit(true)
+                        .setColorEditTextColor(ContextCompat.getColor(AddModCategories.this, android.R.color.holo_blue_bright))
+                        .build()
+                        .show();
             }
         });
 
@@ -111,7 +179,7 @@ public class AddModCategories extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             String specCat = inputCat.getText().toString();
-            String specHex = inputHex.getText().toString();
+            String specHex = inputHex;
 
             Category category = new Category();
             category.setCatName(specCat);
@@ -124,13 +192,13 @@ public class AddModCategories extends AppCompatActivity {
 
                 //was: clearComposingText();
                 inputCat.setText("");
-                inputHex.setText("");
+                inputColor.setBackgroundColor(getResources().getColor(R.color.colorBlack));
             } else {
                 String oldCat = category_sel_spinner.getSelectedItem().toString();
                 db.catDao().update(specCat, specHex, oldCat);
                 //Toast.makeText(getApplicationContext(),"Category updated",Toast.LENGTH_SHORT).show();
-                inputCat.clearComposingText();
-                inputHex.clearComposingText();
+                //inputCat.clearComposingText();
+                //inputHex.clearComposingText();
             }
 
 
@@ -194,5 +262,17 @@ public class AddModCategories extends AppCompatActivity {
 
             }
         });
+    }
+
+    //to change text color for better contrast
+    public void getTextColor(int selectedColor){
+        int colorRed = Color.red(selectedColor);
+        int colorGreen = Color.green(selectedColor);
+        int colorBlue = Color.blue(selectedColor);
+        if((colorRed*0.299 + colorGreen*0.587 + colorBlue*0.114)>186){
+            inputColor.setTextColor(getResources().getColor(R.color.colorBlack));
+        } else {
+            inputColor.setTextColor(getResources().getColor(R.color.colorWhite));;
+        }
     }
 }
