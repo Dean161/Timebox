@@ -7,6 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".ReviewActivity">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/start_time"
         android:layout_width="145dp"
@@ -77,5 +81,7 @@
         android:id="@+id/piechart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    </View>
 
 </android.support.constraint.ConstraintLayout>
