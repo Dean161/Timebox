@@ -2,6 +2,8 @@ package com.aktilog.timebox;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,11 @@ public class ReviewGraph extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_review_graph, container, false);
+        return rootView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         PieChart pieChart = getView().findViewById(R.id.piechart);
         pieChart.setUsePercentValues(true);
 
@@ -62,7 +69,7 @@ public class ReviewGraph extends Fragment {
         dataSet.setValueTextSize(13f);
         Legend legend = pieChart.getLegend();
         legend.setTextSize(15f);
-        return rootView;
+        super.onViewCreated(view, savedInstanceState);
     }
 }
 
