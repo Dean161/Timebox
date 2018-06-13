@@ -23,7 +23,7 @@
                 android:layout_height="37dp"
                 android:layout_marginEnd="28dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/select_time_end"
+                android:hint="@string/select_time_end"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/activity_name" />
 
@@ -33,7 +33,7 @@
                 android:layout_height="37dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/select_date_start"
+                android:hint="@string/select_date_start"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/start_time" />
 
@@ -43,7 +43,7 @@
                 android:layout_height="37dp"
                 android:layout_marginEnd="28dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/select_date_end"
+                android:hint="@string/select_date_end"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/end_time" />
 
@@ -53,7 +53,7 @@
                 android:layout_height="37dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/select_time_start"
+                android:hint="@string/select_time_start"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/activity_name" />
 

@@ -34,6 +34,7 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+//TODO: add titles to layout file
 public class LogActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener{
     protected static TextView displayCurrentStartTime;
     protected static TextView displayCurrentEndTime;
@@ -53,28 +54,30 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
     Spinner categorySpinner;
     int categoryCid;
 
+    //TODO: run sql query (to get all categories) every time the screen is called (not only onCreate) - probably same in AddModCategories
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
 
+        //instantiate button_save and Database
         buttonSave = findViewById(R.id.button_save);
-
-        new DatabaseAsyncLoad().execute();
-        buttonSave.setEnabled(false);
-
         db = AppDatabase.getAppDatabase(getApplicationContext());
 
+        //load existing categories into the spinner
+        new DatabaseAsyncLoad().execute();
+
+        //disable button_save
+        buttonSave.setEnabled(false);
+
+
+        //instatiate TextViews for dates and times
         displayCurrentStartTime = findViewById(R.id.start_time);
         displayCurrentEndTime = findViewById(R.id.end_time);
         displayCurrentStartDate = findViewById(R.id.start_date);
         displayCurrentEndDate = findViewById(R.id.end_date);
 
-        //Button displayStartTimeButton = findViewById(R.id.select_start_time);
-        //Button displayEndTimeButton = findViewById(R.id.select_end_time);
-        //Button displayStartDateButton = findViewById(R.id.select_start_date);
-        //Button displayEndDateButton = findViewById(R.id.select_end_date);
-
+        //4 times onClickListener for Date and Time Fields
         assert displayCurrentStartTime != null;
         displayCurrentStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,9 +116,11 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         //final TextView target_duration_title = findViewById(R.id.target_duration_title);
         target_duration = findViewById(R.id.target_duration);
 
+        //make TextView for target duration (instantiated above) invisible
         target_duration.setVisibility(View.GONE);
         //target_duration_title.setVisibility(View.GONE);
 
+        //instantiate schedule_swtich
         Switch schedule_switch = findViewById(R.id.schedule_switch);
 
         mDrawerLayout = findViewById(R.id.nav_drawer_log);
@@ -151,6 +156,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                     }
                 });
 
+        //toolbar
         Toolbar toolbar = findViewById(R.id.toolbar_log);
         setSupportActionBar(toolbar);
         final ActionBar actionbar = getSupportActionBar();
@@ -158,6 +164,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         actionbar.setTitle(R.string.log_activity_title);
 
+        //onClickListener for schedule swtich
         schedule_switch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -174,6 +181,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             }
         });
 
+        //onClickListener for add_category floatingActionButton
         FloatingActionButton add_cat = findViewById(R.id.add_category);
         add_cat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,7 +215,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                 }
         );
 
-        //buttonSave = findViewById(R.id.button_save);
+        //instantiate textViews
         specActivity = findViewById(R.id.activity_name);
         start_date = findViewById(R.id.start_date);
         end_date = findViewById(R.id.end_date);
@@ -216,20 +224,22 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         inputNotes = findViewById(R.id.notes);
         categorySpinner = findViewById(R.id.dropdown_category);
 
+        //onClickListener for save_button
         buttonSave.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                if (buttonSave.isEnabled()) {
+                if(buttonSave.isEnabled()) {
+                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
                     new DatabaseAsyncGetCid().execute();
                     new DatabaseAsyncInsertLoggedActivity().execute();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Choice of category required in order to save", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
                 }
 
             }
         });
 
+        //onItemSelectedListener for category spinner
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -243,6 +253,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         });
     }
 
+    //opens thread for inserting new activity and calls the insert function from CatDao
     private class DatabaseAsyncInsertLoggedActivity extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
@@ -282,6 +293,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         }
     }
 
+    //new thread for getting the category id via sql query in CatDao
     private class DatabaseAsyncGetCid extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
@@ -304,6 +316,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         }
     }
 
+    //new thread for loading data in the spinner
     private class DatabaseAsyncLoad extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
@@ -324,6 +337,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         }
     }
 
+    //method to load data into spinner, called from thread above
     public void loadSpinnerData() {
         //Spinner drop down elements
         List<String> labels = db.catDao().getCatNames();
@@ -345,18 +359,22 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             }
         });
     }
+
+    //method to get values from the number picker (target_duration)
     @Override
     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
         //Toast.makeText(this, "selected number " + numberPicker.getValue(), Toast.LENGTH_SHORT).show();
         target_duration.setText("Selected amount: " + String.valueOf(i) + ":" + String.valueOf(i1));
     }
 
+    //method to show the numberPicker
     public void showNumberPicker(View view) {
         NumberPickerDialog newFragment = new NumberPickerDialog();
         newFragment.setValueChangeListener(this);
         newFragment.show(getSupportFragmentManager(), "time picker");
     }
 
+    //TODO: @Dean please specify what this method does :D
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -379,7 +397,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
         @Override
         public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
-            displayCurrentStartTime.setText("Selected start time: " + String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+            displayCurrentStartTime.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
             //displayCurrentEndTime.setText("Selected end time: " + String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
         }
     }
@@ -396,7 +414,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            displayCurrentStartDate.setText("Selected start date: " + String.valueOf(year) + " - " + String.valueOf(month) + " - " + String.valueOf(day));
+            displayCurrentStartDate.setText(String.valueOf(year) + " - " + String.valueOf(month) + " - " + String.valueOf(day));
         }
     }
 
@@ -412,7 +430,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
         @Override
         public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
-            displayCurrentEndTime.setText("Selected start time: " + String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+            displayCurrentEndTime.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
         }
     }
 
@@ -428,7 +446,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            displayCurrentEndDate.setText("Selected start date: " + String.valueOf(year) + " - " + String.valueOf(month) + " - " + String.valueOf(day));
+            displayCurrentEndDate.setText(String.valueOf(year) + " - " + String.valueOf(month) + " - " + String.valueOf(day));
         }
     }
 }
