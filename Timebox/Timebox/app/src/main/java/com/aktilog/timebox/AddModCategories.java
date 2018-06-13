@@ -1,11 +1,15 @@
 package com.aktilog.timebox;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +20,12 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.flask.colorpicker.ColorPickerView;
+import com.flask.colorpicker.OnColorChangedListener;
+import com.flask.colorpicker.OnColorSelectedListener;
+import com.flask.colorpicker.builder.ColorPickerClickListener;
+import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
 import java.util.List;
 
@@ -33,6 +43,7 @@ public class AddModCategories extends AppCompatActivity {
     Switch add_mod_switch;
     int defaultColor;
     String inputHex;
+    private int currentBackgroundColor = 0xFFFFFFFF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +94,51 @@ public class AddModCategories extends AppCompatActivity {
         inputColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenColorPicker(true);
+                final Context context = AddModCategories.this;
+                ColorPickerDialogBuilder
+                        .with(context,R.style.ColorPickerDialogTheme)
+                        .setTitle("Choose Color")
+                        .initialColor(currentBackgroundColor)
+                        .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+                        .density(12)
+                        .setOnColorSelectedListener(new OnColorSelectedListener() {
+                            @Override
+                            public void onColorSelected(int selectedColor) {
+                                //toast("onColorSelected: 0x" + Integer.toHexString(selectedColor));
+                                Toast.makeText(context,String.format("#%06X", (0xFFFFFF & selectedColor)), Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setPositiveButton("ok", new ColorPickerClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+                                inputColor.setBackgroundColor(selectedColor);
+                                if (allColors != null) {
+                                    StringBuilder sb = null;
+
+                                    for (Integer color : allColors) {
+                                        if (color == null)
+                                            continue;
+                                        if (sb == null)
+                                            sb = new StringBuilder("Color List:");
+                                        sb.append("\r\n#" + String.format("#%06X", (0xFFFFFF & color)));
+                                    }
+
+                                    if (sb != null)
+                                        Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_SHORT).show();
+                                }
+                                inputColor.setText(String.format("#%06X", (0xFFFFFF & selectedColor)));
+                                getTextColor(selectedColor);
+                            }
+                        })
+                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .showColorEdit(true)
+                        .setColorEditTextColor(ContextCompat.getColor(AddModCategories.this, android.R.color.holo_blue_bright))
+                        .build()
+                        .show();
             }
         });
 
@@ -112,23 +167,6 @@ public class AddModCategories extends AppCompatActivity {
                 new DatabaseAsyncInsert().execute();
             }
         });
-    }
-
-    private void OpenColorPicker (boolean AlphaSupport){
-        AmbilWarnaDialog ambilWarnaDialog = new AmbilWarnaDialog(this, defaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-            @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-                //Toast.makeText(AddModCategories.this, "Color Picker Cancelled", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onOk(AmbilWarnaDialog dialog, int color) {
-                defaultColor = color;
-                inputHex = String.format("#%06X", (0xFFFFFF & defaultColor));
-                inputColor.setBackgroundColor(defaultColor);
-            }
-        });
-        ambilWarnaDialog.show();
     }
 
     private class DatabaseAsyncInsert extends AsyncTask<Void, Void, Void> {
@@ -224,5 +262,17 @@ public class AddModCategories extends AppCompatActivity {
 
             }
         });
+    }
+
+    //to change text color for better contrast
+    public void getTextColor(int selectedColor){
+        int colorRed = Color.red(selectedColor);
+        int colorGreen = Color.green(selectedColor);
+        int colorBlue = Color.blue(selectedColor);
+        if((colorRed*0.299 + colorGreen*0.587 + colorBlue*0.114)>186){
+            inputColor.setTextColor(getResources().getColor(R.color.colorBlack));
+        } else {
+            inputColor.setTextColor(getResources().getColor(R.color.colorWhite));;
+        }
     }
 }

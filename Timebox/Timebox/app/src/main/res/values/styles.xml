@@ -34,4 +34,9 @@
 
     <style name="AppTheme_New.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="ColorPickerDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="android:background">@color/colorBlack</item>
+        <item name="android:textColor">@android:color/holo_blue_bright</item>
+    </style>
+
 </resources>
