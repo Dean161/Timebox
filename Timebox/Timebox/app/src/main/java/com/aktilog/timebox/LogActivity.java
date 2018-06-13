@@ -1,5 +1,9 @@
 package com.aktilog.timebox;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.design.widget.FloatingActionButton;
@@ -12,13 +16,22 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class LogActivity extends AppCompatActivity {
+import java.text.DateFormat;
+import java.util.Calendar;
 
+public class LogActivity extends AppCompatActivity {
+    protected static TextView displayCurrentStartTime;
+    protected static TextView displayCurrentEndTime;
+    protected static TextView displayCurrentStartDate;
+    protected static TextView displayCurrentEndDate;
     private DrawerLayout mDrawerLayout;
 
     @Override
@@ -26,6 +39,52 @@ public class LogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
 
+        displayCurrentStartTime = findViewById(R.id.start_time);
+        displayCurrentEndTime = findViewById(R.id.end_time);
+        displayCurrentStartDate = findViewById(R.id.start_date);
+        displayCurrentEndDate = findViewById(R.id.end_date);
+
+        //Button displayStartTimeButton = findViewById(R.id.select_start_time);
+        //Button displayEndTimeButton = findViewById(R.id.select_end_time);
+        //Button displayStartDateButton = findViewById(R.id.select_start_date);
+        //Button displayEndDateButton = findViewById(R.id.select_end_date);
+
+        //TODO look up if it is possible to assign a onClickListener to TextView
+        assert displayCurrentStartTime != null;
+        displayCurrentStartTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerStart startTimePicker = new TimePickerStart();
+                startTimePicker.show(getFragmentManager(), "Select start time!");
+            }
+        });
+
+        assert displayCurrentEndTime != null;
+        displayCurrentEndTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerEnd endTimePicker = new TimePickerEnd();
+                endTimePicker.show(getFragmentManager(), "Select end time!");
+            }
+        });
+
+        assert  displayCurrentStartDate != null;
+        displayCurrentStartDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerFragmentStart startDatePicker = new DatePickerFragmentStart();
+                startDatePicker.show(getFragmentManager(), "Select start Date!");
+            }
+        });
+
+        assert displayCurrentEndDate != null;
+        displayCurrentEndDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerFragmentEnd endDatePicker = new DatePickerFragmentEnd();
+                endDatePicker.show(getFragmentManager(), "Select end date!");
+            }
+        });
         final TextView target_duration_title = findViewById(R.id.target_duration_title);
         final EditText target_duration = findViewById(R.id.target_duration);
 
@@ -56,7 +115,8 @@ public class LogActivity extends AppCompatActivity {
                         }else if (title.equals(log)){
                             //do nothing
                         }else if (title.equals(review)){
-                            Toast.makeText(getApplicationContext(),"Review",Toast.LENGTH_SHORT).show();
+                            Intent launch_ReviewActivity = new Intent(LogActivity.this,ReviewActivity.class);
+                            startActivity(launch_ReviewActivity);
                         }else{
                             Intent launch_SettingsActivity = new Intent(LogActivity.this,SettingsActivity.class);
                             startActivity(launch_SettingsActivity);
@@ -131,5 +191,70 @@ public class LogActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //for start time
+    public static class TimePickerStart extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+            return new TimePickerDialog(getActivity(), this, hour, minute, android.text.format.DateFormat.is24HourFormat(getActivity()));
+        }
+
+        @Override
+        public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
+            displayCurrentStartTime.setText("Selected start time: " + String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+            //displayCurrentEndTime.setText("Selected end time: " + String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+        }
+    }
+
+    //for start date
+    public static class DatePickerFragmentStart extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            displayCurrentStartDate.setText("Selected start date: " + String.valueOf(year) + " - " + String.valueOf(month) + " - " + String.valueOf(day));
+        }
+    }
+
+    //for end time
+    public static class TimePickerEnd extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+            return new TimePickerDialog(getActivity(), this, hour, minute, android.text.format.DateFormat.is24HourFormat(getActivity()));
+        }
+
+        @Override
+        public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
+            displayCurrentEndTime.setText("Selected start time: " + String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+        }
+    }
+
+    //for end date
+    public static class DatePickerFragmentEnd extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            displayCurrentEndDate.setText("Selected start date: " + String.valueOf(year) + " - " + String.valueOf(month) + " - " + String.valueOf(day));
+        }
     }
 }
