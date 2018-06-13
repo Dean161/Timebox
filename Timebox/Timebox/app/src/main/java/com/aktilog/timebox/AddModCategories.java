@@ -152,7 +152,7 @@ public class AddModCategories extends AppCompatActivity {
                 public void onNothingSelected(AdapterView<?> parent) {
                     //do nothing
                 }
-            });
+        });
 
 
         /*String sel_category = category_sel_spinner.getSelectedItem().toString();
@@ -192,7 +192,7 @@ public class AddModCategories extends AppCompatActivity {
 
                 //was: clearComposingText();
                 inputCat.setText("");
-                inputColor.setBackgroundColor(getResources().getColor(R.color.colorBlack));
+                inputColor.setBackgroundColor(ContextCompat.getColor(AddModCategories.this,R.color.colorBlack));
             } else {
                 String oldCat = category_sel_spinner.getSelectedItem().toString();
                 db.catDao().update(specCat, specHex, oldCat);
@@ -247,7 +247,7 @@ public class AddModCategories extends AppCompatActivity {
         List<String> labels = db.catDao().getCatNames();
 
         //creating adapter from spinner
-        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels);
+        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, labels);
 
         //drop down layout style
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -270,9 +270,9 @@ public class AddModCategories extends AppCompatActivity {
         int colorGreen = Color.green(selectedColor);
         int colorBlue = Color.blue(selectedColor);
         if((colorRed*0.299 + colorGreen*0.587 + colorBlue*0.114)>186){
-            inputColor.setTextColor(getResources().getColor(R.color.colorBlack));
+            inputColor.setTextColor(ContextCompat.getColor(AddModCategories.this,R.color.colorBlack));
         } else {
-            inputColor.setTextColor(getResources().getColor(R.color.colorWhite));;
+            inputColor.setTextColor(ContextCompat.getColor(AddModCategories.this,R.color.colorWhite));
         }
     }
 }

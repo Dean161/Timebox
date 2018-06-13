@@ -150,7 +150,7 @@
     <string name="hint_activity">Enter activity name</string>
     <string name="save_button">Save</string>
     <string name="target_duration_title">Target Duration</string>
-    <string name="hint_target_duration">Enter the target duration in hours</string>
+    <string name="hint_target_duration">Enter the target duration</string>
     <string name="title_activity">Activity Name</string>
     <string name="title_start_date_time">Start Date and Time</string>
     <string name="title_end_date_time">End Date and Time</string>

@@ -13,6 +13,7 @@ import java.util.List;
 
 @Dao
 public interface CatDao {
+    //queries for add/mod category
     @Query("SELECT * FROM categories")
     LiveData<List<Category>> getAll();
 
@@ -35,4 +36,11 @@ public interface CatDao {
 
     @Delete
     void delete(Category category);
+
+    //queries for loggedActivites
+    @Query("SELECT cid FROM categories WHERE cat_name LIKE :givenCat")
+    int getCidActivites(String givenCat);
+
+    @Insert
+    void insertActivity(LoggedActivities newAct);
 }
