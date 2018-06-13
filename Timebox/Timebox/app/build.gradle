@@ -86,4 +86,7 @@ dependencies {
     //Color Picker
     implementation 'com.github.yukuku:ambilwarna:2.0.1'
     implementation 'com.github.QuadFlask:colorpicker:0.0.13'
+
+    //Piechart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
