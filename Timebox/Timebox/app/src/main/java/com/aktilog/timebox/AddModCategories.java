@@ -84,7 +84,7 @@ public class AddModCategories extends AppCompatActivity {
                 public void onNothingSelected(AdapterView<?> parent) {
                     //do nothing
                 }
-            });
+        });
 
 
         /*String sel_category = category_sel_spinner.getSelectedItem().toString();
