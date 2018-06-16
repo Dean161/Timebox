@@ -53,7 +53,7 @@ public class ReviewGraph extends Fragment {
         data.setValueFormatter(new PercentFormatter());
         pieChart.setData(data);
 
-        dataSet.setColors(ColorTemplate.PASTEL_COLORS);
+        dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
         pieChart.setDrawHoleEnabled(true);
         pieChart.setTransparentCircleRadius(30f);
         pieChart.setHoleRadius(30f);
@@ -62,7 +62,7 @@ public class ReviewGraph extends Fragment {
         pieChart.setDescription(description);
 
         //data.setValueTextSize(26f);
-        data.setValueTextColor(Color.WHITE);
+        data.setValueTextColor(Color.BLACK);
         int colorBlack = Color.parseColor("#000000");
         pieChart.setEntryLabelColor(colorBlack);
         pieChart.setEntryLabelTextSize(13f);
