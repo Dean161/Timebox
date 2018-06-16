@@ -1,12 +1,9 @@
 package com.aktilog.timebox;
 
-import android.content.Intent;
-import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class ForgotPINActivity extends AppCompatActivity {
@@ -35,10 +31,10 @@ public class ForgotPINActivity extends AppCompatActivity {
         number = new Random();
         random_num = number.nextInt(3);
 
-        validate = findViewById(R.id.validate_answer);
-        reset = findViewById(R.id.reset_button);
-        sec_ans = findViewById(R.id.sec_ans);
-        sec_ques = findViewById(R.id.sec_ques);
+        validate = findViewById(R.id.button_validate_answer);
+        reset = findViewById(R.id.button_reset);
+        sec_ans = findViewById(R.id.text_sec_answer);
+        sec_ques = findViewById(R.id.text_sec_question);
 
         switch(random_num){
             case 0:
@@ -51,7 +47,7 @@ public class ForgotPINActivity extends AppCompatActivity {
                 sec_ques.setText(R.string.sec_ques3);
                 break;
             default:
-                sec_ques.setText(R.string.sec_ques_text);
+                sec_ques.setText(R.string.title_sec_question);
         }
 
 
@@ -75,7 +71,7 @@ public class ForgotPINActivity extends AppCompatActivity {
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
-        actionbar.setTitle(R.string.forgot_pin_title);
+        actionbar.setTitle(R.string.title_forgot_pin);
 
         validate.setOnClickListener(new View.OnClickListener() {
             @Override

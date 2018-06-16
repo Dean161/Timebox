@@ -20,13 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -148,7 +142,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        actionBar.setTitle(R.string.settings);
+        actionBar.setTitle(R.string.title_settings);
     }
 
     /**

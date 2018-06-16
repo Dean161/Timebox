@@ -3,10 +3,8 @@ package com.aktilog.timebox;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -27,10 +25,8 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -61,7 +57,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         setContentView(R.layout.activity_log);
 
         //instantiate button_save and Database
-        buttonSave = findViewById(R.id.button_save);
+        buttonSave = findViewById(R.id.button_save_log);
         db = AppDatabase.getAppDatabase(getApplicationContext());
 
         //load existing categories into the spinner
@@ -72,10 +68,10 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
 
         //instatiate TextViews for dates and times
-        displayCurrentStartTime = findViewById(R.id.start_time);
-        displayCurrentEndTime = findViewById(R.id.end_time);
-        displayCurrentStartDate = findViewById(R.id.start_date);
-        displayCurrentEndDate = findViewById(R.id.end_date);
+        displayCurrentStartTime = findViewById(R.id.text_start_time);
+        displayCurrentEndTime = findViewById(R.id.text_end_time);
+        displayCurrentStartDate = findViewById(R.id.text_start_date);
+        displayCurrentEndDate = findViewById(R.id.text_end_date);
 
         //4 times onClickListener for Date and Time Fields
         assert displayCurrentStartTime != null;
@@ -114,18 +110,18 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             }
         });
         //final TextView target_duration_title = findViewById(R.id.target_duration_title);
-        target_duration = findViewById(R.id.target_duration);
+        target_duration = findViewById(R.id.text_target_duration);
 
         //make TextView for target duration (instantiated above) invisible
         target_duration.setVisibility(View.GONE);
         //target_duration_title.setVisibility(View.GONE);
 
         //instantiate schedule_swtich
-        Switch schedule_switch = findViewById(R.id.schedule_switch);
+        Switch schedule_switch = findViewById(R.id.switch_schedule_activity);
 
-        mDrawerLayout = findViewById(R.id.nav_drawer_log);
+        mDrawerLayout = findViewById(R.id.drawer_navigation_log);
 
-        NavigationView navigationView = findViewById(R.id.nav_view_log);
+        NavigationView navigationView = findViewById(R.id.navigation_view_log);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -162,19 +158,19 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         final ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-        actionbar.setTitle(R.string.log_activity_title);
+        actionbar.setTitle(R.string.title_log_activity);
 
         //onClickListener for schedule swtich
         schedule_switch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(actionbar.getTitle().equals(getResources().getString(R.string.log_activity_title))){
-                    actionbar.setTitle(R.string.schedule_activity_title);
+                if(actionbar.getTitle().equals(getResources().getString(R.string.title_log_activity))){
+                    actionbar.setTitle(R.string.title_schedule_activity);
                     target_duration.setVisibility(View.VISIBLE);
                     //target_duration_title.setVisibility(View.VISIBLE);
                 }
                 else{
-                    actionbar.setTitle(R.string.log_activity_title);
+                    actionbar.setTitle(R.string.title_log_activity);
                     target_duration.setVisibility(View.GONE);
                     //target_duration_title.setVisibility(View.GONE);
                 }
@@ -182,7 +178,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         });
 
         //onClickListener for add_category floatingActionButton
-        FloatingActionButton add_cat = findViewById(R.id.add_category);
+        FloatingActionButton add_cat = findViewById(R.id.button_add_category);
         add_cat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,13 +212,13 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         );
 
         //instantiate textViews
-        specActivity = findViewById(R.id.activity_name);
-        start_date = findViewById(R.id.start_date);
-        end_date = findViewById(R.id.end_date);
-        start_time = findViewById(R.id.start_time);
-        end_time = findViewById(R.id.end_time);
-        inputNotes = findViewById(R.id.notes);
-        categorySpinner = findViewById(R.id.dropdown_category);
+        specActivity = findViewById(R.id.text_activity_name);
+        start_date = findViewById(R.id.text_start_date);
+        end_date = findViewById(R.id.text_end_date);
+        start_time = findViewById(R.id.text_start_time);
+        end_time = findViewById(R.id.text_end_time);
+        inputNotes = findViewById(R.id.text_notes);
+        categorySpinner = findViewById(R.id.spinner_category_select_log);
 
         //onClickListener for save_button
         buttonSave.setOnClickListener(new View.OnClickListener() {
