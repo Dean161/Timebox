@@ -75,9 +75,8 @@ We started with a simple design for logging/scheduling an activity, which allowe
 enter the dates and time manually.After the lecture on "User interface design" we understood the importance of having a 
 UI which will satisfy certain functional,psychological and aesthetic criteria.we also want to ensure that we 
 do not get unexpected user input, which is enforced by using UI elements such as Date and Time Pickers.
-* Old Design
-<img src = {{site.baseurl}}/images/Olddesign.JPG" alt="Old Design : Log activity" width="762" height="639">
 
+<img src = "{{site.baseurl}}/images/Olddesign.JPG" alt="Old Design : Log activity" width="762" height="639">
 
 Another key change in our app is on the review page, where we show a graphical representation of all activities.Our first design showed 
 filter options based on either start & end date or categories which was not practically correct. However, after clarifying with the customer we are designing a review screen where the user can choose start & end date and select few or all categories.
