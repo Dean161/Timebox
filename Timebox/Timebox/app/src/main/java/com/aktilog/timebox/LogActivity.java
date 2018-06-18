@@ -134,7 +134,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                         String title = (String) menuItem.getTitle();
                         String home = "Home";
                         String log = "Log Activity";
-                        String review = "Review Activities";
+                        String review = "Review";
                         if (title.equals(home)){
                             Intent launch_MainActivity = new Intent(LogActivity.this,MainActivity.class);
                             startActivity(launch_MainActivity);

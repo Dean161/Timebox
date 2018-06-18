@@ -69,7 +69,7 @@ public class ReviewActivity extends AppCompatActivity {
                         String title = (String) menuItem.getTitle();
                         String home = "Home";
                         String log = "Log Activity";
-                        String review = "Review Activities";
+                        String review = "Review";
                         if (title.equals(home)){
                             Intent launch_MainActivity = new Intent(ReviewActivity.this,MainActivity.class);
                             startActivity(launch_MainActivity);

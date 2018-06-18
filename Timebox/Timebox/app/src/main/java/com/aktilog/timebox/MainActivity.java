@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         String title = (String) menuItem.getTitle();
                         String home = "Home";
                         String log = "Log Activity";
-                        String review = "Review Activities";
+                        String review = "Review";
                         if (title.equals(home)){
                             //do nothing
                         }else if (title.equals(log)){
