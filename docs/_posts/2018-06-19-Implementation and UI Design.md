@@ -18,7 +18,7 @@ reference and our approach to obtain personas, from which we can extract as much
 * What are his/ her needs?
 
 There are some more questions which are related to creating a good persona, like which gender and age does our person have or which technical devices does our person use on a regular basis. Since the answer to those questions do not influence our key audience segment in their usage of our app, we let them unanswered in the following created personas:
-
+<br>
 <img src="{{site.baseurl}}/images/Persona_Professional.JPG" alt="Persona Professional: Arthur McMillan" width="760" height="592">
 Persona Professional: Arthur McMillan
 <img src="{{site.baseurl}}/images/Persona_Student.JPG" alt="Persona Student: Ruby McRail" width="762" height="639">
