@@ -13,16 +13,44 @@
 
     <!-- Strings related to Pin -->
     <string name="pref_header_pin_settings">PIN</string>
-    <string-array name="pref_security_question">
+    <string-array name="pref_security_question1">
         <item>What is the maiden name of your mother?</item>
+    </string-array>
+    <string-array name="pref_security_question2">
         <item>What was the name of your first pet?</item>
+    </string-array>
+    <string-array name="pref_security_question3">
         <item>Which phone number do you remember most from your childhood?</item>
+    </string-array>
+    <string-array name="pref_security_question4">
         <item>In which city were you born?</item>
+    </string-array>
+    <string-array name="pref_security_question5">
         <item>Which is your favorite movie?</item>
+    </string-array>
+    <string-array name="pref_security_question6">
         <item>What was the make of your first car?</item>
     </string-array>
     <string name="pref_title_enable_pin">Enable PIN</string>
     <string name="pref_title_specify_pin">Specify PIN</string>
+    <string name="title_pref_security">Security Questions</string>
+    <string name="summary_pref_security">Please set up PIN recovery options here</string>
+    <string name="title_sec_ques1">Security Question 1</string>
+    <string name="title_sec_ques2">Security Question 2</string>
+    <string name="title_sec_ques3">Security Question 3</string>
+    <string name="title_sec_ques4">Security Question 4</string>
+    <string name="title_sec_ques5">Security Question 5</string>
+    <string name="title_sec_ques6">Security Question 6</string>
+    <string name="title_pref_sec_question">Question:</string>
+    <string name="title_sec_answer1">Answer1</string>
+    <string name="title_sec_answer2">Answer2</string>
+    <string name="title_sec_answer3">Answer3</string>
+    <string name="title_sec_answer4">Answer4</string>
+    <string name="title_sec_answer5">Answer5</string>
+    <string name="title_sec_answer6">Answer6</string>
+    <string name="title_sec_ans">Answer:</string>
+    <string name="summary_question_select">Please click here to select question</string>
+    <string name="summary_answer_select">Please click here to provide answer</string>
 
     <!-- Example General settings -->
     <string name="pref_default_display_name">John Smith</string>
