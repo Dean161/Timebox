@@ -1,4 +1,8 @@
-# Implementation & User Interface Design
+---
+layout: post
+title: "Implementation & User Interface Design"
+date: 2018-06-19
+---
 
 ## Coding Conventions
 
