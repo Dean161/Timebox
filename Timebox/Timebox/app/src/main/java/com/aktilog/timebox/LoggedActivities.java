@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "LoggedActivites", foreignKeys = @ForeignKey(entity = Category.class, parentColumns = "cid", childColumns = "cid_fk"))
+@Entity(tableName = "LoggedActivities", foreignKeys = @ForeignKey(entity = Category.class, parentColumns = "cid", childColumns = "cid_fk"))
 public class LoggedActivities{
     @PrimaryKey(autoGenerate = true)
     private int laID;
