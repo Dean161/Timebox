@@ -5,7 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "ScheduledActivites", foreignKeys = @ForeignKey(entity = Category.class, parentColumns = "cid", childColumns = "cid_fk"))
+@Entity(tableName = "ScheduledActivities", foreignKeys = @ForeignKey(entity = Category.class, parentColumns = "cid", childColumns = "cid_fk"))
 public class ScheduledActivities {
     @PrimaryKey(autoGenerate = true)
     private int saID;
