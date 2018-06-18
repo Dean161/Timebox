@@ -9,6 +9,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments=["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -77,4 +82,11 @@ dependencies {
     // optional - Test helpers
     androidTestImplementation "android.arch.navigation:navigation-testing:$nav_version"
     // use -ktx for Kotlin
+
+    //Color Picker
+    implementation 'com.github.yukuku:ambilwarna:2.0.1'
+    implementation 'com.github.QuadFlask:colorpicker:0.0.13'
+
+    //Piechart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }

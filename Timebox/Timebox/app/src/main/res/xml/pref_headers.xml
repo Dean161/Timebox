@@ -17,4 +17,14 @@
         android:icon="@drawable/ic_sync_black_24dp"
         android:title="@string/pref_header_data_sync" />
 
+    <header
+        android:fragment="com.aktilog.timebox.SettingsActivity$PinPreferenceFragment"
+        android:icon="@drawable/ic_baseline_lock_24px"
+        android:title="@string/pref_header_pin_settings" />
+
+    <header
+        android:fragment="com.aktilog.timebox.SettingsActivity$CategoriesPreferenceFragment"
+        android:icon="@drawable/ic_baseline_view_headline_24px"
+        android:title="@string/pref_header_categories">
+    </header>
 </preference-headers>
