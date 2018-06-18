@@ -12,8 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
+import android.widget.TextView;
+import java.util.List;
 import java.util.ArrayList;
+import android.widget.AdapterView;
+import android.widget.Toast;
+
+import javax.xml.transform.Templates;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,29 +30,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final ListView last_ten_list = findViewById(R.id.list_last_ten_activities);
+        final ListView list_recent = (ListView) findViewById(R.id.list_view_recent_activities);
+        final TextView list_empty = findViewById(R.id.list_view_empty);
 
-        String[] activities = new String[]{
-                "Football",
-                "Basketball",
-                "Work",
-                "Presentation",
-                "Timepass",
-                "Google",
-                "Games",
-                "Assignments",
-                "Cooking",
-                "Sleep"
-        };
+        List<LoggedActivities> recent_activity = getListData();
+        if (recent_activity.isEmpty())  list_recent.setVisibility(View.GONE);
+        else  {
+            list_empty.setVisibility(View.GONE);
+            list_recent.setAdapter(new CustomAdapter(this, recent_activity));
+/*
+        list_recent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-        final ArrayList<String> activity_list = new ArrayList<String>();
-        for (i = 0; i < activities.length; ++i) {
-            activity_list.add(activities[i]);
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                Object o = list_recent.getItemAtPosition(position);
+                LoggedActivities loggedActivities = (LoggedActivities) o;
+                Toast.makeText(MainActivity.this, "Selected :" + " " + loggedActivities, Toast.LENGTH_LONG).show();
+            } */
         }
-
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, activity_list);
-
-        last_ten_list.setAdapter(adapter);
 
         mDrawerLayout = findViewById(R.id.drawer_navigation_home);
 
@@ -113,6 +113,38 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
+    }
+
+    private  List<LoggedActivities> getListData() {
+        List<LoggedActivities> list = new ArrayList<LoggedActivities>();
+
+        LoggedActivities Programming = new LoggedActivities();
+        Programming.setActivityName("Programming");
+        Programming.setStartDate("2018-06-17");
+        Programming.setStartTime("15h00");
+        Programming.setEndTime("17h00");
+        Programming.setNotes("Programming TimeBox Application");
+
+        LoggedActivities Football = new LoggedActivities();
+        Football.setActivityName("Football");
+        Football.setStartDate("2018-06-16");
+        Football.setStartTime("20h00");
+        Football.setEndTime("22h00");
+        Football.setNotes("Watching Worldcup");
+
+        LoggedActivities Dinner = new LoggedActivities();
+        Dinner.setActivityName("Dinner");
+        Dinner.setStartDate("2018-06-15");
+        Dinner.setStartTime("18h00");
+        Dinner.setEndTime("19h00");
+        Dinner.setNotes("Having dinner");
+
+        list.add(Programming);
+        list.add(Football);
+        list.add(Dinner);
+        list.add(Dinner);
+
+        return list;
     }
 
     @Override
