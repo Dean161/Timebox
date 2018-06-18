@@ -1,4 +1,4 @@
-# Implemtentation & User Interface Design
+# Implementation & User Interface Design
 
 ## Coding Conventions
 
