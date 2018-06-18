@@ -1,3 +1,19 @@
+/*
+ * Copyright 2017 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.aktilog.timebox;
 
 import android.content.SharedPreferences;
@@ -13,14 +29,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class ForgotPINActivity extends AppCompatActivity {
 
-    Button validate, reset;
-    EditText sec_ans;
-    TextView sec_ques;
+    protected Button reset;
+    protected Button validate;
+    protected EditText sec_ans;
+    protected TextView sec_ques;
+    private String KEY_ANSWER1 = "Answer1";
+    private String KEY_ANSWER2 = "Answer2";
+    private String KEY_ANSWER3 = "Answer3";
+    private String KEY_ANSWER4 = "Answer4";
+    private String KEY_ANSWER5 = "Answer5";
+    private String KEY_ANSWER6 = "Answer6";
+    private String INCORRECT_ANSWER = "Incorrect Answer";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,54 +99,57 @@ public class ForgotPINActivity extends AppCompatActivity {
             public void onClick(View v) {
                 switch(random_num){
                     case 0:
-                        if(sec_ans.getText().toString().equals(shared_preferences.getString("Answer1",""))){
+                        if(sec_ans.getText().toString().equals(shared_preferences.getString(KEY_ANSWER1,""))){
                             Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(ForgotPINActivity.this, "Incorrect Answer", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 1:
-                        if(sec_ans.getText().toString().equals(shared_preferences.getString("Answer2",""))){
+                        if(sec_ans.getText().toString().equals(shared_preferences.getString(KEY_ANSWER2,""))){
                             Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(ForgotPINActivity.this, "Incorrect Answer", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 2:
-                        if(sec_ans.getText().toString().equals(shared_preferences.getString("Answer3",""))){
+                        if(sec_ans.getText().toString().equals(shared_preferences.getString(KEY_ANSWER3,""))){
                             Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(ForgotPINActivity.this, "Incorrect Answer", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 3:
-                        if(sec_ans.getText().toString().equals(shared_preferences.getString("Answer4",""))){
+                        if(sec_ans.getText().toString().equals(shared_preferences.getString(KEY_ANSWER4,""))){
                             Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(ForgotPINActivity.this, "Incorrect Answer", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 4:
-                        if(sec_ans.getText().toString().equals(shared_preferences.getString("Answer5",""))){
+                        if(sec_ans.getText().toString().equals(shared_preferences.getString(KEY_ANSWER5,""))){
                             Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(ForgotPINActivity.this, "Incorrect Answer", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 5:
-                        if(sec_ans.getText().toString().equals(shared_preferences.getString("Answer6",""))){
+                        if(sec_ans.getText().toString().equals(shared_preferences.getString(KEY_ANSWER6,""))){
                             Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(ForgotPINActivity.this, "Incorrect Answer", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     default:
-                        Toast.makeText(ForgotPINActivity.this, "Wrong option", Toast.LENGTH_SHORT).show();
+                        //do nothing
                 }
             }
 
         });
 
+        /*
+            Clears the content of the answer field
+         */
         reset.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
