@@ -77,8 +77,8 @@ UI which will satisfy certain functional,psychological and aesthetic criteria.we
 do not get unexpected user input, which is enforced by using UI elements such as Date and Time Pickers.
 
 <img src = "{{site.baseurl}}/images/Olddesign.jpg" alt="Old Design:Log activity" width="200" height="350">
-<br>
 Old Design : Log activity
+<br>
 <img src = "{{site.baseurl}}/images/Newdesign.JPG" alt="New Design:Log activity" width="400" height="350">
 <img src = "{{site.baseurl}}/images/Newdesign1.JPG" alt="New Design:Log activity" width="400" height="350">
 New Design : Log activity 
