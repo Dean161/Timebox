@@ -16,21 +16,27 @@
     <string-array name="pref_security_question1">
         <item>What is the maiden name of your mother?</item>
     </string-array>
+    <string name="pref_sec_ques1">What is the maiden name of your mother?</string>
     <string-array name="pref_security_question2">
         <item>What was the name of your first pet?</item>
     </string-array>
+    <string name="pref_sec_ques2">What was the name of your first pet?</string>
     <string-array name="pref_security_question3">
         <item>Which phone number do you remember most from your childhood?</item>
     </string-array>
+    <string name="pref_sec_ques3">Which phone number do you remember most from your childhood?</string>
     <string-array name="pref_security_question4">
         <item>In which city were you born?</item>
     </string-array>
+    <string name="pref_sec_ques4">In which city were you born?</string>
     <string-array name="pref_security_question5">
         <item>Which is your favorite movie?</item>
     </string-array>
+    <string name="pref_sec_ques5">Which is your favorite movie?</string>
     <string-array name="pref_security_question6">
         <item>What was the make of your first car?</item>
     </string-array>
+    <string name="pref_sec_ques6">What was the make of your first car?</string>
     <string name="pref_title_enable_pin">Enable PIN</string>
     <string name="pref_title_specify_pin">Specify PIN</string>
     <string name="title_pref_security">Security Questions</string>
