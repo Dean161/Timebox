@@ -88,5 +88,5 @@ do not get unexpected user input, which is enforced by using UI elements such as
 
 
 Another key change in our app is on the review page, where we show a graphical representation of all activities.Our first design showed 
-filter options based on either start & end date or categories which was not practically correct. However, after clarifying with the customer we are designing a review screen where the user can choose start & end date and select few or all categories.
+filter options based on either start & end date or categories which was practically not correct. However, after clarifying with the customer, we are designing a review screen where the user can choose start & end date and select few or all categories.
 The graph will display the percentage of categories for selected time period.
