@@ -76,7 +76,9 @@ enter the dates and time manually.After the lecture on "User interface design" w
 UI which will satisfy certain functional,psychological and aesthetic criteria.we also want to ensure that we 
 do not get unexpected user input, which is enforced by using UI elements such as Date and Time Pickers.
 
-<img src = "{{site.baseurl}}/images/Olddesign.JPG" alt="Old Design : Log activity" width="250" height="500">
+<img src = "{{site.baseurl}}/images/Olddesign.JPG" alt="Old Design:Log activity" width="250" height="400">
+<br>
+<img src = "{{site.baseurl}}/images/Newdesign.JPG" alt="New Design:Log activity" width="900" height="400">
 
 Another key change in our app is on the review page, where we show a graphical representation of all activities.Our first design showed 
 filter options based on either start & end date or categories which was not practically correct. However, after clarifying with the customer we are designing a review screen where the user can choose start & end date and select few or all categories.
