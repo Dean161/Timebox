@@ -75,12 +75,13 @@ We started with a simple design for logging/scheduling an activity, which allowe
 enter the dates and time manually.After the lecture on "User interface design" we understood the importance of having a 
 UI which will satisfy certain functional,psychological and aesthetic criteria.we also want to ensure that we 
 do not get unexpected user input, which is enforced by using UI elements such as Date and Time Pickers.
-
+<br>
 Old Design : Log activity
 <img src = "{{site.baseurl}}/images/Olddesign.jpg" alt="Old Design:Log activity" width="200" height="350">
-
+<br>
 New Design : Log activity 
 <img src = "{{site.baseurl}}/images/Newdesign.JPG" alt="New Design:Log activity" width="400" height="350">
+<br>
 <img src = "{{site.baseurl}}/images/Newdesign1.JPG" alt="New Design:Log activity" width="400" height="350">
 
 
