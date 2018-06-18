@@ -77,8 +77,10 @@ UI which will satisfy certain functional,psychological and aesthetic criteria.we
 do not get unexpected user input, which is enforced by using UI elements such as Date and Time Pickers.
 
 <img src = "{{site.baseurl}}/images/Olddesign.JPG" alt="Old Design:Log activity" width="250" height="350">
+Old Design : Log activity
 <br>
 <img src = "{{site.baseurl}}/images/Newdesign.JPG" alt="New Design:Log activity" width="762" height="350">
+New Design : Log activity 
 <br>
 
 Another key change in our app is on the review page, where we show a graphical representation of all activities.Our first design showed 
