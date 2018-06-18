@@ -82,8 +82,8 @@ Old Design: Log activity
 
 
 New Design: Log activity 
-<img src = "{{site.baseurl}}/images/Newdesign.JPG" alt="New Design:Log activity" width="1526" height="350">
-<img src = "{{site.baseurl}}/images/Newdesign1.JPG" alt="New Design:Log activity" width="1526" height="350">
+<img src = "{{site.baseurl}}/images/Newdesign.JPG" alt="New Design:Log activity" width="400" height="350">
+<img src = "{{site.baseurl}}/images/Newdesign1.JPG" alt="New Design:Log activity" width="400" height="350">
 
 
 Another key change in our app is on the review page, where we show a graphical representation of all activities.Our first design showed 
