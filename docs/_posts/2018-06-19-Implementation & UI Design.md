@@ -1,11 +1,11 @@
-#Implemtentation & User Interface Design
+# Implemtentation & User Interface Design
 
-##Coding Conventions
+## Coding Conventions
 
-##Context of use
+## Context of use
 <img src="{{site.baseurl}}/images/Persona_Professional.jpg" alt="Persona Professional: Arthur McMillan" width="1526" height="350">
 <img src="{{site.baseurl}}/images/Persona_Student.jpg" alt="Persona Student: Ruby McRail" width="1526" height="350">
 
-##Design Solutions
+## Design Solutions
 
-##Summary of Changes
+## Summary of Changes
