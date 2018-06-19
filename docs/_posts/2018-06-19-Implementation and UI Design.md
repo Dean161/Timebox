@@ -81,10 +81,10 @@ After researching those contexts of use created above, we create a prototype of 
 
 <table style="width:100%">
   <tr valign="top" border="1">
-    <td><img src = "{{site.baseurl}}/images/Home_blank.png" alt="Home Blank" height="350"></td>
-    <td><img src = "{{site.baseurl}}/images/Home_Nav.png" alt="Home Nav" height="350"></td>
-    <td><img src = "{{site.baseurl}}/images/Log_act.png" alt="Log Act" height="350"></td>
-    <td><img src = "{{site.baseurl}}/images/Log_scheduling.png" alt="Log Scheduling" height="350"></td>
+    <td><img src = "{{site.baseurl}}/images/Home_blank.png" alt="Home Blank"></td>
+    <td><img src = "{{site.baseurl}}/images/Home_Nav.png" alt="Home Nav"></td>
+    <td><img src = "{{site.baseurl}}/images/Log_act.png" alt="Log Act"></td>
+    <td><img src = "{{site.baseurl}}/images/Log_scheduling.png" alt="Log Scheduling"></td>
   </tr>
 </table>
 
@@ -94,10 +94,10 @@ The Navigation is very simple with wiping and switching of button, and fast with
 
 <table style="width:100%">
   <tr valign="top" border="1">
-    <td><img src = "{{site.baseurl}}/images/Home_blank.png" alt="Home Blank" height="350"></td>
-    <td><img src = "{{site.baseurl}}/images/Home_Nav.png" alt="Home Nav" height="350"></td>
-    <td><img src = "{{site.baseurl}}/images/Review_text.png" alt="Review Text" height="350"></td>
-    <td><img src = "{{site.baseurl}}/images/Review_graph.png" alt="Review Graph" height="350"></td>
+    <td><img src = "{{site.baseurl}}/images/Home_blank.png" alt="Home Blank"></td>
+    <td><img src = "{{site.baseurl}}/images/Home_Nav.png" alt="Home Nav"></td>
+    <td><img src = "{{site.baseurl}}/images/Review_text.png" alt="Review Text"></td>
+    <td><img src = "{{site.baseurl}}/images/Review_graph.png" alt="Review Graph"></td>
   </tr>
 </table>
 
