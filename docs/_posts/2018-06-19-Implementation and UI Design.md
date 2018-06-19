@@ -75,6 +75,25 @@ Persona Student: Ruby McRail
 
 ## Design Solutions
 
+After researching those contexts of use created above, we create a prototype of the UI design focusing on the user's need
+
+**1. Log Activity Screen Sequence**
+
+<table style="width:100%">
+  <tr valign="top" border="1">
+    <td><img src="{{site.baseurl}}/images/Home_blank.png" alt="Home Blank"></td>
+    <td><img src="{{site.baseurl}}/images/Home_Nav.png" alt="Home Nav"></td>
+    <td><img src="{{site.baseurl}}/images/Log_act.png" alt="Log Act"></td>
+    <td><img src="{{site.baseurl}}/images/Log_scheduling.png" alt="Log Scheduling"></td>
+  </tr>
+</table>
+
+**2. Review Activity Screen Sequence**
+
+**3. Home Screen Design**
+
+**4. Graph Review Screen Design**
+
 ## Summary of Changes
 In comparision with the initial design, we have made few changes to the user interface.
 We started with a simple design for logging/scheduling an activity, which allowed the user to 
