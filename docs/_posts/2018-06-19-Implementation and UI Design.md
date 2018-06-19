@@ -79,32 +79,40 @@ After researching those contexts of use created above, we create a prototype of 
 
 **1. Log Activity Screen Sequence**
 
-<img src = "{{site.baseurl}}/images/Home_blank.png" alt="Home Blank" width="400" height="350">
-<img src = "{{site.baseurl}}/images/Home_Nav.png" alt="Home Nav" width="400" height="350">
-<img src = "{{site.baseurl}}/images/Log_act.png" alt="Log Act" width="400" height="350">
-<img src = "{{site.baseurl}}/images/Log_scheduling.png" alt="Log Scheduling" width="400" height="350">
+<table style="width:100%">
+  <tr valign="top" border="1">
+    <td><img src = "{{site.baseurl}}/images/Home_blank.png" alt="Home Blank" height="350"></td>
+    <td><img src = "{{site.baseurl}}/images/Home_Nav.png" alt="Home Nav" height="350"></td>
+    <td><img src = "{{site.baseurl}}/images/Log_act.png" alt="Log Act" height="350"></td>
+    <td><img src = "{{site.baseurl}}/images/Log_scheduling.png" alt="Log Scheduling" height="350"></td>
+  </tr>
+</table>
 
 The Navigation is very simple with wiping and switching of button, and fast with four screen at most for all functions.
 
 **2. Review Activity Screen Sequence**
 
-<img src = "{{site.baseurl}}/images/Home_blank.png" alt="Home Blank" width="400" height="350">
-<img src = "{{site.baseurl}}/images/Home_Nav.png" alt="Home Nav" width="400" height="350">
-<img src = "{{site.baseurl}}/images/Review_text.png" alt="Review Text" width="400" height="350">
-<img src = "{{site.baseurl}}/images/Review_graph.png" alt="Review Graph" width="400" height="350">
+<table style="width:100%">
+  <tr valign="top" border="1">
+    <td><img src = "{{site.baseurl}}/images/Home_blank.png" alt="Home Blank" height="350"></td>
+    <td><img src = "{{site.baseurl}}/images/Home_Nav.png" alt="Home Nav" height="350"></td>
+    <td><img src = "{{site.baseurl}}/images/Review_text.png" alt="Review Text" height="350"></td>
+    <td><img src = "{{site.baseurl}}/images/Review_graph.png" alt="Review Graph" height="350"></td>
+  </tr>
+</table>
 
 By using enforced element like drop-down list and button, errors are prevented.
 
 **3. Home Screen Design**
 
-<img src = "{{site.baseurl}}/images/Home_example.png" alt="Home Example" width="400" height="350">
+<img src = "{{site.baseurl}}/images/Home_example.png" alt="Home Example" height="350">
 
 - Items are grouped automatically by day
 - The header row could help indicating the workday pattern visually
 
 **4. Graph Review Screen Design**
 
-<img src = "{{site.baseurl}}/images/Review_graph.png" alt="Review Graph" width="400" height="350">
+<img src = "{{site.baseurl}}/images/Review_graph.png" alt="Review Graph" height="350">
 
 - Combining 3 default filters, the user can create a report suite his/her own needs.
 - The graph review is ideal for an overview of categories
