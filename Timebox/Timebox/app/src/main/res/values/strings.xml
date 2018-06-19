@@ -183,5 +183,6 @@
     <string name="sec_ques3">What is the your favourite sport?</string>
 
     <string name="list_view_empty">No activity logged yet</string>
+    <string name="search_review">Search</string>
 
 </resources>

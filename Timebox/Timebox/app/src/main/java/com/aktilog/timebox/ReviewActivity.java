@@ -17,6 +17,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ReviewActivity extends AppCompatActivity {
 
     /**
@@ -179,4 +182,5 @@ public class ReviewActivity extends AppCompatActivity {
             return 3;
         }
     }
+
 }

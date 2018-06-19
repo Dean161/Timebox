@@ -14,7 +14,6 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Overview of activities"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,17 +115,27 @@
             <Button
                 android:layout_width="92dp"
                 android:layout_height="40dp"
+                android:id="@+id/button_search_text"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Search"
+                android:text="@string/search_review"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/spinner_category_select_review_text"
                 app:layout_constraintTop_toBottomOf="@+id/text_end_date_review_text"
                 app:layout_constraintVertical_bias="0.103" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:id="@+id/list_activities_text"
+                android:layout_height="232dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_category_select_review_text" />
 
 
         </android.support.constraint.ConstraintLayout>
