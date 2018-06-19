@@ -48,6 +48,12 @@ Every annotation must appear right after the comment block and before the corres
 * All strings should be used from the strings.xml file using `R.string.string_name`.
 * All colors should be used from colors.xml or android/colors using `R.colors.colorsName` or `android.R.colors.colorName`.
 
+**Sample Screenshots:**
+
+<img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1">
+
+<img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2">
+
 ## Context of use
 In order to identify the major needs and expectations of our users and, thereby, define the key functionalities of our app, we have created two different personas which represent the major user groups for our software application. 
 The purpose of personas is to create reliable and realistic representations of your key audience segments for
