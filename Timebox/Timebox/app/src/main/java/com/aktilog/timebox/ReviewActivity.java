@@ -70,16 +70,13 @@ public class ReviewActivity extends AppCompatActivity {
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
                         String title = (String) menuItem.getTitle();
-                        String home = "Home";
-                        String log = "Log Activity";
-                        String review = "Review";
-                        if (title.equals(home)){
+                        if (title.equals(getResources().getString(R.string.title_home))){
                             Intent launch_MainActivity = new Intent(ReviewActivity.this,MainActivity.class);
                             startActivity(launch_MainActivity);
-                        }else if (title.equals(log)){
+                        }else if (title.equals(getResources().getString(R.string.title_log_activity))){
                             Intent launch_LogActivity = new Intent(ReviewActivity.this,LogActivity.class);
                             startActivity(launch_LogActivity);
-                        }else if (title.equals(review)){
+                        }else if (title.equals(getResources().getString(R.string.title_review))){
                             //do nothing
                         }else{
                             Intent launch_SettingsActivity = new Intent(ReviewActivity.this,SettingsActivity.class);

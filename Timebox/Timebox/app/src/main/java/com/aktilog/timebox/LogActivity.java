@@ -132,15 +132,12 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
                         String title = (String) menuItem.getTitle();
-                        String home = "Home";
-                        String log = "Log Activity";
-                        String review = "Review";
-                        if (title.equals(home)){
+                        if (title.equals(getResources().getString(R.string.title_home))){
                             Intent launch_MainActivity = new Intent(LogActivity.this,MainActivity.class);
                             startActivity(launch_MainActivity);
-                        }else if (title.equals(log)){
+                        }else if (title.equals(getResources().getString(R.string.title_log_activity))){
                             //do nothing
-                        }else if (title.equals(review)){
+                        }else if (title.equals(getResources().getString(R.string.title_review))){
                             Intent launch_ReviewActivity = new Intent(LogActivity.this,ReviewActivity.class);
                             startActivity(launch_ReviewActivity);
                         }else{

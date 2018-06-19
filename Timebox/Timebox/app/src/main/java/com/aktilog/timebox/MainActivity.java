@@ -22,7 +22,6 @@ import javax.xml.transform.Templates;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int i;
     private DrawerLayout mDrawerLayout;
 
     @Override
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final ListView list_recent = (ListView) findViewById(R.id.list_view_recent_activities);
+        final ListView list_recent = findViewById(R.id.list_view_recent_activities);
         final TextView list_empty = findViewById(R.id.list_view_empty);
 
         List<LoggedActivities> recent_activity = getListData();
@@ -62,16 +61,12 @@ public class MainActivity extends AppCompatActivity {
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
                         String title = (String) menuItem.getTitle();
-                        String home = "Home";
-                        String log = "Log Activity";
-                        String review = "Review";
-                        if (title.equals(home)){
+                        if (title.equals(getResources().getString(R.string.title_home))){
                             //do nothing
-                        }else if (title.equals(log)){
+                        }else if (title.equals(getResources().getString(R.string.title_log_activity))){
                             Intent launch_LogActivity = new Intent(MainActivity.this,LogActivity.class);
                             startActivity(launch_LogActivity);
-                        }else if (title.equals(review)){
-                            //Toast.makeText(getApplicationContext(),"Review",Toast.LENGTH_SHORT).show();
+                        }else if (title.equals(getResources().getString(R.string.title_review))){
                             Intent launch_ReviewActivity = new Intent(MainActivity.this,ReviewActivity.class);
                             startActivity(launch_ReviewActivity);
                         }else{

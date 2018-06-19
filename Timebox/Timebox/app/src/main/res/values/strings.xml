@@ -182,6 +182,7 @@
     <string name="sec_ques2">What is the maiden name of your mother?</string>
     <string name="sec_ques3">What is the your favourite sport?</string>
 
+    <!-- Strings related to lists -->
     <string name="list_view_empty">No activity logged yet</string>
     <string name="search_review">Search</string>
 
