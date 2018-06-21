@@ -25,12 +25,12 @@ public class CustomAdapter  extends BaseAdapter {
         String headDate="";
         for (int i=0;i<listData.size();i++) {
             LoggedActivities iter = listData.get(i);
-            if (!iter.getStartDate().equals(headDate)) {
-                headDate = iter.getStartDate();
+            if (!iter.getStartDateTime().split(" ")[0].equals(headDate)) {
+                headDate = iter.getStartDateTime().split(" ")[0];
                 if (!iter.getActivityName().contains(header)) {
                     LoggedActivities newLog = new LoggedActivities();
                     newLog.setActivityName(header);
-                    newLog.setStartDate(headDate);
+                    newLog.setStartDateTime(headDate+" 00:00");
                     this.listData.add(i,newLog);
                 }
             }
@@ -93,12 +93,12 @@ public class CustomAdapter  extends BaseAdapter {
             holder.endView.setVisibility(View.VISIBLE);
             holder.catView.setVisibility(View.VISIBLE);
         }
-        holder.dateView.setText(loggedactivity.getStartDate().split("-")[2]);
-        holder.monthView.setText(loggedactivity.getStartDate().split("-")[1]);
+        holder.dateView.setText(loggedactivity.getStartDateTime().split(" ")[0].split("-")[2]);
+        holder.monthView.setText(loggedactivity.getStartDateTime().split(" ")[0].split("-")[1]);
         //holder.catView.setBackgroundColor(R.color.colorGrey);
-        holder.nameView.setText(loggedactivity.getNotes());
-        holder.startView.setText(loggedactivity.getStartTime());
-        holder.endView.setText(loggedactivity.getEndTime());
+        holder.nameView.setText(loggedactivity.getActivityName());
+        holder.startView.setText(loggedactivity.getStartDateTime().split(" ")[1]);
+        holder.endView.setText(loggedactivity.getEndDateTime().split(" ")[1]);
 
         return convertView;
     }
