@@ -25,13 +25,12 @@ public class CustomAdapter  extends BaseAdapter {
         String headDate="";
         for (int i=0;i<listData.size();i++) {
             LoggedActivities iter = listData.get(i);
-            String date = iter.getStartDateTime().split(" ")[0];
-            if (!date.equals(headDate)) {
-                headDate = date;
+            if (!iter.getStartDateTime().split(" ")[0].equals(headDate)) {
+                headDate = iter.getStartDateTime().split(" ")[0];
                 if (!iter.getActivityName().contains(header)) {
                     LoggedActivities newLog = new LoggedActivities();
                     newLog.setActivityName(header);
-                    newLog.setStartDateTime(headDate);
+                    newLog.setStartDateTime(headDate+" 00:00");
                     this.listData.add(i,newLog);
                 }
             }
@@ -94,16 +93,12 @@ public class CustomAdapter  extends BaseAdapter {
             holder.endView.setVisibility(View.VISIBLE);
             holder.catView.setVisibility(View.VISIBLE);
         }
-        String start_date = loggedactivity.getStartDateTime().split(" ")[0];
-        String end_date = loggedactivity.getEndDateTime().split(" ")[0];
-        String start_time = loggedactivity.getStartDateTime().split(" ")[1];
-        String end_time = loggedactivity.getEndDateTime().split(" ")[1];
-        holder.dateView.setText(start_date.split("-")[2]);
-        holder.monthView.setText(start_date.split("-")[1]);
+        holder.dateView.setText(loggedactivity.getStartDateTime().split(" ")[0].split("-")[2]);
+        holder.monthView.setText(loggedactivity.getStartDateTime().split(" ")[0].split("-")[1]);
         //holder.catView.setBackgroundColor(R.color.colorGrey);
-        holder.nameView.setText(loggedactivity.getNotes());
-        holder.startView.setText(start_time);
-        holder.endView.setText(end_time);
+        holder.nameView.setText(loggedactivity.getActivityName());
+        holder.startView.setText(loggedactivity.getStartDateTime().split(" ")[1]);
+        holder.endView.setText(loggedactivity.getEndDateTime().split(" ")[1]);
 
         return convertView;
     }

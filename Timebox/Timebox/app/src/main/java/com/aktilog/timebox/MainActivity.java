@@ -121,19 +121,18 @@ public class MainActivity extends AppCompatActivity {
 
         LoggedActivities Football = new LoggedActivities();
         Football.setActivityName("Football");
-        Programming.setStartDateTime("2018-06-16 15:00");
-        Programming.setEndDateTime("2018-06-16 17:00");
+        Football.setStartDateTime("2018-06-16 20:00");
+        Football.setEndDateTime("2018-06-16 22:00");
         Football.setNotes("Watching Worldcup");
 
         LoggedActivities Dinner = new LoggedActivities();
         Dinner.setActivityName("Dinner");
-        Programming.setStartDateTime("2018-06-15 13:00");
-        Programming.setEndDateTime("2018-06-15 15:00");
+        Dinner.setStartDateTime("2018-06-15 18:00");
+        Dinner.setEndDateTime("2018-06-15 18:00");
         Dinner.setNotes("Having dinner");
 
         list.add(Programming);
         list.add(Football);
-        list.add(Dinner);
         list.add(Dinner);
 
         return list;
