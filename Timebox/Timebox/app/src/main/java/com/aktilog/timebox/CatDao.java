@@ -14,33 +14,38 @@ import java.util.List;
 @Dao
 public interface CatDao {
     //queries for add/mod category
-    @Query("SELECT * FROM categories")
+    @Query("SELECT * FROM Category")
     LiveData<List<Category>> getAll();
 
-    @Query("SELECT * FROM categories WHERE cat_name LIKE :catName")
+    @Query("SELECT * FROM Category WHERE cat_name LIKE :catName")
     Category findByName(String catName);
 
-    @Query("SELECT COUNT(*) FROM categories")
+    @Query("SELECT COUNT(*) FROM Category")
     int CountCats();
 
     @Insert
     void insertAll(Category category);
 
-    @Query("UPDATE categories SET cat_name =:newName AND cat_color_hex =:newColor WHERE cat_name LIKE :oldName")
+    @Query("UPDATE Category SET cat_name =:newName, cat_color_hex =:newColor WHERE cat_name = :oldName")
     void update(String newName, String newColor, String oldName);
 
     //maybe more required?
 
-    @Query("SELECT cat_name FROM categories")
+    @Query("SELECT cat_name FROM Category")
     List<String> getCatNames();
+
+    @Query("SELECT cat_color_hex FROM Category WHERE cat_name LIKE :givenCat")
+    String getCatColor(String givenCat);
 
     @Delete
     void delete(Category category);
 
     //queries for loggedActivites
-    @Query("SELECT cid FROM categories WHERE cat_name LIKE :givenCat")
+    @Query("SELECT cid FROM Category WHERE cat_name LIKE :givenCat")
     int getCidActivites(String givenCat);
 
     @Insert
     void insertActivity(LoggedActivities newAct);
+
+
 }

@@ -5,7 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-@Entity(tableName = "Categories")
+@Entity(tableName = "Category")
 public class Category {
     @PrimaryKey(autoGenerate=true)
     private int cid;

@@ -24,6 +24,7 @@ import com.flask.colorpicker.OnColorSelectedListener;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
+import java.util.Collections;
 import java.util.List;
 
 public class AddModCategories extends AppCompatActivity {
@@ -41,6 +42,9 @@ public class AddModCategories extends AppCompatActivity {
     private int CURRENT_BACKGROUND_COLOR = 0xFFFFFFFF;
     private String OK = "ok";
     private String CANCEL = "cancel";
+    Boolean item_selected;
+    String DEFAULT_CATEGORY_ITEM = "----------- Please select category -----------";
+    String COLOR_TEXT = "#000000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class AddModCategories extends AppCompatActivity {
         category_sel_spinner = findViewById(R.id.spinner_category_select);
         category_sel_spinner.setVisibility(View.GONE);
         category_sel_title.setVisibility(View.GONE);
+        item_selected = false;
 
         //setting up custom toolbar for the activity
         Toolbar toolbar_add_mod_cat = findViewById(R.id.toolbar_add_mod_cat);
@@ -80,11 +85,19 @@ public class AddModCategories extends AppCompatActivity {
                     actionbar_categories.setTitle(R.string.title_modify_category);
                     category_sel_title.setVisibility(View.VISIBLE);
                     category_sel_spinner.setVisibility(View.VISIBLE);
+                    input_category.getText().clear();
+                    input_color.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.colorBlack));
+                    input_color.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.colorWhite));
+                    input_color.setText(COLOR_TEXT);
                     new DatabaseAsyncLoad().execute();
                 }else{
                     actionbar_categories.setTitle(R.string.title_add_category);
                     category_sel_spinner.setVisibility(View.GONE);
                     category_sel_title.setVisibility(View.GONE);
+                    input_category.getText().clear();
+                    input_color.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.colorBlack));
+                    input_color.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.colorWhite));
+                    input_color.setText(COLOR_TEXT);
                 }
             }
         });
@@ -113,6 +126,7 @@ public class AddModCategories extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
                                 input_color.setBackgroundColor(selectedColor);
                                 input_color.setText(String.format("#%06X", (0xFFFFFF & selectedColor)));
+                                input_hex = String.valueOf(selectedColor);
                                 getTextColor(selectedColor);
                             }
                         })
@@ -132,6 +146,9 @@ public class AddModCategories extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     //run sql queries here
+                    item_selected = true;
+                    new DatabaseAsyncLoad().execute();
+
                 }
 
                 @Override
@@ -175,9 +192,8 @@ public class AddModCategories extends AppCompatActivity {
                 app_database.catDao().insertAll(category);
                 //TODO resolve error msg: Can't toast on a thread that has not called Looper.prepare()
                 //Toast.makeText(getApplicationContext(),"Category saved",Toast.LENGTH_SHORT).show();
-
                 //was: clearComposingText();
-                input_category.setText("");
+                input_category.getText().clear();
                 input_color.setBackgroundColor(ContextCompat.getColor(AddModCategories.this,R.color.colorBlack));
                 input_color.setText(R.string.hint_category_color);
                 input_color.setTextColor(ContextCompat.getColor(AddModCategories.this, R.color.colorWhite));
@@ -185,12 +201,17 @@ public class AddModCategories extends AppCompatActivity {
             } else {
                 String oldCat = category_sel_spinner.getSelectedItem().toString();
                 app_database.catDao().update(specCat, specHex, oldCat);
-                //Toast.makeText(getApplicationContext(),"Category updated",Toast.LENGTH_SHORT).show();
-                //input_category.clearComposingText();
-                //input_hex.clearComposingText();
+                input_category.getText().clear();
+                input_color.setBackgroundColor(ContextCompat.getColor(AddModCategories.this,R.color.colorBlack));
+                input_color.setText(R.string.hint_category_color);
+                input_color.setTextColor(ContextCompat.getColor(AddModCategories.this, R.color.colorWhite));
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        category_sel_spinner.setSelection(0);
+                    }
+                });
             }
-
-
             return null;
         }
 
@@ -211,8 +232,13 @@ public class AddModCategories extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            loadSpinnerData();
+            if(!item_selected) {
+                loadSpinnerData();
+            } else {
+                loadCategoryDetails();
+            }
             return null;
+
         }
 
         @Override
@@ -220,6 +246,31 @@ public class AddModCategories extends AppCompatActivity {
             super.onPostExecute(aVoid);
             //perform post-adding operation here
         }
+    }
+
+    private void loadCategoryDetails() {
+
+        //Get the selected category item name
+        final String category_name = category_sel_spinner.getSelectedItem().toString();
+
+        //Fetch the corresponding color from the database
+        final String category_color = app_database.catDao().getCatColor(category_name);
+
+        //Load the category name and color to corresponding views
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (category_name != DEFAULT_CATEGORY_ITEM) {
+                    input_category.setText(category_name);
+                    int cat_color = Integer.parseInt(category_color);
+                    input_color.setText(String.format("#%06X", (0xFFFFFF & cat_color)));
+                    input_color.setBackgroundColor(cat_color);
+                    getTextColor(cat_color);
+                    input_hex = category_color;
+                }
+            }
+        });
+        item_selected = false;
     }
 
     @Override
@@ -234,6 +285,9 @@ public class AddModCategories extends AppCompatActivity {
     public void loadSpinnerData() {
         //Spinner drop down elements
         List<String> labels = app_database.catDao().getCatNames();
+
+        labels.add(DEFAULT_CATEGORY_ITEM);
+        Collections.sort(labels);
 
         //creating adapter from spinner
         final ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, labels);
@@ -263,5 +317,12 @@ public class AddModCategories extends AppCompatActivity {
         } else {
             input_color.setTextColor(ContextCompat.getColor(AddModCategories.this,R.color.colorWhite));
         }
+    }
+
+    @Override
+    protected void onResume() {
+        item_selected = false;
+        new DatabaseAsyncLoad().execute();
+        super.onResume();
     }
 }
