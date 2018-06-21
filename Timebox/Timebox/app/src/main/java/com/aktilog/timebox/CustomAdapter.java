@@ -99,8 +99,9 @@ public class CustomAdapter  extends BaseAdapter {
         //holder.catView.setBackgroundColor(R.color.colorGrey);
         holder.nameView.setText(loggedactivity.getActivityName());
         holder.startView.setText(loggedactivity.getStartDateTime().split(" ")[1]);
-        holder.endView.setText(loggedactivity.getEndDateTime().split(" ")[1]);
-
+        if (loggedactivity.getEndDateTime() != null) {
+            holder.endView.setText(loggedactivity.getEndDateTime().split(" ")[1]);
+        }
         return convertView;
     }
 
