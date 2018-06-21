@@ -57,7 +57,7 @@ public class CustomAdapterReview  extends BaseAdapter {
 
         holder.cat_color.setBackgroundColor(ContextCompat.getColor(context,R.color.colorDarkGrey));
         holder.activity_name.setText(loggedactivity.getActivityName());
-        holder.duration.setText(loggedactivity.getEndTime());
+        holder.duration.setText(loggedactivity.getEndDateTime());
 
         return convertView;
     }

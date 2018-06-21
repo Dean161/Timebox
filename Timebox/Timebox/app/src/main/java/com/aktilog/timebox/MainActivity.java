@@ -115,23 +115,20 @@ public class MainActivity extends AppCompatActivity {
 
         LoggedActivities Programming = new LoggedActivities();
         Programming.setActivityName("Programming");
-        Programming.setStartDate("2018-06-17");
-        Programming.setStartTime("15h00");
-        Programming.setEndTime("17h00");
+        Programming.setStartDateTime("2018-06-17 15:00");
+        Programming.setEndDateTime("2018-06-17 17:00");
         Programming.setNotes("Programming TimeBox Application");
 
         LoggedActivities Football = new LoggedActivities();
         Football.setActivityName("Football");
-        Football.setStartDate("2018-06-16");
-        Football.setStartTime("20h00");
-        Football.setEndTime("22h00");
+        Programming.setStartDateTime("2018-06-16 15:00");
+        Programming.setEndDateTime("2018-06-16 17:00");
         Football.setNotes("Watching Worldcup");
 
         LoggedActivities Dinner = new LoggedActivities();
         Dinner.setActivityName("Dinner");
-        Dinner.setStartDate("2018-06-15");
-        Dinner.setStartTime("18h00");
-        Dinner.setEndTime("19h00");
+        Programming.setStartDateTime("2018-06-15 13:00");
+        Programming.setEndDateTime("2018-06-15 15:00");
         Dinner.setNotes("Having dinner");
 
         list.add(Programming);
