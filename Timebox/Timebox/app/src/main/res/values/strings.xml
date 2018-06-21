@@ -149,12 +149,12 @@
     <string name="hint_activity">Enter activity name</string>
     <string name="hint_category_color">#000000</string>
     <string name="hint_category_name">e.g. Sport</string>
-    <string name="hint_end_date">Select end date</string>
+    <string name="hint_end_date_time">Select end date time</string>
     <string name="hint_end_time">Select end time</string>
     <string name="hint_notes">Enter notes for this activity</string>
     <string name="hint_pin">Enter PIN</string>
     <string name="hint_sec_answer">Provide answer here</string>
-    <string name="hint_start_date">Select start date</string>
+    <string name="hint_start_date_time">Select start date time</string>
     <string name="hint_start_time">Select start time</string>
     <string name="hint_target_duration">Enter the target duration</string>
 

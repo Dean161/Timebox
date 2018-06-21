@@ -38,5 +38,8 @@
         <item name="android:background">@color/colorGrey</item>
         <item name="android:textColor">@android:color/holo_blue_bright</item>
     </style>
+    <style name="AppTheme_New.TitleStyle" parent="AppTheme_New">
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>

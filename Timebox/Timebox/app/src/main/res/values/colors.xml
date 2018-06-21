@@ -9,4 +9,6 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorDarkGrey">#A9A9A9</color>
     <color name="colorGrey">#383838</color>
+    <color name="colorTeal">#F3FFFF</color>
+    <color name="colorReddish">#FFE8E8</color>
 </resources>

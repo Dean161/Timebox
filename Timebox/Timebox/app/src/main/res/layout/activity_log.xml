@@ -15,45 +15,60 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
 
             <TextView
-                android:id="@+id/text_end_time"
-                android:layout_width="145dp"
+                android:id="@+id/text_start_date_time"
+                android:layout_width="195dp"
                 android:layout_height="37dp"
-                android:layout_marginEnd="28dp"
+                android:layout_marginEnd="12dp"
                 android:layout_marginTop="24dp"
-                android:hint="@string/hint_end_time"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/hint_start_date_time"
+                android:gravity="center_vertical"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_activity_name" />
 
             <TextView
-                android:id="@+id/text_start_date"
-                android:layout_width="145dp"
+                android:id="@+id/title_end_date_time"
+                android:layout_width="188dp"
                 android:layout_height="37dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:hint="@string/hint_start_date"
+                android:textSize="20sp"
+                android:text="@string/title_end_date_time"
+                android:gravity="center_vertical"
+                style="@style/AppTheme_New.TitleStyle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_start_time" />
+                app:layout_constraintTop_toBottomOf="@+id/title_start_date_time" />
 
             <TextView
-                android:id="@+id/text_end_date"
-                android:layout_width="145dp"
+                android:id="@+id/text_end_date_time"
+                android:layout_width="195dp"
                 android:layout_height="37dp"
-                android:layout_marginEnd="28dp"
+                android:layout_marginEnd="12dp"
                 android:layout_marginTop="24dp"
-                android:hint="@string/hint_end_date"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/hint_end_date_time"
+                android:gravity="center_vertical"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_end_time" />
+                app:layout_constraintTop_toBottomOf="@+id/text_start_date_time" />
 
             <TextView
-                android:id="@+id/text_start_time"
-                android:layout_width="145dp"
+                android:id="@+id/title_start_date_time"
+                android:layout_width="188dp"
                 android:layout_height="37dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:hint="@string/hint_start_time"
+                android:text="@string/title_start_date_time"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+                style="@style/AppTheme_New.TitleStyle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_activity_name" />
 
@@ -69,14 +84,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginTop="64dp"
                 android:text="@string/switch_schedule"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/button_add_category"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.117" />
 
             <TextView
                 android:id="@+id/title_category_log"
@@ -87,6 +102,7 @@
                 android:layout_marginTop="100dp"
                 android:text="@string/title_category"
                 android:textSize="20sp"
+                style="@style/AppTheme_New.TitleStyle"
                 app:layout_constraintEnd_toStartOf="@+id/switch_schedule_activity"
                 app:layout_constraintHorizontal_bias="0.053"
                 app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +136,8 @@
                 app:layout_constraintStart_toEndOf="@+id/spinner_category_select_log"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.939"
-                app:srcCompat="@drawable/ic_add_black_24dp" />
+                app:srcCompat="@drawable/ic_add_black_24dp"
+                android:focusable="true" />
 
             <TextView
                 android:id="@+id/title_activity_name"
@@ -131,6 +148,7 @@
                 android:layout_marginTop="24dp"
                 android:text="@string/title_activity"
                 android:textSize="20sp"
+                style="@style/AppTheme_New.TitleStyle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +156,7 @@
 
             <EditText
                 android:id="@+id/text_activity_name"
-                android:layout_width="345dp"
+                android:layout_width="385dp"
                 android:layout_height="40dp"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
@@ -149,15 +167,29 @@
                 android:paddingStart="8dp"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.24"
+                app:layout_constraintHorizontal_bias="0.615"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_activity_name" />
 
             <TextView
+                android:id="@+id/title_target_duration"
+                style="@style/AppTheme_New.TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/title_target_duration"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.031"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_end_date_time" />
+
+            <TextView
                 android:id="@+id/text_target_duration"
-                android:layout_width="345dp"
+                android:layout_width="385dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="32dp"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
                 android:hint="@string/hint_target_duration"
@@ -165,30 +197,32 @@
                 android:onClick="showNumberPicker"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.41"
+                app:layout_constraintHorizontal_bias="0.615"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_start_date" />
+                app:layout_constraintTop_toBottomOf="@+id/title_target_duration" />
 
             <TextView
                 android:id="@+id/title_notes"
+                style="@style/AppTheme_New.TitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/title_notes"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.025"
+                app:layout_constraintHorizontal_bias="0.023"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_target_duration" />
 
             <EditText
                 android:id="@+id/text_notes"
-                android:layout_width="345dp"
+                android:layout_width="385dp"
                 android:layout_height="77dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
                 android:hint="@string/hint_notes"
@@ -196,7 +230,7 @@
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.41"
+                app:layout_constraintHorizontal_bias="0.615"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_notes" />
 
@@ -214,9 +248,10 @@
                 android:textColor="@color/colorWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_notes"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.133" />
 
         </android.support.constraint.ConstraintLayout>
 

@@ -10,10 +10,6 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +51,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/hint_start_date"
+                android:text="@string/hint_start_date_time"
                 app:layout_constraintEnd_toStartOf="@+id/text_end_date_review_graph"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +63,7 @@
                 android:layout_height="37dp"
                 android:layout_marginEnd="36dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/hint_end_date"
+                android:text="@string/hint_end_date_time"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_end_time_review_graph" />
 
