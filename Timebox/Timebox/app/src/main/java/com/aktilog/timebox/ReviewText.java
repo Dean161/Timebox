@@ -7,12 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewText extends Fragment {
+
+    //claas variables
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -24,7 +28,12 @@ public class ReviewText extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         ListView review_activity_text = getView().findViewById(R.id.list_activities_text);
         List<LoggedActivities> list_activity = getListData();
-        review_activity_text.setAdapter(new CustomAdapter(getContext(),list_activity));
+        review_activity_text.setAdapter(new CustomAdapterReview(getContext(),list_activity));
+
+        //database and spinner assignment
+
+        //new DatabaseAsyncLoad.execute
+
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -61,4 +70,8 @@ public class ReviewText extends Fragment {
         return list;
 
     }
+
+    //databaseasync
+
+    //loadspinnerdata
 }
