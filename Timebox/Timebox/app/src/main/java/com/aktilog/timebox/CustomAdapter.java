@@ -23,6 +23,7 @@ public class CustomAdapter  extends BaseAdapter {
         this.listData = listData;
 
         String headDate="";
+        /*
         for (int i=0;i<listData.size();i++) {
             LoggedActivities iter = listData.get(i);
             if (!iter.getStartDateTime().split(" ")[0].equals(headDate)) {
@@ -35,7 +36,7 @@ public class CustomAdapter  extends BaseAdapter {
                 }
             }
 
-        }
+        }*/
     }
 
     @Override
