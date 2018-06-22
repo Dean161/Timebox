@@ -29,6 +29,8 @@ import java.util.List;
 
 public class AddModCategories extends AppCompatActivity {
 
+
+    //TODO: Check whether entries are null before insert or update
     AppDatabase app_database;
     EditText input_category;
     Button input_color;

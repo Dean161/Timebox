@@ -33,6 +33,7 @@ import java.util.Random;
 
 public class ForgotPINActivity extends AppCompatActivity {
 
+    //TODO: Add functionality to disable pin on valid answers
     protected Button reset;
     protected Button validate;
     protected EditText sec_ans1;
