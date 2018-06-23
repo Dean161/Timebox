@@ -19,30 +19,36 @@
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+        <TextView
+            android:id="@+id/title_recent_activities"
+            style="@style/AppTheme_New.TitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_recent_activities"
+            android:textSize="30sp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_home" />
+
         <ListView
-            android:id="@+id/list_last_ten_activities"
+            android:id="@+id/list_view_recent_activities"
             android:layout_width="match_parent"
-            android:layout_height="433dp"
-            android:layout_marginBottom="76dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/title_recent_activities"
+            android:divider="#b5b5b5"
+            android:dividerHeight="1dp"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/title_last_ten_activities"
-            android:layout_width="287dp"
-            android:layout_height="55dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/title_last_ten_activities"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/list_last_ten_activities"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.098"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            android:id="@+id/list_view_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/list_view_empty"
+            android:textSize="20sp"
+            tools:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>
 

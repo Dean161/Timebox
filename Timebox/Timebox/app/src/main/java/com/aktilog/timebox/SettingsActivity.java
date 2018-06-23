@@ -278,7 +278,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("list_preference_1"));
+            bindPreferenceSummaryToValue(findPreference("Security Question 1"));
+            bindPreferenceSummaryToValue(findPreference("Answer1"));
+            bindPreferenceSummaryToValue(findPreference("Security Question 2"));
+            bindPreferenceSummaryToValue(findPreference("Answer2"));
+            bindPreferenceSummaryToValue(findPreference("Security Question 3"));
+            bindPreferenceSummaryToValue(findPreference("Answer3"));
+            bindPreferenceSummaryToValue(findPreference("Security Question 4"));
+            bindPreferenceSummaryToValue(findPreference("Answer4"));
+            bindPreferenceSummaryToValue(findPreference("Security Question 5"));
+            bindPreferenceSummaryToValue(findPreference("Answer5"));
+            bindPreferenceSummaryToValue(findPreference("Security Question 6"));
+            bindPreferenceSummaryToValue(findPreference("Answer6"));
         }
 
         @Override

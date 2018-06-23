@@ -1,5 +1,23 @@
+/*
+ * Copyright 2017 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.aktilog.timebox;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,14 +29,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class ForgotPINActivity extends AppCompatActivity {
 
-    Button validate, reset;
-    EditText sec_ans;
-    TextView sec_ques;
+    //TODO: Add functionality to disable pin on valid answers
+    protected Button reset;
+    protected Button validate;
+    protected EditText sec_ans1;
+    protected TextView sec_ques1;
+    protected EditText sec_ans2;
+    protected TextView sec_ques2;
+    private String KEY_ANSWER1 = "Answer1";
+    private String KEY_ANSWER2 = "Answer2";
+    private String KEY_ANSWER3 = "Answer3";
+    private String KEY_ANSWER4 = "Answer4";
+    private String KEY_ANSWER5 = "Answer5";
+    private String KEY_ANSWER6 = "Answer6";
+    private String INCORRECT_ANSWER = "One or both answers are incorrect";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,45 +54,48 @@ public class ForgotPINActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_pin);
 
         Random number;
-        int random_num;
+        final int random_num;
 
         number = new Random();
-        random_num = number.nextInt(3);
+        random_num = number.nextInt(6);
 
         validate = findViewById(R.id.button_validate_answer);
         reset = findViewById(R.id.button_reset);
-        sec_ans = findViewById(R.id.text_sec_answer);
-        sec_ques = findViewById(R.id.text_sec_question);
+        sec_ans1 = findViewById(R.id.text_sec_answer1);
+        sec_ques1 = findViewById(R.id.text_sec_question1);
+        sec_ans2 = findViewById(R.id.text_sec_answer2);
+        sec_ques2 = findViewById(R.id.text_sec_question2);
 
         switch(random_num){
             case 0:
-                sec_ques.setText(R.string.sec_ques1);
+                sec_ques1.setText(R.string.pref_sec_ques1);
+                sec_ques2.setText(R.string.pref_sec_ques3);
                 break;
             case 1:
-                sec_ques.setText(R.string.sec_ques2);
+                sec_ques1.setText(R.string.pref_sec_ques2);
+                sec_ques2.setText(R.string.pref_sec_ques6);
                 break;
             case 2:
-                sec_ques.setText(R.string.sec_ques3);
+                sec_ques1.setText(R.string.pref_sec_ques3);
+                sec_ques2.setText(R.string.pref_sec_ques4);
+                break;
+            case 3:
+                sec_ques1.setText(R.string.pref_sec_ques4);
+                sec_ques2.setText(R.string.pref_sec_ques2);
+                break;
+            case 4:
+                sec_ques1.setText(R.string.pref_sec_ques5);
+                sec_ques2.setText(R.string.pref_sec_ques1);
+                break;
+            case 5:
+                sec_ques1.setText(R.string.pref_sec_ques6);
+                sec_ques2.setText(R.string.pref_sec_ques5);
                 break;
             default:
-                sec_ques.setText(R.string.title_sec_question);
+                sec_ques1.setText(R.string.title_sec_question);
+                sec_ques2.setText(R.string.title_sec_question);
         }
 
-
-        final ArrayList<SecurityQuesAns> security_list = new ArrayList<>();
-        final SecurityQuesAns sec_ques_ans1 = new SecurityQuesAns();
-        final SecurityQuesAns sec_ques_ans2 = new SecurityQuesAns();
-        final SecurityQuesAns sec_ques_ans3 = new SecurityQuesAns();
-
-        sec_ques_ans1.setSet_sec_ques(getString(R.string.sec_ques1));
-        sec_ques_ans1.setSet_sec_ans("Doggy");
-        security_list.add(sec_ques_ans1);
-        sec_ques_ans2.setSet_sec_ques(getString(R.string.sec_ques2));
-        sec_ques_ans2.setSet_sec_ans("Piggy");
-        security_list.add(sec_ques_ans2);
-        sec_ques_ans3.setSet_sec_ques(getString(R.string.sec_ques3));
-        sec_ques_ans3.setSet_sec_ans("Monkey");
-        security_list.add(sec_ques_ans3);
 
         Toolbar toolbar_forgot_pin = findViewById(R.id.toolbar_forgot_pin);
         setSupportActionBar(toolbar_forgot_pin);
@@ -73,30 +104,69 @@ public class ForgotPINActivity extends AppCompatActivity {
         actionbar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
         actionbar.setTitle(R.string.title_forgot_pin);
 
+        final SharedPreferences shared_preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int i;
-                for (i = 0; i < security_list.size(); i++) {
-                    //Toast.makeText(getApplicationContext(),security_list.get(0).getSet_sec_ques(), Toast.LENGTH_SHORT).show();
-                    //Log.d("Value",security_list.get(i).getSet_sec_ques());
-                    //Log.d("Answer",security_list.get(i).getSet_sec_ans());
-                    if (security_list.get(i).getSet_sec_ques().equals(sec_ques.getText().toString())) {
-                        if (security_list.get(i).getSet_sec_ans().equals(sec_ans.getText().toString())) {
-                            Toast.makeText(getApplicationContext(), "Correct Answer.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Incorrect Answer.", Toast.LENGTH_SHORT).show();
+                switch(random_num){
+                    case 0:
+                        if((sec_ans1.getText().toString().equals(shared_preferences.getString(KEY_ANSWER1,""))) && (sec_ans2.getText().toString().equals(shared_preferences.getString(KEY_ANSWER3,"")))){
+                            Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
-                    }
+                        break;
+                    case 1:
+                        if((sec_ans1.getText().toString().equals(shared_preferences.getString(KEY_ANSWER2,""))) && (sec_ans2.getText().toString().equals(shared_preferences.getString(KEY_ANSWER6,"")))){
+                            Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case 2:
+                        if((sec_ans1.getText().toString().equals(shared_preferences.getString(KEY_ANSWER3,""))) && (sec_ans2.getText().toString().equals(shared_preferences.getString(KEY_ANSWER4,"")))){
+                            Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case 3:
+                        if((sec_ans1.getText().toString().equals(shared_preferences.getString(KEY_ANSWER4,""))) && (sec_ans2.getText().toString().equals(shared_preferences.getString(KEY_ANSWER2,"")))){
+                            Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case 4:
+                        if((sec_ans1.getText().toString().equals(shared_preferences.getString(KEY_ANSWER5,""))) && (sec_ans2.getText().toString().equals(shared_preferences.getString(KEY_ANSWER1,"")))){
+                            Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case 5:
+                        if((sec_ans1.getText().toString().equals(shared_preferences.getString(KEY_ANSWER6,""))) && (sec_ans2.getText().toString().equals(shared_preferences.getString(KEY_ANSWER5,"")))){
+                            Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    default:
+                        //do nothing
                 }
             }
 
         });
 
+        /*
+            Clears the content of the answer field
+         */
         reset.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                sec_ans.getText().clear();
+                sec_ans1.getText().clear();
+                sec_ans2.getText().clear();
             }
         });
     }

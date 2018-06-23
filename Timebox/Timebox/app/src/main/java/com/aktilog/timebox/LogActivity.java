@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.arch.persistence.room.util.StringUtil;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
@@ -30,27 +31,22 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.List;
 
-//TODO: add titles to layout file
 public class LogActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener{
-    protected static TextView displayCurrentStartTime;
-    protected static TextView displayCurrentEndTime;
-    protected static TextView displayCurrentStartDate;
-    protected static TextView displayCurrentEndDate;
-    protected static TextView target_duration;
+    protected static TextView selected_start_date_time;
+    protected static TextView selected_end_date_time;
+    protected static TextView title_target_duration;
+    protected static TextView selected_target_duration;
 
     Button buttonSave;
     private DrawerLayout mDrawerLayout;
     AppDatabase db;
     EditText specActivity;
-    TextView start_date;
-    TextView end_date;
-    TextView start_time;
-    TextView end_time;
+    TextView start_date_time;
+    TextView end_date_time;
     EditText inputNotes;
     Spinner categorySpinner;
     int categoryCid;
 
-    //TODO: run sql query (to get all categories) every time the screen is called (not only onCreate) - probably same in AddModCategories
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +56,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         buttonSave = findViewById(R.id.button_save_log);
         db = AppDatabase.getAppDatabase(getApplicationContext());
 
+        categorySpinner = findViewById(R.id.spinner_category_select_log);
         //load existing categories into the spinner
         new DatabaseAsyncLoad().execute();
 
@@ -67,54 +64,36 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         buttonSave.setEnabled(false);
 
 
-        //instatiate TextViews for dates and times
-        displayCurrentStartTime = findViewById(R.id.text_start_time);
-        displayCurrentEndTime = findViewById(R.id.text_end_time);
-        displayCurrentStartDate = findViewById(R.id.text_start_date);
-        displayCurrentEndDate = findViewById(R.id.text_end_date);
+        //instantiate TextViews for dates and times
+        selected_start_date_time = findViewById(R.id.text_start_date_time);
+        selected_end_date_time = findViewById(R.id.text_end_date_time);
 
-        //4 times onClickListener for Date and Time Fields
-        assert displayCurrentStartTime != null;
-        displayCurrentStartTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TimePickerStart startTimePicker = new TimePickerStart();
-                startTimePicker.show(getFragmentManager(), "Select start time!");
-            }
-        });
-
-        assert displayCurrentEndTime != null;
-        displayCurrentEndTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TimePickerEnd endTimePicker = new TimePickerEnd();
-                endTimePicker.show(getFragmentManager(), "Select end time!");
-            }
-        });
-
-        assert  displayCurrentStartDate != null;
-        displayCurrentStartDate.setOnClickListener(new View.OnClickListener() {
+        //2 times onClickListener for Date and Time Fields
+        assert selected_start_date_time != null;
+        selected_start_date_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerFragmentStart startDatePicker = new DatePickerFragmentStart();
-                startDatePicker.show(getFragmentManager(), "Select start Date!");
+                startDatePicker.show(getFragmentManager(), "Select Start Date!");
+
             }
         });
 
-        assert displayCurrentEndDate != null;
-        displayCurrentEndDate.setOnClickListener(new View.OnClickListener() {
+        assert  selected_end_date_time != null;
+        selected_end_date_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerFragmentEnd endDatePicker = new DatePickerFragmentEnd();
-                endDatePicker.show(getFragmentManager(), "Select end date!");
+                endDatePicker.show(getFragmentManager(), "Select End Date!");
             }
         });
-        //final TextView target_duration_title = findViewById(R.id.target_duration_title);
-        target_duration = findViewById(R.id.text_target_duration);
+
+        title_target_duration = findViewById(R.id.title_target_duration);
+        selected_target_duration = findViewById(R.id.text_target_duration);
 
         //make TextView for target duration (instantiated above) invisible
-        target_duration.setVisibility(View.GONE);
-        //target_duration_title.setVisibility(View.GONE);
+        title_target_duration.setVisibility(View.GONE);
+        selected_target_duration.setVisibility(View.GONE);
 
         //instantiate schedule_swtich
         Switch schedule_switch = findViewById(R.id.switch_schedule_activity);
@@ -132,15 +111,12 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
                         String title = (String) menuItem.getTitle();
-                        String home = "Home";
-                        String log = "Log Activity";
-                        String review = "Review Activities";
-                        if (title.equals(home)){
+                        if (title.equals(getResources().getString(R.string.title_home))){
                             Intent launch_MainActivity = new Intent(LogActivity.this,MainActivity.class);
                             startActivity(launch_MainActivity);
-                        }else if (title.equals(log)){
+                        }else if (title.equals(getResources().getString(R.string.title_log_activity))){
                             //do nothing
-                        }else if (title.equals(review)){
+                        }else if (title.equals(getResources().getString(R.string.title_review))){
                             Intent launch_ReviewActivity = new Intent(LogActivity.this,ReviewActivity.class);
                             startActivity(launch_ReviewActivity);
                         }else{
@@ -166,13 +142,13 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             public void onClick(View v) {
                 if(actionbar.getTitle().equals(getResources().getString(R.string.title_log_activity))){
                     actionbar.setTitle(R.string.title_schedule_activity);
-                    target_duration.setVisibility(View.VISIBLE);
-                    //target_duration_title.setVisibility(View.VISIBLE);
+                    selected_target_duration.setVisibility(View.VISIBLE);
+                    title_target_duration.setVisibility(View.VISIBLE);
                 }
                 else{
                     actionbar.setTitle(R.string.title_log_activity);
-                    target_duration.setVisibility(View.GONE);
-                    //target_duration_title.setVisibility(View.GONE);
+                    selected_target_duration.setVisibility(View.GONE);
+                    title_target_duration.setVisibility(View.GONE);
                 }
             }
         });
@@ -213,12 +189,9 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
         //instantiate textViews
         specActivity = findViewById(R.id.text_activity_name);
-        start_date = findViewById(R.id.text_start_date);
-        end_date = findViewById(R.id.text_end_date);
-        start_time = findViewById(R.id.text_start_time);
-        end_time = findViewById(R.id.text_end_time);
+        start_date_time = findViewById(R.id.text_start_date_time);
+        end_date_time = findViewById(R.id.text_end_date_time);
         inputNotes = findViewById(R.id.text_notes);
-        categorySpinner = findViewById(R.id.spinner_category_select_log);
 
         //onClickListener for save_button
         buttonSave.setOnClickListener(new View.OnClickListener() {
@@ -260,10 +233,8 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         @Override
         protected Void doInBackground(Void... voids) {
             String newActivity = specActivity.getText().toString();
-            String startDate = start_date.getText().toString();
-            String endDate = end_date.getText().toString();
-            String startTime = start_time.getText().toString();
-            String endTime = end_time.getText().toString();
+            String startDateTime = start_date_time.getText().toString();
+            String endDateTime = end_date_time.getText().toString();
             String notes = inputNotes.getText().toString();
 
 
@@ -271,10 +242,8 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             LoggedActivities newAct = new LoggedActivities();
             newAct.setActivityName(newActivity);
             newAct.setCid_fk(categoryCid);
-            newAct.setStartDate(startDate);
-            newAct.setEndDate(endDate);
-            newAct.setStartTime(startTime);
-            newAct.setEndTime(endTime);
+            newAct.setStartDateTime(startDateTime);
+            newAct.setEndDateTime(endDateTime);
             newAct.setNotes(notes);
 
             db.catDao().insertActivity(newAct);
@@ -360,7 +329,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
     @Override
     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
         //Toast.makeText(this, "selected number " + numberPicker.getValue(), Toast.LENGTH_SHORT).show();
-        target_duration.setText("Selected amount: " + String.valueOf(i) + ":" + String.valueOf(i1));
+        selected_target_duration.setText(String.valueOf(i) + "hr " + String.valueOf(i1) + "min");
     }
 
     //method to show the numberPicker
@@ -370,7 +339,6 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         newFragment.show(getSupportFragmentManager(), "time picker");
     }
 
-    //TODO: @Dean please specify what this method does :D
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -393,7 +361,8 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
         @Override
         public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
-            displayCurrentStartTime.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+            String start_date = selected_start_date_time.getText().toString();
+            selected_start_date_time.setText(start_date + " " + String.format("%02d",hourOfDay) + ":" + String.format("%02d",minute));
             //displayCurrentEndTime.setText("Selected end time: " + String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
         }
     }
@@ -410,7 +379,9 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            displayCurrentStartDate.setText(String.valueOf(year) + " - " + String.valueOf(month) + " - " + String.valueOf(day));
+            selected_start_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month) + "-" + String.format("%02d",day));
+            TimePickerStart startTimePicker = new TimePickerStart();
+            startTimePicker.show(getFragmentManager(), "Select start time!");
         }
     }
 
@@ -426,7 +397,8 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
         @Override
         public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
-            displayCurrentEndTime.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+            String end_date = selected_end_date_time.getText().toString();
+            selected_end_date_time.setText(end_date + " " + String.format("%02d",hourOfDay) + ":" + String.format("%02d",minute));
         }
     }
 
@@ -442,7 +414,15 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            displayCurrentEndDate.setText(String.valueOf(year) + " - " + String.valueOf(month) + " - " + String.valueOf(day));
+            selected_end_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month) + "-" + String.format("%02d",day));
+            TimePickerEnd endTimePicker = new TimePickerEnd();
+            endTimePicker.show(getFragmentManager(), "Select end time!");
         }
+    }
+
+    @Override
+    protected void onResume() {
+        new DatabaseAsyncLoad().execute();
+        super.onResume();
     }
 }

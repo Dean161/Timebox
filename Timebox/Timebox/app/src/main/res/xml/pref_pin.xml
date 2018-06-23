@@ -15,20 +15,129 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="@string/pref_title_specify_pin"
-        android:visibility="visible" />
-    <ListPreference
-        android:defaultValue="1"
-        android:dependency="EnablePin"
-        android:entries="@array/pref_security_question"
-        android:entryValues="@array/pref_security_question"
-        android:key="list_preference_1"
-        android:summary="Enables PIN reset"
-        android:title="Select security question" />
-    <EditTextPreference
-        android:defaultValue="Default value"
-        android:dependency="EnablePin"
-        android:key="edit_text_preference_1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="Provide answer to chosen security question" />
+        android:visibility="visible"
+        android:maxLength="4"
+        android:password="true" />
+
+    <PreferenceScreen
+        android:title="@string/title_pref_security"
+        android:summary="@string/summary_pref_security"
+        android:dependency="EnablePin">
+
+        <PreferenceCategory
+            android:title="@string/title_sec_ques1" />
+
+        <ListPreference
+            android:title="@string/title_pref_sec_question"
+            android:entries="@array/pref_security_question1"
+            android:entryValues="@array/pref_security_question1"
+            android:summary="@string/summary_question_select"
+            android:key="@string/title_sec_ques1"
+            android:defaultValue="@string/title_sec_ques1" />
+        <EditTextPreference
+            android:defaultValue="@string/summary_answer_select"
+            android:key="@string/title_sec_answer1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/title_sec_ans"
+            android:summary="@string/summary_answer_select"
+            android:password="true" />
+
+        <PreferenceCategory
+            android:title="@string/title_sec_ques2" />
+
+        <ListPreference
+            android:title="@string/title_pref_sec_question"
+            android:entries="@array/pref_security_question2"
+            android:entryValues="@array/pref_security_question2"
+            android:summary="@string/summary_question_select"
+            android:key="@string/title_sec_ques2"
+            android:defaultValue="@string/title_sec_ques2" />
+        <EditTextPreference
+            android:defaultValue="@string/summary_answer_select"
+            android:key="@string/title_sec_answer2"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/title_sec_ans"
+            android:summary="@string/summary_answer_select"
+            android:password="true" />
+
+        <PreferenceCategory
+            android:title="@string/title_sec_ques3" />
+
+        <ListPreference
+            android:title="@string/title_pref_sec_question"
+            android:entries="@array/pref_security_question3"
+            android:entryValues="@array/pref_security_question3"
+            android:summary="@string/summary_question_select"
+            android:key="@string/title_sec_ques3"
+            android:defaultValue="@string/title_sec_ques3" />
+        <EditTextPreference
+            android:defaultValue="@string/summary_answer_select"
+            android:key="@string/title_sec_answer3"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/title_sec_ans"
+            android:summary="@string/summary_answer_select"
+            android:password="true" />
+
+        <PreferenceCategory
+            android:title="@string/title_sec_ques4" />
+
+        <ListPreference
+            android:title="@string/title_pref_sec_question"
+            android:entries="@array/pref_security_question4"
+            android:entryValues="@array/pref_security_question4"
+            android:summary="@string/summary_question_select"
+            android:key="@string/title_sec_ques4"
+            android:defaultValue="@string/title_sec_ques4" />
+        <EditTextPreference
+            android:defaultValue="@string/summary_answer_select"
+            android:key="@string/title_sec_answer4"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/title_sec_ans"
+            android:summary="@string/summary_answer_select"
+            android:password="true" />
+
+        <PreferenceCategory
+            android:title="@string/title_sec_ques5" />
+
+        <ListPreference
+            android:title="@string/title_pref_sec_question"
+            android:entries="@array/pref_security_question5"
+            android:entryValues="@array/pref_security_question5"
+            android:summary="@string/summary_question_select"
+            android:key="@string/title_sec_ques5"
+            android:defaultValue="@string/title_sec_ques1" />
+        <EditTextPreference
+            android:defaultValue="@string/summary_answer_select"
+            android:key="@string/title_sec_answer5"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/title_sec_ans"
+            android:summary="@string/summary_answer_select"
+            android:password="true" />
+
+        <PreferenceCategory
+            android:title="@string/title_sec_ques6" />
+
+        <ListPreference
+            android:title="@string/title_pref_sec_question"
+            android:entries="@array/pref_security_question6"
+            android:entryValues="@array/pref_security_question6"
+            android:summary="@string/summary_question_select"
+            android:key="@string/title_sec_ques6"
+            android:defaultValue="@string/title_sec_ques6" />
+        <EditTextPreference
+            android:defaultValue="@string/summary_answer_select"
+            android:key="@string/title_sec_answer6"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/title_sec_ans"
+            android:summary="@string/summary_answer_select"
+            android:password="true" />
+
+    </PreferenceScreen>
+
 </PreferenceScreen>

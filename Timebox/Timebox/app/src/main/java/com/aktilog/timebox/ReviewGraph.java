@@ -30,7 +30,7 @@ public class ReviewGraph extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        PieChart pieChart = getView().findViewById(R.id.piechart);
+        PieChart pieChart = getView().findViewById(R.id.piechart_review_graph);
         pieChart.setUsePercentValues(true);
 
         ArrayList<PieEntry> yvalues = new ArrayList<>();

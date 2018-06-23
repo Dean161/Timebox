@@ -10,14 +10,136 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="426dp"
+        android:layout_height="479dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Overview of activities"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="368dp"
+        android:layout_height="574dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="65dp"
+            tools:layout_editor_absoluteY="267dp">
+
+
+            <TextView
+                android:id="@+id/title_start_datetime_review_text"
+                android:layout_width="145dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="100dp"
+                android:text="@string/title_start_date_time"
+                app:layout_constraintEnd_toStartOf="@+id/text_start_datetime_review_text"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_start_datetime_review_text"
+                android:layout_width="145dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginTop="100dp"
+                android:text="@string/hint_start_date_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title_end_datetime_review_text"
+                android:layout_width="145dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/title_end_date_time"
+                app:layout_constraintEnd_toStartOf="@+id/text_end_datetime_review_text"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_start_datetime_review_text" />
+
+            <TextView
+                android:id="@+id/text_end_datetime_review_text"
+                android:layout_width="145dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/hint_end_date_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_start_datetime_review_text" />
+
+            <TextView
+                android:id="@+id/title_category_review_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/title_category"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.027"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_end_datetime_review_text" />
+
+            <Spinner
+                android:id="@+id/spinner_category_select_review_text"
+                android:layout_width="244dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/spinner_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.064"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_category_review_text" />
+
+            <Button
+                android:layout_width="92dp"
+                android:layout_height="40dp"
+                android:id="@+id/button_search_review_text"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/search_review"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/spinner_category_select_review_text"
+                app:layout_constraintTop_toBottomOf="@+id/text_end_datetime_review_text"
+                app:layout_constraintVertical_bias="0.103" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:id="@+id/list_activities_text"
+                android:layout_height="232dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_category_select_review_text" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.constraint.ConstraintLayout>

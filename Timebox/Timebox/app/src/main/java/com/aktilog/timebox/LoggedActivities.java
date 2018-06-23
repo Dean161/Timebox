@@ -18,17 +18,11 @@ public class LoggedActivities{
     @ColumnInfo(name = "activity_name")
     private String activityName;
 
-    @ColumnInfo(name = "start_date")
-    private String startDate;
+    @ColumnInfo(name = "start_date_time")
+    private String startDateTime;
 
-    @ColumnInfo(name = "end_date")
-    private String endDate;
-
-    @ColumnInfo(name = "start_time")
-    private String startTime;
-
-    @ColumnInfo(name = "end_time")
-    private String endTime;
+    @ColumnInfo(name = "end_date_time")
+    private String endDateTime;
 
     //TODO add restriction for max. number of digits
     @ColumnInfo(name = "notes")
@@ -58,36 +52,20 @@ public class LoggedActivities{
         return cid_fk;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setStartDateTime(String startDateTime) {
+        this.startDateTime = startDateTime;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getStartDateTime() {
+        return startDateTime;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setEndDateTime(String endDateTime) {
+        this.endDateTime = endDateTime;
     }
 
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
+    public String getEndDateTime() {
+        return endDateTime;
     }
 
     public void setNotes(String notes) {
