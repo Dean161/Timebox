@@ -31,7 +31,6 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.List;
 
-//TODO: add titles to layout file
 public class LogActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener{
     protected static TextView selected_start_date_time;
     protected static TextView selected_end_date_time;
@@ -48,7 +47,6 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
     Spinner categorySpinner;
     int categoryCid;
 
-    //TODO: run sql query (to get all categories) every time the screen is called (not only onCreate) - probably same in AddModCategories
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +56,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         buttonSave = findViewById(R.id.button_save_log);
         db = AppDatabase.getAppDatabase(getApplicationContext());
 
+        categorySpinner = findViewById(R.id.spinner_category_select_log);
         //load existing categories into the spinner
         new DatabaseAsyncLoad().execute();
 
@@ -193,7 +192,6 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         start_date_time = findViewById(R.id.text_start_date_time);
         end_date_time = findViewById(R.id.text_end_date_time);
         inputNotes = findViewById(R.id.text_notes);
-        categorySpinner = findViewById(R.id.spinner_category_select_log);
 
         //onClickListener for save_button
         buttonSave.setOnClickListener(new View.OnClickListener() {
@@ -331,7 +329,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
     @Override
     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
         //Toast.makeText(this, "selected number " + numberPicker.getValue(), Toast.LENGTH_SHORT).show();
-        selected_target_duration.setText("Selected amount: " + String.valueOf(i) + ":" + String.valueOf(i1));
+        selected_target_duration.setText(String.valueOf(i) + "hr " + String.valueOf(i1) + "min");
     }
 
     //method to show the numberPicker
@@ -341,7 +339,6 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         newFragment.show(getSupportFragmentManager(), "time picker");
     }
 
-    //TODO: @Dean please specify what this method does :D
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -365,7 +362,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         @Override
         public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
             String start_date = selected_start_date_time.getText().toString();
-            selected_start_date_time.setText(start_date + " " + String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+            selected_start_date_time.setText(start_date + " " + String.format("%02d",hourOfDay) + ":" + String.format("%02d",minute));
             //displayCurrentEndTime.setText("Selected end time: " + String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
         }
     }
@@ -382,9 +379,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            String padded_month = String.format("%2s",String.valueOf(month));
-            Toast.makeText(getContext(), padded_month, Toast.LENGTH_SHORT).show();
-            selected_start_date_time.setText(String.valueOf(year) + "-" + String.valueOf(month) + "-" + String.valueOf(day));
+            selected_start_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month) + "-" + String.format("%02d",day));
             TimePickerStart startTimePicker = new TimePickerStart();
             startTimePicker.show(getFragmentManager(), "Select start time!");
         }
@@ -403,7 +398,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         @Override
         public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
             String end_date = selected_end_date_time.getText().toString();
-            selected_end_date_time.setText(end_date + " " + String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+            selected_end_date_time.setText(end_date + " " + String.format("%02d",hourOfDay) + ":" + String.format("%02d",minute));
         }
     }
 
@@ -419,9 +414,15 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            selected_end_date_time.setText(String.valueOf(year) + " - " + String.valueOf(month) + " - " + String.valueOf(day));
+            selected_end_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month) + "-" + String.format("%02d",day));
             TimePickerEnd endTimePicker = new TimePickerEnd();
             endTimePicker.show(getFragmentManager(), "Select end time!");
         }
+    }
+
+    @Override
+    protected void onResume() {
+        new DatabaseAsyncLoad().execute();
+        super.onResume();
     }
 }

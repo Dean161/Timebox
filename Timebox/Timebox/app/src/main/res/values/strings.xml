@@ -139,7 +139,7 @@
     <string name="title_review">Review</string>
     <string name="title_schedule_activity">Schedule Activity</string>
     <string name="title_sec_answer">Answer</string>
-    <string name="title_sec_question">Please provide answer to the below question</string>
+    <string name="title_sec_question">Please answer the below questions</string>
     <string name="title_settings">Settings</string>
     <string name="title_start_date_time">Start Date and Time</string>
     <string name="title_target_duration">Target Duration</string>
