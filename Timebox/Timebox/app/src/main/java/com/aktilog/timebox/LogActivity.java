@@ -30,7 +30,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.List;
-
+//TODO: clear textViews after saving
 public class LogActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener{
     protected static TextView selected_start_date_time;
     protected static TextView selected_end_date_time;
@@ -45,6 +45,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
     TextView end_date_time;
     EditText inputNotes;
     Spinner categorySpinner;
+    TextView target_duration;
     int categoryCid;
 
     @Override
@@ -119,9 +120,12 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                         }else if (title.equals(getResources().getString(R.string.title_review))){
                             Intent launch_ReviewActivity = new Intent(LogActivity.this,ReviewActivity.class);
                             startActivity(launch_ReviewActivity);
-                        }else{
+                        }else if (title.equals(getResources().getString(R.string.title_settings))){
                             Intent launch_SettingsActivity = new Intent(LogActivity.this,SettingsActivity.class);
                             startActivity(launch_SettingsActivity);
+                        } else if (title.equals(getResources().getString(R.string.title_checkScheduled_activities))){
+                            Intent launch_checkScheduled = new Intent(LogActivity.this,CheckScheduled.class);
+                            startActivity(launch_checkScheduled);
                         }
 
                         return true;
@@ -191,20 +195,33 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         specActivity = findViewById(R.id.text_activity_name);
         start_date_time = findViewById(R.id.text_start_date_time);
         end_date_time = findViewById(R.id.text_end_date_time);
+        target_duration = findViewById(R.id.text_target_duration);
         inputNotes = findViewById(R.id.text_notes);
+
 
         //onClickListener for save_button
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            if(actionbar.getTitle().equals(getResources().getString(R.string.title_log_activity))){
                 if(buttonSave.isEnabled()) {
                     Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
                     new DatabaseAsyncGetCid().execute();
                     new DatabaseAsyncInsertLoggedActivity().execute();
                 } else {
+                    //not working???
                     Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
                 }
-
+            } else if (actionbar.getTitle().equals(getResources().getString(R.string.title_schedule_activity))){
+                if(buttonSave.isEnabled()) {
+                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                    new DatabaseAsyncGetCid().execute();
+                    new DatabaseAsyncInsertScheduledActivity().execute();
+                } else {
+                    //not working???
+                    Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
+                }
+            }
             }
         });
 
@@ -222,6 +239,42 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         });
     }
 
+    private class DatabaseAsyncInsertScheduledActivity extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //perform pre-adding operation here
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String newActivity = specActivity.getText().toString();
+            String startDateTime = start_date_time.getText().toString();
+            String endDateTime = end_date_time.getText().toString();
+            String targetDuration = target_duration.getText().toString();
+            String notes = inputNotes.getText().toString();
+
+
+
+            ScheduledActivities newAct = new ScheduledActivities();
+            newAct.setActivityName(newActivity);
+            newAct.setCid_fk(categoryCid);
+            newAct.setStartDateTime(startDateTime);
+            newAct.setEndDateTime(endDateTime);
+            newAct.setTargetDuration(targetDuration);
+            newAct.setNotes(notes);
+
+            db.catDao().insertScheduledActivity(newAct);
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //perform post-adding operation here
+        }
+    }
     //opens thread for inserting new activity and calls the insert function from CatDao
     private class DatabaseAsyncInsertLoggedActivity extends AsyncTask<Void, Void, Void> {
         @Override

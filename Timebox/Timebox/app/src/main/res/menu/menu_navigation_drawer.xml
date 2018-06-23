@@ -16,4 +16,8 @@
             android:id="@+id/menu_item_settings"
             android:icon="@drawable/ic_settings"
             android:title="@string/title_settings" />
+        <item
+            android:id="@+id/menu_item_checkScheduled"
+            android:icon="@drawable/ic_checkscheduled"
+            android:title="@string/title_checkScheduled_activities" />
 </menu>

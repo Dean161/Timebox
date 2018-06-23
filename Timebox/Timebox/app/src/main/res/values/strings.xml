@@ -143,6 +143,7 @@
     <string name="title_settings">Settings</string>
     <string name="title_start_date_time">Start Date and Time</string>
     <string name="title_target_duration">Target Duration</string>
+    <string name="title_checkScheduled_activities">Scheduled Activities</string>
 
 
     <!-- Strings related to hints -->

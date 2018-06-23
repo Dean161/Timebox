@@ -44,10 +44,19 @@ public interface CatDao {
     @Query("SELECT cid FROM Category WHERE cat_name LIKE :givenCat")
     int getCidActivites(String givenCat);
 
+    //insert new Activity
     @Insert
     void insertActivity(LoggedActivities newAct);
 
     @Query("SELECT * FROM LoggedActivities WHERE start_date_time >= :startdatetime AND end_date_time <= :enddatetime")
     List<LoggedActivities> getLoggedActivities(String startdatetime, String enddatetime);
+
+    //insert scheduled activity
+    @Insert
+    void insertScheduledActivity(ScheduledActivities newAct);
+
+    //get data from scheduledActivites table
+    @Query("SELECT * FROM ScheduledActivities;")
+    List<ScheduledActivities> getScheduledActivities();
 
 }
