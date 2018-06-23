@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "0fab7c77066e74937be736ad739dbbfe",
+    "identityHash": "7a449d24894758cff910c5062157e434",
     "entities": [
       {
         "tableName": "Categories",
@@ -37,7 +37,7 @@
         "foreignKeys": []
       },
       {
-        "tableName": "LoggedActivites",
+        "tableName": "LoggedActivities",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`laID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `cid_fk` INTEGER NOT NULL, `activity_name` TEXT, `start_date` TEXT, `end_date` TEXT, `start_time` TEXT, `end_time` TEXT, `notes` TEXT, FOREIGN KEY(`cid_fk`) REFERENCES `Categories`(`cid`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
@@ -113,7 +113,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"0fab7c77066e74937be736ad739dbbfe\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"7a449d24894758cff910c5062157e434\")"
     ]
   }
 }
