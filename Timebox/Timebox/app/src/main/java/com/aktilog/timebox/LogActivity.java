@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 public class LogActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener{
@@ -46,6 +47,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
     EditText inputNotes;
     Spinner categorySpinner;
     int categoryCid;
+    String DEFAULT_CATEGORY_ITEM = "-- Please select category --";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,7 +199,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonSave.isEnabled()) {
+                if(!categorySpinner.getSelectedItem().toString().equals(DEFAULT_CATEGORY_ITEM)) {
                     String act_name = specActivity.getText().toString();
                     String start_datetime = start_date_time.getText().toString();
                     String end_datetime = end_date_time.getText().toString();
@@ -205,6 +207,11 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                         new DatabaseAsyncGetCid().execute();
                         new DatabaseAsyncInsertLoggedActivity().execute();
                         Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                        categorySpinner.setSelection(0);
+                        specActivity.setText(R.string.hint_activity);
+                        start_date_time.setText(R.string.hint_start_date_time);
+                        end_date_time.setText(R.string.hint_end_date_time);
+                        inputNotes.setText(R.string.hint_notes);
                     } else {
                         Toast.makeText(LogActivity.this, "One or more fields are blank", Toast.LENGTH_LONG).show();
                     }
@@ -313,6 +320,8 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
     public void loadSpinnerData() {
         //Spinner drop down elements
         List<String> labels = db.catDao().getCatNames();
+        labels.add(DEFAULT_CATEGORY_ITEM);
+        Collections.sort(labels);
 
         //creating adapter from spinner
         final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels);
