@@ -95,7 +95,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         title_target_duration.setVisibility(View.GONE);
         selected_target_duration.setVisibility(View.GONE);
 
-        //instantiate schedule_swtich
+        //instantiate schedule_switch
         Switch schedule_switch = findViewById(R.id.switch_schedule_activity);
 
         mDrawerLayout = findViewById(R.id.drawer_navigation_log);
@@ -136,7 +136,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         actionbar.setTitle(R.string.title_log_activity);
 
-        //onClickListener for schedule swtich
+        //onClickListener for schedule switch
         schedule_switch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,9 +198,18 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             @Override
             public void onClick(View v) {
                 if(buttonSave.isEnabled()) {
-                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
-                    new DatabaseAsyncGetCid().execute();
-                    new DatabaseAsyncInsertLoggedActivity().execute();
+                    String act_name = specActivity.getText().toString();
+                    String start_datetime = start_date_time.getText().toString();
+                    String end_datetime = end_date_time.getText().toString();
+                    if (!act_name.equals("") && !start_datetime.equals("") && !end_datetime.equals("")){
+                        new DatabaseAsyncGetCid().execute();
+                        new DatabaseAsyncInsertLoggedActivity().execute();
+                        Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(LogActivity.this, "One or more fields are blank", Toast.LENGTH_LONG).show();
+                    }
+
+
                 } else {
                     Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
                 }
@@ -236,8 +245,6 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             String startDateTime = start_date_time.getText().toString();
             String endDateTime = end_date_time.getText().toString();
             String notes = inputNotes.getText().toString();
-
-
 
             LoggedActivities newAct = new LoggedActivities();
             newAct.setActivityName(newActivity);
