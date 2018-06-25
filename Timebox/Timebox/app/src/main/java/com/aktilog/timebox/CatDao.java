@@ -47,7 +47,7 @@ public interface CatDao {
     @Insert
     void insertActivity(LoggedActivities newAct);
 
-    @Query("SELECT * FROM LoggedActivities WHERE start_date_time >= :startdatetime AND end_date_time <= :enddatetime")
-    List<LoggedActivities> getLoggedActivities(String startdatetime, String enddatetime);
+    @Query("SELECT * FROM LoggedActivities WHERE start_date_time >= :startDateTime AND end_date_time <= :endDateTime")
+    List<LoggedActivities> getLoggedActivities(String startDateTime, String endDateTime);
 
 }
