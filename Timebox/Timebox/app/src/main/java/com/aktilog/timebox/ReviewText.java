@@ -40,7 +40,7 @@ public class ReviewText extends Fragment {
     AppDatabase app_db_review_text;
     ListView review_activity_text;
     ArrayAdapter<String> dataAdapter;
-    String new_selection = "";
+    String[] selection;
     List<LoggedActivities> logged_activities_list;
     LinearLayout header_activity_review_text;
     List<Category> category_list;
@@ -170,17 +170,14 @@ public class ReviewText extends Fragment {
         public void onItemsSelected(boolean[] selected) {
             // Do something here with the selected items
             int i;
-            StringBuilder selection = new StringBuilder();
+            int j = 0;
+            selection = new String[selected.length];
             for(i=0;i<selected.length;i++){
                 if(selected[i]){
-                    selection.append(dataAdapter.getItem(i));
-                    selection.append(',');
+                    selection[j] = dataAdapter.getItem(i);
+                    j += 1;
                 }
             }
-            if (selection.length() != 0) {
-                new_selection = selection.substring(0, selection.length() - 1);
-            }
-
         }
     };
 
@@ -270,22 +267,22 @@ public class ReviewText extends Fragment {
             boolean end_datetime_is_null = false;
             boolean category_spinner_is_null = false;
 
-            if (review_start_datetime.length() == 0){
+            if (review_start_datetime.equals(getResources().getString(R.string.hint_start_date_time))){
                 start_datetime_is_null = true;
             }
 
-            if (review_end_datetime.length() == 0){
+            if (review_end_datetime.equals(getResources().getString(R.string.hint_end_date_time))){
                 end_datetime_is_null = true;
             }
 
-            if (new_selection.length() == 0){
+            if (selection.length == 0){
                 category_spinner_is_null = true;
             }
 
             if (!category_spinner_is_null && !start_datetime_is_null && !end_datetime_is_null){
-                logged_activities_list = app_db_review_text.catDao().getLoggedActivitiesWithAllFilters(new_selection,input_start_datetime_review_text.getText().toString(),input_end_datetime_review_text.getText().toString());
+                logged_activities_list = app_db_review_text.catDao().getLoggedActivitiesWithAllFilters(selection,input_start_datetime_review_text.getText().toString(),input_end_datetime_review_text.getText().toString());
             } else if (!category_spinner_is_null && start_datetime_is_null && end_datetime_is_null){
-                logged_activities_list = app_db_review_text.catDao().getLoggedActivitiesWithCategories(new_selection);
+                logged_activities_list = app_db_review_text.catDao().getLoggedActivitiesWithCategories(selection);
             } else if (category_spinner_is_null && !start_datetime_is_null && !end_datetime_is_null){
                 logged_activities_list = app_db_review_text.catDao().getLoggedActivitiesWithDates(input_start_datetime_review_text.getText().toString(),input_end_datetime_review_text.getText().toString());
             } else {

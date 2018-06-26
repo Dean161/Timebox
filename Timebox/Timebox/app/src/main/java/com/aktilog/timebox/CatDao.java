@@ -53,10 +53,10 @@ public interface CatDao {
     @Query("SELECT * FROM LoggedActivities WHERE start_date_time >= :startDateTime AND end_date_time <= :endDateTime")
     List<LoggedActivities> getLoggedActivitiesWithDates(String startDateTime, String endDateTime);
 
-    @Query("SELECT la.* FROM LoggedActivities la,Category C WHERE  C.cat_name IN (:categoryName)")
-    List<LoggedActivities> getLoggedActivitiesWithCategories(String categoryName);
+    @Query("SELECT LA.* FROM LoggedActivities LA,Category C WHERE  C.cat_name IN (:categoryName) AND LA.cid_fk = C.cid")
+    List<LoggedActivities> getLoggedActivitiesWithCategories(String[] categoryName);
 
-    @Query("SELECT la.* FROM LoggedActivities la,Category C WHERE  C.cat_name IN (:categoryName) AND start_date_time >= :startDateTime AND end_date_time <= :endDateTime")
-    List<LoggedActivities> getLoggedActivitiesWithAllFilters(String categoryName, String startDateTime, String endDateTime);
+    @Query("SELECT LA.* FROM LoggedActivities LA,Category C WHERE  C.cat_name IN (:categoryName) AND start_date_time >= :startDateTime AND end_date_time <= :endDateTime AND LA.cid_fk = C.cid")
+    List<LoggedActivities> getLoggedActivitiesWithAllFilters(String[] categoryName, String startDateTime, String endDateTime);
 
 }
