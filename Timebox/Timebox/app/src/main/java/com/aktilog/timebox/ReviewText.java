@@ -18,6 +18,7 @@ import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,12 +32,13 @@ public class ReviewText extends Fragment {
     protected static TextView input_start_datetime_review_text;
     protected static TextView input_end_datetime_review_text;
     TextView title_category_review_text;
-    Spinner spinner_category_review_text;
+    MultiSelectSpinner spinner_category_review_text;
     Button button_search_review_text;
     AppDatabase app_db_review_text;
-    String DEFAULT_VALUE = "---- Please select category ----";
     ListView review_activity_text;
-
+    ArrayAdapter<String> dataAdapter;
+    String new_selection = "";
+    List<LoggedActivities> logged_activities_list;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -115,14 +117,9 @@ public class ReviewText extends Fragment {
     public void loadSpinnerData() {
         //Spinner drop down elements
         List<String> labels = app_db_review_text.catDao().getCatNames();
-        labels.add(DEFAULT_VALUE);
-        Collections.sort(labels);
 
         //creating adapter from spinner
-        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_dropdown_item, labels);
-
-        //drop down layout style
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item, labels);
 
         getActivity().runOnUiThread(new Runnable() {
 
@@ -130,11 +127,31 @@ public class ReviewText extends Fragment {
             public void run() {
 
                 //attaching data adapter to spinner
-                spinner_category_review_text.setAdapter(dataAdapter);
+                spinner_category_review_text.setAdapter(dataAdapter,false,onSelectedListener);
+                spinner_category_review_text.setAllText(getResources().getString(R.string.title_all_categories));
+                spinner_category_review_text.setDefaultText(getResources().getString(R.string.hint_select_category));
 
             }
         });
     }
+
+    private MultiSelectSpinner.MultiSpinnerListener onSelectedListener = new MultiSelectSpinner.MultiSpinnerListener() {
+        public void onItemsSelected(boolean[] selected) {
+            // Do something here with the selected items
+            int i;
+            StringBuilder selection = new StringBuilder();
+            for(i=0;i<selected.length;i++){
+                if(selected[i]){
+                    selection.append(dataAdapter.getItem(i));
+                    selection.append(',');
+                }
+            }
+            if (selection.length() != 0) {
+                new_selection = selection.substring(0, selection.length() - 1);
+            }
+
+        }
+    };
 
     //for start time
     public static class TimePickerStart extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
@@ -216,15 +233,43 @@ public class ReviewText extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-        final List<LoggedActivities> logged_activities_list = app_db_review_text.catDao().getLoggedActivities(input_start_datetime_review_text.getText().toString(),input_end_datetime_review_text.getText().toString());
+            String review_start_datetime = input_start_datetime_review_text.getText().toString();
+            String review_end_datetime = input_end_datetime_review_text.getText().toString();
+            boolean start_datetime_is_null = false;
+            boolean end_datetime_is_null = false;
+            boolean category_spinner_is_null = false;
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                review_activity_text.setAdapter(new CustomAdapterReview(getContext(),logged_activities_list));
+            if (review_start_datetime.length() == 0){
+                start_datetime_is_null = true;
             }
-        });
-        return null;
+
+            if (review_end_datetime.length() == 0){
+                end_datetime_is_null = true;
+            }
+
+            if (new_selection.length() == 0){
+                category_spinner_is_null = true;
+            }
+
+            if (!category_spinner_is_null && !start_datetime_is_null && !end_datetime_is_null){
+                //query to fetch records based on both filters
+
+            } else if (!category_spinner_is_null && start_datetime_is_null && end_datetime_is_null){
+                //query based on categories
+            } else if (category_spinner_is_null && !start_datetime_is_null && !end_datetime_is_null){
+                logged_activities_list = app_db_review_text.catDao().getLoggedActivities(input_start_datetime_review_text.getText().toString(),input_end_datetime_review_text.getText().toString());
+            } else {
+                //Toast message asking to select atleast date time or category selection
+            }
+
+
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    review_activity_text.setAdapter(new CustomAdapterReview(getContext(),logged_activities_list));
+                }
+            });
+            return null;
         }
 
         @Override
