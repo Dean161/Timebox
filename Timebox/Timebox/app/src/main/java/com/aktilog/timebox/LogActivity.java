@@ -207,11 +207,6 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                         new DatabaseAsyncGetCid().execute();
                         new DatabaseAsyncInsertLoggedActivity().execute();
                         Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
-                        categorySpinner.setSelection(0);
-                        specActivity.setText(R.string.hint_activity);
-                        start_date_time.setText(R.string.hint_start_date_time);
-                        end_date_time.setText(R.string.hint_end_date_time);
-                        inputNotes.setText(R.string.hint_notes);
                     } else {
                         Toast.makeText(LogActivity.this, "One or more fields are blank", Toast.LENGTH_LONG).show();
                     }
@@ -262,6 +257,16 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
             db.catDao().insertActivity(newAct);
 
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    categorySpinner.setSelection(0);
+                    specActivity.getText().clear();
+                    start_date_time.setText(R.string.hint_start_date_time);
+                    end_date_time.setText(R.string.hint_end_date_time);
+                    inputNotes.getText().clear();
+                }
+            });
             return null;
         }
 

@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.SpinnerAdapter;
 
+import java.util.Arrays;
+
 public class MultiSelectSpinner extends AppCompatTextView implements DialogInterface.OnMultiChoiceClickListener {
 
     private SpinnerAdapter mAdapter;
@@ -202,6 +204,12 @@ public class MultiSelectSpinner extends AppCompatTextView implements DialogInter
 
     public void setAllText(String allText) {
         this.mAllText = allText;
+    }
+
+    public void clearText(){
+        Arrays.fill(mSelected,false);
+        mListener.onItemsSelected(mSelected);
+        setText(mDefaultText);
     }
 
 }
