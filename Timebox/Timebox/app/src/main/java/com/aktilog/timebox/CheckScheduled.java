@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ public class CheckScheduled extends AppCompatActivity {
     AppDatabase app_database;
     private DrawerLayout mDrawerLayout;
     ListView scheduled_avtivities_listView;
+    List<Category> category_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +33,15 @@ public class CheckScheduled extends AppCompatActivity {
         //build database
         app_database = AppDatabase.getAppDatabase(getApplicationContext());
 
+        //get category list
+        new DatabaseAsyncGetCatColor().execute();
+
         //setting up custom toolbar for the activity
         Toolbar toolbar_checkScheduled = findViewById(R.id.toolbar_checkScheduled);
         setSupportActionBar(toolbar_checkScheduled);
         final ActionBar actionbar_categories = getSupportActionBar();
         actionbar_categories.setDisplayHomeAsUpEnabled(true);
-        actionbar_categories.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+        actionbar_categories.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         actionbar_categories.setTitle(R.string.title_checkScheduled_activities);
 
         //Navigation
@@ -93,7 +98,7 @@ public class CheckScheduled extends AppCompatActivity {
             if (scheduled_activities_list.isEmpty())  scheduled_avtivities_listView.setVisibility(View.GONE);
             else {
                 //scheduled_avtivities_listView.setVisibility(View.GONE);
-                scheduled_avtivities_listView.setAdapter(new CustomAdapterCheckScheduled(getApplicationContext(), scheduled_activities_list));
+                scheduled_avtivities_listView.setAdapter(new CustomAdapterCheckScheduled(getApplicationContext(), scheduled_activities_list, category_list));
             }
             return null;
         }
@@ -103,5 +108,35 @@ public class CheckScheduled extends AppCompatActivity {
             super.onPostExecute(aVoid);
             //perform post-adding operation here
         }
+    }
+
+    private class DatabaseAsyncGetCatColor extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //perform pre-adding operation here
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            category_list = app_database.catDao().getAllCat();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //perform post-adding operation here
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
