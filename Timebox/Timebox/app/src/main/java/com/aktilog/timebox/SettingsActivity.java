@@ -50,15 +50,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      * to reflect its new value.
      */
 
-    private boolean pressed_ok = false;
-
-    public void setPressed_ok(boolean pressed_ok) {
-        this.pressed_ok = pressed_ok;
-    }
-
-    public boolean isPressed_ok() {
-        return pressed_ok;
-    }
+    static SwitchPreference switchPreference;
 
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
@@ -310,15 +302,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("Security Question 6"));
             bindPreferenceSummaryToValue(findPreference("Answer6"));
 
-            final SwitchPreference switchPreference = (SwitchPreference) findPreference("EnablePin");
+            switchPreference = (SwitchPreference) findPreference("EnablePin");
             switchPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     if (!switchPreference.isChecked()) {
-                        int requestCode = RESULT_OK;
                         Intent showDialog = new Intent(getActivity(), SetPinActivity.class);
-                        startActivityForResult(showDialog, requestCode);
-                        switchPreference.setChecked(true);
+                        startActivity(showDialog);
                     } else {
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -326,6 +316,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         editor.apply();
                         switchPreference.setChecked(false);
                     }
+                    return false;
+                }
+            });
+
+            Preference preference_pin = findPreference("SetPin");
+            preference_pin.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent showConfirmDialog = new Intent(getActivity(), ModifyPinActivity.class);
+                    startActivity(showConfirmDialog);
                     return false;
                 }
             });
@@ -372,13 +372,5 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
             return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK){
-            setPressed_ok(true);
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 }

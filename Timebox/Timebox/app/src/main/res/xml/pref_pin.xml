@@ -10,15 +10,12 @@
         android:summary="Turn PIN on/off"
         android:title="@string/pref_title_enable_pin"
         android:id="@+id/switch_enable_pin"/>
-    <EditTextPreference
+    <Preference
         android:dependency="EnablePin"
         android:key="SetPin"
-        android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="@string/pref_title_specify_pin"
-        android:visibility="visible"
-        android:maxLength="4"
-        android:password="true" />
+        android:title="@string/title_modify_pin"
+        android:visibility="visible" />
 
     <PreferenceScreen
         android:title="@string/title_pref_security"

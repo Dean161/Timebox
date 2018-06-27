@@ -148,6 +148,7 @@
     <string name="header_activity_name">Activity Name</string>
     <string name="header_activity_duration">Duration</string>
     <string name="title_confirm_pin">Confirm PIN</string>
+    <string name="title_modify_pin">Modify PIN</string>
 
 
     <!-- Strings related to hints -->
@@ -164,6 +165,7 @@
     <string name="hint_target_duration">Enter the target duration</string>
     <string name="hint_select_category">Select Category</string>
     <string name="hint_set_pin">Enter Pin (4 digits)</string>
+    <string name="hint_confirm_pin">Enter Pin again</string>
 
 
     <!-- Strings related to button actions -->

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="300dp"
-    android:layout_height="220dp"
+    android:layout_height="140dp"
     android:background="@color/colorWhite">
 
     <TextView
@@ -12,26 +12,7 @@
     <TextView
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:id="@+id/title_set_pin"
-        android:text="@string/hint_pin"
-        android:layout_marginStart="25dp"
-        android:gravity="bottom"
-        android:textStyle="bold"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/text_set_pin"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="18dp"
-        android:inputType="numberPassword"
-        android:hint="@string/hint_set_pin"
-        android:maxLength="4"/>
-
-    <TextView
-        android:layout_width="300dp"
-        android:layout_height="30dp"
-        android:id="@+id/title_confirm_pin"
+        android:id="@+id/title_modify_pin"
         android:text="@string/title_confirm_pin"
         android:layout_marginStart="25dp"
         android:gravity="bottom"
@@ -40,11 +21,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/text_confirm_pin"
+        android:id="@+id/text_modify_pin"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="18dp"
         android:inputType="numberPassword"
-        android:hint="@string/hint_confirm_pin"
+        android:hint="@string/hint_pin"
         android:maxLength="4"/>
 
     <LinearLayout
@@ -56,14 +37,14 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/button_background"
-            android:id="@+id/button_set_pin_cancel"
+            android:id="@+id/button_modify_pin_cancel"
             android:text="@string/dialog_cancel" />
 
         <Button
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/button_background"
-            android:id="@+id/button_set_pin_ok"
+            android:id="@+id/button_modify_pin_ok"
             android:text="@string/dialog_ok"/>
 
 
