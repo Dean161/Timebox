@@ -29,8 +29,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
-//TODO: clear textViews after saving
+
 public class LogActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener{
     protected static TextView selected_start_date_time;
     protected static TextView selected_end_date_time;
@@ -47,6 +48,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
     Spinner categorySpinner;
     TextView target_duration;
     int categoryCid;
+    String DEFAULT_CATEGORY_ITEM = "-- Please select category --";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +98,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         title_target_duration.setVisibility(View.GONE);
         selected_target_duration.setVisibility(View.GONE);
 
-        //instantiate schedule_swtich
+        //instantiate schedule_switch
         Switch schedule_switch = findViewById(R.id.switch_schedule_activity);
 
         mDrawerLayout = findViewById(R.id.drawer_navigation_log);
@@ -140,7 +142,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         actionbar.setTitle(R.string.title_log_activity);
 
-        //onClickListener for schedule swtich
+        //onClickListener for schedule switch
         schedule_switch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -203,6 +205,19 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!categorySpinner.getSelectedItem().toString().equals(DEFAULT_CATEGORY_ITEM)) {
+                    String act_name = specActivity.getText().toString();
+                    String start_datetime = start_date_time.getText().toString();
+                    String end_datetime = end_date_time.getText().toString();
+                    if (!act_name.equals("") && !start_datetime.equals("") && !end_datetime.equals("")){
+                        new DatabaseAsyncGetCid().execute();
+                        new DatabaseAsyncInsertLoggedActivity().execute();
+                        Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(LogActivity.this, "One or more fields are blank", Toast.LENGTH_LONG).show();
+                    }
+
+
             if(actionbar.getTitle().equals(getResources().getString(R.string.title_log_activity))){
                 if(buttonSave.isEnabled()) {
                     Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
@@ -221,7 +236,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                     //not working???
                     Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
                 }
-            }
+
             }
         });
 
@@ -301,6 +316,16 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
             db.catDao().insertActivity(newAct);
 
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    categorySpinner.setSelection(0);
+                    specActivity.getText().clear();
+                    start_date_time.setText(R.string.hint_start_date_time);
+                    end_date_time.setText(R.string.hint_end_date_time);
+                    inputNotes.getText().clear();
+                }
+            });
             return null;
         }
 
@@ -359,6 +384,8 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
     public void loadSpinnerData() {
         //Spinner drop down elements
         List<String> labels = db.catDao().getCatNames();
+        labels.add(DEFAULT_CATEGORY_ITEM);
+        Collections.sort(labels);
 
         //creating adapter from spinner
         final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels);
