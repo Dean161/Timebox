@@ -47,6 +47,7 @@ public interface CatDao {
     @Query("SELECT cid FROM Category WHERE cat_name LIKE :givenCat")
     int getCidActivites(String givenCat);
 
+    //insert new Activity
     @Insert
     void insertActivity(LoggedActivities newAct);
 
@@ -58,5 +59,13 @@ public interface CatDao {
 
     @Query("SELECT LA.* FROM LoggedActivities LA,Category C WHERE  C.cat_name IN (:categoryName) AND start_date_time >= :startDateTime AND end_date_time <= :endDateTime AND LA.cid_fk = C.cid")
     List<LoggedActivities> getLoggedActivitiesWithAllFilters(String[] categoryName, String startDateTime, String endDateTime);
+
+    //insert scheduled activity
+    @Insert
+    void insertScheduledActivity(ScheduledActivities newAct);
+
+    //get data from scheduledActivites table
+    @Query("SELECT * FROM ScheduledActivities;")
+    List<ScheduledActivities> getScheduledActivities();
 
 }
