@@ -79,13 +79,13 @@ public class CustomAdapterCheckScheduled extends BaseAdapter {
             e.printStackTrace();
         }
         long duration = ((end_date.getTime() - start_date.getTime())/3600000);
-        holder.targetDuration.setText(String.valueOf(duration));
+        //holder.targetDuration.setText(String.valueOf(duration));
 
-        //holder.targetDuration.setText(scheduledActivity.getTargetDuration());
+        holder.targetDuration.setText(scheduledActivity.getTargetDuration());
         //holder.activityName.setText(scheduledActivity.getActivityName());
-        holder.startDateAndTime.setText(scheduledActivity.getStartDateTime().split(" ")[1]);
+        holder.startDateAndTime.setText(scheduledActivity.getStartDateTime());
         if (scheduledActivity.getEndDateTime() != null) {
-            holder.endDateAndTime.setText(scheduledActivity.getEndDateTime().split(" ")[1]);
+            holder.endDateAndTime.setText(scheduledActivity.getEndDateTime());
         }
         return convertView;
     }
