@@ -64,7 +64,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         new DatabaseAsyncLoad().execute();
 
         //disable button_save
-        buttonSave.setEnabled(false);
+        //buttonSave.setEnabled(false);
 
 
         //instantiate TextViews for dates and times
@@ -200,43 +200,40 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         target_duration = findViewById(R.id.text_target_duration);
         inputNotes = findViewById(R.id.text_notes);
 
-
+        //TODO: check that if statement with buttonSave.isEnabled
         //onClickListener for save_button
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!categorySpinner.getSelectedItem().toString().equals(DEFAULT_CATEGORY_ITEM)) {
-                    String act_name = specActivity.getText().toString();
-                    String start_datetime = start_date_time.getText().toString();
-                    String end_datetime = end_date_time.getText().toString();
-                    if (!act_name.equals("") && !start_datetime.equals("") && !end_datetime.equals("")){
-                        new DatabaseAsyncGetCid().execute();
-                        new DatabaseAsyncInsertLoggedActivity().execute();
+                if (actionbar.getTitle().equals(getResources().getString(R.string.title_log_activity))) {
+                    if (buttonSave.isEnabled()) {
+                        if (!categorySpinner.getSelectedItem().toString().equals(DEFAULT_CATEGORY_ITEM)) {
+                            String act_name = specActivity.getText().toString();
+                            String start_datetime = start_date_time.getText().toString();
+                            String end_datetime = end_date_time.getText().toString();
+                            if (!act_name.equals("") && !start_datetime.equals("") && !end_datetime.equals("")) {
+                                new DatabaseAsyncGetCid().execute();
+                                new DatabaseAsyncInsertLoggedActivity().execute();
+                                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(LogActivity.this, "One or more fields are blank", Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            //not working???
+                            Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                } else if (actionbar.getTitle().equals(getResources().getString(R.string.title_schedule_activity))) {
+                    if (buttonSave.isEnabled()) {
                         Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                        new DatabaseAsyncGetCid().execute();
+                        new DatabaseAsyncInsertScheduledActivity().execute();
                     } else {
-                        Toast.makeText(LogActivity.this, "One or more fields are blank", Toast.LENGTH_LONG).show();
+                        //not working???
+                        Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
                     }
 
-
-            if(actionbar.getTitle().equals(getResources().getString(R.string.title_log_activity))){
-                if(buttonSave.isEnabled()) {
-                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
-                    new DatabaseAsyncGetCid().execute();
-                    new DatabaseAsyncInsertLoggedActivity().execute();
-                } else {
-                    //not working???
-                    Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
                 }
-            } else if (actionbar.getTitle().equals(getResources().getString(R.string.title_schedule_activity))){
-                if(buttonSave.isEnabled()) {
-                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
-                    new DatabaseAsyncGetCid().execute();
-                    new DatabaseAsyncInsertScheduledActivity().execute();
-                } else {
-                    //not working???
-                    Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
-                }
-
             }
         });
 
