@@ -45,7 +45,7 @@ public class CheckScheduled extends AppCompatActivity {
         actionbar_categories.setTitle(R.string.title_checkScheduled_activities);
 
         //Navigation
-        mDrawerLayout = findViewById(R.id.drawer_navigation_log);
+        mDrawerLayout = findViewById(R.id.drawer_navigation_checkScheduled);
 
         NavigationView navigationView = findViewById(R.id.navigation_view_checkScheduled);
         navigationView.setNavigationItemSelectedListener(
