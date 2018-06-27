@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -275,7 +276,7 @@ public class ReviewText extends Fragment {
                 end_datetime_is_null = true;
             }
 
-            if (selection.length == 0){
+            if (selection == null){
                 category_spinner_is_null = true;
             }
 
@@ -286,7 +287,13 @@ public class ReviewText extends Fragment {
             } else if (category_spinner_is_null && !start_datetime_is_null && !end_datetime_is_null){
                 logged_activities_list = app_db_review_text.catDao().getLoggedActivitiesWithDates(input_start_datetime_review_text.getText().toString(),input_end_datetime_review_text.getText().toString());
             } else {
-                //Toast message asking to select atleast date time or category selection
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(), "Please try one of the following:\n 1. Select one or more Categories\n 2. Select both Start and End Date Time\n 3. Select all the above", Toast.LENGTH_LONG).show();
+                    }
+                });
+                return null;
             }
 
 
