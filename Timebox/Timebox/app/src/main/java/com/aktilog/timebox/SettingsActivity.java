@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.SwitchPreference;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -269,7 +270,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class PinPreferenceFragment extends PreferenceFragment {
         @Override
-        public void onCreate(Bundle savedInstanceState) {
+        public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_pin);
             setHasOptionsMenu(true);
@@ -290,6 +291,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("Answer5"));
             bindPreferenceSummaryToValue(findPreference("Security Question 6"));
             bindPreferenceSummaryToValue(findPreference("Answer6"));
+            Preference enable_pin = new SwitchPreference(getContext());
+            enable_pin.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    boolean switched = ((SwitchPreference) preference).isChecked();
+                    if (switched){
+                        SetPinDialogFragment setPinDialogFragment = new SetPinDialogFragment();
+                        setPinDialogFragment.onCreateDialog(savedInstanceState).show();
+                    }
+                    return false;
+                }
+            });
         }
 
         @Override

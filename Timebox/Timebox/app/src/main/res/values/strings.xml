@@ -161,6 +161,7 @@
     <string name="hint_start_time">Select start time</string>
     <string name="hint_target_duration">Enter the target duration</string>
     <string name="hint_select_category">Select Category</string>
+    <string name="hint_set_pin">Enter Pin (4 digits)</string>
 
 
     <!-- Strings related to button actions -->
@@ -192,5 +193,10 @@
 
     <!-- Strings related to lists -->
     <string name="list_view_empty">No activity logged yet</string>
+
+    <!-- Strings related to dialogs -->
+    <string name="dialog_set_pin">Set PIN</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">CANCEL</string>
 
 </resources>

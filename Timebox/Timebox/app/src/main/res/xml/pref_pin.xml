@@ -8,7 +8,8 @@
         android:defaultValue="false"
         android:key="EnablePin"
         android:summary="Turn PIN on/off"
-        android:title="@string/pref_title_enable_pin" />
+        android:title="@string/pref_title_enable_pin"
+        android:id="@+id/switch_enable_pin"/>
     <EditTextPreference
         android:dependency="EnablePin"
         android:key="SetPin"
