@@ -147,6 +147,7 @@
     <string name="title_all_categories">All Categories</string>
     <string name="header_activity_name">Activity Name</string>
     <string name="header_activity_duration">Duration</string>
+    <string name="title_confirm_pin">Confirm PIN</string>
 
 
     <!-- Strings related to hints -->

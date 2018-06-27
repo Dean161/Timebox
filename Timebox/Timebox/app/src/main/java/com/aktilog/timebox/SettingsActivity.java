@@ -3,6 +3,7 @@ package com.aktilog.timebox;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -13,6 +14,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.SwitchPreference;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -21,7 +23,11 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -36,12 +42,24 @@ import java.util.List;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
+
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
+
+    private boolean pressed_ok = false;
+
+    public void setPressed_ok(boolean pressed_ok) {
+        this.pressed_ok = pressed_ok;
+    }
+
+    public boolean isPressed_ok() {
+        return pressed_ok;
+    }
+
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
@@ -291,18 +309,27 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("Answer5"));
             bindPreferenceSummaryToValue(findPreference("Security Question 6"));
             bindPreferenceSummaryToValue(findPreference("Answer6"));
-            Preference enable_pin = new SwitchPreference(getContext());
-            enable_pin.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+            final SwitchPreference switchPreference = (SwitchPreference) findPreference("EnablePin");
+            switchPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    boolean switched = ((SwitchPreference) preference).isChecked();
-                    if (switched){
-                        SetPinDialogFragment setPinDialogFragment = new SetPinDialogFragment();
-                        setPinDialogFragment.onCreateDialog(savedInstanceState).show();
+                    if (!switchPreference.isChecked()) {
+                        int requestCode = RESULT_OK;
+                        Intent showDialog = new Intent(getActivity(), SetPinActivity.class);
+                        startActivityForResult(showDialog, requestCode);
+                        switchPreference.setChecked(true);
+                    } else {
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("EnablePin",false);
+                        editor.apply();
+                        switchPreference.setChecked(false);
                     }
                     return false;
                 }
             });
+
         }
 
         @Override
@@ -345,5 +372,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK){
+            setPressed_ok(true);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

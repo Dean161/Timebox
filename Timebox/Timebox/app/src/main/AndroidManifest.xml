@@ -40,7 +40,11 @@
             android:name=".ReviewActivity"
             android:label="@string/title_review"
             android:theme="@style/AppTheme_New.NoActionBar" />
-        <activity android:name=".CheckScheduled"></activity>
-    </application>
+        <activity android:name=".CheckScheduled" />
+        <activity
+            android:name=".SetPinActivity"
+            android:label="@string/pref_title_specify_pin"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        </application>
 
 </manifest>

@@ -42,4 +42,8 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="ActivityDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+
+    </style>
+
 </resources>
