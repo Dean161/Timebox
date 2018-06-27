@@ -21,21 +21,6 @@ public class CustomAdapterCheckScheduled extends BaseAdapter {
         layoutInflater_checkScheduled = LayoutInflater.from(aContext);
 
         this.list_scheduled_activities = listData;
-
-        String headDate="";
-        for (int i=0;i<listData.size();i++) {
-            ScheduledActivities iter = listData.get(i);
-            if (!iter.getStartDateTime().split(" ")[0].equals(headDate)) {
-                headDate = iter.getStartDateTime().split(" ")[0];
-                if (!iter.getActivityName().contains(header)) {
-                    ScheduledActivities newLog = new ScheduledActivities();
-                    newLog.setActivityName(header);
-                    newLog.setStartDateTime(headDate+" 00:00");
-                    this.list_scheduled_activities.add(i,newLog);
-                }
-            }
-
-        }
     }
 
     @Override
@@ -54,63 +39,44 @@ public class CustomAdapterCheckScheduled extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        CustomAdapter.ViewHolder holder;
+        CustomAdapterCheckScheduled.ViewHolder holder;
         if (convertView == null) {
-            convertView = layoutInflater_checkScheduled.inflate(R.layout.list_item, null);
-            holder = new CustomAdapter.ViewHolder();
-            holder.dateView = (TextView) convertView.findViewById(R.id.start_date);
-            holder.monthView = (TextView) convertView.findViewById(R.id.start_month);
-            holder.catView = (TextView) convertView.findViewById(R.id.activity_color);
-            holder.nameView = (TextView) convertView.findViewById(R.id.activity_note);
-            holder.startView = (TextView) convertView.findViewById(R.id.activity_start);
-            holder.endView = (TextView) convertView.findViewById(R.id.activity_end);
-            holder.overView = (TextView) convertView.findViewById(R.id.start_line);
+            convertView = layoutInflater_checkScheduled.inflate(R.layout.list_scheduled_text, null);
+            holder = new CustomAdapterCheckScheduled.ViewHolder();
+
+            holder.startDateAndTime = convertView.findViewById(R.id.text_list_startDateAndTime);
+            holder.endDateAndTime = convertView.findViewById(R.id.text_list_endDateAndTime);
+            holder.targetDuration = convertView.findViewById(R.id.text_list_schedule_duration);
+            holder.activityName = convertView.findViewById(R.id.text_list_schedule_activity_name);
+            holder.categoryColor = convertView.findViewById(R.id.text_list_schedule_category_color);
+
 
             convertView.setTag(holder);
         } else {
-            holder = (CustomAdapter.ViewHolder) convertView.getTag();
+            holder = (CustomAdapterCheckScheduled.ViewHolder) convertView.getTag();
         }
 
         ScheduledActivities scheduledActivity = this.list_scheduled_activities.get(position);
 
-        if (scheduledActivity.getActivityName().contains(header)) {
-            holder.dateView.setVisibility(View.VISIBLE);
-            holder.monthView.setVisibility(View.VISIBLE);
-            holder.overView.setVisibility(View.VISIBLE);
-
-            holder.nameView.setVisibility(View.GONE);
-            holder.startView.setVisibility(View.GONE);
-            holder.endView.setVisibility(View.GONE);
-            holder.catView.setVisibility(View.INVISIBLE);
-        }
-        else {
-            holder.dateView.setVisibility(View.GONE);
-            holder.monthView.setVisibility(View.GONE);
-            holder.overView.setVisibility(View.GONE);
-
-            holder.nameView.setVisibility(View.VISIBLE);
-            holder.startView.setVisibility(View.VISIBLE);
-            holder.endView.setVisibility(View.VISIBLE);
-            holder.catView.setVisibility(View.VISIBLE);
-        }
-        holder.dateView.setText(scheduledActivity.getStartDateTime().split(" ")[0].split("-")[2]);
-        holder.monthView.setText(scheduledActivity.getStartDateTime().split(" ")[0].split("-")[1]);
+        //holder.startDateAndTime.setText(scheduledActivity.getStartDateTime().split(" ")[0].split("-")[2]);
+        //holder.monthView.setText(scheduledActivity.getStartDateTime().split(" ")[0].split("-")[1]);
         //holder.catView.setBackgroundColor(R.color.colorGrey);
-        holder.nameView.setText(scheduledActivity.getActivityName());
-        holder.startView.setText(scheduledActivity.getStartDateTime().split(" ")[1]);
+        //color here
+        holder.categoryColor.setBackgroundColor(scheduledActivity.get);
+        holder.targetDuration.setText(scheduledActivity.getTargetDuration());
+        holder.activityName.setText(scheduledActivity.getActivityName());
+        holder.startDateAndTime.setText(scheduledActivity.getStartDateTime().split(" ")[1]);
         if (scheduledActivity.getEndDateTime() != null) {
-            holder.endView.setText(scheduledActivity.getEndDateTime().split(" ")[1]);
+            holder.endDateAndTime.setText(scheduledActivity.getEndDateTime().split(" ")[1]);
         }
         return convertView;
     }
 
     static class ViewHolder {
-        TextView dateView;
-        TextView monthView;
-        TextView catView;
-        TextView nameView;
-        TextView startView;
-        TextView endView;
-        TextView overView;
+        TextView startDateAndTime;
+        TextView endDateAndTime;
+        TextView targetDuration;
+        TextView activityName;
+        TextView categoryColor;
     }
 }
