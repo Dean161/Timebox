@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.LauncherActivity;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -47,6 +48,8 @@ public class ReviewText extends Fragment {
     List<LoggedActivities> logged_activities_list;
     LinearLayout header_activity_review_text;
     List<Category> category_list;
+    public static LoggedActivities loggedActivities;
+    public static String current_category_name;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,9 +110,11 @@ public class ReviewText extends Fragment {
         review_activity_text.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                LoggedActivities loggedActivities = (LoggedActivities) parent.getAdapter().getItem(position);
-                String name = loggedActivities.getActivityName();
-                Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
+                loggedActivities = (LoggedActivities) parent.getAdapter().getItem(position);
+                int cat_id = loggedActivities.getCid_fk();
+                current_category_name = getCatNameByID(category_list,cat_id);
+                Intent showActivityDetailsDialog = new Intent(getActivity(),DisplayActivity.class);
+                startActivity(showActivityDetailsDialog);
             }
         });
 
@@ -374,12 +379,12 @@ public class ReviewText extends Fragment {
         }
     }
 
-    public class ListEntry{
-
-        LinearLayout linearLayout;
-        TextView categoryColor;
-        TextView activityName;
-        TextView duration;
+    private String getCatNameByID(List<Category> category, int cat_id){
+        for(int i=0;i<category.size();i++){
+            if (category.get(i).getCid() == cat_id){
+                return category.get(i).getCatName();
+            }
+        }
+        return "N/A";
     }
-
 }
