@@ -68,4 +68,10 @@ public interface CatDao {
     @Query("SELECT * FROM ScheduledActivities;")
     List<ScheduledActivities> getScheduledActivities();
 
+    @Query("SELECT * FROM ScheduledActivities WHERE activity_name IN (:activityname);")
+    List<ScheduledActivities> getChosenScheduled(String activityname);
+
+    @Update
+    void updateLoggedHours(ScheduledActivities updatedScheduledActivity);
+
 }

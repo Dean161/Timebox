@@ -5,7 +5,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-@Database(entities = {Category.class, LoggedActivities.class, ScheduledActivities.class}, version = 6)
+@Database(entities = {Category.class, LoggedActivities.class, ScheduledActivities.class}, version = 7)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
@@ -16,6 +16,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class){
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "timeboxDatabase").fallbackToDestructiveMigration().build();
+                    //Add predefined categories here
                 }
             }
         }

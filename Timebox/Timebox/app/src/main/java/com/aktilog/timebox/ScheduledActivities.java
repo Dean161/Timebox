@@ -29,6 +29,9 @@ public class ScheduledActivities {
     @ColumnInfo(name = "notes")
     private String notes;
 
+    @ColumnInfo(name = "logged_hours")
+    private int loggedHours;
+
     public void setSaID(int saID) {
         this.saID = saID;
     }
@@ -81,5 +84,13 @@ public class ScheduledActivities {
 
     public String getTargetDuration() {
         return targetDuration;
+    }
+
+    public void setLoggedHours(int loggedHours) {
+        this.loggedHours = loggedHours;
+    }
+
+    public int getLoggedHours() {
+        return loggedHours;
     }
 }

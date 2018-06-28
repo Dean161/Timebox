@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class CheckScheduled extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     ListView scheduled_avtivities_listView;
     List<Category> category_list;
+    static public String clickedItem;
+    public ScheduledActivities clickedActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +85,17 @@ public class CheckScheduled extends AppCompatActivity {
         scheduled_avtivities_listView = findViewById(R.id.list_scheduled_activities);
 
         new DatabaseAsyncGetActivity().execute();
+
+        scheduled_avtivities_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                clickedActivity = (ScheduledActivities) parent.getAdapter().getItem(position);
+                clickedItem = clickedActivity.getActivityName();
+                //clickedItem = parent.getItemAtPosition(position).toString();
+                Intent showDetailDialog = new Intent(CheckScheduled.this, scheduledActivitiesStatus.class);
+                startActivity(showDetailDialog);
+            }
+        });
     }
 
     private class DatabaseAsyncGetActivity extends AsyncTask<Void, Void, Void> {
