@@ -16,8 +16,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
-//TODO: delete finished activities
-//TODO: update view after closing dialog (show updated amount of logged hours
+//TODO: update view after closing dialog (show updated amount of logged hours)
 public class CheckScheduled extends AppCompatActivity {
 
     AppDatabase app_database;
@@ -26,6 +25,7 @@ public class CheckScheduled extends AppCompatActivity {
     List<Category> category_list;
     static public String clickedItem;
     public ScheduledActivities clickedActivity;
+    public static final int REQUEST_CODE = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +93,10 @@ public class CheckScheduled extends AppCompatActivity {
                 //clickedItem = parent.getItemAtPosition(position).toString();
                 Intent showDetailDialog = new Intent(CheckScheduled.this, scheduledActivitiesStatus.class);
                 startActivity(showDetailDialog);
+                //startActivityForResult(showDetailDialog, REQUEST_CODE);
             }
         });
+
     }
 
     private class DatabaseAsyncGetActivity extends AsyncTask<Void, Void, Void> {

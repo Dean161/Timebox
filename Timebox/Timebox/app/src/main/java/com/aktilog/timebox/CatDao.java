@@ -66,7 +66,7 @@ public interface CatDao {
 
     //get data from scheduledActivites table
     //TODO: add "WHERE logged_hours < target_duration" -> need to change data type of target_duration to int
-    @Query("SELECT * FROM ScheduledActivities;")
+    @Query("SELECT * FROM ScheduledActivities WHERE logged_hours < target_duration_in_min;")
     List<ScheduledActivities> getScheduledActivities();
 
     @Query("SELECT * FROM ScheduledActivities WHERE activity_name IN (:activityname);")

@@ -81,7 +81,8 @@ public class CustomAdapterCheckScheduled extends BaseAdapter {
         long duration = ((end_date.getTime() - start_date.getTime())/3600000);
         //holder.targetDuration.setText(String.valueOf(duration));
 
-        holder.targetDuration.setText(scheduledActivity.getLoggedHours() + "/" + scheduledActivity.getTargetDuration());
+
+        holder.targetDuration.setText(String.valueOf(scheduledActivity.getLoggedHours()/60) + "/" + String.valueOf(scheduledActivity.getTargetDurationInMin()/60) + " hours");
         //holder.activityName.setText(scheduledActivity.getActivityName());
         holder.startDateAndTime.setText(scheduledActivity.getStartDateTime());
         if (scheduledActivity.getEndDateTime() != null) {

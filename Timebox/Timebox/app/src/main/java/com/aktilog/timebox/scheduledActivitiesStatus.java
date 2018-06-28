@@ -1,6 +1,8 @@
 package com.aktilog.timebox;
 
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -55,9 +57,6 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
         increase_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //int add = 1;
-                //logged_hours.setText(""+add);
-
                 String loggedHoursString = logged_hours.getText().toString();
                 int loggedHours = Integer.parseInt(loggedHoursString);
                 loggedHours++;
@@ -69,8 +68,6 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
         decrease_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //int subtract = -1;
-                //logged_hours.setText(""+subtract);
                 String loggedHoursString = logged_hours.getText().toString();
                 int loggedHours = Integer.parseInt(loggedHoursString);
                 loggedHours--;
@@ -84,7 +81,6 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(scheduledActivitiesStatus.this, "Updated", Toast.LENGTH_LONG).show();
                 new DatabaseAsyncTaskUpdateLoggedHours().execute();
-                //close dialog
             }
         });
 
@@ -105,13 +101,11 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
             start_date_time.setText(startDateTime);
             String endDateTime = updatedScheduledActivity.getEndDateTime();
             end_date_time.setText(endDateTime);
-            String targetDuration = updatedScheduledActivity.getTargetDuration();
-            target_duration.setText(targetDuration);
+            int targetDuration = updatedScheduledActivity.getTargetDurationInMin();
+            target_duration.setText(String.valueOf(targetDuration/60));
             int loggedHours = updatedScheduledActivity.getLoggedHours();
-            logged_hours.setText(String.valueOf(loggedHours));
-            String[] separatedTargetDuration = targetDuration.split("h", 2);
-            String targetDurationSplitted = separatedTargetDuration[0];
-            progressBar.setMax(Integer.parseInt(targetDurationSplitted));
+            logged_hours.setText(String.valueOf(loggedHours/60));
+            progressBar.setMax(targetDuration);
             progressBar.setProgress(loggedHours);
             return null;
         }
@@ -134,12 +128,19 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             String loggedHoursString = logged_hours.getText().toString();
-            int loggedHours = Integer.parseInt(loggedHoursString);
+            int loggedHours = Integer.parseInt(loggedHoursString)*60;
 
             updatedScheduledActivity.setLoggedHours(loggedHours);
             db.catDao().updateLoggedHours(updatedScheduledActivity);
-            //TODO: app crashes after finishing this activity
-            scheduledActivitiesStatus.this.finish();
+
+            //TODO: app crashing when closing dialog
+            //runOnUiThread(new Runnable() {
+                //@Override
+                //public void run() {
+                    //scheduledActivitiesStatus.this.finish();
+                //}
+            //});
+
             return null;
         }
 
