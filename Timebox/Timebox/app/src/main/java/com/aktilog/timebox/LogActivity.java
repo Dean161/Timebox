@@ -266,8 +266,6 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             String targetDuration = target_duration.getText().toString();
             String notes = inputNotes.getText().toString();
 
-
-
             ScheduledActivities newAct = new ScheduledActivities();
             newAct.setActivityName(newActivity);
             newAct.setCid_fk(categoryCid);
@@ -275,8 +273,12 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             newAct.setEndDateTime(endDateTime);
             newAct.setTargetDuration(targetDuration);
             newAct.setNotes(notes);
+            newAct.setLoggedHours(0);
 
             db.catDao().insertScheduledActivity(newAct);
+
+            Intent goHome = new Intent(LogActivity.this, MainActivity.class);
+            startActivity(goHome);
 
             return null;
         }
@@ -302,8 +304,6 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             String endDateTime = end_date_time.getText().toString();
             String notes = inputNotes.getText().toString();
 
-
-
             LoggedActivities newAct = new LoggedActivities();
             newAct.setActivityName(newActivity);
             newAct.setCid_fk(categoryCid);
@@ -323,6 +323,9 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                     inputNotes.getText().clear();
                 }
             });
+
+            Intent goHome = new Intent(LogActivity.this, MainActivity.class);
+            startActivity(goHome);
             return null;
         }
 

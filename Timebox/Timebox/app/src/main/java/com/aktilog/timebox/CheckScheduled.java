@@ -1,6 +1,5 @@
 package com.aktilog.timebox;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
@@ -15,10 +14,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
-//TODO: adjust whole view
-//TODO: GoBack Button not working
+
+//TODO: delete finished activities
+//TODO: update view after closing dialog (show updated amount of logged hours
 public class CheckScheduled extends AppCompatActivity {
 
     AppDatabase app_database;
@@ -152,5 +151,11 @@ public class CheckScheduled extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        new DatabaseAsyncGetActivity().execute();
+        super.onResume();
     }
 }

@@ -65,6 +65,7 @@ public interface CatDao {
     void insertScheduledActivity(ScheduledActivities newAct);
 
     //get data from scheduledActivites table
+    //TODO: add "WHERE logged_hours < target_duration" -> need to change data type of target_duration to int
     @Query("SELECT * FROM ScheduledActivities;")
     List<ScheduledActivities> getScheduledActivities();
 

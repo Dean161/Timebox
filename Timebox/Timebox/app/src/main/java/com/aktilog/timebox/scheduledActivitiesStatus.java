@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
     AppDatabase db;
     String activityname = CheckScheduled.clickedItem;
     ScheduledActivities updatedScheduledActivity;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
         target_duration = findViewById(R.id.display_target_duration);
         logged_hours = findViewById(R.id.display_logged_hours);
         activity_name = findViewById(R.id.display_activity_name);
+        progressBar = findViewById(R.id.progressBar_work_done);
 
         //get all values
         activity_name.setText(CheckScheduled.clickedItem);
@@ -52,25 +55,27 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
         increase_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int add = 1;
+                //int add = 1;
+                //logged_hours.setText(""+add);
 
-                logged_hours.setText(""+add);
-
-                //String loggedHoursString = logged_hours.getText().toString();
-                //int loggedHours = Integer.parseInt(loggedHoursString);
-                //loggedHours = loggedHours + 1;
-                //loggedHoursString = String
-                //logged_hours.setText(loggedHoursString);
-
+                String loggedHoursString = logged_hours.getText().toString();
+                int loggedHours = Integer.parseInt(loggedHoursString);
+                loggedHours++;
+                loggedHoursString = String.valueOf(loggedHours);
+                logged_hours.setText(loggedHoursString);
             }
         });
 
         decrease_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int subtract = -1;
-
-                logged_hours.setText(""+subtract);
+                //int subtract = -1;
+                //logged_hours.setText(""+subtract);
+                String loggedHoursString = logged_hours.getText().toString();
+                int loggedHours = Integer.parseInt(loggedHoursString);
+                loggedHours--;
+                loggedHoursString = String.valueOf(loggedHours);
+                logged_hours.setText(loggedHoursString);
             }
         });
 
@@ -96,6 +101,18 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             List<ScheduledActivities> scheduledActivitiesCheckScheduled = db.catDao().getChosenScheduled(activityname);
             updatedScheduledActivity = scheduledActivitiesCheckScheduled.get(0);
+            String startDateTime = updatedScheduledActivity.getStartDateTime();
+            start_date_time.setText(startDateTime);
+            String endDateTime = updatedScheduledActivity.getEndDateTime();
+            end_date_time.setText(endDateTime);
+            String targetDuration = updatedScheduledActivity.getTargetDuration();
+            target_duration.setText(targetDuration);
+            int loggedHours = updatedScheduledActivity.getLoggedHours();
+            logged_hours.setText(String.valueOf(loggedHours));
+            String[] separatedTargetDuration = targetDuration.split("h", 2);
+            String targetDurationSplitted = separatedTargetDuration[0];
+            progressBar.setMax(Integer.parseInt(targetDurationSplitted));
+            progressBar.setProgress(loggedHours);
             return null;
         }
 
@@ -121,6 +138,8 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
 
             updatedScheduledActivity.setLoggedHours(loggedHours);
             db.catDao().updateLoggedHours(updatedScheduledActivity);
+            //TODO: app crashes after finishing this activity
+            scheduledActivitiesStatus.this.finish();
             return null;
         }
 
@@ -130,4 +149,5 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
             //perform post-adding operation here
         }
     }
+
 }
