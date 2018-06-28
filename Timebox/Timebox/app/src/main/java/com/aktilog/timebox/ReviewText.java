@@ -3,6 +3,7 @@ package com.aktilog.timebox;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.LauncherActivity;
 import android.app.TimePickerDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -99,6 +101,15 @@ public class ReviewText extends Fragment {
                 } else {
                     expandFilterOptions();
                 }
+            }
+        });
+
+        review_activity_text.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                LoggedActivities loggedActivities = (LoggedActivities) parent.getAdapter().getItem(position);
+                String name = loggedActivities.getActivityName();
+                Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -361,6 +372,14 @@ public class ReviewText extends Fragment {
             super.onPostExecute(aVoid);
             //perform post-adding operation here
         }
+    }
+
+    public class ListEntry{
+
+        LinearLayout linearLayout;
+        TextView categoryColor;
+        TextView activityName;
+        TextView duration;
     }
 
 }

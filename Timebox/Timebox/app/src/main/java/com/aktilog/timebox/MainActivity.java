@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        actionbar.setTitle(R.string.title_home);
 
         mDrawerLayout.addDrawerListener(
                 new DrawerLayout.DrawerListener() {

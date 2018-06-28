@@ -34,7 +34,6 @@ import java.util.Random;
 
 public class ForgotPINActivity extends AppCompatActivity {
 
-    //TODO: Add functionality to disable pin on valid answers
     protected Button reset;
     protected Button validate;
     protected EditText sec_ans1;
@@ -97,13 +96,16 @@ public class ForgotPINActivity extends AppCompatActivity {
                 sec_ques2.setText(R.string.title_sec_question);
         }
 
-
-        Toolbar toolbar_forgot_pin = findViewById(R.id.toolbar_forgot_pin);
-        setSupportActionBar(toolbar_forgot_pin);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
-        actionbar.setTitle(R.string.title_forgot_pin);
+        try {
+            Toolbar toolbar_forgot_pin = findViewById(R.id.toolbar_forgot_pin);
+            setSupportActionBar(toolbar_forgot_pin);
+            ActionBar actionbar = getSupportActionBar();
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+            actionbar.setTitle(R.string.title_forgot_pin);
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
 
         final SharedPreferences shared_preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
