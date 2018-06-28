@@ -9,9 +9,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/timebox_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/timebox_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme_New.NoActionBar">
         <activity android:name=".SettingsActivity" />
@@ -39,7 +39,17 @@
         <activity
             android:name=".ReviewActivity"
             android:label="@string/title_review"
-            android:theme="@style/AppTheme_New.NoActionBar"></activity>
+            android:theme="@style/AppTheme_New.NoActionBar" />
+        <activity android:name=".CheckScheduled" />
+        <activity
+            android:name=".SetPinActivity"
+            android:label="@string/pref_title_specify_pin"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".ModifyPinActivity"
+            android:label="@string/hint_pin"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity android:name=".DisplayActivity"></activity>
     </application>
 
 </manifest>

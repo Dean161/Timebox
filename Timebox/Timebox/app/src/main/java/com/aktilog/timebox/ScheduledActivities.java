@@ -16,17 +16,11 @@ public class ScheduledActivities {
     @ColumnInfo(name = "activity_name")
     private String activityName;
 
-    @ColumnInfo(name = "start_date")
-    private String startDate;
+    @ColumnInfo(name = "start_date_time")
+    private String startDateTime;
 
-    @ColumnInfo(name = "end_date")
-    private String endDate;
-
-    @ColumnInfo(name = "start_time")
-    private String startTime;
-
-    @ColumnInfo(name = "end_time")
-    private String endTime;
+    @ColumnInfo(name = "end_date_time")
+    private String endDateTime;
 
     @ColumnInfo(name = "target_duration")
     private String targetDuration;
@@ -34,4 +28,58 @@ public class ScheduledActivities {
     //TODO add restriction for max. number of digits
     @ColumnInfo(name = "notes")
     private String notes;
+
+    public void setSaID(int saID) {
+        this.saID = saID;
+    }
+
+    public int getSaID() {return saID;}
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
+    }
+
+    public String getActivityName() {
+        return activityName;
+    }
+
+    public void setCid_fk(int cid_fk) {
+        this.cid_fk = cid_fk;
+    }
+
+    public int getCid_fk() {
+        return cid_fk;
+    }
+
+    public void setStartDateTime(String startDateTime) {
+        this.startDateTime = startDateTime;
+    }
+
+    public String getStartDateTime() {
+        return startDateTime;
+    }
+
+    public void setEndDateTime(String endDateTime) {
+        this.endDateTime = endDateTime;
+    }
+
+    public String getEndDateTime() {
+        return endDateTime;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setTargetDuration(String targetDuration) {
+        this.targetDuration = targetDuration;
+    }
+
+    public String getTargetDuration() {
+        return targetDuration;
+    }
 }

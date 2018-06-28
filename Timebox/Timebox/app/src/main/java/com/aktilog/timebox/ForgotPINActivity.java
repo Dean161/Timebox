@@ -16,6 +16,7 @@
 
 package com.aktilog.timebox;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
@@ -33,7 +34,6 @@ import java.util.Random;
 
 public class ForgotPINActivity extends AppCompatActivity {
 
-    //TODO: Add functionality to disable pin on valid answers
     protected Button reset;
     protected Button validate;
     protected EditText sec_ans1;
@@ -96,13 +96,16 @@ public class ForgotPINActivity extends AppCompatActivity {
                 sec_ques2.setText(R.string.title_sec_question);
         }
 
-
-        Toolbar toolbar_forgot_pin = findViewById(R.id.toolbar_forgot_pin);
-        setSupportActionBar(toolbar_forgot_pin);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
-        actionbar.setTitle(R.string.title_forgot_pin);
+        try {
+            Toolbar toolbar_forgot_pin = findViewById(R.id.toolbar_forgot_pin);
+            setSupportActionBar(toolbar_forgot_pin);
+            ActionBar actionbar = getSupportActionBar();
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+            actionbar.setTitle(R.string.title_forgot_pin);
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
 
         final SharedPreferences shared_preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -112,42 +115,42 @@ public class ForgotPINActivity extends AppCompatActivity {
                 switch(random_num){
                     case 0:
                         if((sec_ans1.getText().toString().equals(shared_preferences.getString(KEY_ANSWER1,""))) && (sec_ans2.getText().toString().equals(shared_preferences.getString(KEY_ANSWER3,"")))){
-                            Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                            showSetPinDialog();
                         }else{
                             Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 1:
                         if((sec_ans1.getText().toString().equals(shared_preferences.getString(KEY_ANSWER2,""))) && (sec_ans2.getText().toString().equals(shared_preferences.getString(KEY_ANSWER6,"")))){
-                            Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                            showSetPinDialog();
                         }else{
                             Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 2:
                         if((sec_ans1.getText().toString().equals(shared_preferences.getString(KEY_ANSWER3,""))) && (sec_ans2.getText().toString().equals(shared_preferences.getString(KEY_ANSWER4,"")))){
-                            Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                            showSetPinDialog();
                         }else{
                             Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 3:
                         if((sec_ans1.getText().toString().equals(shared_preferences.getString(KEY_ANSWER4,""))) && (sec_ans2.getText().toString().equals(shared_preferences.getString(KEY_ANSWER2,"")))){
-                            Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                            showSetPinDialog();
                         }else{
                             Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 4:
                         if((sec_ans1.getText().toString().equals(shared_preferences.getString(KEY_ANSWER5,""))) && (sec_ans2.getText().toString().equals(shared_preferences.getString(KEY_ANSWER1,"")))){
-                            Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                            showSetPinDialog();
                         }else{
                             Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 5:
                         if((sec_ans1.getText().toString().equals(shared_preferences.getString(KEY_ANSWER6,""))) && (sec_ans2.getText().toString().equals(shared_preferences.getString(KEY_ANSWER5,"")))){
-                            Toast.makeText(ForgotPINActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+                            showSetPinDialog();
                         }else{
                             Toast.makeText(ForgotPINActivity.this, INCORRECT_ANSWER, Toast.LENGTH_SHORT).show();
                         }
@@ -161,7 +164,7 @@ public class ForgotPINActivity extends AppCompatActivity {
 
         /*
             Clears the content of the answer field
-         */
+        */
         reset.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -176,5 +179,11 @@ public class ForgotPINActivity extends AppCompatActivity {
             finish();
         }
        return super.onOptionsItemSelected(item);
+    }
+
+    public void showSetPinDialog(){
+        Intent showSetPinDialog = new Intent(ForgotPINActivity.this,SetPinActivity.class);
+        startActivity(showSetPinDialog);
+        ForgotPINActivity.this.finish();
     }
 }
