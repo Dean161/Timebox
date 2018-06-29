@@ -1,5 +1,7 @@
 package com.aktilog.timebox;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -131,22 +133,17 @@ public class ScheduledActivitiesStatus extends AppCompatActivity {
             updatedScheduledActivity.setLoggedHours(loggedHours);
             db.catDao().updateLoggedHours(updatedScheduledActivity);
 
-            //TODO: app crashing when closing dialog
-            //runOnUiThread(new Runnable() {
-                //@Override
-                //public void run() {
-                    //ScheduledActivitiesStatus.this.finish();
-                //}
-            //});
-
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            Intent returnBack = new Intent();
+            returnBack.putExtra("result", RESULT_OK);
+            setResult(Activity.RESULT_OK,returnBack);
             ScheduledActivitiesStatus.this.finish();
-            //perform post-adding operation here
+
         }
     }
 

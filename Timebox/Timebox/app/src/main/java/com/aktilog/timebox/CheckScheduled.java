@@ -92,8 +92,8 @@ public class CheckScheduled extends AppCompatActivity {
                 clickedItem = clickedActivity.getActivityName();
                 //clickedItem = parent.getItemAtPosition(position).toString();
                 Intent showDetailDialog = new Intent(CheckScheduled.this, ScheduledActivitiesStatus.class);
-                startActivity(showDetailDialog);
-                //startActivityForResult(showDetailDialog, REQUEST_CODE);
+                //startActivity(showDetailDialog);
+                startActivityForResult(showDetailDialog, REQUEST_CODE);
             }
         });
 
@@ -161,8 +161,10 @@ public class CheckScheduled extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        new DatabaseAsyncGetActivity().execute();
-        super.onResume();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == -1) {
+            new DatabaseAsyncGetActivity().execute();
+        }
     }
 }
