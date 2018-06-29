@@ -1,8 +1,6 @@
 package com.aktilog.timebox;
 
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +12,7 @@ import android.widget.Toast;
 import java.util.List;
 
 
-public class scheduledActivitiesStatus extends AppCompatActivity {
+public class ScheduledActivitiesStatus extends AppCompatActivity {
 
     Button increase_button;
     Button decrease_button;
@@ -79,7 +77,7 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(scheduledActivitiesStatus.this, "Updated", Toast.LENGTH_LONG).show();
+                Toast.makeText(ScheduledActivitiesStatus.this, "Updated", Toast.LENGTH_LONG).show();
                 new DatabaseAsyncTaskUpdateLoggedHours().execute();
             }
         });
@@ -137,7 +135,7 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
             //runOnUiThread(new Runnable() {
                 //@Override
                 //public void run() {
-                    //scheduledActivitiesStatus.this.finish();
+                    //ScheduledActivitiesStatus.this.finish();
                 //}
             //});
 

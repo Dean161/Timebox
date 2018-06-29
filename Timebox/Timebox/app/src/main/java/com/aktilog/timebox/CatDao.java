@@ -75,4 +75,7 @@ public interface CatDao {
     @Update
     void updateLoggedHours(ScheduledActivities updatedScheduledActivity);
 
+    @Update
+    void updateLoggedActivity(LoggedActivities loggedActivities);
+
 }

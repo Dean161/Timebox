@@ -6,7 +6,7 @@
     android:layout_width="300dp"
     android:layout_height="400dp"
     android:orientation="vertical"
-    tools:context=".scheduledActivitiesStatus">
+    tools:context=".ScheduledActivitiesStatus">
 
     <TableLayout
         android:layout_width="300dp"

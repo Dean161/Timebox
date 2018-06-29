@@ -91,7 +91,7 @@ public class CheckScheduled extends AppCompatActivity {
                 clickedActivity = (ScheduledActivities) parent.getAdapter().getItem(position);
                 clickedItem = clickedActivity.getActivityName();
                 //clickedItem = parent.getItemAtPosition(position).toString();
-                Intent showDetailDialog = new Intent(CheckScheduled.this, scheduledActivitiesStatus.class);
+                Intent showDetailDialog = new Intent(CheckScheduled.this, ScheduledActivitiesStatus.class);
                 startActivity(showDetailDialog);
                 //startActivityForResult(showDetailDialog, REQUEST_CODE);
             }
