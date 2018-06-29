@@ -114,7 +114,7 @@ public class ReviewText extends Fragment {
                 int cat_id = loggedActivities.getCid_fk();
                 current_category_name = getCatNameByID(category_list,cat_id);
                 Intent showActivityDetailsDialog = new Intent(getActivity(),DisplayActivity.class);
-                startActivity(showActivityDetailsDialog);
+                startActivityForResult(showActivityDetailsDialog,0);
             }
         });
 
@@ -386,5 +386,13 @@ public class ReviewText extends Fragment {
             }
         }
         return "N/A";
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == -1){
+            Toast.makeText(getActivity(), "Control is Back", Toast.LENGTH_SHORT).show();
+        }
     }
 }

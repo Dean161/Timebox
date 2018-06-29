@@ -145,6 +145,7 @@ public class ScheduledActivitiesStatus extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            ScheduledActivitiesStatus.this.finish();
             //perform post-adding operation here
         }
     }
