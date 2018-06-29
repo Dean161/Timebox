@@ -78,10 +78,16 @@ public interface CatDao {
     @Query("SELECT * FROM ScheduledActivities WHERE logged_hours < target_duration_in_min;")
     List<ScheduledActivities> getScheduledActivities();
 
+    @Query("SELECT * FROM LoggedActivities WHERE :selectedDate >= Date(start_date_time) AND :selectedDate<= Date(end_date_time);")
+    List<LoggedActivities> getLoggedActivitiesCalendar(String selectedDate);
+
     @Query("SELECT * FROM ScheduledActivities WHERE activity_name IN (:activityname);")
     List<ScheduledActivities> getChosenScheduled(String activityname);
 
     @Update
     void updateLoggedHours(ScheduledActivities updatedScheduledActivity);
+
+    @Update
+    void updateLoggedActivity(LoggedActivities loggedActivities);
 
 }

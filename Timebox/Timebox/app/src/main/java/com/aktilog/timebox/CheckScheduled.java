@@ -21,7 +21,7 @@ public class CheckScheduled extends AppCompatActivity {
 
     AppDatabase app_database;
     private DrawerLayout mDrawerLayout;
-    ListView scheduled_avtivities_listView;
+    ListView scheduled_activities_listView;
     List<Category> category_list;
     static public String clickedItem;
     public ScheduledActivities clickedActivity;
@@ -81,19 +81,19 @@ public class CheckScheduled extends AppCompatActivity {
                 });
 
         //ListView
-        scheduled_avtivities_listView = findViewById(R.id.list_scheduled_activities);
+        scheduled_activities_listView = findViewById(R.id.list_scheduled_activities);
 
         new DatabaseAsyncGetActivity().execute();
 
-        scheduled_avtivities_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        scheduled_activities_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 clickedActivity = (ScheduledActivities) parent.getAdapter().getItem(position);
                 clickedItem = clickedActivity.getActivityName();
                 //clickedItem = parent.getItemAtPosition(position).toString();
-                Intent showDetailDialog = new Intent(CheckScheduled.this, scheduledActivitiesStatus.class);
-                startActivity(showDetailDialog);
-                //startActivityForResult(showDetailDialog, REQUEST_CODE);
+                Intent showDetailDialog = new Intent(CheckScheduled.this, ScheduledActivitiesStatus.class);
+                //startActivity(showDetailDialog);
+                startActivityForResult(showDetailDialog, REQUEST_CODE);
             }
         });
 
@@ -110,10 +110,15 @@ public class CheckScheduled extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             final List<ScheduledActivities> scheduled_activities_list = app_database.catDao().getScheduledActivities();
 
-            if (scheduled_activities_list.isEmpty())  scheduled_avtivities_listView.setVisibility(View.GONE);
+            if (scheduled_activities_list.isEmpty())  scheduled_activities_listView.setVisibility(View.GONE);
             else {
-                //scheduled_avtivities_listView.setVisibility(View.GONE);
-                scheduled_avtivities_listView.setAdapter(new CustomAdapterCheckScheduled(getApplicationContext(), scheduled_activities_list, category_list));
+                //scheduled_activities_listView.setVisibility(View.GONE);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        scheduled_activities_listView.setAdapter(new CustomAdapterCheckScheduled(getApplicationContext(), scheduled_activities_list, category_list));
+                    }
+                });
             }
             return null;
         }
@@ -156,8 +161,10 @@ public class CheckScheduled extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        new DatabaseAsyncGetActivity().execute();
-        super.onResume();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == -1) {
+            new DatabaseAsyncGetActivity().execute();
+        }
     }
 }

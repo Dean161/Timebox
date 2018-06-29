@@ -1,8 +1,8 @@
 package com.aktilog.timebox;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.util.List;
 
 
-public class scheduledActivitiesStatus extends AppCompatActivity {
+public class ScheduledActivitiesStatus extends AppCompatActivity {
 
     Button increase_button;
     Button decrease_button;
@@ -79,7 +79,7 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(scheduledActivitiesStatus.this, "Updated", Toast.LENGTH_LONG).show();
+                Toast.makeText(ScheduledActivitiesStatus.this, "Updated", Toast.LENGTH_LONG).show();
                 new DatabaseAsyncTaskUpdateLoggedHours().execute();
             }
         });
@@ -133,21 +133,17 @@ public class scheduledActivitiesStatus extends AppCompatActivity {
             updatedScheduledActivity.setLoggedHours(loggedHours);
             db.catDao().updateLoggedHours(updatedScheduledActivity);
 
-            //TODO: app crashing when closing dialog
-            //runOnUiThread(new Runnable() {
-                //@Override
-                //public void run() {
-                    //scheduledActivitiesStatus.this.finish();
-                //}
-            //});
-
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            //perform post-adding operation here
+            Intent returnBack = new Intent();
+            returnBack.putExtra("result", RESULT_OK);
+            setResult(Activity.RESULT_OK,returnBack);
+            ScheduledActivitiesStatus.this.finish();
+
         }
     }
 
