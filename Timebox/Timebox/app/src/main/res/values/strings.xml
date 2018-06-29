@@ -149,6 +149,9 @@
     <string name="header_activity_duration">Duration</string>
     <string name="title_confirm_pin">Confirm PIN</string>
     <string name="title_modify_pin">Modify PIN</string>
+    <string name="title_display_activity">Activity Details</string>
+    <string name="header_activity_duration_calendar">Duration</string>
+    <string name="header_activity_name_calendar">Activity name</string>
 
 
     <!-- Strings related to hints -->
@@ -179,6 +182,7 @@
     <string name="action_clear">Clear</string>
     <string name="action_expand">Open Filter</string>
     <string name="action_collapse">Close Filter</string>
+    <string name="action_edit">Edit</string>
 
     <!-- Strings related to toast messages -->
     <string name="message_incorrect_pin">Entered PIN is incorrect</string>
@@ -202,5 +206,9 @@
     <string name="dialog_set_pin">Set PIN</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">CANCEL</string>
+
+    <!-- Strings related to scheduled_activities_status -->
+    <string name="title_logged_hours">Logged hours</string>
+    <string name="title_check_scheduled_save">Save</string>
 
 </resources>

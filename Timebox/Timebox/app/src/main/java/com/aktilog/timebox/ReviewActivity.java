@@ -78,9 +78,12 @@ public class ReviewActivity extends AppCompatActivity {
                             startActivity(launch_LogActivity);
                         }else if (title.equals(getResources().getString(R.string.title_review))){
                             //do nothing
-                        }else{
+                        }else if (title.equals(getResources().getString(R.string.title_settings))){
                             Intent launch_SettingsActivity = new Intent(ReviewActivity.this,SettingsActivity.class);
                             startActivity(launch_SettingsActivity);
+                        }else if (title.equals(getResources().getString(R.string.title_checkScheduled_activities))){
+                            Intent launch_CheckedActivities = new Intent(ReviewActivity.this,CheckScheduled.class);
+                            startActivity(launch_CheckedActivities);
                         }
 
                         return true;
