@@ -29,6 +29,9 @@ public interface CatDao {
     @Insert
     void insertAll(Category category);
 
+    @Query("SELECT COUNT(*) FROM LoggedActivities")
+    int CountActs();
+
     @Query("UPDATE Category SET cat_name =:newName, cat_color_hex =:newColor WHERE cat_name = :oldName")
     void update(String newName, String newColor, String oldName);
 
@@ -50,6 +53,12 @@ public interface CatDao {
     //insert new Activity
     @Insert
     void insertActivity(LoggedActivities newAct);
+
+    @Query("SELECT * FROM LoggedActivities ORDER BY start_date_time DESC LIMIT 10")
+    List<LoggedActivities> getRecentLoggedActivities();
+
+    @Query("SELECT * FROM LoggedActivities")
+    List<LoggedActivities> getAllLoggedActivites();
 
     @Query("SELECT * FROM LoggedActivities WHERE start_date_time >= :startDateTime AND end_date_time <= :endDateTime")
     List<LoggedActivities> getLoggedActivitiesWithDates(String startDateTime, String endDateTime);
