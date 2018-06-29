@@ -130,6 +130,47 @@ public class ReviewGraph extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        PieChart pieChart = getView().findViewById(R.id.piechart_review_graph);
+        pieChart.setUsePercentValues(true);
+        ArrayList<PieEntry> yvalues = new ArrayList<>();
+
+        yvalues.add(new PieEntry(8f, "Studies"));
+        yvalues.add(new PieEntry(15f, "Work"));
+        yvalues.add(new PieEntry(12f, "Exercise"));
+        yvalues.add(new PieEntry(25f, "Leisure"));
+
+
+        PieDataSet dataSet = new PieDataSet(yvalues,"");
+
+        //ArrayList<String> xVals = new ArrayList<>();
+
+        /*xVals.add("Studies");
+        xVals.add("Work");
+        xVals.add("Exercise");
+        xVals.add("Leisure");*/
+
+        PieData data = new PieData(dataSet);
+        data.setValueFormatter(new PercentFormatter());
+        pieChart.setData(data);
+
+        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setTransparentCircleRadius(30f);
+        pieChart.setHoleRadius(30f);
+        Description description = new Description();
+        description.setText("");
+        pieChart.setDescription(description);
+
+        //data.setValueTextSize(26f);
+        data.setValueTextColor(Color.BLACK);
+        int colorBlack = Color.parseColor("#000000");
+        pieChart.setEntryLabelColor(colorBlack);
+        pieChart.setEntryLabelTextSize(13f);
+        dataSet.setValueTextSize(13f);
+        Legend legend = pieChart.getLegend();
+        legend.setTextSize(15f);
+        super.onViewCreated(view, savedInstanceState);
+
     }
 
     private class DatabaseAsyncLoad extends AsyncTask<Void, Void, Void> {
@@ -366,4 +407,6 @@ public class ReviewGraph extends Fragment {
             //perform post-adding operation here
         }
     }
+
+
 }

@@ -68,4 +68,6 @@ public interface CatDao {
     @Query("SELECT * FROM ScheduledActivities;")
     List<ScheduledActivities> getScheduledActivities();
 
+    @Query("SELECT * FROM LoggedActivities WHERE :selectedDate >= Date(start_date_time) AND :selectedDate<= Date(end_date_time);")
+    List<LoggedActivities> getLoggedActiviesCalendar(String selectedDate);
 }
