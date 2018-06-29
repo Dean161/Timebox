@@ -42,6 +42,7 @@ public class ReviewCalendar extends Fragment {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         selected_date = dateFormat.format(date);
+        new DatabaseAsyncGetActivity().execute();
 
         new DatabaseAsyncGetCatColor().execute();
         review_calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
