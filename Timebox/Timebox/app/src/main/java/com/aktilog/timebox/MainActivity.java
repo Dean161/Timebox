@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     Category predefinedCat4 = new Category();
     Category predefinedCat5 = new Category();
 
-    List<LoggedActivities> recent_activity = new ArrayList<LoggedActivities>();
+    //List<LoggedActivities> recent_activity = new ArrayList<LoggedActivities>();
+    List<LoggedActivities> recent_activity;
     List<Category> category_list;
     ListView list_recent;
     TextView list_empty;
@@ -51,9 +52,10 @@ public class MainActivity extends AppCompatActivity {
         new DatabaseAsyncGetCatColor().execute();
 
         list_recent = findViewById(R.id.list_view_recent_activities);
-        list_empty = findViewById(R.id.list_view_empty);
-        onDisplay(recent_activity,list_recent,list_empty);
+        //list_empty = findViewById(R.id.list_view_empty);
+        //onDisplay(recent_activity,list_recent,list_empty);
 
+        new DatabaseAsyncGetRecent().execute();
 
 /*
         if (recent_activity.isEmpty())  list_recent.setVisibility(View.GONE);
@@ -138,28 +140,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        onDisplay(recent_activity,list_recent,list_empty);
-    }
+    //@Override
+   //protected void onResume() {
+        //super.onResume();
+        //onDisplay(recent_activity,list_recent,list_empty);
+    //}
 
-    private void onDisplay(List<LoggedActivities> recent_activity,ListView list_recent,TextView list_empty) {
-        new DatabaseAsyncGetRecent().execute();
+    //private void onDisplay(List<LoggedActivities> recent_activity,ListView list_recent,TextView list_empty) {
+        //new DatabaseAsyncGetRecent().execute();
 
-        if (recent_activity.isEmpty()) {
-            list_recent.setVisibility(View.GONE);
-            list_empty.setVisibility(View.VISIBLE);
-        }
-        else {
-            list_recent.setVisibility(View.VISIBLE);
-            list_empty.setVisibility(View.GONE);
-            list_recent.setAdapter(new CustomAdapter(this, recent_activity,category_list));
+        //if (recent_activity.isEmpty()) {
+            //list_recent.setVisibility(View.GONE);
+            //list_empty.setVisibility(View.VISIBLE);
+        //}
+        //else {
+            //list_recent.setVisibility(View.VISIBLE);
+            //list_empty.setVisibility(View.GONE);
+            //list_recent.setAdapter(new CustomAdapter(this, recent_activity,category_list));
             //((BaseAdapter)list_recent.getAdapter()).
             //list_recent.refreshDrawableState();
             //list_recent.invalidate();
-        }
-    }
+        //}
+    //}
 /*
     private  List<LoggedActivities> getListData() {
         List<LoggedActivities> list = new ArrayList<LoggedActivities>();
@@ -261,6 +263,18 @@ public class MainActivity extends AppCompatActivity {
                 recent_activity = db.catDao().getRecentLoggedActivities();
                 //recent_activity = db.catDao().getAllLoggedActivites();
             //}
+            if (recent_activity.isEmpty()) {
+                list_recent.setVisibility(View.GONE);
+            }
+            else {
+                //scheduled_activities_listView.setVisibility(View.GONE);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        list_recent.setAdapter(new CustomAdapter(getApplicationContext(), recent_activity, category_list));
+                    }
+                });
+            }
 
             return null;
         }
