@@ -126,8 +126,8 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                             Intent launch_SettingsActivity = new Intent(LogActivity.this,SettingsActivity.class);
                             startActivity(launch_SettingsActivity);
                         } else if (title.equals(getResources().getString(R.string.title_checkScheduled_activities))){
-                            Intent launch_checkScheduled = new Intent(LogActivity.this,CheckScheduled.class);
-                            startActivity(launch_checkScheduled);
+                            Intent launch_CheckScheduled = new Intent(LogActivity.this,CheckScheduled.class);
+                            startActivity(launch_CheckScheduled);
                         }
 
                         return true;
@@ -468,7 +468,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         public void onDateSet(DatePicker view, int year, int month, int day) {
             selected_start_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month) + "-" + String.format("%02d",day));
             TimePickerStart startTimePicker = new TimePickerStart();
-            startTimePicker.show(getFragmentManager(), "Select start time!");
+            startTimePicker.show(getFragmentManager(), "Select Start Time!");
         }
     }
 
@@ -503,7 +503,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         public void onDateSet(DatePicker view, int year, int month, int day) {
             selected_end_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month) + "-" + String.format("%02d",day));
             TimePickerEnd endTimePicker = new TimePickerEnd();
-            endTimePicker.show(getFragmentManager(), "Select end time!");
+            endTimePicker.show(getFragmentManager(), "Select End Time!");
         }
     }
 

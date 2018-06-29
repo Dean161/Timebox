@@ -50,11 +50,12 @@
             android:label="@string/hint_pin"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
-            android:name=".scheduledActivitiesStatus"
-            android:theme="@style/Theme.AppCompat.Light.Dialog"></activity>
-        <activity android:name=".DisplayActivity"
+            android:name=".ScheduledActivitiesStatus"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+        <activity
+            android:name=".DisplayActivity"
             android:label="@string/title_display_activity"
-            android:theme="@style/ActivityDialogTheme"/>
+            android:theme="@style/ActivityDialogTheme" />
     </application>
 
 </manifest>
