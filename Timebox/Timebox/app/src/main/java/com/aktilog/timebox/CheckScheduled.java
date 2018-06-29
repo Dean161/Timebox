@@ -155,9 +155,4 @@ public class CheckScheduled extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onResume() {
-        new DatabaseAsyncGetActivity().execute();
-        super.onResume();
-    }
 }
