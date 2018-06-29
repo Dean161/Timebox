@@ -280,7 +280,7 @@ public class DisplayActivity extends AppCompatActivity {
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            edit_start_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month) + "-" + String.format("%02d",day));
+            edit_start_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month+1) + "-" + String.format("%02d",day));
             DisplayActivity.TimePickerStart startTimePicker = new DisplayActivity.TimePickerStart();
             startTimePicker.show(getFragmentManager(), "Select Start Time!");
         }
@@ -315,7 +315,7 @@ public class DisplayActivity extends AppCompatActivity {
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            edit_end_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month) + "-" + String.format("%02d",day));
+            edit_end_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month+1) + "-" + String.format("%02d",day));
             DisplayActivity.TimePickerEnd endTimePicker = new DisplayActivity.TimePickerEnd();
             endTimePicker.show(getFragmentManager(), "Select End Time!");
         }

@@ -219,7 +219,7 @@ public class ReviewGraph extends Fragment {
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            input_start_datetime_review_graph.setText(String.valueOf(year) + "-" + String.format("%02d",month) + "-" + String.format("%02d",day));
+            input_start_datetime_review_graph.setText(String.valueOf(year) + "-" + String.format("%02d",month+1) + "-" + String.format("%02d",day));
             ReviewText.TimePickerStart startTimePicker = new ReviewText.TimePickerStart();
             startTimePicker.show(getActivity().getFragmentManager(), "Select start time!");
         }
@@ -254,7 +254,7 @@ public class ReviewGraph extends Fragment {
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            input_end_datetime_review_graph.setText(String.valueOf(year) + "-" + String.format("%02d",month) + "-" + String.format("%02d",day));
+            input_end_datetime_review_graph.setText(String.valueOf(year) + "-" + String.format("%02d",month+1) + "-" + String.format("%02d",day));
             ReviewText.TimePickerEnd endTimePicker = new ReviewText.TimePickerEnd();
             endTimePicker.show(getActivity().getFragmentManager(), "Select end time!");
         }
