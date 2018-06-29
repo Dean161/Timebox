@@ -40,7 +40,7 @@ public class AddModCategories extends AppCompatActivity {
     ActionBar actionbar_categories;
     Switch add_mod_switch;
     int default_color;
-    String input_hex;
+    String input_hex = "-16777216";
     private int CURRENT_BACKGROUND_COLOR = 0xFFFFFFFF;
     private String OK = "ok";
     private String CANCEL = "cancel";

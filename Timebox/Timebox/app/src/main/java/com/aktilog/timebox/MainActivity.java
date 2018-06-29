@@ -1,6 +1,9 @@
 package com.aktilog.timebox;
 
+import android.arch.lifecycle.LiveData;
 import android.content.Intent;
+import android.database.Cursor;
+import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -23,11 +26,20 @@ import javax.xml.transform.Templates;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
+    AppDatabase db;
+    Category predefinedCat1 = new Category();
+    Category predefinedCat2 = new Category();
+    Category predefinedCat3 = new Category();
+    Category predefinedCat4 = new Category();
+    Category predefinedCat5 = new Category();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = AppDatabase.getAppDatabase(getApplicationContext());
+        new DatabaseAsyncInsertPredefined().execute();
 
         final ListView list_recent = findViewById(R.id.list_view_recent_activities);
         final TextView list_empty = findViewById(R.id.list_view_empty);
@@ -73,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
                             Intent launch_SettingsActivity = new Intent(MainActivity.this,SettingsActivity.class);
                             startActivity(launch_SettingsActivity);
                         } else if (title.equals(getResources().getString(R.string.title_checkScheduled_activities))){
-                            Intent launch_checkScheduled = new Intent(MainActivity.this,CheckScheduled.class);
-                            startActivity(launch_checkScheduled);
+                            Intent launch_CheckScheduled = new Intent(MainActivity.this,CheckScheduled.class);
+                            startActivity(launch_CheckScheduled);
                         }
 
                         return true;
@@ -150,5 +162,51 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //insert predefined categories if there are no
+    private class DatabaseAsyncInsertPredefined extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //perform pre-adding operation here
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            int NoCurrentCat = db.catDao().CountCats();
+
+
+            if (NoCurrentCat == 0) {
+                predefinedCat1.setCatName("Sport");
+                predefinedCat1.setHexCode("-65536");
+
+                predefinedCat2.setCatName("University");
+                predefinedCat2.setHexCode("-37353");
+
+                predefinedCat3.setCatName("Leisure");
+                predefinedCat3.setHexCode("-16760577");
+
+                predefinedCat4.setCatName("Work");
+                predefinedCat4.setHexCode("-7657");
+
+                predefinedCat5.setCatName("Holiday");
+                predefinedCat5.setHexCode("-4259585");
+
+                db.catDao().insertAll(predefinedCat1);
+                db.catDao().insertAll(predefinedCat2);
+                db.catDao().insertAll(predefinedCat3);
+                db.catDao().insertAll(predefinedCat4);
+                db.catDao().insertAll(predefinedCat5);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //perform post-adding operation here
+        }
     }
 }
