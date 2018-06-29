@@ -1,6 +1,5 @@
 package com.aktilog.timebox;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
@@ -12,18 +11,21 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
-//TODO: adjust whole view
-//TODO: GoBack Button not working
+
+//TODO: update view after closing dialog (show updated amount of logged hours)
 public class CheckScheduled extends AppCompatActivity {
 
     AppDatabase app_database;
     private DrawerLayout mDrawerLayout;
     ListView scheduled_avtivities_listView;
     List<Category> category_list;
+    static public String clickedItem;
+    public ScheduledActivities clickedActivity;
+    public static final int REQUEST_CODE = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,19 @@ public class CheckScheduled extends AppCompatActivity {
         scheduled_avtivities_listView = findViewById(R.id.list_scheduled_activities);
 
         new DatabaseAsyncGetActivity().execute();
+
+        scheduled_avtivities_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                clickedActivity = (ScheduledActivities) parent.getAdapter().getItem(position);
+                clickedItem = clickedActivity.getActivityName();
+                //clickedItem = parent.getItemAtPosition(position).toString();
+                Intent showDetailDialog = new Intent(CheckScheduled.this, scheduledActivitiesStatus.class);
+                startActivity(showDetailDialog);
+                //startActivityForResult(showDetailDialog, REQUEST_CODE);
+            }
+        });
+
     }
 
     private class DatabaseAsyncGetActivity extends AsyncTask<Void, Void, Void> {
@@ -138,5 +153,11 @@ public class CheckScheduled extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        new DatabaseAsyncGetActivity().execute();
+        super.onResume();
     }
 }

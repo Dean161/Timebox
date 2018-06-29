@@ -4,8 +4,9 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
+import android.os.AsyncTask;
 
-@Database(entities = {Category.class, LoggedActivities.class, ScheduledActivities.class}, version = 6)
+@Database(entities = {Category.class, LoggedActivities.class, ScheduledActivities.class}, version = 13)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
@@ -26,5 +27,4 @@ public abstract class AppDatabase extends RoomDatabase {
     public static void destroyInstance() {
         INSTANCE = null;
     }
-
 }

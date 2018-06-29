@@ -263,20 +263,29 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             String newActivity = specActivity.getText().toString();
             String startDateTime = start_date_time.getText().toString();
             String endDateTime = end_date_time.getText().toString();
-            String targetDuration = target_duration.getText().toString();
+            String targetDurationString = target_duration.getText().toString();
+            String[] targetDurationStringSplitted = targetDurationString.split(" ");
+            String[] targetDurationStringSplittedHours =targetDurationStringSplitted[0].split("h");
+            String[] targetDurationStringSplittedMin =targetDurationStringSplitted[1].split("m");
+            String targetHours = targetDurationStringSplittedHours[0];
+            String targetMin = targetDurationStringSplittedMin[0];
+
+            int targetDuration = Integer.parseInt(targetHours)*60 + Integer.parseInt(targetMin);
             String notes = inputNotes.getText().toString();
-
-
 
             ScheduledActivities newAct = new ScheduledActivities();
             newAct.setActivityName(newActivity);
             newAct.setCid_fk(categoryCid);
             newAct.setStartDateTime(startDateTime);
             newAct.setEndDateTime(endDateTime);
-            newAct.setTargetDuration(targetDuration);
+            newAct.setTargetDurationInMin(targetDuration);
             newAct.setNotes(notes);
+            newAct.setLoggedHours(0);
 
             db.catDao().insertScheduledActivity(newAct);
+
+            Intent goHome = new Intent(LogActivity.this, MainActivity.class);
+            startActivity(goHome);
 
             return null;
         }
@@ -302,8 +311,6 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             String endDateTime = end_date_time.getText().toString();
             String notes = inputNotes.getText().toString();
 
-
-
             LoggedActivities newAct = new LoggedActivities();
             newAct.setActivityName(newActivity);
             newAct.setCid_fk(categoryCid);
@@ -323,6 +330,9 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                     inputNotes.getText().clear();
                 }
             });
+
+            Intent goHome = new Intent(LogActivity.this, MainActivity.class);
+            startActivity(goHome);
             return null;
         }
 

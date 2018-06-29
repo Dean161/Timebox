@@ -207,4 +207,8 @@
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">CANCEL</string>
 
+    <!-- Strings related to scheduled_activities_status -->
+    <string name="title_logged_hours">Logged hours</string>
+    <string name="title_check_scheduled_save">Save</string>
+
 </resources>
