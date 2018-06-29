@@ -31,8 +31,8 @@ public class DisplayActivity extends AppCompatActivity {
     Button display_edit_activity;
     EditText edit_activity_name;
     Spinner edit_category_name;
-    public static EditText edit_start_date_time;
-    public static EditText edit_end_date_time;
+    public static TextView edit_start_date_time;
+    public static TextView edit_end_date_time;
     EditText edit_notes;
     Button edit_save_activity;
     LoggedActivities clicked_logged_activity_entry;

@@ -3,7 +3,6 @@ package com.aktilog.timebox;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.LauncherActivity;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -20,14 +19,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.sql.Array;
-import java.util.ArrayList;
+;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 public class ReviewText extends Fragment {
@@ -392,7 +387,7 @@ public class ReviewText extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == -1){
-            Toast.makeText(getActivity(), "Control is Back", Toast.LENGTH_SHORT).show();
+            new DatabaseAsyncGetActivity().execute();
         }
     }
 }
