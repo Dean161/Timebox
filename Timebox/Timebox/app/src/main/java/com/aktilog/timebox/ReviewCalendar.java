@@ -66,7 +66,7 @@ public class ReviewCalendar extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            logged_activities_calendar = app_db_review_calendar.catDao().getLoggedActiviesCalendar(selected_date);
+            logged_activities_calendar = app_db_review_calendar.catDao().getLoggedActivitiesCalendar(selected_date);
 
             getActivity().runOnUiThread(new Runnable() {
                 @Override
