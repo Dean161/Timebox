@@ -33,7 +33,7 @@
             android:key="@string/title_sec_ques1"
             android:defaultValue="@string/title_sec_ques1" />
         <EditTextPreference
-            android:defaultValue="@string/summary_answer_select"
+            android:defaultValue=" "
             android:key="@string/title_sec_answer1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
@@ -52,7 +52,7 @@
             android:key="@string/title_sec_ques2"
             android:defaultValue="@string/title_sec_ques2" />
         <EditTextPreference
-            android:defaultValue="@string/summary_answer_select"
+            android:defaultValue=" "
             android:key="@string/title_sec_answer2"
             android:selectAllOnFocus="true"
             android:singleLine="true"
@@ -71,7 +71,7 @@
             android:key="@string/title_sec_ques3"
             android:defaultValue="@string/title_sec_ques3" />
         <EditTextPreference
-            android:defaultValue="@string/summary_answer_select"
+            android:defaultValue=" "
             android:key="@string/title_sec_answer3"
             android:selectAllOnFocus="true"
             android:singleLine="true"
@@ -90,7 +90,7 @@
             android:key="@string/title_sec_ques4"
             android:defaultValue="@string/title_sec_ques4" />
         <EditTextPreference
-            android:defaultValue="@string/summary_answer_select"
+            android:defaultValue=" "
             android:key="@string/title_sec_answer4"
             android:selectAllOnFocus="true"
             android:singleLine="true"
@@ -109,7 +109,7 @@
             android:key="@string/title_sec_ques5"
             android:defaultValue="@string/title_sec_ques1" />
         <EditTextPreference
-            android:defaultValue="@string/summary_answer_select"
+            android:defaultValue=" "
             android:key="@string/title_sec_answer5"
             android:selectAllOnFocus="true"
             android:singleLine="true"
@@ -128,7 +128,7 @@
             android:key="@string/title_sec_ques6"
             android:defaultValue="@string/title_sec_ques6" />
         <EditTextPreference
-            android:defaultValue="@string/summary_answer_select"
+            android:defaultValue=" "
             android:key="@string/title_sec_answer6"
             android:selectAllOnFocus="true"
             android:singleLine="true"

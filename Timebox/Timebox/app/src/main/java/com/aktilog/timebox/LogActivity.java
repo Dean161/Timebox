@@ -126,8 +126,8 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                             Intent launch_SettingsActivity = new Intent(LogActivity.this,SettingsActivity.class);
                             startActivity(launch_SettingsActivity);
                         } else if (title.equals(getResources().getString(R.string.title_checkScheduled_activities))){
-                            Intent launch_checkScheduled = new Intent(LogActivity.this,CheckScheduled.class);
-                            startActivity(launch_checkScheduled);
+                            Intent launch_CheckScheduled = new Intent(LogActivity.this,CheckScheduled.class);
+                            startActivity(launch_CheckScheduled);
                         }
 
                         return true;

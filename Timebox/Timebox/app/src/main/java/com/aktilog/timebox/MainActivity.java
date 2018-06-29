@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
                             Intent launch_SettingsActivity = new Intent(MainActivity.this,SettingsActivity.class);
                             startActivity(launch_SettingsActivity);
                         } else if (title.equals(getResources().getString(R.string.title_checkScheduled_activities))){
-                            Intent launch_checkScheduled = new Intent(MainActivity.this,CheckScheduled.class);
-                            startActivity(launch_checkScheduled);
+                            Intent launch_CheckScheduled = new Intent(MainActivity.this,CheckScheduled.class);
+                            startActivity(launch_CheckScheduled);
                         }
 
                         return true;

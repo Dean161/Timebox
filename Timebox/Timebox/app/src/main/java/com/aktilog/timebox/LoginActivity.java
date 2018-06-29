@@ -57,4 +57,25 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences shared_preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sign_in = findViewById(R.id.button_sign_in);
+        entered_pin = findViewById(R.id.text_pin);
+        final String set_pin = shared_preferences.getString("SetPin","");
+
+        sign_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(entered_pin.getText().toString().equals(set_pin)){
+                    Intent launch_MainActivity = new Intent(LoginActivity.this,MainActivity.class);
+                    startActivity(launch_MainActivity);
+                    finish();
+                }else{
+                    Toast.makeText(getApplicationContext(),R.string.message_incorrect_pin,Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 }

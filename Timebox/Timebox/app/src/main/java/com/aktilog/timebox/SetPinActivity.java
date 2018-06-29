@@ -38,7 +38,9 @@ public class SetPinActivity extends AppCompatActivity {
                     editor.putString("SetPin",specified_pin_value);
                     editor.putBoolean("EnablePin",true);
                     editor.apply();
-                    SettingsActivity.switchPreference.setChecked(true);
+                    if (SettingsActivity.switchPreference != null){
+                        SettingsActivity.switchPreference.setChecked(true);
+                    }
                     SetPinActivity.this.finish();
                 } else {
                     Toast.makeText(SetPinActivity.this, "Entered PINs do not match", Toast.LENGTH_LONG).show();
