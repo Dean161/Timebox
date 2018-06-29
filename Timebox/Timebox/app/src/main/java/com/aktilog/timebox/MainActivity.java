@@ -27,6 +27,14 @@ import javax.xml.transform.Templates;
 
 public class MainActivity extends AppCompatActivity {
 
+    /* TODO
+        startscreen still display no activity when the app start
+        scroll bar for the list view
+        onItem selector & click
+        Behavior of back button
+        headbar display color according to logged activities
+     */
+
     private DrawerLayout mDrawerLayout;
     AppDatabase db;
     Category predefinedCat1 = new Category();
