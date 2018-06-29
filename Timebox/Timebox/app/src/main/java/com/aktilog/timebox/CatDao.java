@@ -29,6 +29,9 @@ public interface CatDao {
     @Insert
     void insertAll(Category category);
 
+    @Query("SELECT COUNT(*) FROM LoggedActivities")
+    int CountActs();
+
     @Query("UPDATE Category SET cat_name =:newName, cat_color_hex =:newColor WHERE cat_name = :oldName")
     void update(String newName, String newColor, String oldName);
 
@@ -51,6 +54,12 @@ public interface CatDao {
     @Insert
     void insertActivity(LoggedActivities newAct);
 
+    @Query("SELECT * FROM LoggedActivities ORDER BY start_date_time DESC LIMIT 10")
+    List<LoggedActivities> getRecentLoggedActivities();
+
+    @Query("SELECT * FROM LoggedActivities")
+    List<LoggedActivities> getAllLoggedActivites();
+
     @Query("SELECT * FROM LoggedActivities WHERE start_date_time >= :startDateTime AND end_date_time <= :endDateTime")
     List<LoggedActivities> getLoggedActivitiesWithDates(String startDateTime, String endDateTime);
 
@@ -68,6 +77,9 @@ public interface CatDao {
     //TODO: add "WHERE logged_hours < target_duration" -> need to change data type of target_duration to int
     @Query("SELECT * FROM ScheduledActivities WHERE logged_hours < target_duration_in_min;")
     List<ScheduledActivities> getScheduledActivities();
+
+    @Query("SELECT * FROM LoggedActivities WHERE :selectedDate >= Date(start_date_time) AND :selectedDate<= Date(end_date_time);")
+    List<LoggedActivities> getLoggedActivitiesCalendar(String selectedDate);
 
     @Query("SELECT * FROM ScheduledActivities WHERE activity_name IN (:activityname);")
     List<ScheduledActivities> getChosenScheduled(String activityname);

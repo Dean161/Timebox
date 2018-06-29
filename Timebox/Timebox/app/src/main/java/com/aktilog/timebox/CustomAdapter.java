@@ -14,13 +14,17 @@ public class CustomAdapter  extends BaseAdapter {
     private List<LoggedActivities> listData;
     private LayoutInflater layoutInflater;
     private Context context;
+    private String cat_color_review_text;
+    private List<Category> category_list_review;
+    private int cat_id;
     private String header = "##HEADER##";
 
-    public CustomAdapter(Context aContext,  List<LoggedActivities> listData) {
+    public CustomAdapter(Context aContext,  List<LoggedActivities> listData, List<Category> categoryData) {
         this.context = aContext;
         layoutInflater = LayoutInflater.from(aContext);
 
         this.listData = listData;
+        this.category_list_review = categoryData;
 
         String headDate="";
         for (int i=0;i<listData.size();i++) {
@@ -30,7 +34,9 @@ public class CustomAdapter  extends BaseAdapter {
                 if (!iter.getActivityName().contains(header)) {
                     LoggedActivities newLog = new LoggedActivities();
                     newLog.setActivityName(header);
+                    newLog.setCid_fk(1);
                     newLog.setStartDateTime(headDate+" 00:00");
+                    newLog.setEndDateTime(headDate+" 00:00");
                     this.listData.add(i,newLog);
                 }
             }
@@ -72,6 +78,8 @@ public class CustomAdapter  extends BaseAdapter {
         }
 
         LoggedActivities loggedactivity = this.listData.get(position);
+        cat_id = loggedactivity.getCid_fk();
+        cat_color_review_text = getColorByID();
 
         if (loggedactivity.getActivityName().contains(header)) {
             holder.dateView.setVisibility(View.VISIBLE);
@@ -95,12 +103,10 @@ public class CustomAdapter  extends BaseAdapter {
         }
         holder.dateView.setText(loggedactivity.getStartDateTime().split(" ")[0].split("-")[2]);
         holder.monthView.setText(loggedactivity.getStartDateTime().split(" ")[0].split("-")[1]);
-        //holder.catView.setBackgroundColor(R.color.colorGrey);
+        holder.catView.setBackgroundColor(Integer.parseInt(cat_color_review_text));
         holder.nameView.setText(loggedactivity.getActivityName());
         holder.startView.setText(loggedactivity.getStartDateTime().split(" ")[1]);
-        if (loggedactivity.getEndDateTime() != null) {
-            holder.endView.setText(loggedactivity.getEndDateTime().split(" ")[1]);
-        }
+        holder.endView.setText(loggedactivity.getEndDateTime().split(" ")[1]);
         return convertView;
     }
 
@@ -112,5 +118,14 @@ public class CustomAdapter  extends BaseAdapter {
         TextView startView;
         TextView endView;
         TextView overView;
+    }
+
+    private String getColorByID(){
+        for(int i=0;i<category_list_review.size();i++){
+            if (category_list_review.get(i).getCid() == cat_id){
+                return category_list_review.get(i).getHexCode();
+            }
+        }
+        return "N/A";
     }
 }
