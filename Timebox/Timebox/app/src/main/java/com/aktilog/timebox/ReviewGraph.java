@@ -319,6 +319,8 @@ public class ReviewGraph extends Fragment {
                 });
                 return null;
             }
+            yvalues.clear();
+            piechart_colors.clear();
             for(int i=0; i<logged_activities_graph.size();i++){
                 SimpleDateFormat start_date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 SimpleDateFormat end_date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -362,11 +364,7 @@ public class ReviewGraph extends Fragment {
             int colorBlack = Color.parseColor("#000000");
             pieChart.setEntryLabelColor(colorBlack);
             dataSet.setValueTextSize(13f);
-            Legend legend = pieChart.getLegend();
-            legend.setTextSize(0f);
-            legend.setFormSize(0f);
-            legend.setEntries(legend_entries);
-
+            pieChart.getLegendRenderer().computeLegend(data);
             return null;
         }
 
@@ -377,35 +375,6 @@ public class ReviewGraph extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    /*PieDataSet dataSet = new PieDataSet(yvalues,"");
-                    PieData data = new PieData(dataSet);
-                    data.setValueFormatter(new PercentFormatter());
-                    pieChart.setData(data);
-                    pieChart.invalidate();
-
-                    dataSet.setColors(piechart_colors);
-                    pieChart.setDrawHoleEnabled(true);
-                    pieChart.setTransparentCircleRadius(30f);
-                    pieChart.setHoleRadius(30f);
-                    Description description = new Description();
-                    description.setText("");
-                    pieChart.setDescription(description);
-
-                    //data.setValueTextSize(26f);
-                    data.setValueTextColor(Color.BLACK);
-                    int colorBlack = Color.parseColor("#000000");
-                    pieChart.setEntryLabelColor(colorBlack);
-                    pieChart.setEntryLabelTextSize(13f);
-                    dataSet.setValueTextSize(13f);
-                    Legend legend = pieChart.getLegend();
-                    legend.setTextSize(15f);
-                    *//*legend.setCustom(legend_entries);
-                    legend.setForm(Legend.LegendForm.CIRCLE);
-                    legend.setFormLineWidth(20f);
-                    legend.setFormSize(12f);
-                    legend.setFormToTextSpace(1f);*//*
-                    legend.setExtra(legend_entries);
-                    legend.setWordWrapEnabled(true);*/
                     collapseFilterOptions();
                 }
             });

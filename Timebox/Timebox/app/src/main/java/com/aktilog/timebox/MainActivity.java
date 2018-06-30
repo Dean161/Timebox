@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     Category predefinedCat4 = new Category();
     Category predefinedCat5 = new Category();
 
-    List<LoggedActivities> recent_activity = new ArrayList<LoggedActivities>();
+    List<LoggedActivities> recent_activity = new ArrayList<>();
     //List<LoggedActivities> recent_activity;
     List<Category> category_list;
     ListView list_recent;
