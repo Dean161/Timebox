@@ -70,9 +70,11 @@ public class ScheduledActivitiesStatus extends AppCompatActivity {
             public void onClick(View v) {
                 String loggedHoursString = logged_hours.getText().toString();
                 int loggedHours = Integer.parseInt(loggedHoursString);
-                loggedHours--;
-                loggedHoursString = String.valueOf(loggedHours);
-                logged_hours.setText(loggedHoursString);
+                if (loggedHours > 0) {
+                    loggedHours--;
+                    loggedHoursString = String.valueOf(loggedHours);
+                    logged_hours.setText(loggedHoursString);
+                }
             }
         });
 
