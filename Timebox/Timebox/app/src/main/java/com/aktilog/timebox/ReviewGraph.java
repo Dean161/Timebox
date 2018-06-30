@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -61,6 +62,10 @@ public class ReviewGraph extends Fragment {
     List<LoggedActivities> logged_activities_list_graph;
     PieChart pieChart;
     ArrayList<PieEntry> yvalues;
+    List<Integer> piechart_colors = new ArrayList<>();
+    int REQUEST_NAME = 1;
+    int REQUEST_COLOR = 2;
+    List<LegendEntry> legend_entries = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -232,7 +237,7 @@ public class ReviewGraph extends Fragment {
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             input_start_datetime_review_graph.setText(String.valueOf(year) + "-" + String.format("%02d",month+1) + "-" + String.format("%02d",day));
-            ReviewText.TimePickerStart startTimePicker = new ReviewText.TimePickerStart();
+            ReviewGraph.TimePickerStart startTimePicker = new ReviewGraph.TimePickerStart();
             startTimePicker.show(getActivity().getFragmentManager(), "Select start time!");
         }
     }
@@ -267,7 +272,7 @@ public class ReviewGraph extends Fragment {
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             input_end_datetime_review_graph.setText(String.valueOf(year) + "-" + String.format("%02d",month+1) + "-" + String.format("%02d",day));
-            ReviewText.TimePickerEnd endTimePicker = new ReviewText.TimePickerEnd();
+            ReviewGraph.TimePickerEnd endTimePicker = new ReviewGraph.TimePickerEnd();
             endTimePicker.show(getActivity().getFragmentManager(), "Select end time!");
         }
     }
@@ -314,14 +319,6 @@ public class ReviewGraph extends Fragment {
                 });
                 return null;
             }
-
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    collapseFilterOptions();
-                }
-            });
-
             for(int i=0; i<logged_activities_graph.size();i++){
                 SimpleDateFormat start_date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 SimpleDateFormat end_date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -334,20 +331,59 @@ public class ReviewGraph extends Fragment {
                     e.printStackTrace();
                 }
                 int cat_id = logged_activities_graph.get(i).getCid_fk();
-                String cat_name = getCatNameByID(category_list, cat_id);
+                String cat_name = getCatDetailsByID(category_list, cat_id,REQUEST_NAME);
+                int cat_color = Integer.parseInt(getCatDetailsByID(category_list, cat_id,REQUEST_COLOR));
                 long duration = ((end_date.getTime() - start_date.getTime())/3600000);
                 yvalues.add(new PieEntry(duration,cat_name));
+                piechart_colors.add(cat_color);
             }
+            LegendEntry legendEntry = new LegendEntry();
+            legendEntry.label = "";
+            legendEntry.formColor = 0;
+            legend_entries.add(legendEntry);
 
+            PieDataSet dataSet = new PieDataSet(yvalues,"");
+            PieData data = new PieData(dataSet);
+            data.setValueFormatter(new PercentFormatter());
+            pieChart.setData(data);
+            pieChart.invalidate();
+
+            dataSet.setColors(piechart_colors);
+            pieChart.setDrawHoleEnabled(true);
+            pieChart.setTransparentCircleRadius(30f);
+            pieChart.setHoleRadius(30f);
+            pieChart.setEntryLabelTextSize(0f);
+            Description description = new Description();
+            description.setText("");
+            pieChart.setDescription(description);
+
+            //data.setValueTextSize(26f);
+            data.setValueTextColor(Color.BLACK);
+            int colorBlack = Color.parseColor("#000000");
+            pieChart.setEntryLabelColor(colorBlack);
+            dataSet.setValueTextSize(13f);
+            Legend legend = pieChart.getLegend();
+            legend.setTextSize(0f);
+            legend.setFormSize(0f);
+            legend.setEntries(legend_entries);
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //perform post-adding operation here
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    PieDataSet dataSet = new PieDataSet(yvalues,"");
+                    /*PieDataSet dataSet = new PieDataSet(yvalues,"");
                     PieData data = new PieData(dataSet);
                     data.setValueFormatter(new PercentFormatter());
                     pieChart.setData(data);
+                    pieChart.invalidate();
 
-                    dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+                    dataSet.setColors(piechart_colors);
                     pieChart.setDrawHoleEnabled(true);
                     pieChart.setTransparentCircleRadius(30f);
                     pieChart.setHoleRadius(30f);
@@ -363,17 +399,16 @@ public class ReviewGraph extends Fragment {
                     dataSet.setValueTextSize(13f);
                     Legend legend = pieChart.getLegend();
                     legend.setTextSize(15f);
+                    *//*legend.setCustom(legend_entries);
+                    legend.setForm(Legend.LegendForm.CIRCLE);
+                    legend.setFormLineWidth(20f);
+                    legend.setFormSize(12f);
+                    legend.setFormToTextSpace(1f);*//*
+                    legend.setExtra(legend_entries);
+                    legend.setWordWrapEnabled(true);*/
+                    collapseFilterOptions();
                 }
             });
-
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            //perform post-adding operation here
         }
     }
 
@@ -425,10 +460,14 @@ public class ReviewGraph extends Fragment {
         }
     }
 
-    private String getCatNameByID(List<Category> category, int cat_id){
+    private String getCatDetailsByID(List<Category> category, int cat_id, int request_code){
         for(int i=0;i<category.size();i++){
             if (category.get(i).getCid() == cat_id){
-                return category.get(i).getCatName();
+                if (request_code == REQUEST_NAME) {
+                    return category.get(i).getCatName();
+                } else {
+                    return category.get(i).getHexCode();
+                }
             }
         }
         return "N/A";
