@@ -1,8 +1,7 @@
 package com.aktilog.timebox;
 
-import android.arch.lifecycle.LiveData;
+
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,17 +12,28 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.List;
 import java.util.ArrayList;
-import android.widget.AdapterView;
 import android.widget.Toast;
+import android.arch.lifecycle.LiveData;
+import android.database.Cursor;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 
 import javax.xml.transform.Templates;
 
 public class MainActivity extends AppCompatActivity {
+
+    /* TODO
+        startscreen still display no activity when the app start
+        scroll bar for the list view
+        onItem selector & click
+        Behavior of back button
+        headbar display color according to logged activities
+     */
 
     private DrawerLayout mDrawerLayout;
     AppDatabase db;
@@ -33,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
     Category predefinedCat4 = new Category();
     Category predefinedCat5 = new Category();
 
+    List<LoggedActivities> recent_activity = new ArrayList<LoggedActivities>();
+    //List<LoggedActivities> recent_activity;
+    List<Category> category_list;
+    ListView list_recent;
+    TextView list_empty;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,15 +56,20 @@ public class MainActivity extends AppCompatActivity {
 
         db = AppDatabase.getAppDatabase(getApplicationContext());
         new DatabaseAsyncInsertPredefined().execute();
+        new DatabaseAsyncGetCatColor().execute();
 
-        final ListView list_recent = findViewById(R.id.list_view_recent_activities);
-        final TextView list_empty = findViewById(R.id.list_view_empty);
+        list_recent = findViewById(R.id.list_view_recent_activities);
+        list_empty = findViewById(R.id.list_view_empty);
+        onDisplay();
 
-        List<LoggedActivities> recent_activity = getListData();
+        //new DatabaseAsyncGetRecent().execute();
+
+/*
         if (recent_activity.isEmpty())  list_recent.setVisibility(View.GONE);
-        else  {
+        else {
             list_empty.setVisibility(View.GONE);
-            list_recent.setAdapter(new CustomAdapter(this, recent_activity));
+//            list_recent.setAdapter(new CustomAdapter(this, recent_activity));
+
 /*
         list_recent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -57,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
                 Object o = list_recent.getItemAtPosition(position);
                 LoggedActivities loggedActivities = (LoggedActivities) o;
                 Toast.makeText(MainActivity.this, "Selected :" + " " + loggedActivities, Toast.LENGTH_LONG).show();
-            } */
-        }
+            }*/
+//        }
 
         mDrawerLayout = findViewById(R.id.drawer_navigation_home);
 
@@ -126,6 +147,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        onDisplay();
+    }
+
+    private void onDisplay() {
+        new DatabaseAsyncGetRecent().execute();
+
+        if (recent_activity.isEmpty()) {
+            list_recent.setVisibility(View.GONE);
+            list_empty.setVisibility(View.VISIBLE);
+        }
+        else {
+            list_recent.setVisibility(View.VISIBLE);
+            list_empty.setVisibility(View.GONE);
+            list_recent.setAdapter(new CustomAdapter(this, recent_activity,category_list));
+            //((BaseAdapter)list_recent.getAdapter()).
+            //list_recent.refreshDrawableState();
+            //list_recent.invalidate();
+        }
+    }
+/*
     private  List<LoggedActivities> getListData() {
         List<LoggedActivities> list = new ArrayList<LoggedActivities>();
 
@@ -147,13 +191,13 @@ public class MainActivity extends AppCompatActivity {
         Dinner.setEndDateTime("2018-06-15 18:00");
         Dinner.setNotes("Having dinner");
 
-        list.add(Programming);
-        list.add(Football);
-        list.add(Dinner);
+        //list.add(Programming);
+        //list.add(Football);
+        //list.add(Dinner);
 
         return list;
     }
-
+*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -209,4 +253,75 @@ public class MainActivity extends AppCompatActivity {
             //perform post-adding operation here
         }
     }
+    private class DatabaseAsyncGetRecent extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //perform pre-adding operation here
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            int CurrentActNo = db.catDao().CountActs();
+
+            if (CurrentActNo == 0) recent_activity.clear();
+            else {
+                //recent_activity.clear();
+                recent_activity = db.catDao().getRecentLoggedActivities();
+                //recent_activity = db.catDao().getAllLoggedActivites();
+            }
+            /*
+            if (recent_activity.isEmpty()) {
+                list_recent.setVisibility(View.GONE);
+            }
+            else {
+                //scheduled_activities_listView.setVisibility(View.GONE);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        list_recent.setAdapter(new CustomAdapter(getApplicationContext(), recent_activity, category_list));
+                    }
+                });
+            }
+*/
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //perform post-adding operation here
+        }
+    }
+
+
+    private class DatabaseAsyncGetCatColor extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //perform pre-adding operation here
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            category_list = db.catDao().getAllCat();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //perform post-adding operation here
+        }
+    }
+
+    private String getCatNameByID(List<Category> category, int cat_id){
+        for(int i=0;i<category.size();i++){
+            if (category.get(i).getCid() == cat_id){
+                return category.get(i).getCatName();
+            }
+        }
+        return "N/A";
+    }
+
 }

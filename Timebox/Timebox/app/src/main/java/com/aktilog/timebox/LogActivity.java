@@ -28,8 +28,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class LogActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener{
@@ -213,8 +216,27 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                             String end_datetime = end_date_time.getText().toString();
                             if (!act_name.equals("") && !start_datetime.equals("") && !end_datetime.equals("")) {
                                 new DatabaseAsyncGetCid().execute();
-                                new DatabaseAsyncInsertLoggedActivity().execute();
-                                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+
+                                String startDateTimeToCheck = start_date_time.getText().toString();
+                                String endDateTimeToCheck = end_date_time.getText().toString();
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+                                Date convertedStartDate = new Date();
+                                Date convertedEndDate = new Date();
+                                try {
+                                    convertedStartDate = dateFormat.parse(startDateTimeToCheck);
+                                    convertedEndDate = dateFormat.parse(endDateTimeToCheck);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                if (convertedEndDate.after(convertedStartDate)) {
+                                    new DatabaseAsyncInsertLoggedActivity().execute();
+                                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(LogActivity.this, "Chosen end date is earlier than start date. Please adjust.", Toast.LENGTH_SHORT).show();
+                                }
+
+
                             } else {
                                 Toast.makeText(LogActivity.this, "One or more fields are blank", Toast.LENGTH_LONG).show();
                             }
@@ -227,7 +249,26 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                     if (buttonSave.isEnabled()) {
                         Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
                         new DatabaseAsyncGetCid().execute();
-                        new DatabaseAsyncInsertScheduledActivity().execute();
+
+                        String startDateTimeToCheck = start_date_time.getText().toString();
+                        String endDateTimeToCheck = end_date_time.getText().toString();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+                        Date convertedStartDate = new Date();
+                        Date convertedEndDate = new Date();
+                        try {
+                            convertedStartDate = dateFormat.parse(startDateTimeToCheck);
+                            convertedEndDate = dateFormat.parse(endDateTimeToCheck);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (convertedEndDate.after(convertedStartDate)) {
+                            new DatabaseAsyncInsertScheduledActivity().execute();
+                            Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(LogActivity.this, "Chosen end date is earlier than start date. Please adjust.", Toast.LENGTH_SHORT).show();
+                        }
+
                     } else {
                         //not working???
                         Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();

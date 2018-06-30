@@ -211,5 +211,6 @@
     <!-- Strings related to scheduled_activities_status -->
     <string name="title_logged_hours">Logged hours</string>
     <string name="title_check_scheduled_save">Save</string>
+    <string name="desc_progressBar">Your progress:</string>
 
 </resources>

@@ -51,6 +51,7 @@
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".ScheduledActivitiesStatus"
+            android:label="Log conducted work"
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity
             android:name=".DisplayActivity"
