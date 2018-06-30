@@ -34,9 +34,12 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.sql.Array;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class ReviewGraph extends Fragment {
@@ -55,6 +58,9 @@ public class ReviewGraph extends Fragment {
     ArrayList<LoggedActivities> logged_activities_graph;
     String[] selection;
     List<Category> category_list;
+    List<LoggedActivities> logged_activities_list_graph;
+    PieChart pieChart;
+    ArrayList<PieEntry> yvalues;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,8 +83,13 @@ public class ReviewGraph extends Fragment {
         button_search_review_graph = getView().findViewById(R.id.button_search_review_graph);
         button_clear_review_graph = getView().findViewById(R.id.button_clear_review_graph);
         button_switch_filter_review_graph = getView().findViewById(R.id.button_switch_filter_review_graph);
+        pieChart = getView().findViewById(R.id.piechart_review_graph);
+        pieChart.setUsePercentValues(true);
+        yvalues = new ArrayList<>();
+
         new DatabaseAsyncLoad().execute();
         new DatabaseAsyncGetCatColor().execute();
+
 
 
         button_search_review_graph.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +97,7 @@ public class ReviewGraph extends Fragment {
             public void onClick(View view) {
                 new DatabaseAsyncGetActivity().execute();
             }
+
         });
 
         button_clear_review_graph.setOnClickListener(new View.OnClickListener() {
@@ -130,48 +142,7 @@ public class ReviewGraph extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        PieChart pieChart = getView().findViewById(R.id.piechart_review_graph);
-        pieChart.setUsePercentValues(true);
-        ArrayList<PieEntry> yvalues = new ArrayList<>();
-
-        yvalues.add(new PieEntry(8f, "Studies"));
-        yvalues.add(new PieEntry(15f, "Work"));
-        yvalues.add(new PieEntry(12f, "Exercise"));
-        yvalues.add(new PieEntry(25f, "Leisure"));
-
-
-        PieDataSet dataSet = new PieDataSet(yvalues,"");
-
-        //ArrayList<String> xVals = new ArrayList<>();
-
-        /*xVals.add("Studies");
-        xVals.add("Work");
-        xVals.add("Exercise");
-        xVals.add("Leisure");*/
-
-        PieData data = new PieData(dataSet);
-        data.setValueFormatter(new PercentFormatter());
-        pieChart.setData(data);
-
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-        pieChart.setDrawHoleEnabled(true);
-        pieChart.setTransparentCircleRadius(30f);
-        pieChart.setHoleRadius(30f);
-        Description description = new Description();
-        description.setText("");
-        pieChart.setDescription(description);
-
-        //data.setValueTextSize(26f);
-        data.setValueTextColor(Color.BLACK);
-        int colorBlack = Color.parseColor("#000000");
-        pieChart.setEntryLabelColor(colorBlack);
-        pieChart.setEntryLabelTextSize(13f);
-        dataSet.setValueTextSize(13f);
-        Legend legend = pieChart.getLegend();
-        legend.setTextSize(15f);
-        super.onViewCreated(view, savedInstanceState);
-
-    }
+        }
 
     private class DatabaseAsyncLoad extends AsyncTask<Void, Void, Void> {
         @Override
@@ -350,6 +321,52 @@ public class ReviewGraph extends Fragment {
                     collapseFilterOptions();
                 }
             });
+
+            for(int i=0; i<logged_activities_graph.size();i++){
+                SimpleDateFormat start_date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                SimpleDateFormat end_date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                Date start_date = new Date();
+                Date end_date = new Date();
+                try{
+                    start_date = start_date_format.parse(logged_activities_graph.get(i).getStartDateTime());
+                    end_date = end_date_format.parse(logged_activities_graph.get(i).getEndDateTime());
+                } catch (ParseException e){
+                    e.printStackTrace();
+                }
+                int cat_id = logged_activities_graph.get(i).getCid_fk();
+                String cat_name = getCatNameByID(category_list, cat_id);
+                long duration = ((end_date.getTime() - start_date.getTime())/3600000);
+                yvalues.add(new PieEntry(duration,cat_name));
+            }
+
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    PieDataSet dataSet = new PieDataSet(yvalues,"");
+                    PieData data = new PieData(dataSet);
+                    data.setValueFormatter(new PercentFormatter());
+                    pieChart.setData(data);
+
+                    dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+                    pieChart.setDrawHoleEnabled(true);
+                    pieChart.setTransparentCircleRadius(30f);
+                    pieChart.setHoleRadius(30f);
+                    Description description = new Description();
+                    description.setText("");
+                    pieChart.setDescription(description);
+
+                    //data.setValueTextSize(26f);
+                    data.setValueTextColor(Color.BLACK);
+                    int colorBlack = Color.parseColor("#000000");
+                    pieChart.setEntryLabelColor(colorBlack);
+                    pieChart.setEntryLabelTextSize(13f);
+                    dataSet.setValueTextSize(13f);
+                    Legend legend = pieChart.getLegend();
+                    legend.setTextSize(15f);
+                }
+            });
+
+
             return null;
         }
 
@@ -408,5 +425,13 @@ public class ReviewGraph extends Fragment {
         }
     }
 
+    private String getCatNameByID(List<Category> category, int cat_id){
+        for(int i=0;i<category.size();i++){
+            if (category.get(i).getCid() == cat_id){
+                return category.get(i).getCatName();
+            }
+        }
+        return "N/A";
+    }
 
 }
