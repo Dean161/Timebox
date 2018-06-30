@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
-import android.arch.persistence.room.util.StringUtil;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
@@ -395,7 +394,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         @Override
         protected Void doInBackground(Void... voids) {
             String CategoryToGetCIdFrom = categorySpinner.getSelectedItem().toString();
-            categoryCid = db.catDao().getCidActivites(CategoryToGetCIdFrom);
+            categoryCid = db.catDao().getCidActivities(CategoryToGetCIdFrom);
 
             return null;
         }

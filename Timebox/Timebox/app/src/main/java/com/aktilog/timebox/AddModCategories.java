@@ -433,7 +433,7 @@ public class AddModCategories extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            input_parent_id = app_database.catDao().getCidActivites(parent_category_select.getSelectedItem().toString());
+            input_parent_id = app_database.catDao().getCidActivities(parent_category_select.getSelectedItem().toString());
             return null;
 
         }

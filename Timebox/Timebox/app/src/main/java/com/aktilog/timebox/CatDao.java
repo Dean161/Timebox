@@ -32,8 +32,6 @@ public interface CatDao {
     @Query("SELECT COUNT(*) FROM LoggedActivities")
     int CountActs();
 
-    @Query("UPDATE Category SET cat_name =:newName, cat_color_hex =:newColor WHERE cat_name = :oldName")
-    void update(String newName, String newColor, String oldName);
     @Query("UPDATE Category SET cat_name =:newName, cat_color_hex =:newColor, parent_cat_id =:newParentID WHERE cat_name = :oldName")
     void update(String newName, String newColor, int newParentID, String oldName);
 
@@ -54,9 +52,9 @@ public interface CatDao {
     @Delete
     void delete(Category category);
 
-    //queries for loggedActivites
+    //queries for loggedActivities
     @Query("SELECT cid FROM Category WHERE cat_name LIKE :givenCat")
-    int getCidActivites(String givenCat);
+    int getCidActivities(String givenCat);
 
     //insert new Activity
     @Insert
