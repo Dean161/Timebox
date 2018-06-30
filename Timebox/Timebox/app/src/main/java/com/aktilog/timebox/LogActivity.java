@@ -234,7 +234,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                                     new DatabaseAsyncInsertLoggedActivity().execute();
                                     Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
                                 } else {
-                                    Toast.makeText(LogActivity.this, "Chosen end date is earlier than start date. Please adjust.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LogActivity.this, "Chosen end date is earlier than start date. Please adjust.", Toast.LENGTH_LONG).show();
                                 }
 
 
@@ -263,11 +263,21 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                             e.printStackTrace();
                         }
 
-                        if (convertedEndDate.after(convertedStartDate)) {
+                        //calc max target duration
+                        long maxTargetDuration = (convertedEndDate.getTime() - convertedStartDate.getTime())/(1000*60);
+                        String targetDurationToCompareString = target_duration.getText().toString();
+                        String[] targetDurationStringSplittedToCompare = targetDurationToCompareString.split(" ");
+                        String[] targetDurationStringSplittedToCompareHours =targetDurationStringSplittedToCompare[0].split("h");
+                        String[] targetDurationStringSplittedToCompareMin =targetDurationStringSplittedToCompare[1].split("m");
+                        String targetHoursToCompare = targetDurationStringSplittedToCompareHours[0];
+                        String targetMinToCompare = targetDurationStringSplittedToCompareMin[0];
+                        long targetDurationLong = Long.parseLong(targetHoursToCompare)*60 + Long.parseLong(targetMinToCompare);
+
+                        if (convertedEndDate.after(convertedStartDate) && targetDurationLong <= maxTargetDuration) {
                             new DatabaseAsyncInsertScheduledActivity().execute();
                             Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(LogActivity.this, "Chosen end date is earlier than start date. Please adjust.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogActivity.this, "Chosen end date is earlier than start date or target duration is to high. Please check.", Toast.LENGTH_SHORT).show();
                         }
 
                     } else {
@@ -311,8 +321,8 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             String[] targetDurationStringSplittedMin =targetDurationStringSplitted[1].split("m");
             String targetHours = targetDurationStringSplittedHours[0];
             String targetMin = targetDurationStringSplittedMin[0];
-
             int targetDuration = Integer.parseInt(targetHours)*60 + Integer.parseInt(targetMin);
+
             String notes = inputNotes.getText().toString();
 
             ScheduledActivities newAct = new ScheduledActivities();
