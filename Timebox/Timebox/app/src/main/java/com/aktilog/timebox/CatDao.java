@@ -29,16 +29,22 @@ public interface CatDao {
     @Insert
     void insertAll(Category category);
 
-    @Query("UPDATE Category SET cat_name =:newName, cat_color_hex =:newColor WHERE cat_name = :oldName")
-    void update(String newName, String newColor, String oldName);
+    @Query("UPDATE Category SET cat_name =:newName, cat_color_hex =:newColor, parent_cat_id =:newParentID WHERE cat_name = :oldName")
+    void update(String newName, String newColor, int newParentID, String oldName);
 
     //maybe more required?
 
     @Query("SELECT cat_name FROM Category")
     List<String> getCatNames();
 
+    @Query("SELECT cat_name FROM Category WHERE parent_cat_id = 0")
+    List<String> getAllParentCat();
+
     @Query("SELECT cat_color_hex FROM Category WHERE cat_name LIKE :givenCat")
     String getCatColor(String givenCat);
+
+    @Query("SELECT cat_name FROM Category WHERE cid = (SELECT parent_cat_id FROM Category WHERE cat_name = :givenCat)")
+    String getParentCatName(String givenCat);
 
     @Delete
     void delete(Category category);

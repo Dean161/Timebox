@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
 
-@Database(entities = {Category.class, LoggedActivities.class, ScheduledActivities.class}, version = 13)
+@Database(entities = {Category.class, LoggedActivities.class, ScheduledActivities.class}, version = 14)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 

@@ -152,6 +152,7 @@
     <string name="title_display_activity">Activity Details</string>
     <string name="header_activity_duration_calendar">Duration</string>
     <string name="header_activity_name_calendar">Activity name</string>
+    <string name="title_parent_category">Parent Category(Optional)</string>
 
 
     <!-- Strings related to hints -->
