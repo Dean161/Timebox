@@ -219,7 +219,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
                                 String startDateTimeToCheck = start_date_time.getText().toString();
                                 String endDateTimeToCheck = end_date_time.getText().toString();
-                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
                                 Date convertedStartDate = new Date();
                                 Date convertedEndDate = new Date();
                                 try {
@@ -233,7 +233,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                                     new DatabaseAsyncInsertLoggedActivity().execute();
                                     Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
                                 } else {
-                                    Toast.makeText(LogActivity.this, "Chosen end date is later than start date. Please adjust.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LogActivity.this, "Chosen end date is earlier than start date. Please adjust.", Toast.LENGTH_SHORT).show();
                                 }
 
 
@@ -252,7 +252,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
                         String startDateTimeToCheck = start_date_time.getText().toString();
                         String endDateTimeToCheck = end_date_time.getText().toString();
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
                         Date convertedStartDate = new Date();
                         Date convertedEndDate = new Date();
                         try {
@@ -266,7 +266,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                             new DatabaseAsyncInsertScheduledActivity().execute();
                             Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(LogActivity.this, "Chosen end date is later than start date. Please adjust.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogActivity.this, "Chosen end date is earlier than start date. Please adjust.", Toast.LENGTH_SHORT).show();
                         }
 
                     } else {
