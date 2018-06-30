@@ -166,7 +166,9 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         add_cat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int REQUEST_LOG = 1;
                 Intent launch_AddModCategoriesActivity = new Intent(LogActivity.this,AddModCategories.class);
+                launch_AddModCategoriesActivity.putExtra("CalledActivity",REQUEST_LOG);
                 startActivity(launch_AddModCategoriesActivity);
             }
         });

@@ -2,6 +2,7 @@ package com.aktilog.timebox;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
@@ -313,6 +314,12 @@ public class AddModCategories extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home){
+            int call_back = getIntent().getIntExtra("CalledActivity",0);
+            if (call_back == 2){
+                Intent go_back = new Intent(AddModCategories.this,SettingsActivity.class);
+                startActivity(go_back);
+                finish();
+            }
             finish();
         }
         return super.onOptionsItemSelected(item);
@@ -442,6 +449,17 @@ public class AddModCategories extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             //perform post-adding operation here
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        int call_back = getIntent().getIntExtra("CalledActivity",0);
+        if (call_back == 2){
+            Intent go_back = new Intent(AddModCategories.this,SettingsActivity.class);
+            startActivity(go_back);
+            finish();
         }
     }
 }

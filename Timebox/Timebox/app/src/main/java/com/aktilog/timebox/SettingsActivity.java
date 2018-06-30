@@ -351,9 +351,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             //Intent myIntent = new Intent(getActivity(), AddModCategories.class);
             //addPreferencesFromIntent(myIntent);
             //setHasOptionsMenu(true);
-
+            int REQUEST_SETTINGS = 2;
             Intent launch_AddModCategories = new Intent(getContext(),AddModCategories.class);
+            launch_AddModCategories.putExtra("CalledActivity",2);
             startActivity(launch_AddModCategories);
+            getActivity().finish();
 
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
             // to their values. When their values change, their summaries are
@@ -371,5 +373,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
             return super.onOptionsItemSelected(item);
         }
+
     }
 }
