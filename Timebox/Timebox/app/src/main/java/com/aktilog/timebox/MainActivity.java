@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.List;
@@ -28,10 +29,8 @@ import javax.xml.transform.Templates;
 public class MainActivity extends AppCompatActivity {
 
     /* TODO
-        startscreen still display no activity when the app start
         scroll bar for the list view
         onItem selector & click
-        Behavior of back button
         headbar display color according to logged activities
      */
 
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     Category predefinedCat3 = new Category();
     Category predefinedCat4 = new Category();
     Category predefinedCat5 = new Category();
+    Button button_quick_log;
 
     //List<LoggedActivities> recent_activity = new ArrayList<>();
     List<LoggedActivities> recent_activity;
@@ -62,6 +62,16 @@ public class MainActivity extends AppCompatActivity {
         list_empty = findViewById(R.id.list_view_empty);
 
         new DatabaseAsyncGetRecent().execute();
+
+        button_quick_log=(Button)findViewById(R.id.button_quick_log);
+        button_quick_log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent launch_LogActivity = new Intent(MainActivity.this,LogActivity.class);
+                startActivity(launch_LogActivity);
+                //Toast.makeText(MainActivity.this, "YOUR MESSAGE", Toast.LENGTH_LONG).show();
+            }
+        });
 
 
 /*
