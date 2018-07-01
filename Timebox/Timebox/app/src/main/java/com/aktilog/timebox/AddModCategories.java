@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.OnColorSelectedListener;
@@ -53,6 +54,7 @@ public class AddModCategories extends AppCompatActivity {
     String parent_category_name;
     int input_parent_id;
     boolean modify_screen = false;
+    List<Category> category_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,9 @@ public class AddModCategories extends AppCompatActivity {
 
         //build database
         app_database = AppDatabase.getAppDatabase(getApplicationContext());
+
+        //get all existing categories
+        new DatabaseAsyncGetCategories().execute();
 
         //on page load do not display the spinner and category title
         category_sel_title = findViewById(R.id.title_category_select);
@@ -190,7 +195,27 @@ public class AddModCategories extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                new DatabaseAsyncInsert().execute();
+
+                int size = category_list.size();
+
+                String CategoryToBeChecked = input_category.getText().toString();
+
+                int duplicate = 0;
+
+                for (int i = 0; i < size; i++) {
+                    String existingCatName = category_list.get(i).getCatName();
+
+                    if (existingCatName.equalsIgnoreCase(CategoryToBeChecked)) {
+                        duplicate = 1;
+                    }
+                }
+
+                if (duplicate == 0) {
+                    new DatabaseAsyncInsert().execute();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Category name already exists!", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
     }
@@ -460,6 +485,27 @@ public class AddModCategories extends AppCompatActivity {
             Intent go_back = new Intent(AddModCategories.this,SettingsActivity.class);
             startActivity(go_back);
             finish();
+        }
+    }
+
+    private class DatabaseAsyncGetCategories extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //perform pre-adding operation here
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            category_list = app_database.catDao().getAllCat();
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //perform post-adding operation here
         }
     }
 }
