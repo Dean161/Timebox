@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
     Category predefinedCat4 = new Category();
     Category predefinedCat5 = new Category();
 
-    List<LoggedActivities> recent_activity = new ArrayList<>();
-    //List<LoggedActivities> recent_activity;
+    //List<LoggedActivities> recent_activity = new ArrayList<>();
+    List<LoggedActivities> recent_activity;
     List<Category> category_list;
     ListView list_recent;
     TextView list_empty;
@@ -60,15 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
         list_recent = findViewById(R.id.list_view_recent_activities);
         list_empty = findViewById(R.id.list_view_empty);
-        onDisplay();
 
-        //new DatabaseAsyncGetRecent().execute();
+        new DatabaseAsyncGetRecent().execute();
 
-/*
-        if (recent_activity.isEmpty())  list_recent.setVisibility(View.GONE);
-        else {
-            list_empty.setVisibility(View.GONE);
-//            list_recent.setAdapter(new CustomAdapter(this, recent_activity));
 
 /*
         list_recent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -146,13 +140,14 @@ public class MainActivity extends AppCompatActivity {
         );
 
     }
-
+/*
     @Override
     protected void onResume() {
         super.onResume();
-        onDisplay();
+        //onDisplay();
+        //new DatabaseAsyncGetRecent().execute();
     }
-
+/*
     private void onDisplay() {
         new DatabaseAsyncGetRecent().execute();
 
@@ -262,19 +257,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            int CurrentActNo = db.catDao().CountActs();
+            recent_activity = db.catDao().getRecentLoggedActivities();
 
-            if (CurrentActNo == 0) recent_activity.clear();
-            else {
-                //recent_activity.clear();
-                recent_activity = db.catDao().getRecentLoggedActivities();
-                //recent_activity = db.catDao().getAllLoggedActivites();
-            }
-            /*
             if (recent_activity.isEmpty()) {
                 list_recent.setVisibility(View.GONE);
+                list_empty.setVisibility(View.VISIBLE);
             }
             else {
+                list_recent.setVisibility(View.VISIBLE);
+                list_empty.setVisibility(View.GONE);
                 //scheduled_activities_listView.setVisibility(View.GONE);
                 runOnUiThread(new Runnable() {
                     @Override
@@ -283,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-*/
+
             return null;
         }
 
