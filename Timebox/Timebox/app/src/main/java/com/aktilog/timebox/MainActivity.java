@@ -13,25 +13,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView;
 import java.util.List;
 import java.util.ArrayList;
 import android.widget.Toast;
 import android.arch.lifecycle.LiveData;
 import android.database.Cursor;
 import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+
 
 import javax.xml.transform.Templates;
 
 public class MainActivity extends AppCompatActivity {
 
     /* TODO
-        startscreen still display no activity when the app start
-        scroll bar for the list view
         onItem selector & click
-        Behavior of back button
         headbar display color according to logged activities
      */
 
@@ -42,12 +43,16 @@ public class MainActivity extends AppCompatActivity {
     Category predefinedCat3 = new Category();
     Category predefinedCat4 = new Category();
     Category predefinedCat5 = new Category();
+    Button button_quick_log;
 
-    List<LoggedActivities> recent_activity = new ArrayList<>();
-    //List<LoggedActivities> recent_activity;
+    //List<LoggedActivities> recent_activity = new ArrayList<>();
+    List<LoggedActivities> recent_activity;
     List<Category> category_list;
     ListView list_recent;
     TextView list_empty;
+    LoggedActivities loggedActivities;
+    String current_category_name;
+    String myIdentity = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,15 +65,31 @@ public class MainActivity extends AppCompatActivity {
 
         list_recent = findViewById(R.id.list_view_recent_activities);
         list_empty = findViewById(R.id.list_view_empty);
-        onDisplay();
 
-        //new DatabaseAsyncGetRecent().execute();
+        new DatabaseAsyncGetRecent().execute();
 
-/*
-        if (recent_activity.isEmpty())  list_recent.setVisibility(View.GONE);
-        else {
-            list_empty.setVisibility(View.GONE);
-//            list_recent.setAdapter(new CustomAdapter(this, recent_activity));
+        button_quick_log=(Button)findViewById(R.id.button_quick_log);
+        button_quick_log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent launch_LogActivity = new Intent(MainActivity.this,LogActivity.class);
+                startActivity(launch_LogActivity);
+                //Toast.makeText(MainActivity.this, "YOUR MESSAGE", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        list_recent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent showActivityDetailsDialog = new Intent(MainActivity.this, DisplayActivity.class);
+                loggedActivities = (LoggedActivities) parent.getAdapter().getItem(position);
+                int cat_id = loggedActivities.getCid_fk();
+                current_category_name = getCatNameByID(category_list,cat_id);
+                showActivityDetailsDialog.putExtra("The Passer",myIdentity);
+                startActivityForResult(showActivityDetailsDialog,0);
+            }
+        });
+
 
 /*
         list_recent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -146,13 +167,14 @@ public class MainActivity extends AppCompatActivity {
         );
 
     }
-
+/*
     @Override
     protected void onResume() {
         super.onResume();
-        onDisplay();
+        //onDisplay();
+        //new DatabaseAsyncGetRecent().execute();
     }
-
+/*
     private void onDisplay() {
         new DatabaseAsyncGetRecent().execute();
 
@@ -198,6 +220,7 @@ public class MainActivity extends AppCompatActivity {
         return list;
     }
 */
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -206,6 +229,14 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     //insert predefined categories if there are no
@@ -262,19 +293,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            int CurrentActNo = db.catDao().CountActs();
+            recent_activity = db.catDao().getRecentLoggedActivities();
 
-            if (CurrentActNo == 0) recent_activity.clear();
-            else {
-                //recent_activity.clear();
-                recent_activity = db.catDao().getRecentLoggedActivities();
-                //recent_activity = db.catDao().getAllLoggedActivites();
-            }
-            /*
             if (recent_activity.isEmpty()) {
                 list_recent.setVisibility(View.GONE);
+                list_empty.setVisibility(View.VISIBLE);
             }
             else {
+                list_recent.setVisibility(View.VISIBLE);
+                list_empty.setVisibility(View.GONE);
                 //scheduled_activities_listView.setVisibility(View.GONE);
                 runOnUiThread(new Runnable() {
                     @Override
@@ -283,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-*/
+
             return null;
         }
 
