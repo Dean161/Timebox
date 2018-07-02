@@ -16,20 +16,22 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView;
 import java.util.List;
 import java.util.ArrayList;
 import android.widget.Toast;
 import android.arch.lifecycle.LiveData;
 import android.database.Cursor;
 import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+
 
 import javax.xml.transform.Templates;
 
 public class MainActivity extends AppCompatActivity {
 
     /* TODO
-        scroll bar for the list view
         onItem selector & click
         headbar display color according to logged activities
      */
@@ -48,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
     List<Category> category_list;
     ListView list_recent;
     TextView list_empty;
+    LoggedActivities loggedActivities;
+    String current_category_name;
+    String myIdentity = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +75,18 @@ public class MainActivity extends AppCompatActivity {
                 Intent launch_LogActivity = new Intent(MainActivity.this,LogActivity.class);
                 startActivity(launch_LogActivity);
                 //Toast.makeText(MainActivity.this, "YOUR MESSAGE", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        list_recent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent showActivityDetailsDialog = new Intent(MainActivity.this, DisplayActivity.class);
+                loggedActivities = (LoggedActivities) parent.getAdapter().getItem(position);
+                int cat_id = loggedActivities.getCid_fk();
+                current_category_name = getCatNameByID(category_list,cat_id);
+                showActivityDetailsDialog.putExtra("The Passer",myIdentity);
+                startActivityForResult(showActivityDetailsDialog,0);
             }
         });
 
