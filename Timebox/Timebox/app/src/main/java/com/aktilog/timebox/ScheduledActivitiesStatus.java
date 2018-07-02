@@ -59,7 +59,11 @@ public class ScheduledActivitiesStatus extends AppCompatActivity {
             public void onClick(View v) {
                 String loggedHoursString = logged_hours.getText().toString();
                 int loggedHours = Integer.parseInt(loggedHoursString);
+                String targetDurationString = target_duration.getText().toString();
+                int targetDuration = Integer.parseInt(targetDurationString);
                 loggedHours++;
+                progressBar.setMax(targetDuration);
+                progressBar.setProgress(loggedHours);
                 loggedHoursString = String.valueOf(loggedHours);
                 logged_hours.setText(loggedHoursString);
             }
@@ -70,8 +74,12 @@ public class ScheduledActivitiesStatus extends AppCompatActivity {
             public void onClick(View v) {
                 String loggedHoursString = logged_hours.getText().toString();
                 int loggedHours = Integer.parseInt(loggedHoursString);
+                String targetDurationString = target_duration.getText().toString();
+                int targetDuration = Integer.parseInt(targetDurationString);
                 if (loggedHours > 0) {
                     loggedHours--;
+                    progressBar.setMax(targetDuration);
+                    progressBar.setProgress(loggedHours);
                     loggedHoursString = String.valueOf(loggedHours);
                     logged_hours.setText(loggedHoursString);
                 }
