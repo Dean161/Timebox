@@ -20,6 +20,8 @@ import java.util.List;
 
 public class ReviewCalendar extends Fragment {
 
+    //TODO: Add click listener for the list entries
+
     CalendarView review_calendar;
     ListView review_activity_calendar;
     String selected_date;
