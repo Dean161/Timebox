@@ -50,7 +50,7 @@
         android:layout_marginStart="20dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="114dp"
             android:layout_height="match_parent"
             android:id="@+id/title_display_category_name"
             android:hint="@string/title_category"
@@ -69,10 +69,11 @@
             android:gravity="center_vertical"/>
 
         <Spinner
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/spinner_background"
             android:id="@+id/text_edit_category_name"
             android:hint="@string/hint_category_name"

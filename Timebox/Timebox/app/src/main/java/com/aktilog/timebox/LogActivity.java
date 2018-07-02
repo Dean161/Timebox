@@ -248,7 +248,6 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                     }
                 } else if (actionbar.getTitle().equals(getResources().getString(R.string.title_schedule_activity))) {
                     if (buttonSave.isEnabled()) {
-                        Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
                         new DatabaseAsyncGetCid().execute();
 
                         String startDateTimeToCheck = start_date_time.getText().toString();
@@ -277,7 +276,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                             new DatabaseAsyncInsertScheduledActivity().execute();
                             Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(LogActivity.this, "Chosen end date is earlier than start date or target duration is to high. Please check.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogActivity.this, "Chosen target duration is greater than the duration between Start Date and End Date. Please Check.", Toast.LENGTH_LONG).show();
                         }
 
                     } else {

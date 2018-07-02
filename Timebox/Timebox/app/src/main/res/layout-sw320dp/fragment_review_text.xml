@@ -91,7 +91,7 @@
 
     <com.aktilog.timebox.MultiSelectSpinner
         android:id="@+id/spinner_category_select_review_text"
-        android:layout_width="150dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
@@ -117,7 +117,7 @@
         android:text="@string/action_search"
         android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_category_review_text" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_category_select_review_text" />
 
     <Button
         android:id="@+id/button_clear_review_text"

@@ -339,6 +339,13 @@ public class ReviewGraph extends Fragment {
                 yvalues.add(new PieEntry(duration,cat_name));
                 piechart_colors.add(cat_color);
             }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //perform post-adding operation here
             LegendEntry legendEntry = new LegendEntry();
             legendEntry.label = "";
             legendEntry.formColor = 0;
@@ -365,13 +372,6 @@ public class ReviewGraph extends Fragment {
             pieChart.setEntryLabelColor(colorBlack);
             dataSet.setValueTextSize(13f);
             pieChart.getLegendRenderer().computeLegend(data);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            //perform post-adding operation here
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

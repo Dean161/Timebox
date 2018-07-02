@@ -210,10 +210,10 @@ public class AddModCategories extends AppCompatActivity {
                     }
                 }
 
-                if (duplicate == 0) {
-                    new DatabaseAsyncInsert().execute();
-                } else {
+                if (duplicate == 1 && actionbar_categories.getTitle().toString().equals(getResources().getString(R.string.title_add_category))) {
                     Toast.makeText(getApplicationContext(), "Category name already exists!", Toast.LENGTH_LONG).show();
+                } else {
+                    new DatabaseAsyncInsert().execute();
                 }
 
             }
@@ -246,13 +246,13 @@ public class AddModCategories extends AppCompatActivity {
                 //TODO resolve error msg: Can't toast on a thread that has not called Looper.prepare()
                 //Toast.makeText(getApplicationContext(),"Category saved",Toast.LENGTH_SHORT).show();
                 //was: clearComposingText();
-                input_category.getText().clear();
-                input_color.setBackgroundColor(ContextCompat.getColor(AddModCategories.this,R.color.colorBlack));
-                input_color.setText(R.string.hint_category_color);
-                input_color.setTextColor(ContextCompat.getColor(AddModCategories.this, R.color.colorWhite));
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        input_category.getText().clear();
+                        input_color.setBackgroundColor(ContextCompat.getColor(AddModCategories.this,R.color.colorBlack));
+                        input_color.setText(R.string.hint_category_color);
+                        input_color.setTextColor(ContextCompat.getColor(AddModCategories.this, R.color.colorWhite));
                         parent_category_select.setSelection(0);
                     }
                 });
@@ -260,10 +260,15 @@ public class AddModCategories extends AppCompatActivity {
             } else {
                 String oldCat = category_sel_spinner.getSelectedItem().toString();
                 app_database.catDao().update(specCat, specHex, specParentCid, oldCat);
-                input_category.getText().clear();
-                input_color.setBackgroundColor(ContextCompat.getColor(AddModCategories.this,R.color.colorBlack));
-                input_color.setText(R.string.hint_category_color);
-                input_color.setTextColor(ContextCompat.getColor(AddModCategories.this, R.color.colorWhite));
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        input_category.getText().clear();
+                        input_color.setBackgroundColor(ContextCompat.getColor(AddModCategories.this,R.color.colorBlack));
+                        input_color.setText(R.string.hint_category_color);
+                        input_color.setTextColor(ContextCompat.getColor(AddModCategories.this, R.color.colorWhite));
+                    }
+                });
                 loadSpinnerData();
                 item_selected = false;
                 loadParentSpinnerData();
