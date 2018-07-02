@@ -28,7 +28,7 @@ Test methods can be further classified into
 
 **Acceptance Testing:** The App was shown to the customer and tested for every requirement provided by him. Black-Box testing method was used for this testing. 
 
-All the bugs are entered into Zenhub for tracking. The tracking efforts are also kept in a Spreadsheet in team dropbox for easier access. 
+All the bugs are entered into Zenhub for tracking. The testing efforts are also kept in a Spreadsheet in team dropbox for easier access. 
 
 ## White-Box Testing
 
