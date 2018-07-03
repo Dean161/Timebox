@@ -147,4 +147,4 @@ The following changes were made to the application:
 
 By systematically testing the app, it is improved with respect to security, functionality and performance.
 
-### That's it for this time. Thank you for reading this blog and stay tuned for our final blog!! 
+### That's it for this time. Thank you for reading and stay tuned for our final blog!! 
