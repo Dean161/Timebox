@@ -84,6 +84,16 @@ The following classes were tested using White-Box Testing:
 |:----------------------:|:--------------:|
 | 0                      | 353,358        |
 
+#### DisplayActivity: Load the categories into category spinner
+
+<img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
+
+* Scenario 1:
+
+| called method  | path(line numbers) |
+|:-----------------:|:-------------------:|
+| loadSpinnerData() | 166,179,181-200,202 |
+
 
 
 ## Black-Box Testing
