@@ -144,3 +144,7 @@ The test cases for these 5 functionalities along with the result are displayed b
 The following changes were made to the application:
 * Subcategories are added to the Categories page.
 * Quick add activity button added to home screen.
+
+By systematically testing the app, it is improved with respect to security, functionality and performance.
+
+### That's it for this time. Thank you for reading this blog and stay tuned for our final blog!! 
