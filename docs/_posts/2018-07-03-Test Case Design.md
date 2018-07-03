@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Test Case Design"
-date: 2018-07-02
+date: 2018-07-03
 ---
 
 ## Testing Process
@@ -28,9 +28,26 @@ Test methods can be further classified into
 
 **Acceptance Testing:** The App was shown to the customer and tested for every requirement provided by him. Black-Box testing method was used for this testing. 
 
-All the bugs are entered into Zenhub for tracking. The testing efforts are also kept in a Spreadsheet in team dropbox for easier access. 
+All the bugs are logged into Zenhub for tracking the efforts involved in fixing them.  
 
 ## White-Box Testing
+
+White-Box Testing is a type of testing which involves test case design by knowing the internal code.
+
+The following classes were tested using White-Box Testing:
+
+####LoginActivity: Validate user credentials
+
+<img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
+
+* Scenario 1:
+---
+set_pin: 1234
+entered_pin: 1234
+path(line numbers): 37,40,41,42,43
+---
+
+
 
 ## Black-Box Testing
 
