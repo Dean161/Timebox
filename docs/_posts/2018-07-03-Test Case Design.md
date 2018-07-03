@@ -113,3 +113,7 @@ The following classes were tested using White-Box Testing:
 ## Black-Box Testing
 
 ## Summary of Changes
+
+The following changes were made to the application:
+* Subcategories are added to the Categories page.
+* 
