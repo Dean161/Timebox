@@ -41,16 +41,32 @@ The following classes were tested using White-Box Testing:
 <img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
 
 * Scenario 1:
+
 | set_pin  | entered_pin  | path(line numbers) |
-| :------: | :----------: | :----------------: |
+|:--------:|:------------:|:------------------:|
 | 1234     | 1234         | 37,40,41,42,43     |
 
 * Scenario 2:
-|set_pin |entered_pin |path(line numbers)|
-|:------:|:----------:|:----------------:|
-|1234    |1111        |37,40,44,45,46    |
 
+| set_pin  | entered_pin  | path(line numbers) |
+|:--------:|:------------:|:------------------:|
+| 1234     | 1111         | 37,40,44,45,46     |
 
+####LogActivity: Validate EndDateTime is not before StartDateTime
+
+<img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
+
+* Scenario 1:
+
+| convertedStartDate  | convertedEndDate  | path(line numbers) |
+|:-------------------:|:-----------------:|:------------------:|
+| 2018-07-02 08:00    | 2018-07-02 08:30  | 233,234,235        |
+
+* Scenario 2:
+
+| convertedStartDate  | convertedEndDate  | path(line numbers) |
+|:-------------------:|:-----------------:|:------------------:|
+| 2018-07-02 08:00    | 2018-07-02 07:30  | 233,236,237,238    |
 
 ## Black-Box Testing
 
