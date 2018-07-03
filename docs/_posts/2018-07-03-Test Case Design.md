@@ -38,79 +38,87 @@ White-Box Testing is a type of testing which involves test case design by knowin
 
 The following classes were tested using White-Box Testing:
 
-#### LoginActivity: Validate user credentials
+### LoginActivity: Validate user credentials
 
 <img src="{{site.baseurl}}/images/LoginActivity.png" alt="LoginActivity" height="400" width="500"><img src="{{site.baseurl}}/images/LoginActivityFlow.png" alt="LoginActivityFlow" height="400">
 
-###### Scenario 1:
+##### Scenario 1:
 
 | set_pin  | entered_pin  | path(line numbers) |
 |:--------:|:------------:|:------------------:|
-| 1234     | 1234         | 37,40,41,42,43     |
+| 1234     | 1234         | 37, 40, 41, 42, 43     |
 
-###### Scenario 2:
+##### Scenario 2:
 
 | set_pin  | entered_pin  | path(line numbers) |
 |:--------:|:------------:|:------------------:|
-| 1234     | 1111         | 37,40,44,45,46     |
+| 1234     | 1111         | 37, 40, 44, 45, 46     |
 
-#### LogActivity: Validate EndDateTime is not before StartDateTime
+### LogActivity: Validate EndDateTime is not before StartDateTime
 
-<img src="{{site.baseurl}}/images/LogActivity.png" alt="LogActivity" height="200"><img src="{{site.baseurl}}/images/LogActivityFlow.png" alt="LogActivityFlow" height="300">
+<img src="{{site.baseurl}}/images/LogActivity.png" alt="LogActivity" height="200">
 
-###### Scenario 1:
+<img src="{{site.baseurl}}/images/LogActivityFlow.png" alt="LogActivityFlow" height="300">
 
-| convertedStartDate  | convertedEndDate  | path(line numbers) |
-|:-------------------:|:-----------------:|:------------------:|
-| 2018-07-02 08:00    | 2018-07-02 08:30  | 233,234,235        |
-
-###### Scenario 2:
+##### Scenario 1:
 
 | convertedStartDate  | convertedEndDate  | path(line numbers) |
 |:-------------------:|:-----------------:|:------------------:|
-| 2018-07-02 08:00    | 2018-07-02 07:30  | 233,236,237,238    |
+| 2018-07-02 08:00    | 2018-07-02 08:30  | 233, 234, 235        |
 
-#### ReviewGraph: Load data into the Pie Chart
+##### Scenario 2:
 
-<img src="{{site.baseurl}}/images/ReviewGraph.png" alt="ReviewGraph"><img src="{{site.baseurl}}/images/ReviewGraphFlow.png" alt="ReviewGraphFlow">
+| convertedStartDate  | convertedEndDate  | path(line numbers) |
+|:-------------------:|:-----------------:|:------------------:|
+| 2018-07-02 08:00    | 2018-07-02 07:30  | 233, 236, 237, 238    |
 
-###### Scenario 1:
+### ReviewGraph: Load data into the Pie Chart
+
+<img src="{{site.baseurl}}/images/ReviewGraph.png" alt="ReviewGraph">
+
+<img src="{{site.baseurl}}/images/ReviewGraphFlow.png" alt="ReviewGraphFlow">
+
+##### Scenario 1:
 
 | category_names.size()  | path(line numbers)                     |
 |:----------------------:|:--------------------------------------:|
-| 2                      | 353,356,357,353,356,357,353,358        |
+| 2                      | 353, 356, 357, 353, 356, 357, 353, 358        |
 
-###### Scenario 2:
+##### Scenario 2:
 
 | category_names.size()  | path(line numbers)|
 |:----------------------:|:--------------:|
-| 0                      | 353,358        |
+| 0                      | 353, 358        |
 
-#### DisplayActivity: Load the categories into category spinner
+### DisplayActivity: Load the categories into category spinner
 
-<img src="{{site.baseurl}}/images/DisplayActivity.png" alt="DisplayActivity"><img src="{{site.baseurl}}/images/DisplayActivityFlow.png" alt="DisplayActivityFlow">
+<img src="{{site.baseurl}}/images/DisplayActivity.png" alt="DisplayActivity">
 
-###### Scenario 1:
+<img src="{{site.baseurl}}/images/DisplayActivityFlow.png" alt="DisplayActivityFlow">
+
+##### Scenario 1:
 
 | called method  | path(line numbers) |
 |:-----------------:|:-------------------:|
-| loadSpinnerData() | 166,179,181-200,202 |
+| loadSpinnerData() | 166, 179, 181-200, 202 |
 
-#### MainActivity: Navigate using Menu Drawer
+### MainActivity: Navigate using Menu Drawer
 
-<img src="{{site.baseurl}}/images/MainActivity.png" alt="MainActivity"><img src="{{site.baseurl}}/images/MainActivityFlow.png" alt="MainActivityFlow">
+<img src="{{site.baseurl}}/images/MainActivity.png" alt="MainActivity">
 
-###### Scenario 1:
+<img src="{{site.baseurl}}/images/MainActivityFlow.png" alt="MainActivityFlow">
 
-| menuItem(clicked) | path(line numbers) |
-|:-----------------:|:-------------------:|
-| Log Activity | 118,120,121-122 |
-
-###### Scenario 2:
+##### Scenario 1:
 
 | menuItem(clicked) | path(line numbers) |
 |:-----------------:|:-------------------:|
-| Review | 118,120,123,124-125 |
+| Log Activity | 118, 120, 121-122 |
+
+##### Scenario 2:
+
+| menuItem(clicked) | path(line numbers) |
+|:-----------------:|:-------------------:|
+| Review | 118, 120, 123, 124-125 |
 
 ## Black-Box Testing
 
