@@ -4,6 +4,8 @@ title: "Test Case Design"
 date: 2018-07-03
 ---
 
+Welcome to the fifth and penultimate blog of team CurryWurst. In this blog we have discussed the details about the testing process implemented by us and also the different test cases for White-Box and Black-Box testing. 
+
 ## Testing Process
 
 Testing is an integral part of any Software Development process. Testing helps the developers to identify bugs/defects and fix them.
