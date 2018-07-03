@@ -143,4 +143,4 @@ The test cases for these 5 functionalities along with the result are displayed b
 
 The following changes were made to the application:
 * Subcategories are added to the Categories page.
-* 
+* Quick add activity button added to home screen.
