@@ -41,9 +41,9 @@ The following classes were tested using White-Box Testing:
 <img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
 
 * Scenario 1:
-|set_pin |entered_pin |path(line numbers)|
-|:------:|:----------:|:----------------:|
-|1234    |1234        |37,40,41,42,43    |
+| set_pin  | entered_pin  | path(line numbers) |
+| :------: | :----------: | :----------------: |
+| 1234     | 1234         | 37,40,41,42,43     |
 
 * Scenario 2:
 |set_pin |entered_pin |path(line numbers)|
