@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/title_display_activity_name"
+            android:hint="@string/title_activity"
+            android:textSize="@dimen/text_size"
+            style="@style/AppTheme_New.TitleStyle"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:id="@+id/text_display_activity_name"
+            android:hint="@string/title_activity"
+            android:textSize="@dimen/text_size"
+            android:gravity="center_vertical"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@drawable/edit_text_background"
+            android:id="@+id/text_edit_activity_name"
+            android:hint="@string/title_activity"
+            android:textSize="@dimen/text_size"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="20dp">
+
+        <TextView
+            android:layout_width="114dp"
+            android:layout_height="match_parent"
+            android:id="@+id/title_display_category_name"
+            android:hint="@string/title_category"
+            android:textSize="@dimen/text_size"
+            style="@style/AppTheme_New.TitleStyle"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:id="@+id/text_display_category_name"
+            android:hint="@string/hint_category_name"
+            android:textSize="@dimen/text_size"
+            android:gravity="center_vertical"/>
+
+        <Spinner
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/spinner_background"
+            android:id="@+id/text_edit_category_name"
+            android:hint="@string/hint_category_name"
+            android:textSize="@dimen/text_size"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_display_start_datetime"
+            android:hint="@string/title_start_date_time"
+            android:textSize="@dimen/text_size"
+            style="@style/AppTheme_New.TitleStyle"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:id="@+id/text_display_start_datetime"
+            android:hint="@string/hint_start_date_time"
+            android:textSize="20sp"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@drawable/edit_text_background"
+            android:id="@+id/text_edit_start_datetime"
+            android:hint="@string/hint_start_date_time"
+            android:textSize="20sp"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_display_end_datetime"
+            android:hint="@string/title_end_date_time"
+            android:textSize="@dimen/text_size"
+            style="@style/AppTheme_New.TitleStyle"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:id="@+id/text_display_end_datetime"
+            android:hint="@string/hint_end_date_time"
+            android:textSize="@dimen/text_size"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@drawable/edit_text_background"
+            android:id="@+id/text_edit_end_datetime"
+            android:hint="@string/hint_end_date_time"
+            android:textSize="@dimen/text_size"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_display_notes"
+            android:hint="@string/title_notes"
+            android:textSize="@dimen/text_size"
+            style="@style/AppTheme_New.TitleStyle"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:id="@+id/text_display_notes"
+            android:hint="@string/hint_notes"
+            android:textSize="@dimen/text_size"
+            android:gravity="center_vertical" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@drawable/edit_text_background"
+            android:id="@+id/text_edit_notes"
+            android:hint="@string/hint_notes"
+            android:textSize="@dimen/text_size"
+            android:gravity="center_vertical" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:id="@+id/button_edit_activity"
+        android:text="@string/action_edit"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:id="@+id/button_save_activity"
+        android:text="@string/action_save"/>
+
+
+</LinearLayout>

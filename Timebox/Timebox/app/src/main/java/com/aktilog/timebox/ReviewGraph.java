@@ -45,6 +45,8 @@ import java.util.List;
 
 public class ReviewGraph extends Fragment {
 
+    //TODO: Group categories together
+
     TextView title_start_datetime_review_graph;
     TextView title_end_datetime_review_graph;
     protected static TextView input_start_datetime_review_graph;
@@ -56,10 +58,9 @@ public class ReviewGraph extends Fragment {
     Button button_switch_filter_review_graph;
     AppDatabase app_db_review_graph;
     ArrayAdapter<String> dataAdapter;
-    ArrayList<LoggedActivities> logged_activities_graph;
     String[] selection;
     List<Category> category_list;
-    List<LoggedActivities> logged_activities_list_graph;
+    List<LoggedActivities> logged_activities_graph;
     PieChart pieChart;
     ArrayList<PieEntry> yvalues;
     List<Integer> piechart_colors = new ArrayList<>();
@@ -305,11 +306,11 @@ public class ReviewGraph extends Fragment {
             }
 
             if (!category_spinner_is_null && !start_datetime_is_null && !end_datetime_is_null){
-                logged_activities_graph = (ArrayList<LoggedActivities>) app_db_review_graph.catDao().getLoggedActivitiesWithAllFilters(selection,input_start_datetime_review_graph.getText().toString(),input_end_datetime_review_graph.getText().toString());
+                logged_activities_graph = app_db_review_graph.catDao().getLoggedActivitiesWithAllFilters(selection,input_start_datetime_review_graph.getText().toString(),input_end_datetime_review_graph.getText().toString());
             } else if (!category_spinner_is_null && start_datetime_is_null && end_datetime_is_null){
-                logged_activities_graph = (ArrayList<LoggedActivities>) app_db_review_graph.catDao().getLoggedActivitiesWithCategories(selection);
+                logged_activities_graph = app_db_review_graph.catDao().getLoggedActivitiesWithCategories(selection);
             } else if (category_spinner_is_null && !start_datetime_is_null && !end_datetime_is_null){
-                logged_activities_graph = (ArrayList<LoggedActivities>) app_db_review_graph.catDao().getLoggedActivitiesWithDates(input_start_datetime_review_graph.getText().toString(),input_end_datetime_review_graph.getText().toString());
+                logged_activities_graph = app_db_review_graph.catDao().getLoggedActivitiesWithDates(input_start_datetime_review_graph.getText().toString(),input_end_datetime_review_graph.getText().toString());
             } else {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -339,6 +340,13 @@ public class ReviewGraph extends Fragment {
                 yvalues.add(new PieEntry(duration,cat_name));
                 piechart_colors.add(cat_color);
             }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            //perform post-adding operation here
             LegendEntry legendEntry = new LegendEntry();
             legendEntry.label = "";
             legendEntry.formColor = 0;
@@ -365,13 +373,6 @@ public class ReviewGraph extends Fragment {
             pieChart.setEntryLabelColor(colorBlack);
             dataSet.setValueTextSize(13f);
             pieChart.getLegendRenderer().computeLegend(data);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            //perform post-adding operation here
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

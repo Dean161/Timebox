@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddModCategories">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_add_mod_cat"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <Switch
+        android:id="@+id/switch_modify_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/switch_modify"
+        android:textSize="20sp"
+        android:trackTint="?attr/actionModeSplitBackground"
+        android:thumbTint="?attr/actionModeSplitBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.972"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_category_select"
+        style="@style/AppTheme_New.TitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/title_category_select"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_modify_category" />
+
+    <Spinner
+        android:id="@+id/spinner_category_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="17dp"
+        android:background="@drawable/spinner_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.029"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_category_select" />
+
+    <TextView
+        android:id="@+id/title_category_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="20dp"
+        style="@style/AppTheme_New.TitleStyle"
+        android:text="@string/title_category_name"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_category_select" />
+
+    <EditText
+        android:id="@+id/text_category_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="17dp"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="@string/hint_category_name"
+        android:inputType="textPersonName"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_category_name" />
+
+    <TextView
+        android:id="@+id/title_category_color"
+        style="@style/AppTheme_New.TitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/title_category_color"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintEnd_toStartOf="@+id/button_category_color"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_category_name" />
+
+    <Button
+        android:id="@+id/button_category_color"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="22dp"
+        android:background="@color/colorBlack"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:text="@string/hint_category_color"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_category_name" />
+
+    <TextView
+        android:id="@+id/title_parent_category"
+        style="@style/AppTheme_New.TitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/title_parent_category"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_category_color" />
+
+    <Spinner
+        android:id="@+id/spinner_parent_category_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="17dp"
+        android:background="@drawable/spinner_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.727"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_parent_category" />
+
+    <Button
+        android:id="@+id/button_category_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="?attr/actionModeSplitBackground"
+        android:backgroundTint="?attr/actionModeSplitBackground"
+        android:text="@string/action_save"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_parent_category_select"
+        app:layout_constraintVertical_bias="0.217" />
+
+</android.support.constraint.ConstraintLayout>

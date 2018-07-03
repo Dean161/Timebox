@@ -23,6 +23,8 @@ import java.util.List;
 
 public class DisplayActivity extends AppCompatActivity {
 
+    //TODO: Handle clicks from other Activities
+
     TextView display_activity_name;
     TextView display_category_name;
     TextView display_start_date_time;
