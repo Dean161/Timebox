@@ -40,7 +40,7 @@ The following classes were tested using White-Box Testing:
 
 #### LoginActivity: Validate user credentials
 
-<img src="{{site.baseurl}}/images/LoginActivity.png" alt="LoginActivity" height="400" width="400"><img src="{{site.baseurl}}/images/LoginActivityFlow.png" alt="LoginActivityFlow" height="400">
+<img src="{{site.baseurl}}/images/LoginActivity.png" alt="LoginActivity" height="400" width="600"><img src="{{site.baseurl}}/images/LoginActivityFlow.png" alt="LoginActivityFlow" height="400">
 
 ###### Scenario 1:
 
@@ -56,7 +56,7 @@ The following classes were tested using White-Box Testing:
 
 #### LogActivity: Validate EndDateTime is not before StartDateTime
 
-<img src="{{site.baseurl}}/images/LogActivity.png" alt="LogActivity"><img src="{{site.baseurl}}/images/LogActivityFlow.png" alt="LogActivityFlow">
+<img src="{{site.baseurl}}/images/LogActivity.png" alt="LogActivity" height="400" width="600"><img src="{{site.baseurl}}/images/LogActivityFlow.png" alt="LogActivityFlow">
 
 ###### Scenario 1:
 
@@ -72,7 +72,7 @@ The following classes were tested using White-Box Testing:
 
 #### ReviewGraph: Load data into the Pie Chart
 
-<img src="{{site.baseurl}}/images/ReviewGraph.png" alt="ReviewGraph"><img src="{{site.baseurl}}/images/ReviewGraphFlow.png" alt="ReviewGraphFlow">
+<img src="{{site.baseurl}}/images/ReviewGraph.png" alt="ReviewGraph"height="400" width="600"><img src="{{site.baseurl}}/images/ReviewGraphFlow.png" alt="ReviewGraphFlow">
 
 ###### Scenario 1:
 
@@ -88,7 +88,7 @@ The following classes were tested using White-Box Testing:
 
 #### DisplayActivity: Load the categories into category spinner
 
-<img src="{{site.baseurl}}/images/DisplayActivity.png" alt="DisplayActivity"><img src="{{site.baseurl}}/images/DisplayActivityFlow.png" alt="DisplayActivityFlow">
+<img src="{{site.baseurl}}/images/DisplayActivity.png" alt="DisplayActivity"height="400" width="600"><img src="{{site.baseurl}}/images/DisplayActivityFlow.png" alt="DisplayActivityFlow">
 
 ###### Scenario 1:
 
@@ -98,7 +98,7 @@ The following classes were tested using White-Box Testing:
 
 #### MainActivity: Navigate using Menu Drawer
 
-<img src="{{site.baseurl}}/images/MainActivity.png" alt="MainActivity"><img src="{{site.baseurl}}/images/MainActivityFlow.png" alt="MainActivityFlow">
+<img src="{{site.baseurl}}/images/MainActivity.png" alt="MainActivity"height="400" width="600"><img src="{{site.baseurl}}/images/MainActivityFlow.png" alt="MainActivityFlow">
 
 ###### Scenario 1:
 
