@@ -33,7 +33,7 @@ Test methods can be further classified into
 
 All the bugs are logged into Zenhub for tracking the efforts involved in fixing them as shown below.
 
-<img src="{{site.baseurl}}/images/Zenhub_Bug.png" alt="Zenhub_Bug_Board">
+<img src="{{site.baseurl}}/images/Zenhub_Bug.PNG" alt="Zenhub_Bug_Board">
 
 
 ## White-Box Testing
@@ -136,7 +136,7 @@ As part of Black-Box Testing, along with each team member testing different func
 
 The test cases for these 5 functionalities along with the result are displayed below:
 
-<img src="{{site.baseurl}}/images/black-box_testing.png" alt="black-box_testing">
+<img src="{{site.baseurl}}/images/black-box_testing.PNG" alt="black-box_testing">
 
 
 ## Summary of Changes
