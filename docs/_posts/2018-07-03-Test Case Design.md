@@ -40,7 +40,7 @@ The following classes were tested using White-Box Testing:
 
 #### LoginActivity: Validate user credentials
 
-<img src="{{site.baseurl}}/images/LoginActivity.png" alt="LoginActivity" height="400" width="600"><img src="{{site.baseurl}}/images/LoginActivityFlow.png" alt="LoginActivityFlow" height="400">
+<img src="{{site.baseurl}}/images/LoginActivity.png" alt="LoginActivity" height="400" width="500"><img src="{{site.baseurl}}/images/LoginActivityFlow.png" alt="LoginActivityFlow" height="400">
 
 ###### Scenario 1:
 
@@ -56,7 +56,7 @@ The following classes were tested using White-Box Testing:
 
 #### LogActivity: Validate EndDateTime is not before StartDateTime
 
-<img src="{{site.baseurl}}/images/LogActivity.png" alt="LogActivity" height="400" width="600"><img src="{{site.baseurl}}/images/LogActivityFlow.png" alt="LogActivityFlow">
+<img src="{{site.baseurl}}/images/LogActivity.png" alt="LogActivity" height="200" width="500"><img src="{{site.baseurl}}/images/LogActivityFlow.png" alt="LogActivityFlow">
 
 ###### Scenario 1:
 
