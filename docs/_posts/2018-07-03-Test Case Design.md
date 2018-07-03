@@ -38,7 +38,7 @@ White-Box Testing is a type of testing which involves test case design by knowin
 
 The following classes were tested using White-Box Testing:
 
-### LoginActivity: Validate user credentials
+#### **LoginActivity: Validate user credentials**
 
 <img src="{{site.baseurl}}/images/LoginActivity.png" alt="LoginActivity" height="400" width="500"><img src="{{site.baseurl}}/images/LoginActivityFlow.png" alt="LoginActivityFlow" height="400">
 
@@ -54,7 +54,7 @@ The following classes were tested using White-Box Testing:
 |:--------:|:------------:|:------------------:|
 | 1234     | 1111         | 37, 40, 44, 45, 46     |
 
-### LogActivity: Validate EndDateTime is not before StartDateTime
+#### **LogActivity: Validate EndDateTime is not before StartDateTime**
 
 <img src="{{site.baseurl}}/images/LogActivity.png" alt="LogActivity" height="200">
 
@@ -72,7 +72,7 @@ The following classes were tested using White-Box Testing:
 |:-------------------:|:-----------------:|:------------------:|
 | 2018-07-02 08:00    | 2018-07-02 07:30  | 233, 236, 237, 238    |
 
-### ReviewGraph: Load data into the Pie Chart
+#### **ReviewGraph: Load data into the Pie Chart**
 
 <img src="{{site.baseurl}}/images/ReviewGraph.png" alt="ReviewGraph">
 
@@ -90,7 +90,7 @@ The following classes were tested using White-Box Testing:
 |:----------------------:|:--------------:|
 | 0                      | 353, 358        |
 
-### DisplayActivity: Load the categories into category spinner
+#### **DisplayActivity: Load the categories into category spinner**
 
 <img src="{{site.baseurl}}/images/DisplayActivity.png" alt="DisplayActivity">
 
@@ -102,7 +102,7 @@ The following classes were tested using White-Box Testing:
 |:-----------------:|:-------------------:|
 | loadSpinnerData() | 166, 179, 181-200, 202 |
 
-### MainActivity: Navigate using Menu Drawer
+#### **MainActivity: Navigate using Menu Drawer**
 
 <img src="{{site.baseurl}}/images/MainActivity.png" alt="MainActivity">
 
