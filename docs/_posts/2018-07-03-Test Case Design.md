@@ -68,7 +68,7 @@ The following classes were tested using White-Box Testing:
 |:-------------------:|:-----------------:|:------------------:|
 | 2018-07-02 08:00    | 2018-07-02 07:30  | 233,236,237,238    |
 
-#### ReviewGraph: Validate EndDateTime is not before StartDateTime
+#### ReviewGraph: Load data into the Pie Chart
 
 <img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
 
@@ -94,7 +94,21 @@ The following classes were tested using White-Box Testing:
 |:-----------------:|:-------------------:|
 | loadSpinnerData() | 166,179,181-200,202 |
 
+#### MainActivity: Navigate using Menu Drawer
 
+<img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
+
+* Scenario 1:
+
+| menuItem(clicked) | path(line numbers) |
+|:-----------------:|:-------------------:|
+| Log Activity | 118,120,121-122 |
+
+* Scenario 2:
+
+| menuItem(clicked) | path(line numbers) |
+|:-----------------:|:-------------------:|
+| Review | 118,120,123,124-125 |
 
 ## Black-Box Testing
 
