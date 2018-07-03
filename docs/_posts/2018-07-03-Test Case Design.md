@@ -78,6 +78,13 @@ The following classes were tested using White-Box Testing:
 |:----------------------:|:--------------------------------------:|
 | 2                      | 353,356,357,353,356,357,353,358        |
 
+* Scenario 2:
+
+| category_names.size()  | path(line numbers)|
+|:----------------------:|:--------------:|
+| 0                      | 353,358        |
+
+
 
 ## Black-Box Testing
 
