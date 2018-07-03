@@ -36,7 +36,7 @@ White-Box Testing is a type of testing which involves test case design by knowin
 
 The following classes were tested using White-Box Testing:
 
-####LoginActivity: Validate user credentials
+#### LoginActivity: Validate user credentials
 
 <img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
 
@@ -52,7 +52,7 @@ The following classes were tested using White-Box Testing:
 |:--------:|:------------:|:------------------:|
 | 1234     | 1111         | 37,40,44,45,46     |
 
-####LogActivity: Validate EndDateTime is not before StartDateTime
+#### LogActivity: Validate EndDateTime is not before StartDateTime
 
 <img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
 
@@ -67,6 +67,17 @@ The following classes were tested using White-Box Testing:
 | convertedStartDate  | convertedEndDate  | path(line numbers) |
 |:-------------------:|:-----------------:|:------------------:|
 | 2018-07-02 08:00    | 2018-07-02 07:30  | 233,236,237,238    |
+
+#### ReviewGraph: Validate EndDateTime is not before StartDateTime
+
+<img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
+
+* Scenario 1:
+
+| category_names.size()  | path(line numbers)                     |
+|:----------------------:|:--------------------------------------:|
+| 2                      | 353,356,357,353,356,357,353,358        |
+
 
 ## Black-Box Testing
 
