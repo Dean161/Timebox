@@ -12,7 +12,8 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button sign_in,forgot_pin;
+    Button sign_in;
+    Button forgot_pin;
     EditText entered_pin;
 
     @Override

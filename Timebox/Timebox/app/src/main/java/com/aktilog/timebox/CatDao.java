@@ -96,4 +96,14 @@ public interface CatDao {
     @Update
     void updateLoggedActivity(LoggedActivities loggedActivities);
 
+    @Query("SELECT * FROM LoggedActivities WHERE start_date_time >= :startDateTime AND end_date_time <= :endDateTime ORDER BY cid_fk ASC")
+    List<LoggedActivities> getLoggedActivitiesWithDatesOrderCat(String startDateTime, String endDateTime);
+
+    @Query("SELECT LA.* FROM LoggedActivities LA,Category C WHERE  C.cat_name IN (:categoryName) AND LA.cid_fk = C.cid ORDER BY cid_fk ASC")
+    List<LoggedActivities> getLoggedActivitiesWithCategoriesOrderCat(String[] categoryName);
+
+    @Query("SELECT LA.* FROM LoggedActivities LA,Category C WHERE  C.cat_name IN (:categoryName) AND start_date_time >= :startDateTime AND end_date_time <= :endDateTime AND LA.cid_fk = C.cid ORDER BY cid_fk ASC")
+    List<LoggedActivities> getLoggedActivitiesWithAllFiltersOrderCat(String[] categoryName, String startDateTime, String endDateTime);
+
+
 }

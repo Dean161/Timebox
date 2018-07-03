@@ -201,19 +201,30 @@ public class AddModCategories extends AppCompatActivity {
                 String CategoryToBeChecked = input_category.getText().toString();
 
                 int duplicate = 0;
+                int modify_duplicate = 0;
+                String error_message = "";
 
                 for (int i = 0; i < size; i++) {
                     String existingCatName = category_list.get(i).getCatName();
 
                     if (existingCatName.equalsIgnoreCase(CategoryToBeChecked)) {
                         duplicate = 1;
+                        error_message = String.format("Category '" + CategoryToBeChecked + "' already exists!");
+                        if (actionbar_categories.getTitle().toString().equals(getResources().getString(R.string.title_modify_category))) {
+                            if (!CategoryToBeChecked.equals(category_sel_spinner.getSelectedItem().toString())) {
+                                modify_duplicate = 1;
+                                error_message = "Cannot change category name from '" + category_sel_spinner.getSelectedItem().toString() + "' to '" + CategoryToBeChecked + "'!";
+                            }
+                        }
                     }
                 }
 
                 if (duplicate == 1 && actionbar_categories.getTitle().toString().equals(getResources().getString(R.string.title_add_category))) {
-                    Toast.makeText(getApplicationContext(), "Category name already exists!", Toast.LENGTH_LONG).show();
-                } else {
+                    Toast.makeText(getApplicationContext(), error_message, Toast.LENGTH_LONG).show();
+                } else if(modify_duplicate == 0) {
                     new DatabaseAsyncInsert().execute();
+                } else {
+                    Toast.makeText(AddModCategories.this, error_message, Toast.LENGTH_LONG).show();
                 }
 
             }

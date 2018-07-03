@@ -66,6 +66,9 @@ public class ReviewGraph extends Fragment {
     List<Integer> piechart_colors = new ArrayList<>();
     int REQUEST_NAME = 1;
     int REQUEST_COLOR = 2;
+    List<String> category_names = new ArrayList<>();
+    List<Float> category_duration = new ArrayList<>();
+    List<Integer> category_color = new ArrayList<>();
     List<LegendEntry> legend_entries = new ArrayList<>();
 
     @Override
@@ -306,11 +309,11 @@ public class ReviewGraph extends Fragment {
             }
 
             if (!category_spinner_is_null && !start_datetime_is_null && !end_datetime_is_null){
-                logged_activities_graph = app_db_review_graph.catDao().getLoggedActivitiesWithAllFilters(selection,input_start_datetime_review_graph.getText().toString(),input_end_datetime_review_graph.getText().toString());
+                logged_activities_graph = app_db_review_graph.catDao().getLoggedActivitiesWithAllFiltersOrderCat(selection,input_start_datetime_review_graph.getText().toString(),input_end_datetime_review_graph.getText().toString());
             } else if (!category_spinner_is_null && start_datetime_is_null && end_datetime_is_null){
-                logged_activities_graph = app_db_review_graph.catDao().getLoggedActivitiesWithCategories(selection);
+                logged_activities_graph = app_db_review_graph.catDao().getLoggedActivitiesWithCategoriesOrderCat(selection);
             } else if (category_spinner_is_null && !start_datetime_is_null && !end_datetime_is_null){
-                logged_activities_graph = app_db_review_graph.catDao().getLoggedActivitiesWithDates(input_start_datetime_review_graph.getText().toString(),input_end_datetime_review_graph.getText().toString());
+                logged_activities_graph = app_db_review_graph.catDao().getLoggedActivitiesWithDatesOrderCat(input_start_datetime_review_graph.getText().toString(),input_end_datetime_review_graph.getText().toString());
             } else {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -322,6 +325,7 @@ public class ReviewGraph extends Fragment {
             }
             yvalues.clear();
             piechart_colors.clear();
+            int j = -1;
             for(int i=0; i<logged_activities_graph.size();i++){
                 SimpleDateFormat start_date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 SimpleDateFormat end_date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -336,10 +340,23 @@ public class ReviewGraph extends Fragment {
                 int cat_id = logged_activities_graph.get(i).getCid_fk();
                 String cat_name = getCatDetailsByID(category_list, cat_id,REQUEST_NAME);
                 int cat_color = Integer.parseInt(getCatDetailsByID(category_list, cat_id,REQUEST_COLOR));
-                long duration = ((end_date.getTime() - start_date.getTime())/3600000);
-                yvalues.add(new PieEntry(duration,cat_name));
-                piechart_colors.add(cat_color);
+                float duration = ((float)(end_date.getTime() - start_date.getTime())/3600000);
+                if(i == 0 || !category_names.get(j).equals(cat_name)){
+                    j = j + 1;
+                    category_names.add(cat_name);
+                    category_duration.add(duration);
+                    category_color.add(cat_color);
+                } else {
+                    float new_duration = category_duration.get(j) + duration;
+                    category_duration.set(j,new_duration);
+                }
             }
+
+            for (int k=0;k<category_names.size();k++){
+                yvalues.add(new PieEntry(category_duration.get(k),category_names.get(k)));
+                piechart_colors.add(category_color.get(k));
+            }
+
             return null;
         }
 
