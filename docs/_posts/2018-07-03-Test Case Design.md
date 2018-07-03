@@ -38,7 +38,7 @@ The following classes were tested using White-Box Testing:
 
 #### LoginActivity: Validate user credentials
 
-<img src="{{site.baseurl}}/images/LoginActivity.png" alt="LoginActivity" height="300" width="300"><img src="{{site.baseurl}}/images/LoginActivityFlow.png" alt="LoginActivityFlow">
+<img src="{{site.baseurl}}/images/LoginActivity.png" alt="LoginActivity" height="400" width="400"><img src="{{site.baseurl}}/images/LoginActivityFlow.png" alt="LoginActivityFlow" height="400">
 
 ###### Scenario 1:
 
