@@ -38,7 +38,7 @@ The following classes were tested using White-Box Testing:
 
 #### LoginActivity: Validate user credentials
 
-<img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
+<img src="{{site.baseurl}}/images/LoginActivity.png" alt="LoginActivity"><img src="{{site.baseurl}}/images/LoginActivityFlow.png" alt="LoginActivityFlow">
 
 * Scenario 1:
 
@@ -54,7 +54,7 @@ The following classes were tested using White-Box Testing:
 
 #### LogActivity: Validate EndDateTime is not before StartDateTime
 
-<img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
+<img src="{{site.baseurl}}/images/LogActivity.png" alt="LogActivity"><img src="{{site.baseurl}}/images/LogActivityFlow.png" alt="LogActivityFlow">
 
 * Scenario 1:
 
@@ -70,7 +70,7 @@ The following classes were tested using White-Box Testing:
 
 #### ReviewGraph: Load data into the Pie Chart
 
-<img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
+<img src="{{site.baseurl}}/images/ReviewGraph.png" alt="ReviewGraph"><img src="{{site.baseurl}}/images/ReviewGraphFlow.png" alt="ReviewGraphFlow">
 
 * Scenario 1:
 
@@ -86,7 +86,7 @@ The following classes were tested using White-Box Testing:
 
 #### DisplayActivity: Load the categories into category spinner
 
-<img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
+<img src="{{site.baseurl}}/images/DisplayActivity.png" alt="DisplayActivity"><img src="{{site.baseurl}}/images/DisplayActivity.png" alt="DisplayActivityFlow">
 
 * Scenario 1:
 
@@ -96,7 +96,7 @@ The following classes were tested using White-Box Testing:
 
 #### MainActivity: Navigate using Menu Drawer
 
-<img src="{{site.baseurl}}/images/Coding_Conventions1.png" alt="Coding_Conventions1"><img src="{{site.baseurl}}/images/Coding_Conventions2.png" alt="Coding_Conventions2" height="350">
+<img src="{{site.baseurl}}/images/MainActivity.png" alt="MainActivity"><img src="{{site.baseurl}}/images/MainActivityFlow.png" alt="MainActivityFlow">
 
 * Scenario 1:
 
