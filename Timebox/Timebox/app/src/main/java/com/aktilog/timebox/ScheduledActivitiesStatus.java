@@ -25,7 +25,7 @@ public class ScheduledActivitiesStatus extends AppCompatActivity {
     TextView logged_hours;
     TextView activity_name;
     AppDatabase db;
-    String activityname = CheckScheduled.clickedItem;
+    ScheduledActivities getScheduledActivity;
     ScheduledActivities updatedScheduledActivity;
     ProgressBar progressBar;
 
@@ -51,7 +51,19 @@ public class ScheduledActivitiesStatus extends AppCompatActivity {
         //activityname = activity_name.getText().toString();
 
         db = AppDatabase.getAppDatabase(getApplicationContext());
-        new DatabaseAsyncTaskGetChosenScheduled().execute();
+
+        getScheduledActivity = CheckScheduled.clickedActivity;
+        updatedScheduledActivity = getScheduledActivity;
+        String startDateTime = updatedScheduledActivity.getStartDateTime();
+        start_date_time.setText(startDateTime);
+        String endDateTime = updatedScheduledActivity.getEndDateTime();
+        end_date_time.setText(endDateTime);
+        int targetDuration = updatedScheduledActivity.getTargetDurationInMin();
+        target_duration.setText(String.valueOf(targetDuration/60));
+        int loggedHours = updatedScheduledActivity.getLoggedHours();
+        logged_hours.setText(String.valueOf(loggedHours/60));
+        progressBar.setMax(targetDuration);
+        progressBar.setProgress(loggedHours);
 
         //onClickListener increase, decrease and save button
         increase_button.setOnClickListener(new View.OnClickListener() {
@@ -105,18 +117,8 @@ public class ScheduledActivitiesStatus extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            List<ScheduledActivities> scheduledActivitiesCheckScheduled = db.catDao().getChosenScheduled(activityname);
-            updatedScheduledActivity = scheduledActivitiesCheckScheduled.get(0);
-            String startDateTime = updatedScheduledActivity.getStartDateTime();
-            start_date_time.setText(startDateTime);
-            String endDateTime = updatedScheduledActivity.getEndDateTime();
-            end_date_time.setText(endDateTime);
-            int targetDuration = updatedScheduledActivity.getTargetDurationInMin();
-            target_duration.setText(String.valueOf(targetDuration/60));
-            int loggedHours = updatedScheduledActivity.getLoggedHours();
-            logged_hours.setText(String.valueOf(loggedHours/60));
-            progressBar.setMax(targetDuration);
-            progressBar.setProgress(loggedHours);
+
+
             return null;
         }
 

@@ -24,7 +24,7 @@ public class CheckScheduled extends AppCompatActivity {
     ListView scheduled_activities_listView;
     List<Category> category_list;
     static public String clickedItem;
-    public ScheduledActivities clickedActivity;
+    static public ScheduledActivities clickedActivity;
     public static final int REQUEST_CODE = 1000;
 
     @Override
