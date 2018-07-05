@@ -45,6 +45,7 @@ public class ReviewText extends Fragment {
     List<Category> category_list;
     public static LoggedActivities loggedActivities;
     public static String current_category_name;
+    String myIdentity = "ReviewText";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,6 +110,7 @@ public class ReviewText extends Fragment {
                 int cat_id = loggedActivities.getCid_fk();
                 current_category_name = getCatNameByID(category_list,cat_id);
                 Intent showActivityDetailsDialog = new Intent(getActivity(),DisplayActivity.class);
+                showActivityDetailsDialog.putExtra("ActivityName",myIdentity);
                 startActivityForResult(showActivityDetailsDialog,0);
             }
         });

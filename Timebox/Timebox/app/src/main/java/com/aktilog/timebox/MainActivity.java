@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
     List<Category> category_list;
     ListView list_recent;
     TextView list_empty;
-    LoggedActivities loggedActivities;
-    String current_category_name;
+    static LoggedActivities loggedActivities;
+    static String current_category_name;
     String myIdentity = "MainActivity";
 
     @Override
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 loggedActivities = (LoggedActivities) parent.getAdapter().getItem(position);
                 int cat_id = loggedActivities.getCid_fk();
                 current_category_name = getCatNameByID(category_list,cat_id);
-                showActivityDetailsDialog.putExtra("The Passer",myIdentity);
+                showActivityDetailsDialog.putExtra("ActivityName",myIdentity);
                 startActivityForResult(showActivityDetailsDialog,0);
             }
         });
@@ -296,16 +296,21 @@ public class MainActivity extends AppCompatActivity {
             recent_activity = db.catDao().getRecentLoggedActivities();
 
             if (recent_activity.isEmpty()) {
-                list_recent.setVisibility(View.GONE);
-                list_empty.setVisibility(View.VISIBLE);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        list_recent.setVisibility(View.GONE);
+                        list_empty.setVisibility(View.VISIBLE);
+                    }
+                });
             }
             else {
-                list_recent.setVisibility(View.VISIBLE);
-                list_empty.setVisibility(View.GONE);
                 //scheduled_activities_listView.setVisibility(View.GONE);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        list_recent.setVisibility(View.VISIBLE);
+                        list_empty.setVisibility(View.GONE);
                         list_recent.setAdapter(new CustomAdapter(getApplicationContext(), recent_activity, category_list));
                     }
                 });
