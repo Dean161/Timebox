@@ -220,7 +220,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
                                 String startDateTimeToCheck = start_date_time.getText().toString();
                                 String endDateTimeToCheck = end_date_time.getText().toString();
-                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                                 Date convertedStartDate = new Date();
                                 Date convertedEndDate = new Date();
                                 try {
@@ -252,7 +252,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
                         String startDateTimeToCheck = start_date_time.getText().toString();
                         String endDateTimeToCheck = end_date_time.getText().toString();
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                         Date convertedStartDate = new Date();
                         Date convertedEndDate = new Date();
                         try {
@@ -265,19 +265,25 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                         //calc max target duration
                         long maxTargetDuration = (convertedEndDate.getTime() - convertedStartDate.getTime())/(1000*60);
                         String targetDurationToCompareString = target_duration.getText().toString();
-                        String[] targetDurationStringSplittedToCompare = targetDurationToCompareString.split(" ");
-                        String[] targetDurationStringSplittedToCompareHours =targetDurationStringSplittedToCompare[0].split("h");
-                        String[] targetDurationStringSplittedToCompareMin =targetDurationStringSplittedToCompare[1].split("m");
-                        String targetHoursToCompare = targetDurationStringSplittedToCompareHours[0];
-                        String targetMinToCompare = targetDurationStringSplittedToCompareMin[0];
-                        long targetDurationLong = Long.parseLong(targetHoursToCompare)*60 + Long.parseLong(targetMinToCompare);
 
-                        if (convertedEndDate.after(convertedStartDate) && targetDurationLong <= maxTargetDuration) {
-                            new DatabaseAsyncInsertScheduledActivity().execute();
-                            Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                        if (targetDurationToCompareString.matches("")) {
+                            Toast.makeText(getApplicationContext(), "Please enter a target duration!", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(LogActivity.this, "Chosen target duration is greater than the duration between Start Date and End Date. Please Check.", Toast.LENGTH_LONG).show();
+                            String[] targetDurationStringSplittedToCompare = targetDurationToCompareString.split(" ");
+                            String[] targetDurationStringSplittedToCompareHours =targetDurationStringSplittedToCompare[0].split("h");
+                            String[] targetDurationStringSplittedToCompareMin =targetDurationStringSplittedToCompare[1].split("m");
+                            String targetHoursToCompare = targetDurationStringSplittedToCompareHours[0];
+                            String targetMinToCompare = targetDurationStringSplittedToCompareMin[0];
+                            long targetDurationLong = Long.parseLong(targetHoursToCompare)*60 + Long.parseLong(targetMinToCompare);
+
+                            if (convertedEndDate.after(convertedStartDate) && targetDurationLong <= maxTargetDuration) {
+                                new DatabaseAsyncInsertScheduledActivity().execute();
+                                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(LogActivity.this, "Chosen target duration is greater than the duration between Start Date and End Date. Please Check.", Toast.LENGTH_LONG).show();
+                            }
                         }
+
 
                     } else {
                         //not working???
