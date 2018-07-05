@@ -78,8 +78,12 @@ public class CustomAdapterReview  extends BaseAdapter {
         } catch (ParseException e){
             e.printStackTrace();
         }
-        long duration = ((end_date.getTime() - start_date.getTime())/3600000);
-        holder.duration.setText(String.valueOf(duration));
+        int t = (int) ((end_date.getTime() - start_date.getTime())/60000);
+        int hours = t/60;
+        int minutes = t%60;
+        String duration = String.valueOf(hours) + ":" + String.valueOf(minutes);
+
+        holder.duration.setText(duration);
 
         return convertView;
     }

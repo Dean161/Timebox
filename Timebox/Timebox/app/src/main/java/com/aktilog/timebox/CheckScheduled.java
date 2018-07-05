@@ -110,7 +110,15 @@ public class CheckScheduled extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             final List<ScheduledActivities> scheduled_activities_list = app_database.catDao().getScheduledActivities();
 
-            if (scheduled_activities_list.isEmpty())  scheduled_activities_listView.setVisibility(View.GONE);
+            if (scheduled_activities_list.isEmpty()) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        scheduled_activities_listView.setVisibility(View.GONE);
+                    }
+                });
+
+            }
             else {
                 //scheduled_activities_listView.setVisibility(View.GONE);
                 runOnUiThread(new Runnable() {
