@@ -35,12 +35,12 @@ We did gain a lot of benefits throughout this whole journey, while having fun wi
 
 
 ## About the course
-The course as expected, was a great platform to have hands on experience in developing an android app and learning some project management skills. It was a more effective learning approach, due to practical application of the lectures content. 
+The course as expected, was a great platform to have hands on experience in developing an android app and learning some project management skills. It was a more effective learning approach, due to practical application of the lecture contents. 
 It has helped us in 
 
 * Gaining additional programming skills
 
-* Learning how an entire software engineering project,staring from requirements analysis untill the testing of the product can look in reality 
+* Learning how an entire software engineering project,staring from requirements analysis until the testing of the product can look in reality 
 
 * Learning and applying agile software project management with SCRUM 
 
