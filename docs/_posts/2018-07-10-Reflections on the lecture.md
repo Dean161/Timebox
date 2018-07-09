@@ -10,7 +10,7 @@ Welcome to our blog!!We have successfully made it to the end of the course "Intr
 
 The members of our team were from different technical backgrounds. While this bought diversity to our team, we also faced some issues:
 
-<img src="{{site.baseurl}}/images/Challenges.JPG" alt="Challenges" height="400" width="500">
+<img src="{{site.baseurl}}/images/Challenges.png" alt="Challenges" height="400" width="500">
 
 * Some of the team members had no prior experience in programming and this was a major setback in our team. However, with the support of other team members, we were able to overcome this problem. 
 
