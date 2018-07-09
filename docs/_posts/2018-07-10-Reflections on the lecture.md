@@ -28,6 +28,7 @@ We did gain a lot of benefits throughout this whole journey, while having fun wi
 * It helped us in managing our time more efficiently. Along with the development of the app, each blog and presentations had a speicifc deadline and by wisely managing our time we delivered the best we could.  
 
 * We learnt how to organise a team, which contributes to the same code by dividing our tasks in a more structured and systematic method.  
+
 * By using agile project management method, we have learnt to work in a well-organized and competent way. 
    
 * More importantly, It allowed us to understand how people with different ideas and different culture of working can come together and work as one team through effective communication and adherence. 
