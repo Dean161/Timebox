@@ -25,7 +25,7 @@ As most of our team members had worked with each other on other projects, we did
 
 We did gain a lot of benefits throughout this whole journey, while having fun with our friends
 
-* It helped us in managing our time more efficiently.Along with the development of the app, each blog and presentations had a speicifc deadline and by wisely managing our time we delivered the best we could.  
+* It helped us in managing our time more efficiently. Along with the development of the app, each blog and presentations had a speicifc deadline and by wisely managing our time we delivered the best we could.  
 
 * We learnt how to organise a team, which contributes to the same code by dividing our tasks in a more structured and systematic way.  
 
