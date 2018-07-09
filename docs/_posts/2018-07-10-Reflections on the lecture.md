@@ -52,7 +52,7 @@ It has helped us in
 
 * Improving our presentation skills and writing skills through blogs 
 
-* Efficiently work as a team, considering opinions of different individuals.   
+* Efficiently work as a team, considering different opinions of each individuals.   
 
   
 #### We would like to thank Dr. Schulze for affording us with the oppurtunity to learn in such a practical way. He bought the best in us by his continuous support and commitment. 
