@@ -8,7 +8,7 @@ Welcome to our blog!!We have successfully made it to the end of the course "Intr
 
 ## Technical challenges our team encountered
 
-We were a team with members who were from different technical backgrounds. While this bought diversity to our team, we also faced some issues:
+We were a team with members, who were from different technical backgrounds. While this bought diversity to our team, we also faced some issues:
 
 <img src="{{site.baseurl}}/images/Challenges.png" alt="Challenges" height="400" width="500">
 
