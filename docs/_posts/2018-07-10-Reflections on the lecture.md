@@ -4,7 +4,7 @@ title: "Reflections"
 date: 2018-07-10
 ---
 
-Welcome to our blog!! 
+#### Welcome to our blog!! 
 
 We have successfully made it to the end of the course "Introduction to Software Engineering for Engineers". In this blog, we would like to put forth our reflections on the whole experience of developing an android app, while working in a team. 
 
@@ -41,9 +41,9 @@ It has helped us in
 * Efficiently work as a team
 * Knowing how the interactions with the customer can take place, and how we need to adapt to customer's needs.  
 
-#### We would like to thank Dr. Schulze for affording us with the oppurtunity to learn in such a practical way. He bought the best in us by his continuous support and commitment. 
+### We would like to thank Dr. Schulze for affording us with the oppurtunity to learn in such a practical way. He bought the best in us by his continuous support and commitment. 
 
 
-## To know more about our app and to download it, please visit our next blog which is coming up shortly!! 
+### To know more about our app and to download it, please visit our next blog which is coming up shortly!! 
 
 
