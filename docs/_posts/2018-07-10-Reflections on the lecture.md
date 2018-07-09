@@ -19,7 +19,7 @@ Welcome to our blog!!We have successfully made it to the end of the course "Intr
 
 As most of our team members had worked with each other on other projects, we did not face any problem as a team. However, having a team with different level of programming experience was an issue we faced as a team. In this case, the ones with sufficient knowledge had to do more difficult tasks when compared to others.  
 
-<img src="{{site.baseurl}}/images/Teamwork.JPG" alt="Teamwork" height="400" width="500">
+<img src="{{site.baseurl}}/images/Teamwork.png" alt="Teamwork" height="400" width="500">
 
 We did gain a lot of benefits throughout this whole journey:
 
