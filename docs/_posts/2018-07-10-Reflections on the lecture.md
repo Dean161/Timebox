@@ -4,11 +4,11 @@ title: "Reflections"
 date: 2018-07-10
 ---
 
-## Welcome to our blog!! 
-
-We have successfully made it to the end of the course "Introduction to Software Engineering for Engineers". In this blog, we would like to put forth our reflections on the whole experience of developing an android app, while working in a team. 
+Welcome to our blog!!We have successfully made it to the end of the course "Introduction to Software Engineering for Engineers". In this blog, we would like to put forth our reflections on the whole experience of developing an android app, while working in a team. 
 
 ## Technical challenges our team encountered
+
+<img src="{{site.baseurl}}/images/Challenges.png" alt="Challenges">
 
 * Some of the team members had no prior experience in programming and this was a major setback in our team. However, with the support of other team members, we were able to overcome this problem. 
 
@@ -17,7 +17,9 @@ We have successfully made it to the end of the course "Introduction to Software 
 
 ## Challenges and benefits we experienced as a team
 
-As most of our team members had worked with each other on other projects, we did not face any problem as a team. However, having a team with different level of programming experience was an issue we faced as a team. In this case, the ones with sufficient knowledge had to do more difficult tasks when compared to others.   
+As most of our team members had worked with each other on other projects, we did not face any problem as a team. However, having a team with different level of programming experience was an issue we faced as a team. In this case, the ones with sufficient knowledge had to do more difficult tasks when compared to others.  
+
+<img src="{{site.baseurl}}/images/Teamwork.png" alt="Teamwork">
 
 We did gain a lot of benefits throughout this whole journey:
 
