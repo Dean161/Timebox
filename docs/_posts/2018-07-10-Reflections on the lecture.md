@@ -19,7 +19,7 @@ The members of our team were from different technical backgrounds. While this bo
 
 ## Challenges and benefits we experienced as a team
 
-As most of our team members had worked with each other on other projects, we did not face any problem as a team. However, having a team with different level of programming experience was an issue we faced. In this case, the ones with sufficient knowledge had to do more difficult tasks when compared to others.  
+As most of our team members had worked with each other on other projects, we did not face any problem as a team. However, having members with different level of programming experience was an issue we faced. In this case, the ones with sufficient knowledge had to do more difficult tasks when compared to others.  
 
 <img src="{{site.baseurl}}/images/Teamwork.png" alt="Teamwork" height="400" width="500">
 
@@ -44,14 +44,17 @@ It has helped us in
 
 * Learning how a software engineering project can look in reality
 
+* Knowing how the interactions with the customer can take place, and how we need to adapt to customer's needs.
+
 * Working in a well-organized and competent way.
+
+* Time management 
 
 * Improving our presentation skills and writing skills through blogs 
 
-* Efficiently work as a team
+* Efficiently work as a team, considering opinions of different individuals.   
 
-* Knowing how the interactions with the customer can take place, and how we need to adapt to customer's needs.  
-
+  
 #### We would like to thank Dr. Schulze for affording us with the oppurtunity to learn in such a practical way. He bought the best in us by his continuous support and commitment. 
 
 ### To know more about our app and to download it, please visit our next blog which is coming up shortly!! 
