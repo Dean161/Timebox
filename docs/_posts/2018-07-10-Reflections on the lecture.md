@@ -41,7 +41,7 @@ It has helped us in
 * Efficiently work as a team
 * Knowing how the interactions with the customer can take place, and how we need to adapt to customer's needs.  
 
-### We would like to thank Dr. Schulze for affording us with the oppurtunity to learn in such a practical way. He bought the best in us by his continuous support and commitment. 
+#### We would like to thank Dr. Schulze for affording us with the oppurtunity to learn in such a practical way. He bought the best in us by his continuous support and commitment. 
 
 
 ### To know more about our app and to download it, please visit our next blog which is coming up shortly!! 
