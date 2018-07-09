@@ -12,14 +12,14 @@ The members of our team were from different technical backgrounds. While this bo
 
 <img src="{{site.baseurl}}/images/Challenges.png" alt="Challenges" height="400" width="500">
 
-* Some of the team members had no prior experience in programming and this was a major setback in our team. However, with the support of other team members, we were able to overcome this problem. 
+* Some of the team members had no prior experience in programming and this was a major setback in our team. However, with the support of other team members, also the team members with minor programming experiences have been able to contribute significantley to our project.
 
-* Since none of the team members had worked on an android app earlier, getting the database running was considerably difficult.  
+* Since none of the team members had worked on an android app earlier, getting the database running was considerably difficult. However, thanks to continuous commitment and mutual support, we have been able to solve this task, which was of vital significance for a working app.
 
 
 ## Challenges and benefits we experienced as a team
 
-As most of our team members had worked with each other on other projects, we did not face any problem as a team. However, having members with different level of programming experience was an issue we faced. In this case, the ones with sufficient knowledge had to do more difficult tasks when compared to others.  
+As most of our team members had worked with each other on other projects, we did not face any problem as a team. However, having members with different level of programming experience and with different amount of available time for the project were issues we faced. Tasks have been split accordingly and due to good organization and real teamwork, we were able to succeed.
 
 <img src="{{site.baseurl}}/images/Team.jpg" alt="Team" height="400" width="500">
 
@@ -55,7 +55,7 @@ It has helped us in
 * Efficiently work as a team, considering different opinions of each individuals.   
 
   
-#### We would like to thank Dr. Schulze for affording us with the oppurtunity to learn in such a practical way. He bought the best in us by his continuous support and commitment. 
+#### We would like to thank Dr. Schulze for affording us with the oppurtunity to learn in such a practical way. He brought out the best in us by his continuous support and commitment. 
 
 ### To know more about our app and to download it, please visit our next blog which is coming up shortly!! 
 
