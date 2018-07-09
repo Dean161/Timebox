@@ -8,7 +8,7 @@ Welcome to our blog!!We have successfully made it to the end of the course "Intr
 
 ## Technical challenges our team encountered
 
-<img src="{{site.baseurl}}/images/Challenges.png" alt="Challenges">
+<img src="{{site.baseurl}}/images/Challenges.png" alt="Challenges" height="400" width="500">
 
 * Some of the team members had no prior experience in programming and this was a major setback in our team. However, with the support of other team members, we were able to overcome this problem. 
 
@@ -19,7 +19,7 @@ Welcome to our blog!!We have successfully made it to the end of the course "Intr
 
 As most of our team members had worked with each other on other projects, we did not face any problem as a team. However, having a team with different level of programming experience was an issue we faced as a team. In this case, the ones with sufficient knowledge had to do more difficult tasks when compared to others.  
 
-<img src="{{site.baseurl}}/images/Teamwork.JPG" alt="Teamwork">
+<img src="{{site.baseurl}}/images/Teamwork.JPG" alt="Teamwork" height="400" width="500">
 
 We did gain a lot of benefits throughout this whole journey:
 
