@@ -11,7 +11,7 @@ date: 2018-07-10
 Giving the control of his or her time back to the user. That was our intention when we created "Timebox". It allows you to **log all your activities quick and easy**. Assign them to one of the **predefined categories** or add your own ones. 
 **Review** them with one single peek, thanks to Timebox's tailor-made interfaces. No matter if you prefer a **textual or a graphical summary**, Timebox provides you with both. 
 Additionaly, you can now **schedule your activities**. Schedule the amount of work you want to spend on a specific project during a specific time frame. You can log conducted work and review how much hours you need to invest to reach your goal. 
-Get more control over your time. With **Timebox**
+Get more control over your time. With **Timebox**!
 
 Download it here:
 
