@@ -21,7 +21,7 @@ The members of our team were from different technical backgrounds. While this bo
 
 As most of our team members had worked with each other on other projects, we did not face any problem as a team. However, having members with different level of programming experience was an issue we faced. In this case, the ones with sufficient knowledge had to do more difficult tasks when compared to others.  
 
-<img src="{{site.baseurl}}/images/Team.JPG" alt="Team" height="400" width="500">
+<img src="{{site.baseurl}}/images/Team.jpg" alt="Team" height="400" width="500">
 
 We did gain a lot of benefits throughout this whole journey:
 
