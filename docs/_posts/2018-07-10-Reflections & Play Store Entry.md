@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reflections & Play Store Entry"
+title: "Reflections on the lecture"
 date: 2018-07-10
 ---
 
@@ -11,6 +11,3 @@ We have sucessfully made it to the end of the course "Introduction to Software E
 
 ## Reflections
 
-
-
-## Play Store Entry
