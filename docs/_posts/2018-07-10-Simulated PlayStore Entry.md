@@ -13,6 +13,8 @@ Giving the control of his or her time back to the user. That was our intention w
 Additionaly, you can now **schedule your activities**. Schedule the amount of work you want to spend on a specific project during a specific time frame. You can log conducted work and review how much hours you need to invest to reach your goal. 
 Get more control over your time. With **Timebox**!
 
+# Download
+
 **Download it here:** https://docs.google.com/uc?export=download&id=1BbldF6TC_unPRGCDW-9qSiJ7vQs6GDrf
 
 # Additional information
