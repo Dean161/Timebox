@@ -4,7 +4,7 @@ title: "Simulated PlayStore Entry"
 date: 2018-07-10
 ---
 ## PlayStore Entry
-<img src="{{site.baseurl}}/images/app_logo_red-web.png" alt="app logo" width="100" height="100"> **Timebox**
+<img src="{{site.baseurl}}/images/app_logo_red-web.png" alt="app logo" width="80" height="80"> **Timebox**
 
 <img src="{{site.baseurl}}/images/HomeScreen.png" alt="Home" width="200" height="390"> <img src="{{site.baseurl}}/images/logActivity1.png" alt="Log Activity" width="200" height="390"> <img src="{{site.baseurl}}/images/scheduledActivity.png" alt="Scheduled Activity" width="200" height="390"> <img src="{{site.baseurl}}/images/scheduledStatus.png" alt="Check Scheduled Activity's Status" width="200" height="390"> <img src="{{site.baseurl}}/images/reviewGraph1.png" alt="Review Graph" width="200" height="390"> <img src="{{site.baseurl}}/images/navigation.png" alt="Navigation" width="200" height="390">
 
