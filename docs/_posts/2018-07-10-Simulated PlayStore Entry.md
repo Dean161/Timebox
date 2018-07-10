@@ -15,7 +15,7 @@ Get more control over your time. With **Timebox**!
 
 # Download
 
-**Download it here:** https://docs.google.com/uc?export=download&id=1BbldF6TC_unPRGCDW-9qSiJ7vQs6GDrf
+**Download it here:** [Timebox](https://docs.google.com/uc?export=download&id=1BbldF6TC_unPRGCDW-9qSiJ7vQs6GDrf)
 
 # Additional information
 **Updated:** 10th July 2018     
@@ -23,5 +23,6 @@ Get more control over your time. With **Timebox**!
 **Size:** 15 MB
 **Required Android Version:** Nougat (API 24)         
 **Installations:** 3
+**Content Rating:** USK: All ages
 
 
