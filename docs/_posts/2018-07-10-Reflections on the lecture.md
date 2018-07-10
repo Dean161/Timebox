@@ -8,7 +8,7 @@ Welcome to our blog!!We have successfully made it to the end of the course "Intr
 
 ## Technical challenges our team encountered
 
-We were a team with members, who were from different technical backgrounds. While this bought diversity to our team, we also faced some issues:
+We were a team with members, who were from different technical backgrounds. While this bought diversity to our team, we also faced some issues.
 
 <img src="{{site.baseurl}}/images/Challenges.png" alt="Challenges" height="400" width="500">
 
@@ -38,11 +38,11 @@ We did gain a lot of benefits throughout this whole journey, while having fun wi
 The course as expected, was a great platform to have hands on experience in developing an android app and learning some project management skills. It was a more effective learning approach, due to practical application of the lecture contents. 
 It has helped us in 
 
-* Gaining additional programming skills
+* Gaining additional programming skills.
 
-* Learning how an entire software engineering project,staring from requirements analysis until the testing of the product can look in reality 
+* Learning how an entire software engineering project,staring from requirements analysis until the testing of the product can look in reality. 
 
-* Learning and applying agile software project management with SCRUM 
+* Learning and applying agile software project management with SCRUM.
 
 * Knowing how the interactions with the customer can take place, and how we need to understand and adapt to customer's needs.
 
