@@ -20,9 +20,9 @@ Get more control over your time. With **Timebox**!
 # Additional information
 **Updated:** 10th July 2018     
 **Version:** 1.0      
-**Size:** 15 MB
-**Required Android Version:** Nougat (API 24)         
-**Installations:** 3
-**Content Rating:** USK: All ages
+**Size:** 15 MB           
+**Required Android Version:** Nougat (API 24)                           
+**Installations:** 3            
+**Content Rating:** USK: All ages              
 
 
