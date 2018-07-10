@@ -23,8 +23,6 @@ import java.util.List;
 
 public class DisplayActivity extends AppCompatActivity {
 
-    //TODO: Handle clicks from other Activities
-
     TextView display_activity_name;
     TextView display_category_name;
     TextView display_start_date_time;
@@ -76,12 +74,19 @@ public class DisplayActivity extends AppCompatActivity {
         calledActivity = getIntent();
         final String activityName = calledActivity.getStringExtra("ActivityName");
 
-        if (activityName.equals("MainActivity")) {
-            clicked_logged_activity_entry = MainActivity.loggedActivities;
-            display_category_name.setText(MainActivity.current_category_name);
-        } else if(activityName.equals("ReviewText")){
-            clicked_logged_activity_entry = ReviewText.loggedActivities;
-            display_category_name.setText(ReviewText.current_category_name);
+        switch (activityName) {
+            case "MainActivity":
+                clicked_logged_activity_entry = MainActivity.loggedActivities;
+                display_category_name.setText(MainActivity.current_category_name);
+                break;
+            case "ReviewText":
+                clicked_logged_activity_entry = ReviewText.loggedActivities;
+                display_category_name.setText(ReviewText.current_category_name);
+                break;
+            case "ReviewCalendar":
+                clicked_logged_activity_entry = ReviewCalendar.loggedActivities;
+                display_category_name.setText(ReviewCalendar.current_category_name);
+                break;
         }
 
         //clicked_logged_activity_entry = ReviewText.loggedActivities;
@@ -150,34 +155,52 @@ public class DisplayActivity extends AppCompatActivity {
                 String entered_start_date_time = edit_start_date_time.getText().toString();
                 String entered_end_date_time = edit_end_date_time.getText().toString();
                 String entered_notes = edit_notes.getText().toString();
-                if (activityName.equals("ReviewText")){
-                    if (!(entered_activity_name.equals(ReviewText.loggedActivities.getActivityName()) && entered_category_name.equals(ReviewText.current_category_name) && entered_start_date_time.equals(ReviewText.loggedActivities.getStartDateTime()) && entered_end_date_time.equals(ReviewText.loggedActivities.getEndDateTime()) && entered_notes.equals(ReviewText.loggedActivities.getNotes()))){
-                        categoryCid = getCatIDByName(categoryList,entered_category_name);
-                        updated_logged_activity.setLaID(ReviewText.loggedActivities.getLaID());
-                        updated_logged_activity.setActivityName(entered_activity_name);
-                        updated_logged_activity.setCid_fk(categoryCid);
-                        updated_logged_activity.setStartDateTime(entered_start_date_time);
-                        updated_logged_activity.setEndDateTime(entered_end_date_time);
-                        updated_logged_activity.setNotes(entered_notes);
-                        activity = activityName;
-                        new DatabaseAsyncUpdateActivity().execute();
-                    } else {
-                        toggleFromEditToView();
-                    }
-                } else if (activityName.equals("MainActivity")){
-                    if (!(entered_activity_name.equals(MainActivity.loggedActivities.getActivityName()) && entered_category_name.equals(MainActivity.current_category_name) && entered_start_date_time.equals(MainActivity.loggedActivities.getStartDateTime()) && entered_end_date_time.equals(MainActivity.loggedActivities.getEndDateTime()) && entered_notes.equals(MainActivity.loggedActivities.getNotes()))){
-                        categoryCid = getCatIDByName(categoryList,entered_category_name);
-                        updated_logged_activity.setLaID(MainActivity.loggedActivities.getLaID());
-                        updated_logged_activity.setActivityName(entered_activity_name);
-                        updated_logged_activity.setCid_fk(categoryCid);
-                        updated_logged_activity.setStartDateTime(entered_start_date_time);
-                        updated_logged_activity.setEndDateTime(entered_end_date_time);
-                        updated_logged_activity.setNotes(entered_notes);
-                        activity = activityName;
-                        new DatabaseAsyncUpdateActivity().execute();
-                    } else {
-                        toggleFromEditToView();
-                    }
+                switch (activityName) {
+                    case "ReviewText":
+                        if (!(entered_activity_name.equals(ReviewText.loggedActivities.getActivityName()) && entered_category_name.equals(ReviewText.current_category_name) && entered_start_date_time.equals(ReviewText.loggedActivities.getStartDateTime()) && entered_end_date_time.equals(ReviewText.loggedActivities.getEndDateTime()) && entered_notes.equals(ReviewText.loggedActivities.getNotes()))) {
+                            categoryCid = getCatIDByName(categoryList, entered_category_name);
+                            updated_logged_activity.setLaID(ReviewText.loggedActivities.getLaID());
+                            updated_logged_activity.setActivityName(entered_activity_name);
+                            updated_logged_activity.setCid_fk(categoryCid);
+                            updated_logged_activity.setStartDateTime(entered_start_date_time);
+                            updated_logged_activity.setEndDateTime(entered_end_date_time);
+                            updated_logged_activity.setNotes(entered_notes);
+                            activity = activityName;
+                            new DatabaseAsyncUpdateActivity().execute();
+                        } else {
+                            toggleFromEditToView();
+                        }
+                        break;
+                    case "MainActivity":
+                        if (!(entered_activity_name.equals(MainActivity.loggedActivities.getActivityName()) && entered_category_name.equals(MainActivity.current_category_name) && entered_start_date_time.equals(MainActivity.loggedActivities.getStartDateTime()) && entered_end_date_time.equals(MainActivity.loggedActivities.getEndDateTime()) && entered_notes.equals(MainActivity.loggedActivities.getNotes()))) {
+                            categoryCid = getCatIDByName(categoryList, entered_category_name);
+                            updated_logged_activity.setLaID(MainActivity.loggedActivities.getLaID());
+                            updated_logged_activity.setActivityName(entered_activity_name);
+                            updated_logged_activity.setCid_fk(categoryCid);
+                            updated_logged_activity.setStartDateTime(entered_start_date_time);
+                            updated_logged_activity.setEndDateTime(entered_end_date_time);
+                            updated_logged_activity.setNotes(entered_notes);
+                            activity = activityName;
+                            new DatabaseAsyncUpdateActivity().execute();
+                        } else {
+                            toggleFromEditToView();
+                        }
+                        break;
+                    case "ReviewCalendar":
+                        if (!(entered_activity_name.equals(ReviewCalendar.loggedActivities.getActivityName()) && entered_category_name.equals(ReviewCalendar.current_category_name) && entered_start_date_time.equals(ReviewCalendar.loggedActivities.getStartDateTime()) && entered_end_date_time.equals(ReviewCalendar.loggedActivities.getEndDateTime()) && entered_notes.equals(ReviewCalendar.loggedActivities.getNotes()))) {
+                            categoryCid = getCatIDByName(categoryList, entered_category_name);
+                            updated_logged_activity.setLaID(ReviewCalendar.loggedActivities.getLaID());
+                            updated_logged_activity.setActivityName(entered_activity_name);
+                            updated_logged_activity.setCid_fk(categoryCid);
+                            updated_logged_activity.setStartDateTime(entered_start_date_time);
+                            updated_logged_activity.setEndDateTime(entered_end_date_time);
+                            updated_logged_activity.setNotes(entered_notes);
+                            activity = activityName;
+                            new DatabaseAsyncUpdateActivity().execute();
+                        } else {
+                            toggleFromEditToView();
+                        }
+                        break;
                 }
 
             }
@@ -211,12 +234,19 @@ public class DisplayActivity extends AppCompatActivity {
         //Spinner drop down elements
         List<String> labels = app_database.catDao().getCatNames();
 
-        if (actName.equals("MainActivity")){
-            labels.remove(MainActivity.current_category_name);
-            labels.add(0,MainActivity.current_category_name);
-        } else if (actName.equals("ReviewActivity")){
-            labels.remove(ReviewText.current_category_name);
-            labels.add(0,ReviewText.current_category_name);
+        switch (actName) {
+            case "MainActivity":
+                labels.remove(MainActivity.current_category_name);
+                labels.add(0, MainActivity.current_category_name);
+                break;
+            case "ReviewText":
+                labels.remove(ReviewText.current_category_name);
+                labels.add(0, ReviewText.current_category_name);
+                break;
+            case "ReviewCalendar":
+                labels.remove(ReviewCalendar.current_category_name);
+                labels.add(0, ReviewCalendar.current_category_name);
+                break;
         }
 
 
@@ -257,18 +287,28 @@ public class DisplayActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             //perform post-adding operation here
-            if (activity.equals("ReviewText")){
-                ReviewText.loggedActivities.setCid_fk(updated_logged_activity.getCid_fk());
-                ReviewText.loggedActivities.setActivityName(updated_logged_activity.getActivityName());
-                ReviewText.loggedActivities.setStartDateTime(updated_logged_activity.getStartDateTime());
-                ReviewText.loggedActivities.setEndDateTime(updated_logged_activity.getEndDateTime());
-                ReviewText.loggedActivities.setNotes(updated_logged_activity.getNotes());
-            } else if (activity.equals("MainActivity")){
-                MainActivity.loggedActivities.setCid_fk(updated_logged_activity.getCid_fk());
-                MainActivity.loggedActivities.setActivityName(updated_logged_activity.getActivityName());
-                MainActivity.loggedActivities.setStartDateTime(updated_logged_activity.getStartDateTime());
-                MainActivity.loggedActivities.setEndDateTime(updated_logged_activity.getEndDateTime());
-                MainActivity.loggedActivities.setNotes(updated_logged_activity.getNotes());
+            switch (activity) {
+                case "ReviewText":
+                    ReviewText.loggedActivities.setCid_fk(updated_logged_activity.getCid_fk());
+                    ReviewText.loggedActivities.setActivityName(updated_logged_activity.getActivityName());
+                    ReviewText.loggedActivities.setStartDateTime(updated_logged_activity.getStartDateTime());
+                    ReviewText.loggedActivities.setEndDateTime(updated_logged_activity.getEndDateTime());
+                    ReviewText.loggedActivities.setNotes(updated_logged_activity.getNotes());
+                    break;
+                case "MainActivity":
+                    MainActivity.loggedActivities.setCid_fk(updated_logged_activity.getCid_fk());
+                    MainActivity.loggedActivities.setActivityName(updated_logged_activity.getActivityName());
+                    MainActivity.loggedActivities.setStartDateTime(updated_logged_activity.getStartDateTime());
+                    MainActivity.loggedActivities.setEndDateTime(updated_logged_activity.getEndDateTime());
+                    MainActivity.loggedActivities.setNotes(updated_logged_activity.getNotes());
+                    break;
+                case "ReviewCalendar":
+                    ReviewCalendar.loggedActivities.setCid_fk(updated_logged_activity.getCid_fk());
+                    ReviewCalendar.loggedActivities.setActivityName(updated_logged_activity.getActivityName());
+                    ReviewCalendar.loggedActivities.setStartDateTime(updated_logged_activity.getStartDateTime());
+                    ReviewCalendar.loggedActivities.setEndDateTime(updated_logged_activity.getEndDateTime());
+                    ReviewCalendar.loggedActivities.setNotes(updated_logged_activity.getNotes());
+                    break;
             }
             Intent returnBack = new Intent();
             returnBack.putExtra("Result",RESULT_OK);

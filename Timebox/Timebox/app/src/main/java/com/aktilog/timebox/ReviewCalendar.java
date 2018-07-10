@@ -1,5 +1,6 @@
 package com.aktilog.timebox;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.ListView;
@@ -20,14 +22,15 @@ import java.util.List;
 
 public class ReviewCalendar extends Fragment {
 
-    //TODO: Add click listener for the list entries
-
     CalendarView review_calendar;
     ListView review_activity_calendar;
     String selected_date;
     List<LoggedActivities> logged_activities_calendar;
     AppDatabase app_db_review_calendar;
     List<Category> category_list_calendar;
+    public static LoggedActivities loggedActivities;
+    public static String current_category_name;
+    String myIdentity = "ReviewCalendar";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +59,17 @@ public class ReviewCalendar extends Fragment {
             }
         });
 
-
+        review_activity_calendar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                loggedActivities = (LoggedActivities) parent.getAdapter().getItem(position);
+                int cat_id = loggedActivities.getCid_fk();
+                current_category_name = getCatNameByID(category_list_calendar,cat_id);
+                Intent showActivityDetailsDialog = new Intent(getActivity(),DisplayActivity.class);
+                showActivityDetailsDialog.putExtra("ActivityName",myIdentity);
+                startActivityForResult(showActivityDetailsDialog,0);
+            }
+        });
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -106,5 +119,14 @@ public class ReviewCalendar extends Fragment {
             super.onPostExecute(aVoid);
             //perform post-adding operation here
         }
+    }
+
+    private String getCatNameByID(List<Category> category, int cat_id){
+        for(int i=0;i<category.size();i++){
+            if (category.get(i).getCid() == cat_id){
+                return category.get(i).getCatName();
+            }
+        }
+        return "N/A";
     }
 }
