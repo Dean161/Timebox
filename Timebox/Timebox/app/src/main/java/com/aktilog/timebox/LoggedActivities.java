@@ -24,7 +24,6 @@ public class LoggedActivities{
     @ColumnInfo(name = "end_date_time")
     private String endDateTime;
 
-    //TODO add restriction for max. number of digits
     @ColumnInfo(name = "notes")
     private String notes;
 

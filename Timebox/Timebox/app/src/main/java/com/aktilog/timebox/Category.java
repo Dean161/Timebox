@@ -10,11 +10,14 @@ public class Category {
     @PrimaryKey(autoGenerate=true)
     private int cid;
 
-    @ColumnInfo(name="cat_name")
+    @ColumnInfo(name = "cat_name")
     private String catName;
 
     @ColumnInfo(name = "cat_color_hex")
     private String hexCode;
+
+    @ColumnInfo(name = "parent_cat_id")
+    private int parentCatId;
 
     //public Category(@NonNull String catName, @NonNull String hexCode) {
         //this.catName = catName;
@@ -44,5 +47,13 @@ public class Category {
 
     public void setHexCode(String hexCode) {
         this.hexCode = hexCode;
+    }
+
+    public int getParentCatId() {
+        return parentCatId;
+    }
+
+    public void setParentCatId(int parentCatId) {
+        this.parentCatId = parentCatId;
     }
 }

@@ -3,6 +3,7 @@ package com.aktilog.timebox;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -12,6 +13,8 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.SwitchPreference;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -20,7 +23,11 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -35,12 +42,16 @@ import java.util.List;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
+
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
+
+    static SwitchPreference switchPreference;
+
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
@@ -169,8 +180,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
-                || DataSyncPreferenceFragment.class.getName().equals(fragmentName)
-                || NotificationPreferenceFragment.class.getName().equals(fragmentName)
                 || PinPreferenceFragment.class.getName().equals(fragmentName)
                 || CategoriesPreferenceFragment.class.getName().equals(fragmentName);
     }
@@ -191,8 +200,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("example_text"));
-            bindPreferenceSummaryToValue(findPreference("example_list"));
+            //bindPreferenceSummaryToValue(findPreference("example_text"));
+            //bindPreferenceSummaryToValue(findPreference("example_list"));
         }
 
         @Override
@@ -209,7 +218,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     /**
      * This fragment shows notification preferences only. It is used when the
      * activity is showing a two-pane settings UI.
-     */
+     *//*
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class NotificationPreferenceFragment extends PreferenceFragment {
         @Override
@@ -234,12 +243,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
             return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
     /**
      * This fragment shows data and sync preferences only. It is used when the
      * activity is showing a two-pane settings UI.
-     */
+     *//*
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class DataSyncPreferenceFragment extends PreferenceFragment {
         @Override
@@ -264,12 +273,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
             return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class PinPreferenceFragment extends PreferenceFragment {
         @Override
-        public void onCreate(Bundle savedInstanceState) {
+        public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_pin);
             setHasOptionsMenu(true);
@@ -290,6 +299,35 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("Answer5"));
             bindPreferenceSummaryToValue(findPreference("Security Question 6"));
             bindPreferenceSummaryToValue(findPreference("Answer6"));
+
+            switchPreference = (SwitchPreference) findPreference("EnablePin");
+            switchPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    if (!switchPreference.isChecked()) {
+                        Intent showDialog = new Intent(getActivity(), SetPinActivity.class);
+                        startActivity(showDialog);
+                    } else {
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("EnablePin",false);
+                        editor.apply();
+                        switchPreference.setChecked(false);
+                    }
+                    return false;
+                }
+            });
+
+            Preference preference_pin = findPreference("SetPin");
+            preference_pin.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent showConfirmDialog = new Intent(getActivity(), ModifyPinActivity.class);
+                    startActivity(showConfirmDialog);
+                    return false;
+                }
+            });
+
         }
 
         @Override
@@ -312,9 +350,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             //Intent myIntent = new Intent(getActivity(), AddModCategories.class);
             //addPreferencesFromIntent(myIntent);
             //setHasOptionsMenu(true);
-
+            int REQUEST_SETTINGS = 2;
             Intent launch_AddModCategories = new Intent(getContext(),AddModCategories.class);
+            launch_AddModCategories.putExtra("CalledActivity",2);
             startActivity(launch_AddModCategories);
+            getActivity().finish();
 
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
             // to their values. When their values change, their summaries are
@@ -332,5 +372,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
             return super.onOptionsItemSelected(item);
         }
+
     }
 }

@@ -22,12 +22,14 @@ public class ScheduledActivities {
     @ColumnInfo(name = "end_date_time")
     private String endDateTime;
 
-    @ColumnInfo(name = "target_duration")
-    private String targetDuration;
+    @ColumnInfo(name = "target_duration_in_min")
+    private int targetDurationInMin;
 
-    //TODO add restriction for max. number of digits
     @ColumnInfo(name = "notes")
     private String notes;
+
+    @ColumnInfo(name = "logged_hours")
+    private int loggedHours;
 
     public void setSaID(int saID) {
         this.saID = saID;
@@ -75,11 +77,19 @@ public class ScheduledActivities {
         return notes;
     }
 
-    public void setTargetDuration(String targetDuration) {
-        this.targetDuration = targetDuration;
+    public void setLoggedHours(int loggedHours) {
+        this.loggedHours = loggedHours;
     }
 
-    public String getTargetDuration() {
-        return targetDuration;
+    public int getLoggedHours() {
+        return loggedHours;
+    }
+
+    public void setTargetDurationInMin(int targetDurationInMin) {
+        this.targetDurationInMin = targetDurationInMin;
+    }
+
+    public int getTargetDurationInMin() {
+        return targetDurationInMin;
     }
 }

@@ -16,6 +16,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,22 +79,28 @@ public class ReviewActivity extends AppCompatActivity {
                             startActivity(launch_LogActivity);
                         }else if (title.equals(getResources().getString(R.string.title_review))){
                             //do nothing
-                        }else{
+                        }else if (title.equals(getResources().getString(R.string.title_settings))){
                             Intent launch_SettingsActivity = new Intent(ReviewActivity.this,SettingsActivity.class);
                             startActivity(launch_SettingsActivity);
+                        }else if (title.equals(getResources().getString(R.string.title_checkScheduled_activities))){
+                            Intent launch_CheckedActivities = new Intent(ReviewActivity.this,CheckScheduled.class);
+                            startActivity(launch_CheckedActivities);
                         }
 
                         return true;
                     }
                 });
 
-        //TODO Add try catch block
-        Toolbar toolbar = findViewById(R.id.toolbar_review);
-        setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-
+        try {
+            Toolbar toolbar = findViewById(R.id.toolbar_review);
+            setSupportActionBar(toolbar);
+            ActionBar actionbar = getSupportActionBar();
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        } catch (NullPointerException npe){
+            npe.printStackTrace();
+            Toast.makeText(this, "Something wrong with the toolbar", Toast.LENGTH_SHORT).show();
+        }
         mDrawerLayout.addDrawerListener(
                 new DrawerLayout.DrawerListener() {
                     @Override

@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
-import android.arch.persistence.room.util.StringUtil;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
@@ -28,9 +27,13 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
-//TODO: clear textViews after saving
+
 public class LogActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener{
     protected static TextView selected_start_date_time;
     protected static TextView selected_end_date_time;
@@ -47,6 +50,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
     Spinner categorySpinner;
     TextView target_duration;
     int categoryCid;
+    String DEFAULT_CATEGORY_ITEM = "-- Please select category --";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +66,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         new DatabaseAsyncLoad().execute();
 
         //disable button_save
-        buttonSave.setEnabled(false);
+        //buttonSave.setEnabled(false);
 
 
         //instantiate TextViews for dates and times
@@ -96,7 +100,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         title_target_duration.setVisibility(View.GONE);
         selected_target_duration.setVisibility(View.GONE);
 
-        //instantiate schedule_swtich
+        //instantiate schedule_switch
         Switch schedule_switch = findViewById(R.id.switch_schedule_activity);
 
         mDrawerLayout = findViewById(R.id.drawer_navigation_log);
@@ -124,8 +128,8 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
                             Intent launch_SettingsActivity = new Intent(LogActivity.this,SettingsActivity.class);
                             startActivity(launch_SettingsActivity);
                         } else if (title.equals(getResources().getString(R.string.title_checkScheduled_activities))){
-                            Intent launch_checkScheduled = new Intent(LogActivity.this,CheckScheduled.class);
-                            startActivity(launch_checkScheduled);
+                            Intent launch_CheckScheduled = new Intent(LogActivity.this,CheckScheduled.class);
+                            startActivity(launch_CheckScheduled);
                         }
 
                         return true;
@@ -140,7 +144,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         actionbar.setTitle(R.string.title_log_activity);
 
-        //onClickListener for schedule swtich
+        //onClickListener for schedule switch
         schedule_switch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +166,9 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         add_cat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int REQUEST_LOG = 1;
                 Intent launch_AddModCategoriesActivity = new Intent(LogActivity.this,AddModCategories.class);
+                launch_AddModCategoriesActivity.putExtra("CalledActivity",REQUEST_LOG);
                 startActivity(launch_AddModCategoriesActivity);
             }
         });
@@ -198,30 +204,92 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         target_duration = findViewById(R.id.text_target_duration);
         inputNotes = findViewById(R.id.text_notes);
 
-
         //onClickListener for save_button
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            if(actionbar.getTitle().equals(getResources().getString(R.string.title_log_activity))){
-                if(buttonSave.isEnabled()) {
-                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
-                    new DatabaseAsyncGetCid().execute();
-                    new DatabaseAsyncInsertLoggedActivity().execute();
-                } else {
-                    //not working???
-                    Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
+                if (actionbar.getTitle().equals(getResources().getString(R.string.title_log_activity))) {
+                    if (buttonSave.isEnabled()) {
+                        if (!categorySpinner.getSelectedItem().toString().equals(DEFAULT_CATEGORY_ITEM)) {
+                            String act_name = specActivity.getText().toString();
+                            String start_datetime = start_date_time.getText().toString();
+                            String end_datetime = end_date_time.getText().toString();
+                            if (!act_name.equals("") && !start_datetime.equals("") && !end_datetime.equals("")) {
+                                new DatabaseAsyncGetCid().execute();
+
+                                String startDateTimeToCheck = start_date_time.getText().toString();
+                                String endDateTimeToCheck = end_date_time.getText().toString();
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                                Date convertedStartDate = new Date();
+                                Date convertedEndDate = new Date();
+                                try {
+                                    convertedStartDate = dateFormat.parse(startDateTimeToCheck);
+                                    convertedEndDate = dateFormat.parse(endDateTimeToCheck);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                if (convertedEndDate.after(convertedStartDate)) {
+                                    new DatabaseAsyncInsertLoggedActivity().execute();
+                                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(LogActivity.this, "Chosen end date is earlier than start date. Please adjust.", Toast.LENGTH_LONG).show();
+                                }
+
+
+                            } else {
+                                Toast.makeText(LogActivity.this, "One or more fields are blank", Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            //not working???
+                            Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                } else if (actionbar.getTitle().equals(getResources().getString(R.string.title_schedule_activity))) {
+                    if (buttonSave.isEnabled()) {
+                        new DatabaseAsyncGetCid().execute();
+
+                        String startDateTimeToCheck = start_date_time.getText().toString();
+                        String endDateTimeToCheck = end_date_time.getText().toString();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                        Date convertedStartDate = new Date();
+                        Date convertedEndDate = new Date();
+                        try {
+                            convertedStartDate = dateFormat.parse(startDateTimeToCheck);
+                            convertedEndDate = dateFormat.parse(endDateTimeToCheck);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        //calc max target duration
+                        long maxTargetDuration = (convertedEndDate.getTime() - convertedStartDate.getTime())/(1000*60);
+                        String targetDurationToCompareString = target_duration.getText().toString();
+
+                        if (targetDurationToCompareString.matches("")) {
+                            Toast.makeText(getApplicationContext(), "Please enter a target duration!", Toast.LENGTH_LONG).show();
+                        } else {
+                            String[] targetDurationStringSplittedToCompare = targetDurationToCompareString.split(" ");
+                            String[] targetDurationStringSplittedToCompareHours =targetDurationStringSplittedToCompare[0].split("h");
+                            String[] targetDurationStringSplittedToCompareMin =targetDurationStringSplittedToCompare[1].split("m");
+                            String targetHoursToCompare = targetDurationStringSplittedToCompareHours[0];
+                            String targetMinToCompare = targetDurationStringSplittedToCompareMin[0];
+                            long targetDurationLong = Long.parseLong(targetHoursToCompare)*60 + Long.parseLong(targetMinToCompare);
+
+                            if (convertedEndDate.after(convertedStartDate) && targetDurationLong <= maxTargetDuration) {
+                                new DatabaseAsyncInsertScheduledActivity().execute();
+                                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(LogActivity.this, "Chosen target duration is greater than the duration between Start Date and End Date. Please Check.", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+
+                    } else {
+                        //not working???
+                        Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
+                    }
+
                 }
-            } else if (actionbar.getTitle().equals(getResources().getString(R.string.title_schedule_activity))){
-                if(buttonSave.isEnabled()) {
-                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
-                    new DatabaseAsyncGetCid().execute();
-                    new DatabaseAsyncInsertScheduledActivity().execute();
-                } else {
-                    //not working???
-                    Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_LONG).show();
-                }
-            }
             }
         });
 
@@ -251,20 +319,29 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             String newActivity = specActivity.getText().toString();
             String startDateTime = start_date_time.getText().toString();
             String endDateTime = end_date_time.getText().toString();
-            String targetDuration = target_duration.getText().toString();
+            String targetDurationString = target_duration.getText().toString();
+            String[] targetDurationStringSplitted = targetDurationString.split(" ");
+            String[] targetDurationStringSplittedHours =targetDurationStringSplitted[0].split("h");
+            String[] targetDurationStringSplittedMin =targetDurationStringSplitted[1].split("m");
+            String targetHours = targetDurationStringSplittedHours[0];
+            String targetMin = targetDurationStringSplittedMin[0];
+            int targetDuration = Integer.parseInt(targetHours)*60 + Integer.parseInt(targetMin);
+
             String notes = inputNotes.getText().toString();
-
-
 
             ScheduledActivities newAct = new ScheduledActivities();
             newAct.setActivityName(newActivity);
             newAct.setCid_fk(categoryCid);
             newAct.setStartDateTime(startDateTime);
             newAct.setEndDateTime(endDateTime);
-            newAct.setTargetDuration(targetDuration);
+            newAct.setTargetDurationInMin(targetDuration);
             newAct.setNotes(notes);
+            newAct.setLoggedHours(0);
 
             db.catDao().insertScheduledActivity(newAct);
+
+            Intent goHome = new Intent(LogActivity.this, MainActivity.class);
+            startActivity(goHome);
 
             return null;
         }
@@ -290,8 +367,6 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
             String endDateTime = end_date_time.getText().toString();
             String notes = inputNotes.getText().toString();
 
-
-
             LoggedActivities newAct = new LoggedActivities();
             newAct.setActivityName(newActivity);
             newAct.setCid_fk(categoryCid);
@@ -301,6 +376,19 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
 
             db.catDao().insertActivity(newAct);
 
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    categorySpinner.setSelection(0);
+                    specActivity.getText().clear();
+                    start_date_time.setText(R.string.hint_start_date_time);
+                    end_date_time.setText(R.string.hint_end_date_time);
+                    inputNotes.getText().clear();
+                }
+            });
+
+            Intent goHome = new Intent(LogActivity.this, MainActivity.class);
+            startActivity(goHome);
             return null;
         }
 
@@ -322,7 +410,7 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         @Override
         protected Void doInBackground(Void... voids) {
             String CategoryToGetCIdFrom = categorySpinner.getSelectedItem().toString();
-            categoryCid = db.catDao().getCidActivites(CategoryToGetCIdFrom);
+            categoryCid = db.catDao().getCidActivities(CategoryToGetCIdFrom);
 
             return null;
         }
@@ -359,6 +447,8 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
     public void loadSpinnerData() {
         //Spinner drop down elements
         List<String> labels = db.catDao().getCatNames();
+        labels.add(DEFAULT_CATEGORY_ITEM);
+        Collections.sort(labels);
 
         //creating adapter from spinner
         final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels);
@@ -432,9 +522,9 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            selected_start_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month) + "-" + String.format("%02d",day));
+            selected_start_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month+1) + "-" + String.format("%02d",day));
             TimePickerStart startTimePicker = new TimePickerStart();
-            startTimePicker.show(getFragmentManager(), "Select start time!");
+            startTimePicker.show(getFragmentManager(), "Select Start Time!");
         }
     }
 
@@ -467,9 +557,9 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            selected_end_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month) + "-" + String.format("%02d",day));
+            selected_end_date_time.setText(String.valueOf(year) + "-" + String.format("%02d",month+1) + "-" + String.format("%02d",day));
             TimePickerEnd endTimePicker = new TimePickerEnd();
-            endTimePicker.show(getFragmentManager(), "Select end time!");
+            endTimePicker.show(getFragmentManager(), "Select End Time!");
         }
     }
 

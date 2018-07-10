@@ -4,34 +4,41 @@
         android:summary=""
         android:persistent="true" />
 
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="example_switch"
-        android:summary="@string/pref_description_social_recommendations"
-        android:title="@string/pref_title_social_recommendations" />
+    <PreferenceScreen
+        android:title="@string/pref_title_app" >
 
-    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
-    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
-    <EditTextPreference
-        android:capitalize="words"
-        android:defaultValue="@string/pref_default_display_name"
-        android:inputType="textCapWords"
-        android:key="example_text"
-        android:maxLines="1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="@string/pref_title_display_name" />
+        <Preference
+            android:title="@string/app_name"
+            android:icon="@drawable/app_logo"
+            android:summary="@string/pref_summary_app" />
 
-    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-         dismiss it. -->
-    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
-    <ListPreference
-        android:defaultValue="-1"
-        android:entries="@array/pref_example_list_titles"
-        android:entryValues="@array/pref_example_list_values"
-        android:key="example_list"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_title_add_friends_to_messages" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:title="@string/pref_title_team" >
+
+        <Preference
+            android:title="@string/team_name"
+            android:summary="@string/pref_summary_team"/>
+
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:title="@string/pref_title_lecture" >
+
+        <Preference
+            android:title="@string/lecture_name"
+            android:summary="@string/pref_summary_lecture"/>
+
+        <Preference
+            android:summary="@string/pref_summary_blog"
+            android:key="TeamBlog">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://dbse-teaching.github.io/isee2018-CurryWurst/"/>
+        </Preference>
+
+    </PreferenceScreen>
 
 </PreferenceScreen>

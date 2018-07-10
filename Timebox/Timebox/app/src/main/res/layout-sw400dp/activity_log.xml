@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LogActivity"
+    android:id="@+id/drawer_navigation_log"
+    android:fitsSystemWindows="true">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:id="@+id/text_start_date_time"
+                android:layout_width="195dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/hint_start_date_time"
+                android:gravity="center_vertical"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_activity_name" />
+
+            <TextView
+                android:id="@+id/title_end_date_time"
+                android:layout_width="188dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:textSize="20sp"
+                android:text="@string/title_end_date_time"
+                android:gravity="center_vertical"
+                style="@style/AppTheme_New.TitleStyle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_start_date_time" />
+
+            <TextView
+                android:id="@+id/text_end_date_time"
+                android:layout_width="195dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/hint_end_date_time"
+                android:gravity="center_vertical"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_start_date_time" />
+
+            <TextView
+                android:id="@+id/title_start_date_time"
+                android:layout_width="188dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/title_start_date_time"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+                style="@style/AppTheme_New.TitleStyle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_activity_name" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_log"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+            <Switch
+                android:id="@+id/switch_schedule_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="64dp"
+                android:text="@string/switch_schedule"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/button_add_category"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.117" />
+
+            <TextView
+                android:id="@+id/title_category_log"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="100dp"
+                android:text="@string/title_category"
+                android:textSize="20sp"
+                style="@style/AppTheme_New.TitleStyle"
+                app:layout_constraintEnd_toStartOf="@+id/switch_schedule_activity"
+                app:layout_constraintHorizontal_bias="0.053"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinner_category_select_log"
+                android:layout_width="244dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/spinner_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.064"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_category_log" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/button_add_category"
+                android:layout_width="79dp"
+                android:layout_height="56dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                app:backgroundTint="?attr/actionModeSplitBackground"
+                app:layout_constraintBottom_toTopOf="@+id/title_activity_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintStart_toEndOf="@+id/spinner_category_select_log"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.939"
+                app:srcCompat="@drawable/ic_add_black_24dp"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/title_activity_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/title_activity"
+                android:textSize="20sp"
+                style="@style/AppTheme_New.TitleStyle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_category_select_log" />
+
+            <EditText
+                android:id="@+id/text_activity_name"
+                android:layout_width="385dp"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:hint="@string/hint_activity"
+                android:inputType="textPersonName"
+                android:maxLength="50"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.615"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_activity_name" />
+
+            <TextView
+                android:id="@+id/title_target_duration"
+                style="@style/AppTheme_New.TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/title_target_duration"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.031"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_end_date_time" />
+
+            <TextView
+                android:id="@+id/text_target_duration"
+                android:layout_width="385dp"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:hint="@string/hint_target_duration"
+                android:inputType="textPersonName"
+                android:onClick="showNumberPicker"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.615"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_target_duration" />
+
+            <TextView
+                android:id="@+id/title_notes"
+                style="@style/AppTheme_New.TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/title_notes"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.023"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_target_duration" />
+
+            <EditText
+                android:id="@+id/text_notes"
+                android:layout_width="385dp"
+                android:layout_height="77dp"
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:hint="@string/hint_notes"
+                android:inputType="textPersonName"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:maxLength="200"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.615"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_notes" />
+
+            <Button
+                android:id="@+id/button_save_log"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="?attr/actionModeSplitBackground"
+                android:backgroundTint="?attr/actionModeSplitBackground"
+                android:text="@string/action_save"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_notes"
+                app:layout_constraintVertical_bias="0.133" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view_log"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/menu_navigation_drawer"
+        app:headerLayout="@layout/layout_navigation_header"/>
+
+</android.support.v4.widget.DrawerLayout>
