@@ -16,6 +16,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,13 +91,16 @@ public class ReviewActivity extends AppCompatActivity {
                     }
                 });
 
-        //TODO Add try catch block
-        Toolbar toolbar = findViewById(R.id.toolbar_review);
-        setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-
+        try {
+            Toolbar toolbar = findViewById(R.id.toolbar_review);
+            setSupportActionBar(toolbar);
+            ActionBar actionbar = getSupportActionBar();
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        } catch (NullPointerException npe){
+            npe.printStackTrace();
+            Toast.makeText(this, "Something wrong with the toolbar", Toast.LENGTH_SHORT).show();
+        }
         mDrawerLayout.addDrawerListener(
                 new DrawerLayout.DrawerListener() {
                     @Override

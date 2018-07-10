@@ -45,8 +45,6 @@ import java.util.List;
 
 public class ReviewGraph extends Fragment {
 
-    //TODO: Group categories together
-
     TextView title_start_datetime_review_graph;
     TextView title_end_datetime_review_graph;
     protected static TextView input_start_datetime_review_graph;

@@ -229,6 +229,7 @@
                 android:inputType="textPersonName"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
+                android:maxLength="200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.615"
                 app:layout_constraintStart_toStartOf="parent"

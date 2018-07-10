@@ -32,7 +32,6 @@ import java.util.List;
 public class AddModCategories extends AppCompatActivity {
 
 
-    //TODO: Check whether entries are null before insert or update
     AppDatabase app_database;
     EditText input_category;
     Button input_color;
@@ -222,7 +221,11 @@ public class AddModCategories extends AppCompatActivity {
                 if (duplicate == 1 && actionbar_categories.getTitle().toString().equals(getResources().getString(R.string.title_add_category))) {
                     Toast.makeText(getApplicationContext(), error_message, Toast.LENGTH_LONG).show();
                 } else if(modify_duplicate == 0) {
-                    new DatabaseAsyncInsert().execute();
+                    if (!input_category.getText().toString().equals("")) {
+                        new DatabaseAsyncInsert().execute();
+                    } else {
+                        Toast.makeText(AddModCategories.this, "Category Name cannot be blank", Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     Toast.makeText(AddModCategories.this, error_message, Toast.LENGTH_LONG).show();
                 }
@@ -254,9 +257,6 @@ public class AddModCategories extends AppCompatActivity {
 
             if (actionbar_categories.getTitle().equals(getResources().getString(R.string.title_add_category))) {
                 app_database.catDao().insertAll(category);
-                //TODO resolve error msg: Can't toast on a thread that has not called Looper.prepare()
-                //Toast.makeText(getApplicationContext(),"Category saved",Toast.LENGTH_SHORT).show();
-                //was: clearComposingText();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -265,6 +265,7 @@ public class AddModCategories extends AppCompatActivity {
                         input_color.setText(R.string.hint_category_color);
                         input_color.setTextColor(ContextCompat.getColor(AddModCategories.this, R.color.colorWhite));
                         parent_category_select.setSelection(0);
+                        Toast.makeText(AddModCategories.this, "Category Saved", Toast.LENGTH_LONG).show();
                     }
                 });
 

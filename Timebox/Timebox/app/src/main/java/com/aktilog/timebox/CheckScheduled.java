@@ -16,7 +16,6 @@ import android.widget.ListView;
 
 import java.util.List;
 
-//TODO: update view after closing dialog (show updated amount of logged hours)
 public class CheckScheduled extends AppCompatActivity {
 
     AppDatabase app_database;

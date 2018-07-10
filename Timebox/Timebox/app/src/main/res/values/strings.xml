@@ -4,6 +4,7 @@
     <string name="app_logo_desc">The logo for the app Timebox</string>
     <string name="app_name">Timebox</string>
     <string name="team_name">CurryWurst</string>
+    <string name="lecture_name">ISEE</string>
 
     <!-- Strings related to Settings Preferences -->
     <!-- Strings related to Categories -->
@@ -77,6 +78,13 @@
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_title_app">About Timebox</string>
+    <string name="pref_summary_app">Timebox is an activity monitoring app which allows user to add activities on a daily basis and review them via textual and graphical displays.</string>
+    <string name="pref_title_team">About CurryWurst</string>
+    <string name="pref_summary_team">Four students from ISEE formed the team \'CurryWurst\' to develop this app for activity monitoring.\n\nTeam members:\nDean Dsouza\nJahnavi Cheyyanda\nMoritz Spiller\nPham Huu Quang</string>
+    <string name="pref_title_lecture">About ISEE</string>
+    <string name="pref_summary_lecture">Introduction to Software Engineering for Engineers(ISEE) is a course which deals with software development. As part of this course, our team developed an android app for tracking an users activities. The process involved obtaining the requirements, designing the system, implementation and system testing.\n</string>
+    <string name="pref_summary_blog">All the information can be found in our team blog provided below.\n\n<a href="www.google.com">CurryWurst Blog!</a></string>
 
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>

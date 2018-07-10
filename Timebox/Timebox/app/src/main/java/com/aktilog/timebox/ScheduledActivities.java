@@ -25,7 +25,6 @@ public class ScheduledActivities {
     @ColumnInfo(name = "target_duration_in_min")
     private int targetDurationInMin;
 
-    //TODO add restriction for max. number of digits
     @ColumnInfo(name = "notes")
     private String notes;
 

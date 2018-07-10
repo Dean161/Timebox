@@ -204,7 +204,6 @@ public class LogActivity extends AppCompatActivity implements NumberPicker.OnVal
         target_duration = findViewById(R.id.text_target_duration);
         inputNotes = findViewById(R.id.text_notes);
 
-        //TODO: check that if statement with buttonSave.isEnabled
         //onClickListener for save_button
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
